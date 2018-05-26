@@ -1,0 +1,23 @@
+{
+  "name": "coffee",
+  "version": "0.0.1",
+  "description": "",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js",
+    "generate": "node ./bin/generator.js data/posts -o src/data/posts.json -m data/meta"
+  },
+  "keywords": [],
+  "author": "khirayama",
+  "license": "",
+  "devDependencies": {
+    "marked": "0.4.0",
+    "minimist": "1.2.0",
+    "nodemon": "1.17.5"
+  },
+  "dependencies": {
+    "express": "4.16.3",
+    "pug": "^2.0.3"
+  }
+}
