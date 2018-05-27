@@ -11,9 +11,12 @@ block body
   .home
     include /components/header
     include /components/navigation
-    a.home--cover-story(href="#")
+    a.home--cover-story(href=`/posts/${featuredPost.id}`)
       .home--cover-story--content
         .home--cover-story--content--image
-          .img: img(src="http://d3f3hpqbpy4ou2.cloudfront.net/production/7e8e8b9ee54e5f6380a7b378ee0bb0f8ebd5b93a62bdfadb785f2d039c275820.jpg?1477936056")
+          .img: img(src=featuredPost.thumbnailUrl)
           .home--cover-story--content--image--cover
-        .home--cover-story--content--title Feature hoge hoge fuga fuga special coffee
+        .home--cover-story--content--title= featuredPost.title
+    each post in posts
+      a(href=`/posts/${post.id}`)
+        li= post.title

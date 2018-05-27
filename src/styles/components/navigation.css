@@ -24,7 +24,7 @@
         font-weight: $font-bold;
         padding: 16px 0;
         color: inherit;
-        font-size: 0.4rem;
+        font-size: 0.6rem;
         opacity: 1;
         transition: opacity 200ms ease-out;
 
