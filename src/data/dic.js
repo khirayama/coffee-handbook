@@ -4,9 +4,9 @@ module.exports = {
       ja: 'HOME',
       en: 'HOME',
     },
-    COFFEE_BEANS: {
-      ja: 'COFFEE BEANS',
-      en: 'COFFEE BEANS',
+    BEANS: {
+      ja: 'BEANS',
+      en: 'BEANS',
     },
     BEVERAGES: {
       ja: 'BEVERAGES',

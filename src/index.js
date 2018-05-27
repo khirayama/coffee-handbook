@@ -22,10 +22,10 @@ app.get('/', (req, res) => {
   });
 });
 
-app.get('/coffee-beans', (req, res) => {
+app.get('/beans', (req, res) => {
   const lang = 'ja';
   const dic = new Dictionary(lang);
-  res.render('pages/coffee-beans', {
+  res.render('pages/beans', {
     basedir,
     dic,
   });

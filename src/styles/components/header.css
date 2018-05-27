@@ -1,0 +1,18 @@
+@import 'vars';
+
+.header {
+  position: relative;
+  text-align: center;
+  padding: 16px 0;
+
+  h1 {
+    display: inline-block;
+    font-weight: $font-bold;
+    letter-spacing: -1px;
+    font-size: 0.5rem;
+    width: 3rem;
+    padding: 8px 0;
+    line-height: 1.2;
+    border: solid 2px $color-text;
+  }
+}
