@@ -1,7 +1,7 @@
 ## Pages
 
 - Home / ホーム
-- Coffee beans / コーヒー豆
+- Beans / コーヒー豆
 - Beverages / ビバレッジ
 - Foods / フード
 - Goods / 器具
@@ -12,21 +12,24 @@
 ## Meta information
 
 - categories
-  - coffee beans
-  - beverages
-  - foods
-  - goods
-    - brewers
-    - mills
-    - roasters
-    - espresso machines
-    - kettles
-    - servers
-    - containers
-  - knowledge
-    - brew
-    - roast
-    - grow
+  - 1. post
+  - 2. beans
+  - 3. beverages
+  - 4. foods
+  - 5. goods
+    - 1. brewers
+    - 2. mills
+    - 3. roasters
+    - 4. espresso machines
+    - 5. kettles
+    - 6. servers
+    - 7. containers
+  - 6. knowledge
+    - 8. brew
+    - 9. roast
+    - 10. grow
+- tags
+  - 1. feature
 
 ## Memo
 
