@@ -78,6 +78,7 @@ for (let i = 0; i < posts.length; i++) {
         return newCategory;
       }
     }
+    return null;
   });
   post.tags = post.tags.map((tagId) => {
     for (let j = 0; j < meta.tags.length; j++) {
@@ -90,8 +91,8 @@ for (let i = 0; i < posts.length; i++) {
         };
       }
     }
+    return null;
   });
 }
 
-console.log(posts);
 fs.writeFile(distPath, JSON.stringify(posts), () => {});
