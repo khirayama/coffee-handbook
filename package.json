@@ -34,7 +34,6 @@
     "eslint-config-prettier": "2.9.0",
     "eslint-config-xo-space": "0.18.0",
     "glob": "7.1.2",
-    "marked": "0.4.0",
     "minimist": "1.2.0",
     "nodemon": "1.17.5",
     "postcss-cli": "5.0.0",
