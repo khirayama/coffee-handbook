@@ -9,7 +9,8 @@
     "generate": "node ./bin/generator.js data/posts -o src/data/posts.json -m data/meta",
     "lint": "eslint --ignore-path .gitignore src",
     "lint:fix": "eslint --fix --ignore-path .gitignore src",
-    "format": "prettier --ignore-path .gitignore --config .prettierrc --write 'src/**/!(*.pug|*.html|*.png|*.webp|*.svg)'"
+    "format": "prettier --ignore-path .gitignore --config .prettierrc --write 'src/**/!(*.pug|*.html|*.png|*.webp|*.svg)'",
+    "precommit": "npm run lint:fix && npm run format"
   },
   "keywords": [],
   "author": "khirayama",
