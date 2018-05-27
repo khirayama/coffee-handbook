@@ -2,8 +2,13 @@ doctype html
 
 block vars
 
-html
+html(lang=dic.lang)
   head
+    meta(charset="utf-8")
+    meta(http-equiv="X-UA-Compatible" content="IE=edge")
+    meta(name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=yes, viewport-fit=cover")
+    link(rel="manifest" href="/manifest.json")
+    link(rel="stylesheet" href="/styles/index.css")
     block meta
   body
     block body
