@@ -16,9 +16,33 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.get('/', (req, res) => {
   const lang = 'ja';
   const dic = new Dictionary(lang);
+  const posts = new Posts(lang);
+  const featuredPost = posts
+    .where({
+      categories: {
+        id: 1,
+      },
+      tags: {
+        id: 1,
+      },
+    })
+    .findOne();
+  const exceptedFeaturedPosts = posts
+    .where({
+      categories: {
+        id: 1,
+      },
+      excepted: {
+        id: featuredPost.id,
+      },
+    })
+    .find();
+
   res.render('pages/home', {
     basedir,
     dic,
+    featuredPost,
+    posts: exceptedFeaturedPosts,
   });
 });
 
@@ -72,7 +96,7 @@ app.get('/posts/:id', (req, res) => {
   const id = Number(req.params.id);
   const posts = new Posts(lang);
   const dic = new Dictionary(lang);
-  const post = posts.findById(id);
+  const post = posts.where({ id }).findOne();
   res.render('pages/post', {
     basedir,
     dic,
