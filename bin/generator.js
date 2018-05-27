@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 const minimist = require('minimist');
-const marked = require('marked');
+const pug = require('pug');
 
 const argv = minimist(process.argv.slice(2));
 
@@ -25,9 +25,9 @@ function loadPost(filePath) {
     const lang = config.languages[i];
     let content = '';
     try {
-      content = fs.readFileSync(filePath.replace('meta.js', `content.${lang}.md`), 'utf-8');
+      content = fs.readFileSync(filePath.replace('meta.js', `content.${lang}.pug`), 'utf-8');
     } catch(err) {}
-    post.content[lang] = marked(content);
+    post.content[lang] = pug.compile(content)();
   }
   posts.push(post);
 }
@@ -94,5 +94,9 @@ for (let i = 0; i < posts.length; i++) {
     return null;
   });
 }
+
+posts.sort((a, b) => {
+  return (new Date(a.publishedAt).getTime() < new Date(b.publishedAt).getTime());
+});
 
 fs.writeFile(distPath, JSON.stringify(posts), () => {});
