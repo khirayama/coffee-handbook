@@ -37,10 +37,21 @@
 - accessiblity
   - https://www.concentinc.jp/design_research/2018/03/btobcommunications-web-accessibility/
   - https://www.concentinc.jp/web_accessibility/
+- RSS
+- 特集
+- 更新
+- 関係性をデザインする
+- 家をカフェのように感じるために
+  - 天気
+  - 音楽
+  - 本
+  - 映像
+- 人気記事？
 
 ## PR
 
 - Instagram
 - Twitter
 - Facebook
+- YouTube
 - Google Maps
