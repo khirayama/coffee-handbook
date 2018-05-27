@@ -5,7 +5,15 @@ block vars
 
 block meta
   title= title
+  link(rel="stylesheet" href="/styles/pages/home/index.css")
 
 block body
-  h1= title
-  include /components/navigation.pug
+  .home
+    include /components/header
+    include /components/navigation
+    a.home--cover-story(href="#")
+      .home--cover-story--content
+        .home--cover-story--content--image
+          .img: img(src="http://d3f3hpqbpy4ou2.cloudfront.net/production/7e8e8b9ee54e5f6380a7b378ee0bb0f8ebd5b93a62bdfadb785f2d039c275820.jpg?1477936056")
+          .home--cover-story--content--image--cover
+        .home--cover-story--content--title Feature hoge hoge fuga fuga special coffee
