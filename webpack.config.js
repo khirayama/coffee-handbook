@@ -4,7 +4,7 @@ const glob = require('glob');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const NODE_ENV = process.env.NODE_ENV;
-const DIST = './src/assets';
+const DIST = './src/public';
 
 const inputFilenames = glob.sync(path.join(__dirname, 'src', 'scripts', '**', 'index.js'));
 const entry = {};

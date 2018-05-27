@@ -10,6 +10,8 @@ const basedir = path.join(__dirname, 'templates');
 
 app.set('views', basedir);
 app.set('view engine', 'pug');
+app.use(express.static(path.join(__dirname, 'assets')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', (req, res) => {
   const lang = 'ja';
@@ -78,6 +80,6 @@ app.get('/posts/:id', (req, res) => {
   });
 });
 
-app.listen(3000, () => {
+app.listen(3030, () => {
   console.log(`Start app at ${new Date().toString()}.`);
 });
