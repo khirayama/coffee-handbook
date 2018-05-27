@@ -1,1 +1,20 @@
-[{"id":1,"createdAt":"2018-05-26 12:00","publishedAt":"2018-05-26 15:00","title":{"ja":"テストタイトル","en":"Test Title"},"categories":[{"id":1,"name":{"ja":"カテゴリ1","en":"category 1"},"subCategory":{"id":1,"name":{"ja":"サブカテゴリ1","en":"sub category 1"}}}],"tags":[{"id":1,"name":{"ja":"タグ1","en":"tag 1"}}],"content":{"ja":"<h2 id=\"-\">テストコンテンツ</h2>\n<p>サンプル文章。</p>\n","en":"<h2 id=\"test-content\">test Content</h2>\n<p>sample text.</p>\n"}}]
+[
+  {
+    "id": 1,
+    "createdAt": "2018-05-26 12:00",
+    "publishedAt": "2018-05-26 15:00",
+    "title": { "ja": "テストタイトル", "en": "Test Title" },
+    "categories": [
+      {
+        "id": 1,
+        "name": { "ja": "カテゴリ1", "en": "category 1" },
+        "subCategory": { "id": 1, "name": { "ja": "サブカテゴリ1", "en": "sub category 1" } }
+      }
+    ],
+    "tags": [{ "id": 1, "name": { "ja": "タグ1", "en": "tag 1" } }],
+    "content": {
+      "ja": "<h2 id=\"-\">テストコンテンツ</h2>\n<p>サンプル文章。</p>\n",
+      "en": "<h2 id=\"test-content\">test Content</h2>\n<p>sample text.</p>\n"
+    }
+  }
+]

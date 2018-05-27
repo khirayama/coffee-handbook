@@ -6,7 +6,7 @@ const rawPosts = require(postsPath);
 class Posts {
   constructor(lang) {
     this.lang = lang;
-    this.posts = rawPosts.map((rawPost) => this._build(rawPost));
+    this.posts = rawPosts.map(rawPost => this._build(rawPost));
   }
 
   findById(id) {
@@ -26,17 +26,19 @@ class Posts {
       publishedAt: post.publishedAt,
       title: post.title[this.lang],
       content: post.content[this.lang],
-      categories: post.categories.map((category) => {
+      categories: post.categories.map(category => {
         return {
           id: category.id,
           name: category.name[this.lang],
-          subCategory: (category.subCategory) ? {
-            id: category.subCategory.id,
-            name: category.subCategory.name[this.lang],
-          } : null,
+          subCategory: category.subCategory
+            ? {
+                id: category.subCategory.id,
+                name: category.subCategory.name[this.lang],
+              }
+            : null,
         };
       }),
-      tags: post.tags.map((tag) => {
+      tags: post.tags.map(tag => {
         return {
           id: tag.id,
           name: tag.name[this.lang],
