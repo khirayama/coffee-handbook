@@ -1,0 +1,11 @@
+extends /layouts/index
+
+block vars
+  - const title = dic.t('nav.FOODS');
+
+block meta
+  title= title
+
+block body
+  h1= title
+  include /components/navigation.pug
