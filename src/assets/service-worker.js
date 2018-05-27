@@ -1,9 +1,9 @@
-self.addEventListener('install', event => {
+self.addEventListener('install', () => {
   console.log('%cInstalling', 'color: #9e9e9e;');
   self.skipWaiting();
 });
 
-self.addEventListener('activate', event => {
+self.addEventListener('activate', () => {
   console.log('%cActivating', 'color: #9e9e9e;');
 });
 

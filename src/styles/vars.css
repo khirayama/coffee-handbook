@@ -1,16 +1,18 @@
-$color-white: #FFF;
+$color-white: #fff;
 
 $color-text: #424242;
 $color-text-secondary: #757575;
-$color-text-hint: #9E9E9E;
-$color-background: #FAFAFA;
+$color-text-hint: #9e9e9e;
+$color-background: #fafafa;
 $color-shadow: rgba(0, 0, 0, 0.12);
-$color-divider: #E0E0E0;
+$color-divider: #e0e0e0;
 $color-active: rgba(0, 0, 0, 0.04);
 
 $radius: 2px;
 $shadow: 0 1px 1px 0 $color-shadow;
+$shadow-inset: 0 1px 1px 0 $color-shadow inset;
 $shadow-inverse: 0 -1px 1px 0 $color-shadow;
+$shadow-inverse-inset: 0 -1px 1px 0 $color-shadow inset;
 $border: solid 1px $color-divider;
 
 $font-regular: 400;

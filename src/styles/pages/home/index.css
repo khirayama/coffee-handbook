@@ -8,11 +8,13 @@
     display: inline-block;
     width: 100%;
     background-color: $color-background;
+    box-shadow: $shadow-inset, $shadow-inverse-inset;
 
     .home--cover-story--content {
       position: relative;
       margin: 0 auto;
       max-width: $width-content;
+      max-height: 420px;
       overflow: hidden;
       opacity: 1;
       transition: opacity 200ms ease-out;
@@ -39,7 +41,7 @@
 
         .img {
           width: 100%;
-          padding-top: 56.25%;
+          padding-top: 100%;
         }
       }
 
