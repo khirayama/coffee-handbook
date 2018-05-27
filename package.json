@@ -16,8 +16,9 @@
     "compress:images": "node bin/minimize-images.js",
     "lint": "eslint --ignore-path .gitignore src bin webpack.config.js",
     "lint:fix": "eslint --fix --ignore-path .gitignore src bin webpack.config.js",
-    "format": "prettier --ignore-path .gitignore --config .prettierrc --write 'src/**/!(*.pug|*.html|*.png|*.webp|*.svg)' bin webpack.config.js .eslintrc.js .postcssrc.js",
-    "precommit": "npm run lint:fix && npm run format"
+    "format": "prettier --ignore-path .gitignore --config .prettierrc --write 'src/**/!(*.json|*.pug|*.html|*.png|*.webp|*.svg)' bin webpack.config.js .eslintrc.js .postcssrc.js",
+    "precommit": "npm run lint:fix && npm run format",
+    "check": "npx npm-check-updates"
   },
   "keywords": [],
   "author": "khirayama",
