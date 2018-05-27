@@ -1,8 +1,8 @@
 const path = require('path');
 const express = require('express');
 
-const Posts = require('./posts');
-const Dictionary = require('./dictionary');
+const Posts = require('./utils/posts');
+const Dictionary = require('./utils/dictionary');
 
 const app = express();
 
