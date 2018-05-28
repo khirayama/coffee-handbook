@@ -1,11 +1,18 @@
 extends /layouts/index
 
+block import
+  include /components/header
+  include /components/navigation
+
 block vars
   - const title = dic.t('nav.GOODS');
 
 block meta
   title= title
+  link(rel="stylesheet" href="/styles/pages/goods/index.css")
 
 block body
-  h1= title
-  include /components/navigation.pug
+  .goods
+    +header(lang)
+    +navigation(path, dic)
+    h1= title

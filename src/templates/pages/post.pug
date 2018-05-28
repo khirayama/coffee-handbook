@@ -2,13 +2,16 @@ extends /layouts/index
 
 block meta
   title= post.title
+  link(rel="stylesheet" href="/styles/pages/post/index.css")
 
 block body
-  h1= post.title
-  include /components/navigation.pug
-  .content!= post.content
-  each category in post.categories
-    p= category.name
-    if category.subCategory
-      p= category.subCategory.name
-  p= post.tags.map(tag => tag.name).join()
+  .post
+    include /components/header
+    include /components/navigation
+    h1= post.title
+    p!= post.content
+    each category in post.categories
+      p= category.name
+      if category.subCategory
+        p= category.subCategory.name
+    p= post.tags.map(tag => tag.name).join()
