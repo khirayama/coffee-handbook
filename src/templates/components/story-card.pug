@@ -1,0 +1,6 @@
+mixin story-card(post)
+  .story-card
+    .story-card--thumbnail
+      +img(post.thumbnailUrl, post.title)
+    .story-card--date= post.publishedAt
+    .story-card--title= post.title

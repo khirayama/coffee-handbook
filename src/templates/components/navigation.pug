@@ -1,12 +1,13 @@
-nav.navigation
-  ul
-    li
-      a(href="/beans")= dic.t('nav.BEANS')
-    li
-      a(href="/beverages")= dic.t('nav.BEVERAGES')
-    li
-      a(href="/foods")= dic.t('nav.FOODS')
-    li
-      a(href="/goods")= dic.t('nav.GOODS')
-    li
-      a(href="/knowledge")= dic.t('nav.KNOWLEDGE')
+mixin navigation(path, dic)
+  nav.navigation
+    ul.navigation--list
+      li.navigation--list--item(class= path === '/beverages' ? 'navigation--list--item__active' : '')
+        a.navigation--list--item--link(href="/beverages")= dic.t('nav.BEVERAGES')
+      li.navigation--list--item(class= path === '/foods' ? 'navigation--list--item__active' : '')
+        a.navigation--list--item--link(href="/foods")= dic.t('nav.FOODS')
+      li.navigation--list--item(class= path === '/beans' ? 'navigation--list--item__active' : '')
+        a.navigation--list--item--link(href="/beans")= dic.t('nav.BEANS')
+      li.navigation--list--item(class= path === '/goods' ? 'navigation--list--item__active' : '')
+        a.navigation--list--item--link(href="/goods")= dic.t('nav.GOODS')
+      li.navigation--list--item(class= path === '/knowledge' ? 'navigation--list--item__active' : '')
+        a.navigation--list--item--link(href="/knowledge")= dic.t('nav.KNOWLEDGE')
