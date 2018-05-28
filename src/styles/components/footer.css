@@ -1,0 +1,18 @@
+.footer {
+  padding: 24px 0;
+  font-size: 0.75rem;
+
+  .footer--list {
+    text-align: center;
+
+    .footer--list--item {
+      display: inline-block;
+      text-decoration: underline;
+      padding: 8px;
+    }
+  }
+
+  .footer--copyright {
+    text-align: center;
+  }
+}
