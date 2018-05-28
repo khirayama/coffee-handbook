@@ -25,4 +25,10 @@ module.exports = {
       en: 'KNOWLEDGE',
     },
   },
+  home: {
+    LATEST_ARTICLES: {
+      ja: '新着記事',
+      en: 'Latest Articles',
+    },
+  },
 };
