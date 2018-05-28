@@ -1,5 +1,6 @@
 module.exports = {
-  nav: {
+  // Components
+  navigation: {
     HOME: {
       ja: 'HOME',
       en: 'HOME',
@@ -23,6 +24,16 @@ module.exports = {
     KNOWLEDGE: {
       ja: 'KNOWLEDGE',
       en: 'KNOWLEDGE',
+    },
+  },
+  footer: {
+    ABOUT_US: {
+      ja: 'ABOUT US',
+      en: 'ABOUT US',
+    },
+    SITEMAP: {
+      ja: 'SITEMAP',
+      en: 'SITEMAP',
     },
   },
   home: {
