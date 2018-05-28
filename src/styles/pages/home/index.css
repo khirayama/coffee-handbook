@@ -1,5 +1,6 @@
 @import 'vars';
 @import 'components/header';
+@import 'components/footer';
 @import 'components/navigation';
 @import 'components/img';
 @import 'components/story-card';

@@ -2,6 +2,7 @@ extends /layouts/index
 
 block import
   include /components/header
+  include /components/footer
   include /components/navigation
   include /components/img
   include /components/story-card
@@ -36,3 +37,4 @@ block body
         li.home--story-list--item
           a.home--story-list--item--link(href=`/posts/${post.id}`)
             +story-card(post)
+    +footer(lang)
