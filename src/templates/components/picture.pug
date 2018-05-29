@@ -1,0 +1,5 @@
+mixin picture(src, alt)
+  .picture
+    picture
+      block
+      img(src=src alt=alt onload="((event) => event.currentTarget.parentNode.parentNode.style.background = 'none')(event)")

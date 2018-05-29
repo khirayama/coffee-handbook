@@ -1,0 +1,35 @@
+.picture {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  background-color: green;
+  background-color: $color-shadow;
+  background-image: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0),
+    rgba(255, 255, 255, 0.28) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  background-repeat: repeat-y;
+  background-size: 36% 100%;
+  animation: blink 1200ms infinite;
+
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+@keyframes blink {
+  from {
+    background-position: -80% 0;
+  }
+  to {
+    background-position: 160% 0;
+  }
+}
