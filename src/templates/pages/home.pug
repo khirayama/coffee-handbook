@@ -4,7 +4,7 @@ block import
   include /components/header
   include /components/footer
   include /components/navigation
-  include /components/img
+  include /components/picture
   include /components/story-card
 
 block vars
@@ -23,7 +23,9 @@ block body
     a.home--cover-story(href=`/posts/${featuredPost.id}`)
       .home--cover-story--content
         .home--cover-story--content--image
-          +img(featuredPost.thumbnailUrl, featuredPost.title)
+          +picture(featuredPost.thumbnailUrl.default, featuredPost.title)
+            source(media="(min-width: 446px)" srcset=featuredPost.thumbnailUrl.rectangle)
+            source(media="(max-width: 446px)" srcset=featuredPost.thumbnailUrl.square)
           .home--cover-story--content--image--cover
           .home--cover-story--content--title
             = featuredPost.title

@@ -8,7 +8,11 @@ function build(post, lang) {
     id: post.id,
     createdAt: post.createdAt,
     publishedAt: post.publishedAt,
-    thumbnailUrl: post.thumbnailUrl[lang],
+    thumbnailUrl: {
+      default: post.thumbnailUrl.default[lang],
+      square: post.thumbnailUrl.square[lang],
+      rectangle: post.thumbnailUrl.rectangle[lang],
+    },
     title: post.title[lang],
     content: post.content[lang],
     categories: post.categories.map(category => {

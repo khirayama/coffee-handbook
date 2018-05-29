@@ -2,7 +2,7 @@
 @import 'components/header';
 @import 'components/footer';
 @import 'components/navigation';
-@import 'components/img';
+@import 'components/picture';
 @import 'components/story-card';
 
 .home {
@@ -46,12 +46,17 @@
           left: 0;
           width: 100%;
           height: 100%;
-          background: rgba(255, 255, 255, 0.24);
+          background: rgba(255, 255, 255, 0.12);
         }
 
-        .img {
+        .picture {
           width: 100%;
-          padding-top: 100%;
+          padding-top: calc(63 / 120 * 100%);
+        }
+        @media screen and (max-width: calc($width-content / 2)) {
+          .picture {
+            padding-top: 100%;
+          }
         }
       }
 
