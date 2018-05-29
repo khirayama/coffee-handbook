@@ -6,14 +6,14 @@ block import
   include /components/navigation
 
 block vars
-  - const title = dic.t('navigation.KNOWLEDGE');
+  - const title = dic.t('footer.ABOUT_US');
 
 block meta
   title= title
-  link(rel="stylesheet" href="/styles/pages/knowledge/index.css")
+  link(rel="stylesheet" href="/styles/pages/about-us/index.css")
 
 block body
-  .knowledge
+  .about-us
     +header(lang)
     +navigation(path, dic)
     h1= title

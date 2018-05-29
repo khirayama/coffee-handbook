@@ -1,13 +1,21 @@
 extends /layouts/index
 
+block import
+  include /components/header
+  include /components/footer
+  include /components/navigation
+
+block vars
+  - const title = post.title
+
 block meta
   title= post.title
   link(rel="stylesheet" href="/styles/pages/post/index.css")
 
 block body
   .post
-    include /components/header
-    include /components/navigation
+    +header(lang)
+    +navigation(path, dic)
     h1= post.title
     p!= post.content
     each category in post.categories
@@ -15,3 +23,4 @@ block body
       if category.subCategory
         p= category.subCategory.name
     p= post.tags.map(tag => tag.name).join()
+    +footer(lang)

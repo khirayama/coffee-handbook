@@ -2,10 +2,11 @@ extends /layouts/index
 
 block import
   include /components/header
+  include /components/footer
   include /components/navigation
 
 block vars
-  - const title = dic.t('nav.GOODS');
+  - const title = dic.t('navigation.GOODS');
 
 block meta
   title= title
@@ -16,3 +17,4 @@ block body
     +header(lang)
     +navigation(path, dic)
     h1= title
+    +footer(lang)

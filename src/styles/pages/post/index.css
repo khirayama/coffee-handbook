@@ -1,6 +1,7 @@
 @import 'vars';
 @import 'components/img';
 @import 'components/header';
+@import 'components/footer';
 @import 'components/navigation';
 
 .post {
