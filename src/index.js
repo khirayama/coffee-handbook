@@ -132,6 +132,17 @@ app.get('/posts/:id', (req, res) => {
   });
 });
 
+app.get('/about-us', (req, res) => {
+  const dic = new Dictionary(req.lang);
+
+  res.render('pages/about-us', {
+    basedir,
+    lang: req.lang,
+    path: req.path,
+    dic,
+  });
+});
+
 app.listen(3030, () => {
   console.log(`Start app at ${new Date().toString()}.`);
 });
