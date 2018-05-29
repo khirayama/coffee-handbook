@@ -38,6 +38,9 @@ function compressImage(filePath) {
 
 function compressImages(rootPath) {
   fs.readdir(rootPath, (err, fileNames) => {
+    if (err) {
+      return;
+    }
     for (let i = 0; i < fileNames.length; i++) {
       const fileName = fileNames[i];
       const filePath = rootPath + '/' + fileName;
