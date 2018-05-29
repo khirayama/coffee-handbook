@@ -1,3 +1,5 @@
+@import 'components/img';
+
 .story-card {
   border-top: $border 4px;
   padding: 12px 0 52px;
@@ -15,7 +17,7 @@
   .story-card--thumbnail {
     .img {
       width: 100%;
-      padding-top: 50%;
+      padding-top: calc(63 / 120 * 100%);
     }
   }
 }
