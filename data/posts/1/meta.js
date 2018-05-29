@@ -3,8 +3,18 @@ module.exports = {
   createdAt: '2018-05-26 12:00',
   publishedAt: '2018-05-26 15:00',
   thumbnailUrl: {
-    ja: '/image_1.jpg',
-    en: '/image_1.jpg',
+    default: {
+      ja: '/image_1.jpg',
+      en: '/image_1.jpg',
+    },
+    square: {
+      ja: '/image_1@square.jpg',
+      en: '/image_1@square.jpg',
+    },
+    rectangle: {
+      ja: '/image_1@rectangle.jpg',
+      en: '/image_1@rectangle.jpg',
+    },
   },
   title: {
     ja: '【特集】なぜ僕らがこの活動をはじめたのか。',
