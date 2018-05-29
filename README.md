@@ -33,23 +33,32 @@
 
 ## Memo
 
-- AB Testing
-- GA
-- OGP
-- WAI-ARIA
-- accessiblity
+- Experience
+  - Image Size
+    - OGP Facebook
+    - OGP Twitter
+    - Instagram
+    - Desktop
+  - GA
+  - AB Testing
+  - SEO
+  - RSS
+- Accessiblity
   - https://www.concentinc.jp/design_research/2018/03/btobcommunications-web-accessibility/
   - https://www.concentinc.jp/web_accessibility/
-- RSS
-- 特集
-- 更新
-- 関係性をデザインする
-- 家をカフェのように感じるために
-  - 天気
-  - 音楽
-  - 本
-  - 映像
-- 人気記事？
+  - https://openameba.github.io/a11y-guidelines/
+  - WAI-ARIA
+- Performance
+  - https://developers.google.com/web/tools/workbox/
+- Concents
+  - 関係性をデザインする
+  - 人気記事？
+  - ユーザは何かを解決するためにここにくる
+  - 家をカフェのように感じるために
+    - 天気
+    - 音楽
+    - 本
+    - 映像
 
 ## PR
 
