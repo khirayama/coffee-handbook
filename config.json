@@ -1,3 +1,12 @@
 {
-  "languages": ["ja", "en"]
+  "name": "ABOUT OUR COFFEE",
+  "description": "About ABOUT OUR COFFEE",
+  "url": "https://about-our-coffee.com",
+  "languages": ["ja", "en"],
+  "author": "ABOUT OUR COFFEE",
+  "keywords": "coffee, about our coffee",
+  "facebookAppId": "test id",
+  "facebookPageUrl": "facebook page url",
+  "twitterCardType": "twitter card type",
+  "twitterAccount": "@about_our_coffee"
 }
