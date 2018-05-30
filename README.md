@@ -78,7 +78,7 @@
   - [ ] Create terms of service
   - [ ] Create contact
 - Engineering
-  - [ ] Create RSS
+  - [x] Create RSS
   - [ ] Create sitemap
   - [ ] Base on WAI-ARIA
   - [ ] Logging client error
