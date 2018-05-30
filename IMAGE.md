@@ -1,3 +1,6 @@
+- Icon
+  - square
+  - circle
 - Instagram 1:1
 - Facebook OGP: 1.91:1(1200:630)
 - Twitter OGP(summary_large_image): 1.91(1200:630)
