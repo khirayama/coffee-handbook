@@ -4,13 +4,6 @@ block import
 
 block vars
 
-- const url = 'https://test.com';
-- const siteName = 'ABOUT OUR COFFEE';
-- const facebookAppId = 'test id';
-- const facebookPageUrl = 'facebook url';
-- const twitterCardType = 'twitter card type';
-- const twitterAccount = '@';
-
 html(lang=dic.lang)
   head
     meta(charset="utf-8")
@@ -21,22 +14,25 @@ html(lang=dic.lang)
 
     title= title
     meta(name="description" content=description)
+    meta(name="author" content=config.author)
+    meta(name="keywords" content=config.keywords)
+    link(rel="alternate" type="application/rss+xml" title="RSS 2.0" href="/rss")
 
     //- OGP
-    meta(property="og:site_name" content=siteName)
+    meta(property="og:site_name" content=config.name)
     meta(property="og:title" content=title)
     meta(property="og:type" content=type)
-    meta(property="og:url" content=`${url}${path}?lang=${lang}`)
+    meta(property="og:url" content=`${config.url}${path}?lang=${lang}`)
     meta(property="og:image" content=thumbnailUrl)
     meta(property="og:description" content=description)
     //- Facebook
-    meta(property="fb:app_id" content=facebookAppId)
-    meta(property="article:publisher" content=facebookPageUrl)
+    meta(property="fb:app_id" content=config.facebookAppId)
+    meta(property="article:publisher" content=config.facebookPageUrl)
     //- Twitter
-    meta(property="twitter:card" content=twitterCardType)
-    meta(property="twitter:site" content=twitterAccount)
+    meta(property="twitter:card" content=config.twitterCardType)
+    meta(property="twitter:site" content=config.twitterAccount)
     meta(property="twitter:title" content=title)
-    meta(property="twitter:url" content=`${url}${path}?lang={lang}`)
+    meta(property="twitter:url" content=`${config.url}${path}?lang={lang}`)
     meta(property="twitter:description" content=description)
     meta(property="twitter:image" content=thumbnailUrl)
 

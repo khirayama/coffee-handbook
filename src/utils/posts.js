@@ -46,10 +46,10 @@ class Posts {
     this.tmp = rawPosts.map(rawPost => build(rawPost, this.lang));
   }
 
-  find() {
+  find(num) {
     const tmp = this.tmp.slice();
     this.tmp = rawPosts.map(rawPost => build(rawPost, this.lang));
-    return tmp;
+    return tmp.slice(tmp.length - num);
   }
 
   findOne() {

@@ -6,6 +6,7 @@ const cookieParser = require('cookie-parser');
 const config = require(path.join(__dirname, '..', 'config.json'));
 const Posts = require('./utils/posts');
 const Dictionary = require('./utils/dictionary');
+const rss = require('./utils/rss');
 
 const app = express();
 
@@ -54,6 +55,7 @@ app.get('/', (req, res) => {
 
   res.render('pages/home', {
     basedir,
+    config,
     lang: req.lang,
     path: req.path,
     dic,
@@ -72,6 +74,7 @@ app.get('/beverages', (req, res) => {
 
   res.render('pages/beverages', {
     basedir,
+    config,
     lang: req.lang,
     path: req.path,
     dic,
@@ -87,6 +90,7 @@ app.get('/foods', (req, res) => {
 
   res.render('pages/foods', {
     basedir,
+    config,
     lang: req.lang,
     path: req.path,
     dic,
@@ -102,6 +106,7 @@ app.get('/beans', (req, res) => {
 
   res.render('pages/beans', {
     basedir,
+    config,
     lang: req.lang,
     path: req.path,
     dic,
@@ -117,6 +122,7 @@ app.get('/goods', (req, res) => {
 
   res.render('pages/goods', {
     basedir,
+    config,
     lang: req.lang,
     path: req.path,
     dic,
@@ -132,6 +138,7 @@ app.get('/knowledge', (req, res) => {
 
   res.render('pages/knowledge', {
     basedir,
+    config,
     lang: req.lang,
     path: req.path,
     dic,
@@ -147,6 +154,7 @@ app.get('/about-us', (req, res) => {
 
   res.render('pages/about-us', {
     basedir,
+    config,
     lang: req.lang,
     path: req.path,
     dic,
@@ -165,6 +173,7 @@ app.get('/posts/:id', (req, res) => {
 
   res.render('pages/post', {
     basedir,
+    config,
     lang: req.lang,
     path: req.path,
     dic,
@@ -175,6 +184,10 @@ app.get('/posts/:id', (req, res) => {
 
     post,
   });
+});
+
+app.get('/rss*', (req, res) => {
+  res.set('Content-Type', 'text/xml').send(rss[req.lang]);
 });
 
 app.listen(3030, () => {
