@@ -60,6 +60,36 @@
     - 本
     - 映像
 
+## TODO
+
+- Design
+  - [ ] Create square icon
+  - [ ] Create circle icon
+  - [x] Create compress script
+  - [ ] Define image rules
+  - [ ] Make marketing space
+  - [ ] Define our mission
+- Relations
+  - [x] Config for OGP
+  - [ ] Create instagram account
+  - [ ] Create twitter account
+  - [ ] Create facebook page
+  - [ ] Create privacy policy
+  - [ ] Create terms of service
+  - [ ] Create contact
+- Engineering
+  - [ ] Create RSS
+  - [ ] Create sitemap
+  - [ ] Base on WAI-ARIA
+  - [ ] Logging client error
+  - [ ] Install service worker
+  - [ ] Load image lazy
+  - [ ] Build AB testing
+- Marketing
+  - [ ] Install Google Analytics
+  - [ ] Consider ad
+  - [ ] Consider affiliate
+
 ## PR
 
 - Instagram
