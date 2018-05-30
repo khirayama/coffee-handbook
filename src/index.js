@@ -57,19 +57,13 @@ app.get('/', (req, res) => {
     lang: req.lang,
     path: req.path,
     dic,
+    title: dic.t('navigation.HOME'),
+    description: 'test',
+    thumbnailUrl: 'test',
+    type: 'type',
+
     featuredPost,
     posts: exceptedFeaturedPosts,
-  });
-});
-
-app.get('/beans', (req, res) => {
-  const dic = new Dictionary(req.lang);
-
-  res.render('pages/beans', {
-    basedir,
-    lang: req.lang,
-    path: req.path,
-    dic,
   });
 });
 
@@ -81,6 +75,10 @@ app.get('/beverages', (req, res) => {
     lang: req.lang,
     path: req.path,
     dic,
+    title: dic.t('navigation.BEVERAGES'),
+    description: 'test',
+    thumbnailUrl: 'test',
+    type: 'type',
   });
 });
 
@@ -92,6 +90,25 @@ app.get('/foods', (req, res) => {
     lang: req.lang,
     path: req.path,
     dic,
+    title: dic.t('navigation.FOODS'),
+    description: 'test',
+    thumbnailUrl: 'test',
+    type: 'type',
+  });
+});
+
+app.get('/beans', (req, res) => {
+  const dic = new Dictionary(req.lang);
+
+  res.render('pages/beans', {
+    basedir,
+    lang: req.lang,
+    path: req.path,
+    dic,
+    title: dic.t('navigation.BEANS'),
+    description: 'test',
+    thumbnailUrl: 'test',
+    type: 'type',
   });
 });
 
@@ -103,6 +120,10 @@ app.get('/goods', (req, res) => {
     lang: req.lang,
     path: req.path,
     dic,
+    title: dic.t('navigation.GOODS'),
+    description: 'test',
+    thumbnailUrl: 'test',
+    type: 'type',
   });
 });
 
@@ -114,6 +135,25 @@ app.get('/knowledge', (req, res) => {
     lang: req.lang,
     path: req.path,
     dic,
+    title: dic.t('navigation.KNOWLEDGE'),
+    description: 'test',
+    thumbnailUrl: 'test',
+    type: 'type',
+  });
+});
+
+app.get('/about-us', (req, res) => {
+  const dic = new Dictionary(req.lang);
+
+  res.render('pages/about-us', {
+    basedir,
+    lang: req.lang,
+    path: req.path,
+    dic,
+    title: dic.t('footer.ABOUT_US'),
+    description: 'test',
+    thumbnailUrl: 'test',
+    type: 'type',
   });
 });
 
@@ -128,18 +168,12 @@ app.get('/posts/:id', (req, res) => {
     lang: req.lang,
     path: req.path,
     dic,
+    title: post.title,
+    description: 'test',
+    thumbnailUrl: 'test',
+    type: 'type',
+
     post,
-  });
-});
-
-app.get('/about-us', (req, res) => {
-  const dic = new Dictionary(req.lang);
-
-  res.render('pages/about-us', {
-    basedir,
-    lang: req.lang,
-    path: req.path,
-    dic,
   });
 });
 
