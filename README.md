@@ -65,26 +65,26 @@
 - Design
   - [ ] Create square icon
   - [ ] Create circle icon
-  - [x] Create compress script
-  - [ ] Define image rules
   - [ ] Make marketing space
   - [ ] Define our mission
+  - [x] Create compress script
+  - [x] Define image rules
 - Relations
-  - [x] Config for OGP
   - [ ] Create instagram account
   - [ ] Create twitter account
   - [ ] Create facebook page
   - [ ] Create privacy policy
   - [ ] Create terms of service
   - [ ] Create contact
+  - [x] Config for OGP
 - Engineering
-  - [x] Create RSS
   - [ ] Create sitemap
   - [ ] Base on WAI-ARIA
   - [ ] Logging client error
   - [ ] Install service worker
   - [ ] Load image lazy
   - [ ] Build AB testing
+  - [x] Create RSS
 - Marketing
   - [ ] Install Google Analytics
   - [ ] Consider ad
