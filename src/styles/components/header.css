@@ -39,7 +39,10 @@
   }
 
   .header--link {
+    $size: 56px;
     display: inline-block;
+    width: $size;
+    height: $size;
     opacity: 1;
     transition: opacity 200ms ease-out;
 
@@ -52,8 +55,6 @@
     }
 
     .header--logo {
-      $size: 56px;
-
       position: relative;
       display: inline-block;
       font-weight: $font-bold;
