@@ -7,8 +7,8 @@ const pug = require('pug');
 const argv = minimist(process.argv.slice(2));
 
 const rootPath = path.join(__dirname, '..', argv._[0]);
-const distPath = path.join(__dirname, '..', argv.o)
-const metaPath = path.join(__dirname, '..', argv.m)
+const distPath = path.join(__dirname, '..', argv.o);
+const metaPath = path.join(__dirname, '..', argv.m);
 const config = require(path.join(__dirname, '..', 'config.json'));
 
 // Load meta data
@@ -26,7 +26,7 @@ function loadPost(filePath) {
     let content = '';
     try {
       content = fs.readFileSync(filePath.replace('meta.js', `content.${lang}.pug`), 'utf-8');
-    } catch(err) {}
+    } catch (err) {}
     post.content[lang] = pug.compile(content)();
   }
   posts.push(post);
@@ -52,7 +52,7 @@ loadPosts(rootPath);
 for (let i = 0; i < posts.length; i++) {
   const post = posts[i];
 
-  post.categories = post.categories.map((categoryIds) => {
+  post.categories = post.categories.map(categoryIds => {
     const categoryId = categoryIds[0];
     const subCategoryId = categoryIds[1] || null;
 
@@ -80,7 +80,7 @@ for (let i = 0; i < posts.length; i++) {
     }
     return null;
   });
-  post.tags = post.tags.map((tagId) => {
+  post.tags = post.tags.map(tagId => {
     for (let j = 0; j < meta.tags.length; j++) {
       const tag = meta.tags[j];
 
@@ -96,7 +96,7 @@ for (let i = 0; i < posts.length; i++) {
 }
 
 posts.sort((a, b) => {
-  return (new Date(a.publishedAt).getTime() < new Date(b.publishedAt).getTime());
+  return new Date(a.publishedAt).getTime() < new Date(b.publishedAt).getTime();
 });
 
 fs.writeFile(distPath, JSON.stringify(posts), () => {});

@@ -9,7 +9,11 @@ const DIST_DIR = './src/assets';
 
 function isTarget(filePath) {
   return (
-    filePath.endsWith('.png') || filePath.endsWith('.jpg') || filePath.endsWith('.jpeg') || filePath.endsWith('.webp') || filePath.endsWith('svg')
+    filePath.endsWith('.png') ||
+    filePath.endsWith('.jpg') ||
+    filePath.endsWith('.jpeg') ||
+    filePath.endsWith('.webp') ||
+    filePath.endsWith('svg')
   );
 }
 
