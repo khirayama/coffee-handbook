@@ -46,7 +46,7 @@
     "postcss-import": "11.1.0",
     "postcss-nested": "3.0.0",
     "postcss-simple-vars": "4.1.0",
-    "prettier": "1.13.3",
+    "prettier": "1.13.4",
     "rss": "1.2.2",
     "webpack": "4.10.2",
     "webpack-bundle-analyzer": "2.13.1",
