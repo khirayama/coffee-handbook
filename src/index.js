@@ -14,14 +14,14 @@ const basedir = path.join(__dirname, 'presentations');
 
 app.set('views', basedir);
 app.set('view engine', 'pug');
-app.use(express.static(path.join(__dirname, 'assets')));
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(cookieParser());
 app.use(
   compression({
     level: 9,
   }),
 );
+app.use(express.static(path.join(__dirname, 'assets')));
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(cookieParser());
 app.use((req, res, next) => {
   const lang = req.query.lang || req.cookies.lang || config.languages[0];
   res.cookie('lang', lang, { maxAge: 60000, httpOnly: false });
