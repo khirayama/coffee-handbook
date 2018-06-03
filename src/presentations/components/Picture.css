@@ -23,6 +23,10 @@
     object-fit: cover;
   }
 
+  &.Picture__Ready {
+    background: $color-shadow;
+  }
+
   &.Picture__Loaded {
     background: none;
   }

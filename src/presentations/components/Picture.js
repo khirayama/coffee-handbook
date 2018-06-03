@@ -1,4 +1,5 @@
-import { View } from 'components/View';
+import { View } from 'presentations/components/View';
+import { onscreen } from 'utils/onscreen';
 
 export class Picture extends View {
   init() {
@@ -6,18 +7,22 @@ export class Picture extends View {
 
     this.props = {
       src: this.$el.data.src,
-      alt: this.$el.data.alt,
       lazy: this.$el.data.lazy,
     };
+
+    if (this.props.lazy) {
+      this.$el.addClass('Picture__Ready');
+    }
   }
 
   setEventListeners() {
-    this.$imageEl.on('load', () => {
-      this.$el.addClass('Picture__Loaded');
+    onscreen(window, this.el, () => {
+      this.$el.removeClass('Picture__Ready');
+      this.$imageEl.el.src = this.props.src;
     });
 
-    window.document.addEventListener('scroll', () => {
-      console.log('scroll');
+    this.$imageEl.on('load', () => {
+      this.$el.addClass('Picture__Loaded');
     });
   }
 }

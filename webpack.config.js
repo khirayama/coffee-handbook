@@ -23,7 +23,7 @@ const config = {
     path: __dirname,
   },
   resolve: {
-    modules: ['src/presentations', 'node_modules'],
+    modules: ['src', 'node_modules'],
     extensions: ['.js', '.json'],
   },
   plugins: [],

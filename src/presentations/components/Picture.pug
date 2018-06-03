@@ -1,7 +1,7 @@
 mixin Picture(src, alt, lazy)
-  picture.Picture(data-src=src data-alt=alt data-lazy=String(lazy))
+  picture.Picture(data-src=src data-lazy=String(lazy))
     block
     if lazy
-      span.Picture--Image
+      img.Picture--Image(alt=alt)
     else
       img.Picture--Image(src=src alt=alt)
