@@ -1,17 +1,17 @@
-extends /layouts/index
+extends /application/layout
 
 block import
-  include /components/header
-  include /components/footer
-  include /components/navigation
+  include /components/Header
+  include /components/Footer
+  include /components/Navigation
 
 block meta
-  link(rel="stylesheet" href="/styles/pages/post/index.css")
+  link(rel="stylesheet" href="/pages/Post/index.css")
 
 block body
-  .post
-    +header(lang)
-    +navigation(path, dic)
+  .Post
+    +Header(lang)
+    +Navigation(path, dic)
     h1= post.title
     p!= post.content
     each category in post.categories
@@ -19,4 +19,4 @@ block body
       if category.subCategory
         p= category.subCategory.name
     p= post.tags.map(tag => tag.name).join()
-    +footer(lang)
+    +Footer(lang)
