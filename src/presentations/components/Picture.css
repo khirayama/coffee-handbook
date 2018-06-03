@@ -1,6 +1,7 @@
 .Picture {
   position: relative;
   display: inline-block;
+  width: 100%;
   overflow: hidden;
   vertical-align: top;
   background-color: $color-shadow;

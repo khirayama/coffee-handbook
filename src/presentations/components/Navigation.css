@@ -1,6 +1,8 @@
 @import 'application/vars';
 
 .Navigation {
+  box-shadow: $shadow;
+
   .Navigation--List {
     max-width: $width-content;
     margin: 0 auto;
