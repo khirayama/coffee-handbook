@@ -4,13 +4,22 @@ block import
   include /components/Header
   include /components/Footer
   include /components/Navigation
+  include /components/Picture
+  include /components/StoryCard
 
 block meta
+  script(src="/pages/Beverages/bundle.js" defer)
   link(rel="stylesheet" href="/pages/Beverages/index.css")
 
 block body
   .Beverages
     +Header(lang)
     +Navigation(path, dic)
-    h1= title
+    ul.Beverages--List
+      each post in posts
+        li.Beverages--List--Item
+          .Beverages--List--Item--Picture
+            +Picture(post.thumbnailUrl.square, post.title)
+          .Beverages--List--Item--Info
+            h2.Beverages--List--Item--Info--Title= post.title
     +Footer(lang)

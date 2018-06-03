@@ -2,6 +2,34 @@
 @import 'components/Header';
 @import 'components/Footer';
 @import 'components/Navigation';
+@import 'components/StoryCard';
 
 .Beverages {
+  .Beverages--List {
+    .Beverages--List--Item {
+      display: inline-block;
+      width: 50%;
+
+      .Beverages--List--Item--Picture {
+        display: inline-block;
+        width: 50%;
+        vertical-align: top;
+
+        .Picture {
+          padding-top: 100%;
+        }
+      }
+
+      .Beverages--List--Item--Info {
+        display: inline-block;
+        width: 50%;
+        padding: 20px 16px;
+
+        .Beverages--List--Item--Info--Title {
+          font-weight: $font-bold;
+          font-size: 1rem;
+        }
+      }
+    }
+  }
 }

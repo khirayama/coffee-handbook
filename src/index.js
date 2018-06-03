@@ -71,6 +71,14 @@ app.get('/', (req, res) => {
 
 app.get('/beverages', (req, res) => {
   const dic = new Dictionary(req.lang);
+  const posts = new Posts(req.lang);
+  const beveragePosts = posts
+    .where({
+      categories: {
+        id: 3,
+      },
+    })
+    .find();
 
   res.render('pages/beverages', {
     basedir,
@@ -82,6 +90,8 @@ app.get('/beverages', (req, res) => {
     description: 'test',
     thumbnailUrl: 'test',
     type: 'type',
+
+    posts: beveragePosts,
   });
 });
 
