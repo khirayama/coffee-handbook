@@ -10,7 +10,7 @@ const rss = require('./utils/rss');
 
 const app = express();
 
-const basedir = path.join(__dirname, 'templates');
+const basedir = path.join(__dirname, 'presentations');
 
 app.set('views', basedir);
 app.set('view engine', 'pug');
@@ -53,7 +53,7 @@ app.get('/', (req, res) => {
     })
     .find();
 
-  res.render('pages/home', {
+  res.render('pages/Home', {
     basedir,
     config,
     lang: req.lang,

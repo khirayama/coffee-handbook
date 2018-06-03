@@ -1,0 +1,8 @@
+include /components/Picture
+
+mixin StoryCard(post)
+  .StoryCard
+    .StoryCard--Thumbnail
+      +Picture(post.thumbnailUrl.rectangle, post.title, true)
+    .StoryCard--Date= post.publishedAt
+    .StoryCard--Title= post.title

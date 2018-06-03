@@ -1,0 +1,76 @@
+@import 'application/vars';
+
+.Header {
+  position: relative;
+  text-align: center;
+  padding: 36px 0 16px;
+
+  .Header--LangList {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 8px;
+    height: 13px;
+    line-height: 13px;
+    vertical-align: top;
+    color: $color-text-secondary;
+
+    .Header--LangList--Item {
+      display: inline-block;
+      font-size: 0.75rem;
+      line-height: 13px;
+      vertical-align: top;
+
+      & + .Header--LangList--Item {
+        &::before {
+          font-weight: $font-regular;
+          display: inline-block;
+          content: '/';
+          padding: 0 2px;
+          color: $color-text-secondary;
+        }
+      }
+
+      &.Header--LangList--Item__Active {
+        font-weight: $font-bold;
+        color: $color-text;
+      }
+    }
+  }
+
+  .Header--Link {
+    $size: 56px;
+    display: inline-block;
+    width: $size;
+    height: $size;
+    opacity: 1;
+    transition: opacity 200ms ease-out;
+
+    &:hover {
+      opacity: 0.8;
+    }
+
+    &:active {
+      background-color: $color-active;
+    }
+
+    .Header--Link--Logo {
+      position: relative;
+      display: inline-block;
+      font-weight: $font-bold;
+      font-size: 0.5rem;
+      text-align: left;
+      width: $size;
+      height: $size;
+      line-height: 1.2;
+      border: solid 2px $color-text;
+
+      .Header--Link--Logo--Text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+  }
+}

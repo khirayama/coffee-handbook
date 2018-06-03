@@ -1,0 +1,7 @@
+mixin Picture(src, alt, lazy)
+  picture.Picture(data-src=src data-alt=alt data-lazy=String(lazy))
+    block
+    if lazy
+      span.Picture--Image
+    else
+      img.Picture--Image(src=src alt=alt)

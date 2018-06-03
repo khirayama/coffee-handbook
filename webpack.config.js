@@ -6,11 +6,13 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 const NODE_ENV = process.env.NODE_ENV;
 const DIST = './src/public';
 
-const inputFilenames = glob.sync(path.join(__dirname, 'src', 'scripts', '**', 'index.js'));
+const inputFilenames = glob.sync(path.join(__dirname, 'src', 'presentations', '**', 'index.js'));
 const entry = {};
 for (let i = 0; i < inputFilenames.length; i++) {
   const inputFilename = inputFilenames[i];
-  const outputFilename = inputFilename.replace(path.join(__dirname, 'src'), DIST).replace('index.js', 'bundle');
+  const outputFilename = inputFilename
+    .replace(path.join(__dirname, 'src', 'presentations'), DIST)
+    .replace('index.js', 'bundle');
   entry[outputFilename] = inputFilename;
 }
 
@@ -21,7 +23,7 @@ const config = {
     path: __dirname,
   },
   resolve: {
-    modules: ['src/scripts', 'node_modules'],
+    modules: ['src/presentations', 'node_modules'],
     extensions: ['.js', '.json'],
   },
   plugins: [],

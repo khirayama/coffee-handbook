@@ -1,0 +1,15 @@
+mixin Header(lang)
+  header.Header
+    ul.Header--LangList
+      li.Header--LangList--Item(class= lang === 'ja' ? 'Header--LangList--Item__Active' : '')
+        a(href="?lang=ja") JA
+      li.Header--LangList--Item(class= lang === 'en' ? 'Header--LangList--Item__Active' : '')
+        a(href="?lang=en") EN
+    a.Header--Link(href="/")
+      h1.Header--Link--Logo
+        .Header--Link--Logo--Text
+          |ABOUT
+          br
+          |OUR
+          br
+          |COFFEE

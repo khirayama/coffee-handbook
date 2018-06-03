@@ -1,0 +1,18 @@
+.Footer {
+  padding: 24px 0;
+  font-size: 0.75rem;
+
+  .Footer--List {
+    text-align: center;
+
+    .Footer--List--Item {
+      display: inline-block;
+      text-decoration: underline;
+      padding: 8px;
+    }
+  }
+
+  .Footer--Copyright {
+    text-align: center;
+  }
+}

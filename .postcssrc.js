@@ -3,7 +3,7 @@ const path = require('path');
 module.exports = {
   plugins: {
     'postcss-import': {
-      addModulesDirectories: [path.resolve(__dirname, 'src/styles')],
+      addModulesDirectories: [path.resolve(__dirname, 'src/presentations')],
     },
     'postcss-simple-vars': null,
     'postcss-nested': null,

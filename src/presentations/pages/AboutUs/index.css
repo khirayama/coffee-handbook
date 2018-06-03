@@ -1,0 +1,8 @@
+@import 'application/vars';
+@import 'components/Header';
+@import 'components/Footer';
+@import 'components/Image';
+@import 'components/Navigation';
+
+.about-us {
+}

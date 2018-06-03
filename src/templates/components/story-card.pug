@@ -1,8 +1,0 @@
-mixin story-card(post)
-  include /components/img
-
-  .story-card
-    .story-card--thumbnail
-      +img(post.thumbnailUrl.rectangle, post.title)
-    .story-card--date= post.publishedAt
-    .story-card--title= post.title
