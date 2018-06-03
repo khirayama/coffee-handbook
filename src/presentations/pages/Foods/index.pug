@@ -1,16 +1,16 @@
-extends /layouts/index
+extends /application/layout
 
 block import
-  include /components/header
-  include /components/footer
-  include /components/navigation
+  include /components/Header
+  include /components/Footer
+  include /components/Navigation
 
 block meta
-  link(rel="stylesheet" href="/styles/pages/foods/index.css")
+  link(rel="stylesheet" href="/pages/Foods/index.css")
 
 block body
-  .foods
-    +header(lang)
-    +navigation(path, dic)
+  .Foods
+    +Header(lang)
+    +Navigation(path, dic)
     h1= title
-    +footer(lang)
+    +Footer(lang)

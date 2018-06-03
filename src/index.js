@@ -152,7 +152,7 @@ app.get('/knowledge', (req, res) => {
 app.get('/about-us', (req, res) => {
   const dic = new Dictionary(req.lang);
 
-  res.render('pages/about-us', {
+  res.render('pages/AboutUs', {
     basedir,
     config,
     lang: req.lang,
