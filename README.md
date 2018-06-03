@@ -82,9 +82,9 @@
   - [ ] Base on WAI-ARIA
   - [ ] Logging client error
   - [ ] Install service worker
-  - [ ] Load image lazy
   - [ ] Build AB testing
   - [x] Create RSS
+  - [x] Load image lazy
 - Marketing
   - [ ] Install Google Analytics
   - [ ] Consider ad
