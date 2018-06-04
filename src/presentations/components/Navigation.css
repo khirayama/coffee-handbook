@@ -1,6 +1,7 @@
 @import 'application/vars';
 
 .Navigation {
+  background-color: $color-white;
   box-shadow: $shadow;
 
   .Navigation--List {

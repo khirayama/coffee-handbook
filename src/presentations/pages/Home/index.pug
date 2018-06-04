@@ -26,11 +26,12 @@ block body
           .Home--CoverStory--Content--Title
             = featuredPost.title
 
-    .Home--Heading= dic.t('home.LATEST_ARTICLES')
+    .Home--Content
+      .Home--Content--Heading= dic.t('home.LATEST_ARTICLES')
 
-    ul.Home--StoryList
-      each post in posts
-        li.Home--StoryList--Item
-          a.Home--StoryList--Item--Link(href=`/posts/${post.id}`)
-            +StoryCard(post)
+      ul.Home--Content--StoryList
+        each post in posts
+          li.Home--Content--StoryList--Item
+            a.Home--Content--StoryList--Item--Link(href=`/posts/${post.id}`)
+              +StoryCard(post)
     +Footer(lang)

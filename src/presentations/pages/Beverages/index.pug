@@ -15,11 +15,13 @@ block body
   .Beverages
     +Header(lang)
     +Navigation(path, dic)
-    ul.Beverages--List
-      each post in posts
-        li.Beverages--List--Item
-          .Beverages--List--Item--Picture
-            +Picture(post.thumbnailUrl.square, post.title)
-          .Beverages--List--Item--Info
-            h2.Beverages--List--Item--Info--Title= post.title
+    .Beverages--Content
+      ul.Beverages--Content--List
+        each post in posts
+          li.Beverages--Content--List--Item
+            .Beverages--Content--List--Item--Picture
+              +Picture(post.thumbnailUrl.square, post.title, true)
+            .Beverages--Content--List--Item--Info
+              h2.Beverages--Content--List--Item--Info--Title= post.title
+              .Beverages--Content--List--Item--Info--Description= post.description
     +Footer(lang)

@@ -5,31 +5,62 @@
 @import 'components/StoryCard';
 
 .Beverages {
-  .Beverages--List {
-    .Beverages--List--Item {
-      display: inline-block;
-      width: 50%;
+  background-color: $color-background;
 
-      .Beverages--List--Item--Picture {
+  .Beverages--Content {
+    max-width: $width-content;
+    margin: 0 auto;
+    padding: 24px 0;
+
+    .Beverages--Content--List {
+      width: 100%;
+      max-width: $width-content;
+      margin: 0 auto;
+
+      .Beverages--Content--List--Item {
         display: inline-block;
-        width: 50%;
+        width: calc(100% / 2);
         vertical-align: top;
+        padding: 0 8px;
 
-        .Picture {
-          padding-top: 100%;
+        .Beverages--Content--List--Item--Picture {
+          display: inline-block;
+          width: 100%;
+          vertical-align: top;
+
+          .Picture {
+            padding-top: 100%;
+          }
+        }
+
+        .Beverages--Content--List--Item--Info {
+          display: inline-block;
+          width: 100%;
+          padding: 8px 0 48px;
+          vertical-align: top;
+
+          .Beverages--Content--List--Item--Info--Title {
+            font-weight: $font-bold;
+            font-size: 1rem;
+          }
         }
       }
 
-      .Beverages--List--Item--Info {
-        display: inline-block;
-        width: 50%;
-        padding: 20px 16px;
+      @media screen and (min-width: calc($width-content / 2)) {
+        .Beverages--Content--List--Item {
+          width: calc(100% / 3);
+        }
+      }
 
-        .Beverages--List--Item--Info--Title {
-          font-weight: $font-bold;
-          font-size: 1rem;
+      @media screen and (min-width: calc($width-content / 4 * 3)) {
+        .Beverages--Content--List--Item {
+          width: calc(100% / 4);
         }
       }
     }
   }
+}
+
+.Footer {
+  box-shadow: $shadow-inverse;
 }

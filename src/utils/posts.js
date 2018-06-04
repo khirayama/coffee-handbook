@@ -14,6 +14,7 @@ function build(post, lang) {
       rectangle: post.thumbnailUrl.rectangle[lang],
     },
     title: post.title[lang],
+    description: (post.description || {})[lang],
     content: post.content[lang],
     categories: post.categories.map(category => {
       return {

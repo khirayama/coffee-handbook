@@ -20,6 +20,10 @@ module.exports = {
     ja: 'コーヒー',
     en: 'Coffee',
   },
+  description: {
+    ja: '普通のコーヒー',
+    en: 'Standard Coffee',
+  },
   categories: [[3, null]],
   tags: [],
 };
