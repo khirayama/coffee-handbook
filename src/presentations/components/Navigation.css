@@ -1,6 +1,8 @@
 @import 'application/vars';
 
 .Navigation {
+  position: relative;
+  z-index: 2;
   background-color: $color-white;
   box-shadow: $shadow;
 
