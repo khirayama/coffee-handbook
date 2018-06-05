@@ -16,7 +16,7 @@ function handleEvent(container) {
       listener.targets.forEach(target => {
         if (!target.displayed) {
           const rect = target.el.getBoundingClientRect();
-          if (rect.top < screenHeight) {
+          if (rect.top - target.offset < screenHeight) {
             target.displayed = true;
             target.handler();
           }
@@ -26,7 +26,7 @@ function handleEvent(container) {
   }
 }
 
-export function onscreen(container, target, handler) {
+export function onscreen(container, target, handler, offset) {
   let attached = false;
 
   for (let i = 0; i < listeners.length; i++) {
@@ -37,6 +37,7 @@ export function onscreen(container, target, handler) {
       listener.targets.push({
         el: target,
         handler,
+        offset,
         displayed: false,
       });
     }

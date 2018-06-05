@@ -16,10 +16,23 @@ export class Picture extends View {
   }
 
   setEventListeners() {
-    onscreen(window, this.el, () => {
-      this.$el.removeClass('Picture__Ready');
-      this.$imageEl.el.src = this.props.src;
-    });
+    onscreen(
+      window,
+      this.el,
+      () => {
+        this.$el.removeClass('Picture__Ready');
+      },
+      100,
+    );
+
+    onscreen(
+      window,
+      this.el,
+      () => {
+        this.$imageEl.el.src = this.props.src;
+      },
+      0,
+    );
 
     this.$imageEl.on('load', () => {
       this.$el.addClass('Picture__Loaded');
