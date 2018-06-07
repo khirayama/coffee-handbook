@@ -48,9 +48,9 @@
     "postcss-simple-vars": "4.1.0",
     "prettier": "1.13.4",
     "rss": "1.2.2",
-    "webpack": "4.10.2",
+    "webpack": "4.11.1",
     "webpack-bundle-analyzer": "2.13.1",
-    "webpack-cli": "3.0.1"
+    "webpack-cli": "3.0.3"
   },
   "dependencies": {
     "compression": "1.7.2",
