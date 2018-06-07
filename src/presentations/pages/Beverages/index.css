@@ -87,6 +87,15 @@
               font-size: 0.75rem;
               text-align: center;
               border-radius: 17px;
+              transition: opacity 200ms ease-out;
+
+              &:hover {
+                opacity: 0.8;
+              }
+
+              &:active {
+                opacity: 0.6;
+              }
             }
 
             .Beverages--Content--List--Item--RecipeList--Item--Hot:before {
