@@ -69,26 +69,54 @@ app.get('/', (req, res) => {
   });
 });
 
-app.get('/beverages', (req, res) => {
-  const dic = new Dictionary(req.lang);
+app.use(
+  '/beverages',
+  new express.Router()
+    .get('/', (req, res) => {
+      const dic = new Dictionary(req.lang);
 
-  res.render('pages/beverages', {
-    basedir,
-    config,
-    lang: req.lang,
-    path: req.path,
-    dic,
-    title: 'BEVERAGES',
-    description: 'test',
-    thumbnailUrl: 'test',
-    type: 'type',
-  });
-});
+      res.render('pages/Beverages', {
+        basedir,
+        config,
+        lang: req.lang,
+        path: req.path,
+        dic,
+        title: 'BEVERAGES',
+        description: 'test',
+        thumbnailUrl: 'test',
+        type: 'type',
+      });
+    })
+    .use(
+      '/coffee',
+      new express.Router().get('/hot', (req, res) => {
+        const dic = new Dictionary(req.lang);
+
+        res.render('templates/Recipe', {
+          basedir,
+          config,
+          lang: req.lang,
+          path: req.path,
+          dic,
+          title: 'BEVERAGES',
+          description: 'test',
+          thumbnailUrl: 'test',
+          type: 'type',
+
+          recipe: {
+            name: dic.t('Recipe.COFFEE'),
+            type: dic.t('Recipe.HOT'),
+            thumbnailUrl: '/image_1@square.jpg',
+          },
+        });
+      }),
+    ),
+);
 
 app.get('/foods', (req, res) => {
   const dic = new Dictionary(req.lang);
 
-  res.render('pages/foods', {
+  res.render('pages/Foods', {
     basedir,
     config,
     lang: req.lang,
@@ -104,7 +132,7 @@ app.get('/foods', (req, res) => {
 app.get('/goods', (req, res) => {
   const dic = new Dictionary(req.lang);
 
-  res.render('pages/goods', {
+  res.render('pages/Goods', {
     basedir,
     config,
     lang: req.lang,
@@ -139,7 +167,7 @@ app.get('/posts/:id', (req, res) => {
   const dic = new Dictionary(req.lang);
   const post = posts.where({ id }).findOne();
 
-  res.render('pages/post', {
+  res.render('pages/Post', {
     basedir,
     config,
     lang: req.lang,

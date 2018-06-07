@@ -28,6 +28,12 @@ module.exports = {
       en: 'ABOUT OUR COFFEE, All rights reserved.',
     },
   },
+  RecipeLink: {
+    RECIPE: {
+      ja: 'レシピを見る',
+      en: 'RECIPE',
+    },
+  },
   // Pages
   Home: {
     LATEST_ARTICLES: {
@@ -85,6 +91,20 @@ module.exports = {
     MADELEINE: {
       ja: 'マドレーヌ',
       en: 'MADELEINE',
+    },
+  },
+  Recipe: {
+    HOT: {
+      ja: 'ホット',
+      en: 'HOT',
+    },
+    ICED: {
+      ja: 'アイス',
+      en: 'ICED',
+    },
+    COFFEE: {
+      ja: 'コーヒー',
+      en: 'COFFEE',
     },
   },
 };

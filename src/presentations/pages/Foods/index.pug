@@ -4,6 +4,7 @@ block import
   include /components/Header
   include /components/Footer
   include /components/Navigation
+  include /components/RecipeLink
 
 block meta
   link(rel="stylesheet" href="/pages/Foods/index.css")
@@ -20,6 +21,6 @@ block body
           .Foods--Content--List--Item--Title= dic.t('Foods.MADELEINE')
           .Foods--Content--List--Item--RecipeList
             .Foods--Content--List--Item--RecipeList--Item
-              a.Foods--Content--List--Item--RecipeList--Item--Link(href="#") RECIPE
+              +RecipeLink('#', dic)
       .Foods--Content--CategoryTitle
     +Footer(lang)

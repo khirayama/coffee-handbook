@@ -1,0 +1,47 @@
+@import 'application/vars';
+@import 'components/Header';
+@import 'components/Footer';
+@import 'components/Navigation';
+@import 'components/Picture';
+
+.Recipe {
+  background-color: $color-background;
+
+  .Recipe--Content {
+    max-width: calc($width-content * 3 / 4);
+    margin: 0 auto;
+
+    .Picture {
+      padding-top: 100%;
+    }
+
+    .Recipe--Content--CategoryTitle {
+      font-weight: $font-bold;
+      text-align: center;
+      margin: 36px auto;
+      text-align: center;
+
+      h2 {
+        position: relative;
+        display: inline-block;
+        font-size: 1.75rem;
+
+        &:before {
+          display: inline-block;
+          content: '';
+          position: absolute;
+          bottom: -4px;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 88%;
+          height: 1px;
+          background-color: $color-text;
+        }
+      }
+    }
+  }
+}
+
+.Footer {
+  box-shadow: $shadow-inverse;
+}

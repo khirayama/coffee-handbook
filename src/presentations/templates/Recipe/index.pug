@@ -1,0 +1,20 @@
+extends /application/layout
+
+block import
+  include /components/Header
+  include /components/Footer
+  include /components/Navigation
+  include /components/Picture
+
+block meta
+  link(rel="stylesheet" href="/templates/Recipe/index.css")
+
+block body
+  .Recipe
+    +Header(lang)
+    +Navigation(path, dic)
+    .Recipe--Content
+      +Picture(recipe.thumbnailUrl)
+      .Recipe--Content--CategoryTitle
+        h2= `${recipe.name} (${recipe.type})`
+    +Footer(lang)

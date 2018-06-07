@@ -4,6 +4,7 @@ block import
   include /components/Header
   include /components/Footer
   include /components/Navigation
+  include /components/RecipeLink
 
 block meta
   link(rel="stylesheet" href="/pages/Beverages/index.css")
@@ -21,75 +22,75 @@ block body
           .Beverages--Content--List--Item--RecipeList
             .Beverages--Content--List--Item--RecipeList--Item
               .Beverages--Content--List--Item--RecipeList--Item--Hot HOT
-              a.Beverages--Content--List--Item--RecipeList--Item--Link(href="#") RECIPE
+              +RecipeLink('/beverages/coffee/hot', dic)
             .Beverages--Content--List--Item--RecipeList--Item
               .Beverages--Content--List--Item--RecipeList--Item--Iced ICED
-              a.Beverages--Content--List--Item--RecipeList--Item--Link(href="#") RECIPE
+              +RecipeLink('#', dic)
         .Beverages--Content--List--Item
           .Beverages--Content--List--Item--Title= dic.t('Beverages.COLD_BREW')
           .Beverages--Content--List--Item--RecipeList
             .Beverages--Content--List--Item--RecipeList--Item
               .Beverages--Content--List--Item--RecipeList--Item--Iced ICED
-              a.Beverages--Content--List--Item--RecipeList--Item--Link(href="#") RECIPE
+              +RecipeLink('#', dic)
         .Beverages--Content--List--Item
           .Beverages--Content--List--Item--Title= dic.t('Beverages.LATTE')
           .Beverages--Content--List--Item--RecipeList
             .Beverages--Content--List--Item--RecipeList--Item
               .Beverages--Content--List--Item--RecipeList--Item--Hot HOT
-              a.Beverages--Content--List--Item--RecipeList--Item--Link(href="#") RECIPE
+              +RecipeLink('#', dic)
             .Beverages--Content--List--Item--RecipeList--Item
               .Beverages--Content--List--Item--RecipeList--Item--Iced ICED
-              a.Beverages--Content--List--Item--RecipeList--Item--Link(href="#") RECIPE
+              +RecipeLink('#', dic)
         .Beverages--Content--List--Item
           .Beverages--Content--List--Item--Title= dic.t('Beverages.AMERICANO')
           .Beverages--Content--List--Item--RecipeList
             .Beverages--Content--List--Item--RecipeList--Item
               .Beverages--Content--List--Item--RecipeList--Item--Hot HOT
-              a.Beverages--Content--List--Item--RecipeList--Item--Link(href="#") RECIPE
+              +RecipeLink('#', dic)
             .Beverages--Content--List--Item--RecipeList--Item
               .Beverages--Content--List--Item--RecipeList--Item--Iced ICED
-              a.Beverages--Content--List--Item--RecipeList--Item--Link(href="#") RECIPE
+              +RecipeLink('#', dic)
         .Beverages--Content--List--Item
           .Beverages--Content--List--Item--Title= dic.t('Beverages.CAPPUCCINO')
           .Beverages--Content--List--Item--RecipeList
             .Beverages--Content--List--Item--RecipeList--Item
               .Beverages--Content--List--Item--RecipeList--Item--Hot HOT
-              a.Beverages--Content--List--Item--RecipeList--Item--Link(href="#") RECIPE
+              +RecipeLink('#', dic)
             .Beverages--Content--List--Item--RecipeList--Item
               .Beverages--Content--List--Item--RecipeList--Item--Iced ICED
-              a.Beverages--Content--List--Item--RecipeList--Item--Link(href="#") RECIPE
+              +RecipeLink('#', dic)
         .Beverages--Content--List--Item
           .Beverages--Content--List--Item--Title= dic.t('Beverages.MOCHA')
           .Beverages--Content--List--Item--RecipeList
             .Beverages--Content--List--Item--RecipeList--Item
               .Beverages--Content--List--Item--RecipeList--Item--Hot HOT
-              a.Beverages--Content--List--Item--RecipeList--Item--Link(href="#") RECIPE
+              +RecipeLink('#', dic)
             .Beverages--Content--List--Item--RecipeList--Item
               .Beverages--Content--List--Item--RecipeList--Item--Iced ICED
-              a.Beverages--Content--List--Item--RecipeList--Item--Link(href="#") RECIPE
+              +RecipeLink('#', dic)
         .Beverages--Content--List--Item
           .Beverages--Content--List--Item--Title= dic.t('Beverages.VANILLA_LATTE')
           .Beverages--Content--List--Item--RecipeList
             .Beverages--Content--List--Item--RecipeList--Item
               .Beverages--Content--List--Item--RecipeList--Item--Hot HOT
-              a.Beverages--Content--List--Item--RecipeList--Item--Link(href="#") RECIPE
+              +RecipeLink('#', dic)
             .Beverages--Content--List--Item--RecipeList--Item
               .Beverages--Content--List--Item--RecipeList--Item--Iced ICED
-              a.Beverages--Content--List--Item--RecipeList--Item--Link(href="#") RECIPE
+              +RecipeLink('#', dic)
         .Beverages--Content--List--Item
           .Beverages--Content--List--Item--Title= dic.t('Beverages.COCOA')
           .Beverages--Content--List--Item--RecipeList
             .Beverages--Content--List--Item--RecipeList--Item
               .Beverages--Content--List--Item--RecipeList--Item--Hot HOT
-              a.Beverages--Content--List--Item--RecipeList--Item--Link(href="#") RECIPE
+              +RecipeLink('#', dic)
             .Beverages--Content--List--Item--RecipeList--Item
               .Beverages--Content--List--Item--RecipeList--Item--Iced ICED
-              a.Beverages--Content--List--Item--RecipeList--Item--Link(href="#") RECIPE
+              +RecipeLink('#', dic)
         .Beverages--Content--List--Item
           .Beverages--Content--List--Item--Title= dic.t('Beverages.ESPRESSO')
           .Beverages--Content--List--Item--RecipeList
             .Beverages--Content--List--Item--RecipeList--Item
               .Beverages--Content--List--Item--RecipeList--Item--Hot HOT
-              a.Beverages--Content--List--Item--RecipeList--Item--Link(href="#") RECIPE
+              +RecipeLink('#', dic)
       .Beverages--Content--CategoryTitle
     +Footer(lang)
