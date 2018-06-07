@@ -11,16 +11,27 @@
     margin: 0 auto;
 
     .Beverages--Content--CategoryTitle {
-      position: relative;
       font-weight: $font-bold;
       text-align: center;
       margin: 36px auto;
       text-align: center;
 
       h2 {
+        position: relative;
         display: inline-block;
         font-size: 1.75rem;
-        border-bottom: solid 4px $color-divider;
+
+        &:before {
+          display: inline-block;
+          content: '';
+          position: absolute;
+          bottom: -4px;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 88%;
+          height: 1px;
+          background-color: $color-text;
+        }
       }
     }
 
