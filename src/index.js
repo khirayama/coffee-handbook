@@ -59,7 +59,7 @@ app.get('/', (req, res) => {
     lang: req.lang,
     path: req.path,
     dic,
-    title: dic.t('navigation.HOME'),
+    title: 'home',
     description: 'test',
     thumbnailUrl: 'test',
     type: 'type',
@@ -78,7 +78,7 @@ app.get('/beverages', (req, res) => {
     lang: req.lang,
     path: req.path,
     dic,
-    title: dic.t('navigation.BEVERAGES'),
+    title: 'BEVERAGES',
     description: 'test',
     thumbnailUrl: 'test',
     type: 'type',
@@ -94,23 +94,7 @@ app.get('/foods', (req, res) => {
     lang: req.lang,
     path: req.path,
     dic,
-    title: dic.t('navigation.FOODS'),
-    description: 'test',
-    thumbnailUrl: 'test',
-    type: 'type',
-  });
-});
-
-app.get('/beans', (req, res) => {
-  const dic = new Dictionary(req.lang);
-
-  res.render('pages/beans', {
-    basedir,
-    config,
-    lang: req.lang,
-    path: req.path,
-    dic,
-    title: dic.t('navigation.BEANS'),
+    title: 'FOODS',
     description: 'test',
     thumbnailUrl: 'test',
     type: 'type',
@@ -126,23 +110,7 @@ app.get('/goods', (req, res) => {
     lang: req.lang,
     path: req.path,
     dic,
-    title: dic.t('navigation.GOODS'),
-    description: 'test',
-    thumbnailUrl: 'test',
-    type: 'type',
-  });
-});
-
-app.get('/knowledge', (req, res) => {
-  const dic = new Dictionary(req.lang);
-
-  res.render('pages/knowledge', {
-    basedir,
-    config,
-    lang: req.lang,
-    path: req.path,
-    dic,
-    title: dic.t('navigation.KNOWLEDGE'),
+    title: 'GOODS',
     description: 'test',
     thumbnailUrl: 'test',
     type: 'type',
@@ -158,7 +126,7 @@ app.get('/about-us', (req, res) => {
     lang: req.lang,
     path: req.path,
     dic,
-    title: dic.t('footer.ABOUT_US'),
+    title: 'ABOUT US',
     description: 'test',
     thumbnailUrl: 'test',
     type: 'type',

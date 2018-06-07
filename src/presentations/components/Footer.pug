@@ -2,7 +2,7 @@ mixin Footer(lang)
   footer.Footer
     ul.Footer--List
       li.Footer--List--Item
-        a(href="/about-us")= dic.t('footer.ABOUT_US')
+        a(href="/about-us")= dic.t('Footer.ABOUT_US')
       li.Footer--List--Item
-        a(href="/")= dic.t('footer.SITEMAP')
-    p.Footer--Copyright &copy; ABOUT OUR COFFEE, All rights reserved.
+        a(href="/")= dic.t('Footer.SITEMAP')
+    p.Footer--Copyright!= '&copy; ' + dic.t('Footer.copyright')

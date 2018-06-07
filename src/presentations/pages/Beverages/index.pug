@@ -14,10 +14,10 @@ block body
     +Navigation(path, dic)
     .Beverages--Content
       .Beverages--Content--CategoryTitle
-        h2 BEVERAGES
+        h2= dic.t('Beverages.BEVERAGES')
       .Beverages--Content--List
         .Beverages--Content--List--Item
-          .Beverages--Content--List--Item--Title COFFEE
+          .Beverages--Content--List--Item--Title= dic.t('Beverages.COFFEE')
           .Beverages--Content--List--Item--RecipeList
             .Beverages--Content--List--Item--RecipeList--Item
               .Beverages--Content--List--Item--RecipeList--Item--Hot HOT
@@ -26,22 +26,13 @@ block body
               .Beverages--Content--List--Item--RecipeList--Item--Iced ICED
               a.Beverages--Content--List--Item--RecipeList--Item--Link(href="#") RECIPE
         .Beverages--Content--List--Item
-          .Beverages--Content--List--Item--Title COLD BREW
+          .Beverages--Content--List--Item--Title= dic.t('Beverages.COLD_BREW')
           .Beverages--Content--List--Item--RecipeList
             .Beverages--Content--List--Item--RecipeList--Item
               .Beverages--Content--List--Item--RecipeList--Item--Iced ICED
               a.Beverages--Content--List--Item--RecipeList--Item--Link(href="#") RECIPE
         .Beverages--Content--List--Item
-          .Beverages--Content--List--Item--Title LATTE
-          .Beverages--Content--List--Item--RecipeList
-            .Beverages--Content--List--Item--RecipeList--Item
-              .Beverages--Content--List--Item--RecipeList--Item--Hot HOT
-              a.Beverages--Content--List--Item--RecipeList--Item--Link(href="#") RECIPE
-            .Beverages--Content--List--Item--RecipeList--Item
-              .Beverages--Content--List--Item--RecipeList--Item--Iced ICED
-              a.Beverages--Content--List--Item--RecipeList--Item--Link(href="#") RECIPE
-        .Beverages--Content--List--Item
-          .Beverages--Content--List--Item--Title AMERICANO
+          .Beverages--Content--List--Item--Title= dic.t('Beverages.LATTE')
           .Beverages--Content--List--Item--RecipeList
             .Beverages--Content--List--Item--RecipeList--Item
               .Beverages--Content--List--Item--RecipeList--Item--Hot HOT
@@ -50,7 +41,7 @@ block body
               .Beverages--Content--List--Item--RecipeList--Item--Iced ICED
               a.Beverages--Content--List--Item--RecipeList--Item--Link(href="#") RECIPE
         .Beverages--Content--List--Item
-          .Beverages--Content--List--Item--Title CAPPUCCINO
+          .Beverages--Content--List--Item--Title= dic.t('Beverages.AMERICANO')
           .Beverages--Content--List--Item--RecipeList
             .Beverages--Content--List--Item--RecipeList--Item
               .Beverages--Content--List--Item--RecipeList--Item--Hot HOT
@@ -59,7 +50,7 @@ block body
               .Beverages--Content--List--Item--RecipeList--Item--Iced ICED
               a.Beverages--Content--List--Item--RecipeList--Item--Link(href="#") RECIPE
         .Beverages--Content--List--Item
-          .Beverages--Content--List--Item--Title MOCHA
+          .Beverages--Content--List--Item--Title= dic.t('Beverages.CAPPUCCINO')
           .Beverages--Content--List--Item--RecipeList
             .Beverages--Content--List--Item--RecipeList--Item
               .Beverages--Content--List--Item--RecipeList--Item--Hot HOT
@@ -68,7 +59,7 @@ block body
               .Beverages--Content--List--Item--RecipeList--Item--Iced ICED
               a.Beverages--Content--List--Item--RecipeList--Item--Link(href="#") RECIPE
         .Beverages--Content--List--Item
-          .Beverages--Content--List--Item--Title VANILLA LATTE
+          .Beverages--Content--List--Item--Title= dic.t('Beverages.MOCHA')
           .Beverages--Content--List--Item--RecipeList
             .Beverages--Content--List--Item--RecipeList--Item
               .Beverages--Content--List--Item--RecipeList--Item--Hot HOT
@@ -77,7 +68,7 @@ block body
               .Beverages--Content--List--Item--RecipeList--Item--Iced ICED
               a.Beverages--Content--List--Item--RecipeList--Item--Link(href="#") RECIPE
         .Beverages--Content--List--Item
-          .Beverages--Content--List--Item--Title COCOA
+          .Beverages--Content--List--Item--Title= dic.t('Beverages.VANILLA_LATTE')
           .Beverages--Content--List--Item--RecipeList
             .Beverages--Content--List--Item--RecipeList--Item
               .Beverages--Content--List--Item--RecipeList--Item--Hot HOT
@@ -86,7 +77,16 @@ block body
               .Beverages--Content--List--Item--RecipeList--Item--Iced ICED
               a.Beverages--Content--List--Item--RecipeList--Item--Link(href="#") RECIPE
         .Beverages--Content--List--Item
-          .Beverages--Content--List--Item--Title ESPRESSO
+          .Beverages--Content--List--Item--Title= dic.t('Beverages.COCOA')
+          .Beverages--Content--List--Item--RecipeList
+            .Beverages--Content--List--Item--RecipeList--Item
+              .Beverages--Content--List--Item--RecipeList--Item--Hot HOT
+              a.Beverages--Content--List--Item--RecipeList--Item--Link(href="#") RECIPE
+            .Beverages--Content--List--Item--RecipeList--Item
+              .Beverages--Content--List--Item--RecipeList--Item--Iced ICED
+              a.Beverages--Content--List--Item--RecipeList--Item--Link(href="#") RECIPE
+        .Beverages--Content--List--Item
+          .Beverages--Content--List--Item--Title= dic.t('Beverages.ESPRESSO')
           .Beverages--Content--List--Item--RecipeList
             .Beverages--Content--List--Item--RecipeList--Item
               .Beverages--Content--List--Item--RecipeList--Item--Hot HOT

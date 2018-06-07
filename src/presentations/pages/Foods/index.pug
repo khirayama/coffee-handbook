@@ -14,10 +14,10 @@ block body
     +Navigation(path, dic)
     .Foods--Content
       .Foods--Content--CategoryTitle
-        h2 FOODS
+        h2= dic.t('Foods.FOODS')
       .Foods--Content--List
         .Foods--Content--List--Item
-          .Foods--Content--List--Item--Title MADELEINE
+          .Foods--Content--List--Item--Title= dic.t('Foods.MADELEINE')
           .Foods--Content--List--Item--RecipeList
             .Foods--Content--List--Item--RecipeList--Item
               a.Foods--Content--List--Item--RecipeList--Item--Link(href="#") RECIPE
