@@ -72,13 +72,14 @@ app.get('/', (req, res) => {
 app.get('/beverages', (req, res) => {
   const dic = new Dictionary(req.lang);
   const posts = new Posts(req.lang);
-  const beveragePosts = posts
-    .where({
-      categories: {
-        id: 3,
-      },
-    })
-    .find();
+  // Const beveragePosts = posts
+  //   .where({
+  //     categories: {
+  //       id: 3,
+  //     },
+  //   })
+  //   .find();
+  const beveragePosts = posts.find();
 
   res.render('pages/beverages', {
     basedir,

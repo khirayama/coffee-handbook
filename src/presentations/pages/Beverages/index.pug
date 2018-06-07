@@ -16,12 +16,83 @@ block body
     +Header(lang)
     +Navigation(path, dic)
     .Beverages--Content
-      ul.Beverages--Content--List
-        each post in posts
-          li.Beverages--Content--List--Item
-            .Beverages--Content--List--Item--Picture
-              +Picture(post.thumbnailUrl.square, post.title, true)
-            .Beverages--Content--List--Item--Info
-              h2.Beverages--Content--List--Item--Info--Title= post.title
-              .Beverages--Content--List--Item--Info--Description= post.description
+      .Beverages--Content--CategoryTitle
+        h2 BEVERAGES
+      .Beverages--Content--List
+        .Beverages--Content--List--Item
+          .Beverages--Content--List--Item--Title COFFEE
+          .Beverages--Content--List--Item--RecipeList
+            .Beverages--Content--List--Item--RecipeList--Item
+              .Beverages--Content--List--Item--RecipeList--Item--Hot HOT
+              .Beverages--Content--List--Item--RecipeList--Item--Link RECIPE
+            .Beverages--Content--List--Item--RecipeList--Item
+              .Beverages--Content--List--Item--RecipeList--Item--Iced ICED
+              .Beverages--Content--List--Item--RecipeList--Item--Link RECIPE
+        .Beverages--Content--List--Item
+          .Beverages--Content--List--Item--Title COLD BREW
+          .Beverages--Content--List--Item--RecipeList
+            .Beverages--Content--List--Item--RecipeList--Item
+              .Beverages--Content--List--Item--RecipeList--Item--Iced ICED
+              .Beverages--Content--List--Item--RecipeList--Item--Link RECIPE
+        .Beverages--Content--List--Item
+          .Beverages--Content--List--Item--Title LATTE
+          .Beverages--Content--List--Item--RecipeList
+            .Beverages--Content--List--Item--RecipeList--Item
+              .Beverages--Content--List--Item--RecipeList--Item--Hot HOT
+              .Beverages--Content--List--Item--RecipeList--Item--Link RECIPE
+            .Beverages--Content--List--Item--RecipeList--Item
+              .Beverages--Content--List--Item--RecipeList--Item--Iced ICED
+              .Beverages--Content--List--Item--RecipeList--Item--Link RECIPE
+        .Beverages--Content--List--Item
+          .Beverages--Content--List--Item--Title AMERICANO
+          .Beverages--Content--List--Item--RecipeList
+            .Beverages--Content--List--Item--RecipeList--Item
+              .Beverages--Content--List--Item--RecipeList--Item--Hot HOT
+              .Beverages--Content--List--Item--RecipeList--Item--Link RECIPE
+            .Beverages--Content--List--Item--RecipeList--Item
+              .Beverages--Content--List--Item--RecipeList--Item--Iced ICED
+              .Beverages--Content--List--Item--RecipeList--Item--Link RECIPE
+        .Beverages--Content--List--Item
+          .Beverages--Content--List--Item--Title CAPPUCCINO
+          .Beverages--Content--List--Item--RecipeList
+            .Beverages--Content--List--Item--RecipeList--Item
+              .Beverages--Content--List--Item--RecipeList--Item--Hot HOT
+              .Beverages--Content--List--Item--RecipeList--Item--Link RECIPE
+            .Beverages--Content--List--Item--RecipeList--Item
+              .Beverages--Content--List--Item--RecipeList--Item--Iced ICED
+              .Beverages--Content--List--Item--RecipeList--Item--Link RECIPE
+        .Beverages--Content--List--Item
+          .Beverages--Content--List--Item--Title MOCHA
+          .Beverages--Content--List--Item--RecipeList
+            .Beverages--Content--List--Item--RecipeList--Item
+              .Beverages--Content--List--Item--RecipeList--Item--Hot HOT
+              .Beverages--Content--List--Item--RecipeList--Item--Link RECIPE
+            .Beverages--Content--List--Item--RecipeList--Item
+              .Beverages--Content--List--Item--RecipeList--Item--Iced ICED
+              .Beverages--Content--List--Item--RecipeList--Item--Link RECIPE
+        .Beverages--Content--List--Item
+          .Beverages--Content--List--Item--Title VANILLA LATTE
+          .Beverages--Content--List--Item--RecipeList
+            .Beverages--Content--List--Item--RecipeList--Item
+              .Beverages--Content--List--Item--RecipeList--Item--Hot HOT
+              .Beverages--Content--List--Item--RecipeList--Item--Link RECIPE
+            .Beverages--Content--List--Item--RecipeList--Item
+              .Beverages--Content--List--Item--RecipeList--Item--Iced ICED
+              .Beverages--Content--List--Item--RecipeList--Item--Link RECIPE
+        .Beverages--Content--List--Item
+          .Beverages--Content--List--Item--Title COCOA
+          .Beverages--Content--List--Item--RecipeList
+            .Beverages--Content--List--Item--RecipeList--Item
+              .Beverages--Content--List--Item--RecipeList--Item--Hot HOT
+              .Beverages--Content--List--Item--RecipeList--Item--Link RECIPE
+            .Beverages--Content--List--Item--RecipeList--Item
+              .Beverages--Content--List--Item--RecipeList--Item--Iced ICED
+              .Beverages--Content--List--Item--RecipeList--Item--Link RECIPE
+        .Beverages--Content--List--Item
+          .Beverages--Content--List--Item--Title ESPRESSO
+          .Beverages--Content--List--Item--RecipeList
+            .Beverages--Content--List--Item--RecipeList--Item
+              .Beverages--Content--List--Item--RecipeList--Item--Hot HOT
+              .Beverages--Content--List--Item--RecipeList--Item--Link RECIPE
+      .Beverages--Content--CategoryTitle
     +Footer(lang)
