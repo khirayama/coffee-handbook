@@ -1,0 +1,18 @@
+.RecipeLink {
+  display: inline-block;
+  color: $color-white;
+  background-color: $color-text;
+  padding: 8px 20px;
+  font-size: 0.75rem;
+  text-align: center;
+  border-radius: 17px;
+  transition: opacity 200ms ease-out;
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  &:active {
+    opacity: 0.6;
+  }
+}
