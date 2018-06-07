@@ -24,6 +24,12 @@
   "keywords": [],
   "author": "khirayama",
   "license": "",
+  "dependencies": {
+    "compression": "1.7.2",
+    "cookie-parser": "1.4.3",
+    "express": "4.16.3",
+    "pug": "2.0.3"
+  },
   "devDependencies": {
     "babel-core": "6.26.3",
     "babel-eslint": "8.2.3",
@@ -51,11 +57,5 @@
     "webpack": "4.11.1",
     "webpack-bundle-analyzer": "2.13.1",
     "webpack-cli": "3.0.3"
-  },
-  "dependencies": {
-    "compression": "1.7.2",
-    "cookie-parser": "1.4.3",
-    "express": "4.16.3",
-    "pug": "2.0.3"
   }
 }
