@@ -111,6 +111,27 @@ app.use(
               square: '/image_1@square.jpg',
               rectangle: '/image_1@rectangle.jpg',
             },
+            steps: [
+              {
+                summary: '水をあれあれ',
+                description: 'いろいろ細かく',
+                note: 'ポイント',
+              },
+              {
+                summary: '水をあれあれ',
+                description: 'いろいろ細かく',
+                note: 'ポイント',
+              },
+              {
+                summary: '水をあれあれ',
+                description: 'いろいろ細かく',
+              },
+              {
+                summary: '水をあれあれ',
+                description: 'いろいろ細かく',
+                note: 'ポイント',
+              },
+            ],
           },
         });
       }),
