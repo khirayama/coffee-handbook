@@ -41,18 +41,17 @@
   }
 
   .Recipe--Content {
-    max-width: calc($width-content * 3 / 4);
-    margin: 0 auto;
+    box-shadow: $shadow-inverse;
+    background-color: $color-white;
 
     .Picture {
       padding-top: 100%;
     }
 
-    .Recipe--Content--CategoryTitle {
+    .Recipe--Content--Title {
       font-weight: $font-bold;
       text-align: center;
-      margin: 36px auto;
-      text-align: center;
+      padding: 36px 0 48px;
 
       h2 {
         position: relative;
@@ -71,10 +70,80 @@
           background-color: $color-text;
         }
       }
+
+      .Recipe--Content--Title--Type {
+        display: inline-block;
+        position: relative;
+        padding: 12px 1rem;
+
+        &:before {
+          position: absolute;
+          top: 47%;
+          left: 0.25rem;
+          transform: translateY(-50%);
+          content: '';
+          display: inline-block;
+          width: 0.5rem;
+          height: 0.5rem;
+          border-radius: 50%;
+          background-color: $color-hot;
+        }
+      }
+    }
+
+    .Recipe--Content--StepList {
+      max-width: calc($width-content * 3 / 4);
+      margin: 0 auto;
+      padding: 0 12px 0 28px;
+
+      .Recipe--Content--StepList--Item {
+        position: relative;
+        width: 100%;
+        padding: 24px 0 44px 28px;
+
+        $size: 24px;
+
+        &:before,
+        &:after {
+          content: '';
+          position: absolute;
+          display: inline-block;
+          background-color: $color-hot;
+        }
+
+        &:before {
+          top: 0;
+          left: 0;
+          width: calc($size / 8);
+          height: 100%;
+        }
+
+        &:after {
+          top: calc(-1 * $size / 2);
+          left: calc(-1 * $size / 2 + $size / 16);
+          width: $size;
+          height: $size;
+          border-radius: 50%;
+        }
+
+        .Recipe--Content--StepList--Item--Summary {
+          font-weight: $font-bold;
+          font-size: 1.25rem;
+          margin-bottom: 12px;
+        }
+
+        .Recipe--Content--StepList--Item--Description {
+          color: $color-text-secondary;
+          margin-bottom: 12px;
+        }
+
+        .Recipe--Content--StepList--Item--Note {
+          color: $color-text-secondary;
+          background-color: $color-note;
+          padding: 16px;
+          border-radius: $radius;
+        }
+      }
     }
   }
-}
-
-.Footer {
-  box-shadow: $shadow-inverse;
 }

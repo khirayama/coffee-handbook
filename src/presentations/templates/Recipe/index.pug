@@ -21,6 +21,15 @@ block body
             source(media="(min-width: 446px)" srcset=recipe.thumbnailUrl.rectangle)
             source(media="(max-width: 446px)" srcset=recipe.thumbnailUrl.square)
     .Recipe--Content
-      .Recipe--Content--CategoryTitle
-        h2= `${recipe.name} (${recipe.type})`
+      .Recipe--Content--Title
+        h2= recipe.name
+        div
+          .Recipe--Content--Title--Type= recipe.type
+      for step in recipe.steps
+        .Recipe--Content--StepList
+          .Recipe--Content--StepList--Item
+            .Recipe--Content--StepList--Item--Summary= step.summary
+            .Recipe--Content--StepList--Item--Description= step.description
+            if step.note
+              .Recipe--Content--StepList--Item--Note= step.note
     +Footer(lang)
