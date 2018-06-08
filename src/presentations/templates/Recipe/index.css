@@ -7,6 +7,39 @@
 .Recipe {
   background-color: $color-background;
 
+  .Recipe--CoverPicture {
+    display: inline-block;
+    width: 100%;
+    background-color: $color-background;
+    box-shadow: $shadow-inset, $shadow-inverse-inset;
+    vertical-align: top;
+
+    .Recipe--CoverPicture--Content {
+      position: relative;
+      margin: 0 auto;
+      max-width: $width-content;
+      max-height: calc($width-content / 2);
+      overflow: hidden;
+      opacity: 1;
+      transition: opacity 200ms ease-out;
+
+      .Recipe--CoverPicture--Content--Image {
+        position: relative;
+
+        .Picture {
+          width: 100%;
+          padding-top: calc(63 / 120 * 100%);
+        }
+
+        @media screen and (max-width: calc($width-content / 2)) {
+          .Picture {
+            padding-top: 100%;
+          }
+        }
+      }
+    }
+  }
+
   .Recipe--Content {
     max-width: calc($width-content * 3 / 4);
     margin: 0 auto;

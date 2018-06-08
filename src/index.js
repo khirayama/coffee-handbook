@@ -106,7 +106,11 @@ app.use(
           recipe: {
             name: dic.t('Recipe.COFFEE'),
             type: dic.t('Recipe.HOT'),
-            thumbnailUrl: '/image_1@square.jpg',
+            thumbnailUrl: {
+              default: '/image_1@square.jpg',
+              square: '/image_1@square.jpg',
+              rectangle: '/image_1@rectangle.jpg',
+            },
           },
         });
       }),

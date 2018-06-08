@@ -13,8 +13,14 @@ block body
   .Recipe
     +Header(lang)
     +Navigation(path, dic)
+
+    .Recipe--CoverPicture
+      .Recipe--CoverPicture--Content
+        .Recipe--CoverPicture--Content--Image
+          +Picture(recipe.thumbnailUrl.default, recipe.name)
+            source(media="(min-width: 446px)" srcset=recipe.thumbnailUrl.rectangle)
+            source(media="(max-width: 446px)" srcset=recipe.thumbnailUrl.square)
     .Recipe--Content
-      +Picture(recipe.thumbnailUrl)
       .Recipe--Content--CategoryTitle
         h2= `${recipe.name} (${recipe.type})`
     +Footer(lang)
