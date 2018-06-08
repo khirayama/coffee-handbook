@@ -48,6 +48,7 @@
           width: 100%;
           padding-top: calc(63 / 120 * 100%);
         }
+
         @media screen and (max-width: calc($width-content / 2)) {
           .Picture {
             padding-top: 100%;
