@@ -42,6 +42,7 @@
   - GA
   - AB Testing
   - SEO
+    - https://support.google.com/webmasters/answer/7451184?hl=ja
   - RSS
 - Accessiblity
   - https://www.concentinc.jp/design_research/2018/03/btobcommunications-web-accessibility/
@@ -50,6 +51,8 @@
   - WAI-ARIA
 - Performance
   - https://developers.google.com/web/tools/workbox/
+  - http://tech.mercari.com/entry/2017/12/19/workbox
+  - https://github.com/babel/minify
 - Concents
   - 関係性をデザインする
   - 人気記事？
