@@ -11,7 +11,7 @@ $color-divider: #e0e0e0;
 $color-hot: #ef5350;
 $color-iced: #42a5f5;
 
-$radius: 2px;
+$radius: 4px;
 $shadow: 0 1px 1px 0 $color-shadow;
 $shadow-inset: 0 1px 1px 0 $color-shadow inset;
 $shadow-inverse: 0 -1px 1px 0 $color-shadow;
