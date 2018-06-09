@@ -24,6 +24,11 @@
     object-fit: cover;
   }
 
+  span.Picture--Image {
+    color: $color-white;
+    padding: 12px;
+  }
+
   &.Picture__Ready {
     background: $color-shadow;
   }

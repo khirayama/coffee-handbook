@@ -6,7 +6,6 @@ export class Picture extends View {
     this.$imageEl = this.$el.find('.Picture--Image');
 
     this.props = {
-      src: this.$el.data.src,
       lazy: this.$el.data.lazy,
     };
 
@@ -29,7 +28,15 @@ export class Picture extends View {
       window,
       this.el,
       () => {
-        this.$imageEl.el.src = this.props.src;
+        this.$imageEl.el.innerHTML = '';
+        let html = this.$imageEl.el.parentNode.innerHTML;
+        html = html.replace('<span ', '<img ');
+        this.$imageEl.el.parentNode.innerHTML = html;
+
+        this.$imageEl = this.$el.find('.Picture--Image');
+        this.$imageEl.on('error', () => {
+          console.log('error');
+        });
       },
       0,
     );
