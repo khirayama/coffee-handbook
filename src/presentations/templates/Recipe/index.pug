@@ -20,6 +20,7 @@ block body
           +Picture(recipe.thumbnailUrl.default, recipe.name)
             source(media="(min-width: 446px)" srcset=recipe.thumbnailUrl.rectangle)
             source(media="(max-width: 446px)" srcset=recipe.thumbnailUrl.square)
+
     .Recipe--Content
       .Recipe--Content--Title
         h2= recipe.name
