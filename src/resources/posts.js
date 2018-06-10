@@ -3,59 +3,53 @@ const path = require('path');
 const postsPath = path.join(__dirname, '..', 'data', 'posts');
 const rawPosts = require(postsPath);
 
-function build(post, lang) {
-  return {
-    id: post.id,
-    createdAt: post.createdAt,
-    publishedAt: post.publishedAt,
-    thumbnailUrl: {
-      default: post.thumbnailUrl.default[lang],
-      square: post.thumbnailUrl.square[lang],
-      rectangle: post.thumbnailUrl.rectangle[lang],
-    },
-    title: post.title[lang],
-    description: (post.description || {})[lang],
-    content: post.content[lang],
-    categories: post.categories.map(category => {
-      return {
-        id: category.id,
-        name: category.name[lang],
-        subCategory: category.subCategory
-          ? {
-              id: category.subCategory.id,
-              name: category.subCategory.name[lang],
-            }
-          : null,
-      };
-    }),
-    tags: post.tags.map(tag => {
-      return {
-        id: tag.id,
-        name: tag.name[lang],
-      };
-    }),
-  };
+function build(value, lang) {
+  if (Array.isArray(value)) {
+    const result = [];
+    for (let i = 0; i < value.length; i++) {
+      const val = value[i];
+      result[i] = build(val, lang);
+    }
+    return result;
+  }
+
+  if (typeof value === 'boolean' || typeof value === 'string' || typeof value === 'number' || value === null) {
+    return value;
+  }
+
+  const result = {};
+  const keys = Object.keys(value);
+  for (let i = 0; i < keys.length; i++) {
+    const key = keys[i];
+    if (key === lang) {
+      return build(value[key], lang);
+    }
+    result[key] = build(value[key], lang);
+  }
+
+  return result;
 }
 
 /* Usecase
 find, findOne, where, page, order
 */
 
-class Posts {
-  constructor(lang) {
+class Resource {
+  constructor(resources, lang) {
+    this.resources = resources;
     this.lang = lang;
-    this.tmp = rawPosts.map(rawPost => build(rawPost, this.lang));
+    this.tmp = build(this.resources, this.lang);
   }
 
   find(num) {
     const tmp = this.tmp.slice();
-    this.tmp = rawPosts.map(rawPost => build(rawPost, this.lang));
+    this.tmp = build(this.resources, this.lang);
     return tmp.slice(tmp.length - num);
   }
 
   findOne() {
     const tmp = this.tmp.slice();
-    this.tmp = rawPosts.map(rawPost => build(rawPost, this.lang));
+    this.tmp = build(this.resources, this.lang);
     return tmp[0];
   }
 
@@ -107,4 +101,8 @@ class Posts {
   }
 }
 
-module.exports = Posts;
+function createPosts(lang) {
+  return new Resource(rawPosts, lang);
+}
+
+module.exports = createPosts;

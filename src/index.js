@@ -4,7 +4,7 @@ const compression = require('compression');
 const cookieParser = require('cookie-parser');
 
 const config = require(path.join(__dirname, '..', 'config.json'));
-const Posts = require('./utils/posts');
+const createPosts = require('./resources/posts');
 const Dictionary = require('./utils/dictionary');
 const rss = require('./utils/rss');
 
@@ -34,7 +34,7 @@ app.use((req, res, next) => {
 
 app.get('/', (req, res) => {
   const dic = new Dictionary(req.lang);
-  const posts = new Posts(req.lang);
+  const posts = createPosts(req.lang);
   const featuredPost = posts
     .where({
       categories: {
@@ -191,7 +191,7 @@ app.get('/about-us', (req, res) => {
 
 app.get('/posts/:id', (req, res) => {
   const id = Number(req.params.id);
-  const posts = new Posts(req.lang);
+  const posts = createPosts(req.lang);
   const dic = new Dictionary(req.lang);
   const post = posts.where({ id }).findOne();
 

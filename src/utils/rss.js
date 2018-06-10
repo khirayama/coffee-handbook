@@ -3,13 +3,13 @@ const path = require('path');
 const RSS = require('rss');
 
 const config = require(path.join(__dirname, '..', '..', 'config.json'));
-const Posts = require('./posts');
+const createPosts = require('../resources/posts');
 
 const rss = {};
 
 for (let i = 0; i < config.languages.length; i++) {
   const lang = config.languages[i];
-  const posts = new Posts(lang);
+  const posts = createPosts(lang);
 
   const feed = new RSS({
     title: config.name,
