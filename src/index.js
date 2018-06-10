@@ -23,7 +23,10 @@ app.use(express.static(path.join(__dirname, 'assets')));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cookieParser());
 app.use((req, res, next) => {
-  const lang = req.query.lang || req.cookies.lang || config.languages[0];
+  let lang = req.query.lang || req.cookies.lang || config.languages[0];
+  if (config.languages.indexOf(lang) === -1) {
+    lang = config.languages[0];
+  }
   res.cookie('lang', lang, { maxAge: 60000, httpOnly: false });
   req.lang = lang;
   next();
