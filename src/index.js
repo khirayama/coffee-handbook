@@ -6,6 +6,7 @@ const cookieParser = require('cookie-parser');
 const config = require('config');
 const Post = require('resources/Post');
 const Recipe = require('resources/Recipe');
+const Beverage = require('resources/Beverage');
 const Dictionary = require('utils/Dictionary');
 const rss = require('utils/rss');
 
@@ -77,6 +78,7 @@ app.use(
   new express.Router()
     .get('/', (req, res) => {
       const dic = new Dictionary(req.lang);
+      const beverages = Beverage(req.lang).find();
 
       res.render('pages/Beverages', {
         basedir,
@@ -88,6 +90,8 @@ app.use(
         description: 'test',
         thumbnailUrl: 'test',
         type: 'type',
+
+        beverages,
       });
     })
     .use(

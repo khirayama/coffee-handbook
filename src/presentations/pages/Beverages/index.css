@@ -63,8 +63,7 @@
               position: relative;
               display: inline-block;
               color: $color-text-secondary;
-              width: 4rem;
-              padding-left: 1rem;
+              padding: 0 8px 0 1rem;
 
               &:before {
                 position: absolute;
