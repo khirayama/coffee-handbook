@@ -96,54 +96,28 @@ app.use(
         items: beverages,
       });
     })
-    .use(
-      '/coffee',
-      new express.Router()
-        .get('/hot', (req, res) => {
-          const dic = new Dictionary(req.lang);
-          const recipe = Recipe(req.lang)
-            .where({
-              key: 'coffee-hot',
-            })
-            .findOne();
-
-          res.render('templates/Recipe', {
-            basedir,
-            config,
-            lang: req.lang,
-            path: req.originalUrl,
-            dic,
-            title: `${recipe.title} | ${config.name}`,
-            description: recipe.description,
-            thumbnailUrl: recipe.thumbnailUrl.rectangle,
-            type: '',
-
-            recipe,
-          });
+    .get('/:beverage/:type', (req, res) => {
+      const dic = new Dictionary(req.lang);
+      const recipe = Recipe(req.lang)
+        .where({
+          key: `${req.params.beverage}-${req.params.type}`,
         })
-        .get('/iced', (req, res) => {
-          const dic = new Dictionary(req.lang);
-          const recipe = Recipe(req.lang)
-            .where({
-              key: 'coffee-iced',
-            })
-            .findOne();
+        .findOne();
 
-          res.render('templates/Recipe', {
-            basedir,
-            config,
-            lang: req.lang,
-            path: req.originalUrl,
-            dic,
-            title: `${recipe.title} | ${config.name}`,
-            description: recipe.description,
-            thumbnailUrl: recipe.thumbnailUrl.rectangle,
-            type: '',
+      res.render('templates/Recipe', {
+        basedir,
+        config,
+        lang: req.lang,
+        path: req.originalUrl,
+        dic,
+        title: `${recipe.title} | ${config.name}`,
+        description: recipe.description,
+        thumbnailUrl: recipe.thumbnailUrl.rectangle,
+        type: '',
 
-            recipe,
-          });
-        }),
-    ),
+        recipe,
+      });
+    }),
 );
 
 app.get('/foods', (req, res) => {
