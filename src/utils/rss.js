@@ -1,5 +1,4 @@
 /* eslint-disable camelcase */
-const path = require('path');
 const RSS = require('rss');
 
 const config = require('config');
