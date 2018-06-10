@@ -5,7 +5,7 @@ const cookieParser = require('cookie-parser');
 
 const config = require(path.join(__dirname, '..', 'config.json'));
 const createPosts = require('resources/posts');
-const Dictionary = require('utils/dictionary');
+const Dictionary = require('utils/Dictionary');
 const rss = require('utils/rss');
 
 const app = express();

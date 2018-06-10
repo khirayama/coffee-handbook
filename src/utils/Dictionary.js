@@ -1,12 +1,9 @@
-const path = require('path');
-
-const dicPath = path.join(__dirname, '..', 'data', 'dic');
-const dic = require(dicPath);
+const dictionaryData = require('dictionary');
 
 class Dictionary {
   constructor(lang) {
     this.lang = lang;
-    this.dic = dic;
+    this.dic = dictionaryData;
   }
 
   t(key) {
