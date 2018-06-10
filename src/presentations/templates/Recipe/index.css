@@ -94,6 +94,39 @@
       }
     }
 
+    .Recipe--Content--Ingredient {
+      width: 100%;
+      max-width: calc($width-content * 3 / 4);
+      margin: 0 auto;
+      padding: 0 28px 48px;
+
+      .Recipe--Content--Ingredient--Title {
+        font-weight: $font-bold;
+        margin-bottom: 16px;
+      }
+
+      .Recipe--Content--Ingredient--Table {
+        width: 100%;
+        border-bottom: $border;
+
+        .Recipe--Content--Ingredient--Table--Row {
+          border-top: $border;
+
+          .Recipe--Content--Ingredient--Table--Row--NameCell {
+            padding: 8px 0;
+          }
+          .Recipe--Content--Ingredient--Table--Row--NoteCell {
+            color: $color-text-secondary;
+            padding: 8px 0;
+          }
+          .Recipe--Content--Ingredient--Table--Row--QuantityCell {
+            text-align: right;
+            padding: 8px 0;
+          }
+        }
+      }
+    }
+
     .Recipe--Content--StepList {
       max-width: calc($width-content * 3 / 4);
       margin: 0 auto;

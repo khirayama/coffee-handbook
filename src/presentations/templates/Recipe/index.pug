@@ -26,8 +26,19 @@ block body
         h2= recipe.name
         div
           .Recipe--Content--Title--Type(class= recipe.type === dic.t('Recipe.HOT') ? 'Recipe--Content--Title--Type__Hot' : 'Recipe--Content--Title--Type__Iced')= recipe.type
-      for step in recipe.steps
-        .Recipe--Content--StepList
+
+      .Recipe--Content--Ingredient
+        .Recipe--Content--Ingredient--Title= dic.t('Recipe.INGREDIENTS')
+        table.Recipe--Content--Ingredient--Table
+          tbody
+            for ingredient in recipe.ingredients
+              tr.Recipe--Content--Ingredient--Table--Row
+                td.Recipe--Content--Ingredient--Table--Row--NameCell= ingredient.name
+                td.Recipe--Content--Ingredient--Table--Row--NoteCell= ingredient.note
+                td.Recipe--Content--Ingredient--Table--Row--QuantityCell= ingredient.quantity
+
+      .Recipe--Content--StepList
+        for step in recipe.steps
           .Recipe--Content--StepList--Item(class= recipe.type === dic.t('Recipe.HOT') ? 'Recipe--Content--StepList--Item__Hot' : 'Recipe--Content--StepList--Item__Iced')
             .Recipe--Content--StepList--Item--Summary= step.summary
             .Recipe--Content--StepList--Item--Description= step.description
