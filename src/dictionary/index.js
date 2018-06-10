@@ -94,6 +94,10 @@ module.exports = {
     },
   },
   Recipe: {
+    INGREDIENTS: {
+      ja: '材料',
+      en: 'INGREDIENTS',
+    },
     HOT: {
       ja: 'ホット',
       en: 'HOT',
