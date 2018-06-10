@@ -86,7 +86,14 @@
           width: 0.5rem;
           height: 0.5rem;
           border-radius: 50%;
+        }
+
+        &.Recipe--Content--Title--Type__Hot:before {
           background-color: $color-hot;
+        }
+
+        &.Recipe--Content--Title--Type__Iced:before {
+          background-color: $color-iced;
         }
       }
     }
@@ -108,7 +115,6 @@
           content: '';
           position: absolute;
           display: inline-block;
-          background-color: $color-hot;
         }
 
         &:before {
@@ -124,6 +130,20 @@
           width: $size;
           height: $size;
           border-radius: 50%;
+        }
+
+        &.Recipe--Content--StepList--Item__Hot {
+          &:before,
+          &:after {
+            background-color: $color-hot;
+          }
+        }
+
+        &.Recipe--Content--StepList--Item__Iced {
+          &:before,
+          &:after {
+            background-color: $color-iced;
+          }
         }
 
         .Recipe--Content--StepList--Item--Summary {

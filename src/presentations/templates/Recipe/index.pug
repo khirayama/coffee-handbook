@@ -25,10 +25,10 @@ block body
       .Recipe--Content--Title
         h2= recipe.name
         div
-          .Recipe--Content--Title--Type= recipe.type
+          .Recipe--Content--Title--Type(class= recipe.type === dic.t('Recipe.HOT') ? 'Recipe--Content--Title--Type__Hot' : 'Recipe--Content--Title--Type__Iced')= recipe.type
       for step in recipe.steps
         .Recipe--Content--StepList
-          .Recipe--Content--StepList--Item
+          .Recipe--Content--StepList--Item(class= recipe.type === dic.t('Recipe.HOT') ? 'Recipe--Content--StepList--Item__Hot' : 'Recipe--Content--StepList--Item__Iced')
             .Recipe--Content--StepList--Item--Summary= step.summary
             .Recipe--Content--StepList--Item--Description= step.description
             if step.note

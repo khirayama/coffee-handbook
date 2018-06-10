@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser');
 
 const config = require('config');
 const Post = require('resources/Post');
+const Recipe = require('resources/Recipe');
 const Dictionary = require('utils/Dictionary');
 const rss = require('utils/rss');
 
@@ -91,52 +92,51 @@ app.use(
     })
     .use(
       '/coffee',
-      new express.Router().get('/hot', (req, res) => {
-        const dic = new Dictionary(req.lang);
+      new express.Router()
+        .get('/hot', (req, res) => {
+          const dic = new Dictionary(req.lang);
+          const recipe = Recipe(req.lang)
+            .where({
+              key: 'coffee-hot',
+            })
+            .findOne();
 
-        res.render('templates/Recipe', {
-          basedir,
-          config,
-          lang: req.lang,
-          path: req.originalUrl,
-          dic,
-          title: 'BEVERAGES',
-          description: 'test',
-          thumbnailUrl: 'test',
-          type: 'type',
+          res.render('templates/Recipe', {
+            basedir,
+            config,
+            lang: req.lang,
+            path: req.originalUrl,
+            dic,
+            title: `${recipe.title} | ${config.name}`,
+            description: recipe.description,
+            thumbnailUrl: recipe.thumbnailUrl.rectangle,
+            type: '',
 
-          recipe: {
-            name: dic.t('Recipe.COFFEE'),
-            type: dic.t('Recipe.HOT'),
-            thumbnailUrl: {
-              default: '/image_1@square.jpg',
-              square: '/image_1@square.jpg',
-              rectangle: '/image_1@rectangle.jpg',
-            },
-            steps: [
-              {
-                summary: '水をあれあれ',
-                description: 'いろいろ細かく',
-                note: 'ポイント',
-              },
-              {
-                summary: '水をあれあれ',
-                description: 'いろいろ細かく',
-                note: 'ポイント',
-              },
-              {
-                summary: '水をあれあれ',
-                description: 'いろいろ細かく',
-              },
-              {
-                summary: '水をあれあれ',
-                description: 'いろいろ細かく',
-                note: 'ポイント',
-              },
-            ],
-          },
-        });
-      }),
+            recipe,
+          });
+        })
+        .get('/iced', (req, res) => {
+          const dic = new Dictionary(req.lang);
+          const recipe = Recipe(req.lang)
+            .where({
+              key: 'coffee-iced',
+            })
+            .findOne();
+
+          res.render('templates/Recipe', {
+            basedir,
+            config,
+            lang: req.lang,
+            path: req.originalUrl,
+            dic,
+            title: `${recipe.title} | ${config.name}`,
+            description: recipe.description,
+            thumbnailUrl: recipe.thumbnailUrl.rectangle,
+            type: '',
+
+            recipe,
+          });
+        }),
     ),
 );
 
