@@ -4,14 +4,14 @@
 @import 'components/Navigation';
 @import 'components/RecipeLink';
 
-.Beverages {
+.Menu {
   background-color: $color-background;
 
-  .Beverages--Content {
+  .Menu--Content {
     max-width: calc($width-content * 3 / 4);
     margin: 0 auto;
 
-    .Beverages--Content--CategoryTitle {
+    .Menu--Content--CategoryTitle {
       font-weight: $font-bold;
       text-align: center;
       margin: 36px auto;
@@ -36,30 +36,30 @@
       }
     }
 
-    .Beverages--Content--List {
-      .Beverages--Content--List--Item {
+    .Menu--Content--List {
+      .Menu--Content--List--Item {
         display: flex;
         padding: 16px 16px 36px;
 
-        .Beverages--Content--List--Item--Title {
+        .Menu--Content--List--Item--Title {
           flex: 1;
           font-size: 1.25rem;
           font-weight: $font-bold;
           word-break: break-all;
         }
 
-        .Beverages--Content--List--Item--RecipeList {
-          .Beverages--Content--List--Item--RecipeList--Item {
+        .Menu--Content--List--Item--RecipeList {
+          .Menu--Content--List--Item--RecipeList--Item {
             display: flex;
             align-items: center;
             justify-content: space-between;
 
-            & + .Beverages--Content--List--Item--RecipeList--Item {
+            & + .Menu--Content--List--Item--RecipeList--Item {
               margin-top: 12px;
             }
 
-            .Beverages--Content--List--Item--RecipeList--Item--Hot,
-            .Beverages--Content--List--Item--RecipeList--Item--Iced {
+            .Menu--Content--List--Item--RecipeList--Item--Hot,
+            .Menu--Content--List--Item--RecipeList--Item--Iced {
               position: relative;
               display: inline-block;
               color: $color-text-secondary;
@@ -78,11 +78,11 @@
               }
             }
 
-            .Beverages--Content--List--Item--RecipeList--Item--Hot:before {
+            .Menu--Content--List--Item--RecipeList--Item--Hot:before {
               background-color: $color-hot;
             }
 
-            .Beverages--Content--List--Item--RecipeList--Item--Iced:before {
+            .Menu--Content--List--Item--RecipeList--Item--Iced:before {
               background-color: $color-iced;
             }
           }

@@ -1,0 +1,36 @@
+extends /application/layout
+
+block import
+  include /components/Header
+  include /components/Footer
+  include /components/Navigation
+  include /components/RecipeLink
+
+block meta
+  link(rel="stylesheet" href="/templates/Menu/index.css")
+
+block body
+  .Menu
+    +Header(lang)
+    +Navigation(path, dic)
+    .Menu--Content
+      .Menu--Content--CategoryTitle
+        h2= title
+      .Menu--Content--List
+        for beverage in beverages
+          .Menu--Content--List--Item
+            .Menu--Content--List--Item--Title= beverage.name
+            .Menu--Content--List--Item--RecipeList
+              if beverage.default
+                .Menu--Content--List--Item--RecipeList--Item
+                  +RecipeLink(beverage.default.url, dic)
+              if beverage.hot
+                .Menu--Content--List--Item--RecipeList--Item
+                  .Menu--Content--List--Item--RecipeList--Item--Hot= dic.t('Recipe.HOT')
+                  +RecipeLink(beverage.hot.url, dic)
+              if beverage.iced
+                .Menu--Content--List--Item--RecipeList--Item
+                  .Menu--Content--List--Item--RecipeList--Item--Iced= dic.t('Recipe.ICED')
+                  +RecipeLink(beverage.iced.url, dic)
+      .Menu--Content--CategoryTitle
+    +Footer(lang)
