@@ -3,7 +3,7 @@ const express = require('express');
 const compression = require('compression');
 const cookieParser = require('cookie-parser');
 
-const config = require(path.join(__dirname, '..', 'config.json'));
+const config = require('config');
 const createPosts = require('resources/posts');
 const Dictionary = require('utils/Dictionary');
 const rss = require('utils/rss');

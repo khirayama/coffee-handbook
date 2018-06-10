@@ -9,7 +9,7 @@ const argv = minimist(process.argv.slice(2));
 const rootPath = path.join(__dirname, '..', argv._[0]);
 const distPath = path.join(__dirname, '..', argv.o);
 const metaPath = path.join(__dirname, '..', argv.m);
-const config = require(path.join(__dirname, '..', 'config.json'));
+const config = require(path.join(__dirname, '..', 'src', 'config.json'));
 
 // Load meta data
 const meta = require(metaPath);
