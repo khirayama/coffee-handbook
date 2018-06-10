@@ -44,10 +44,6 @@
     box-shadow: $shadow-inverse;
     background-color: $color-white;
 
-    .Picture {
-      padding-top: 100%;
-    }
-
     .Recipe--Content--Title {
       font-weight: $font-bold;
       text-align: center;
