@@ -1,5 +1,5 @@
 import { View } from 'presentations/components/View';
-import { onscreen } from 'utils/onscreen';
+import { onscreen } from 'presentations/utils/onscreen';
 
 export class Picture extends View {
   init() {
