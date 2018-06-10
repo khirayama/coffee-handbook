@@ -46,42 +46,6 @@ module.exports = {
       ja: 'ビバレッジ',
       en: 'BEVERAGES',
     },
-    COFFEE: {
-      ja: 'コーヒー',
-      en: 'COFFEE',
-    },
-    COLD_BREW: {
-      ja: 'コールドブリュー',
-      en: 'COLD BREW',
-    },
-    LATTE: {
-      ja: 'ラテ',
-      en: 'LATTE',
-    },
-    AMERICANO: {
-      ja: 'アメリカーノ',
-      en: 'AMERICANO',
-    },
-    CAPPUCCINO: {
-      ja: 'カプチーノ',
-      en: 'CAPPUCCINO',
-    },
-    MOCHA: {
-      ja: 'モカ',
-      en: 'MOCHA',
-    },
-    VANILLA_LATTE: {
-      ja: 'バニララテ',
-      en: 'VANILLA LATTE',
-    },
-    COCOA: {
-      ja: 'ココア',
-      en: 'COCOA',
-    },
-    ESPRESSO: {
-      ja: 'エスプレッソ',
-      en: 'ESPRESSO',
-    },
   },
   Foods: {
     FOODS: {
