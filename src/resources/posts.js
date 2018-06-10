@@ -1,7 +1,4 @@
-const path = require('path');
-
-const postsPath = path.join(__dirname, '..', 'data', 'posts');
-const rawPosts = require(postsPath);
+const rawPosts = require('data/posts');
 
 function build(value, lang) {
   if (Array.isArray(value)) {

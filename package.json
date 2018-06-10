@@ -5,8 +5,8 @@
   "main": "src/index.js",
   "scripts": {
     "clean": "rm -rf src/public",
-    "start": "npm run clean && npm run generate && npm run bundle:scripts && npm run build:styles && node src/index.js",
-    "dev": "npm run clean && npm run generate && concurrently 'npm run bundle:scripts:watch' 'npm run build:styles:watch' 'nodemon src/index.js'",
+    "start": "npm run clean && npm run generate && npm run bundle:scripts && npm run build:styles && NODE_PATH=src node src/index.js",
+    "dev": "npm run clean && npm run generate && concurrently 'npm run bundle:scripts:watch' 'npm run build:styles:watch' 'NODE_PATH=src nodemon src/index.js'",
     "generate": "node ./bin/generator.js data/posts -o src/data/posts.json -m data/meta",
     "bundle:scripts": "NODE_ENV=production webpack --mode production",
     "bundle:scripts:watch": "webpack -w --mode development",

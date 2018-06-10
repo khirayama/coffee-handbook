@@ -3,7 +3,7 @@ const path = require('path');
 const RSS = require('rss');
 
 const config = require(path.join(__dirname, '..', '..', 'config.json'));
-const createPosts = require('../resources/posts');
+const createPosts = require('resources/posts');
 
 const rss = {};
 
