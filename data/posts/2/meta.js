@@ -4,16 +4,16 @@ module.exports = {
   publishedAt: '2018-05-27 15:00',
   thumbnailUrl: {
     default: {
-      ja: '/image_2.jpg',
-      en: '/image_2.jpg',
+      ja: '/images/image_2.jpg',
+      en: '/images/image_2.jpg',
     },
     square: {
-      ja: '/image_2@square.jpg',
-      en: '/image_2@square.jpg',
+      ja: '/images/image_2@square.jpg',
+      en: '/images/image_2@square.jpg',
     },
     rectangle: {
-      ja: '/image_2@rectangle.jpg',
-      en: '/image_2@rectangle.jpg',
+      ja: '/images/image_2@rectangle.jpg',
+      en: '/images/image_2@rectangle.jpg',
     },
   },
   title: {
