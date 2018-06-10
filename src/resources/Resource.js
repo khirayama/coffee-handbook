@@ -1,5 +1,3 @@
-const rawPosts = require('data/posts');
-
 function build(value, lang) {
   if (Array.isArray(value)) {
     const result = [];
@@ -98,8 +96,4 @@ class Resource {
   }
 }
 
-function createPosts(lang) {
-  return new Resource(rawPosts, lang);
-}
-
-module.exports = createPosts;
+module.exports = Resource;

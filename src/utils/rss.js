@@ -2,13 +2,12 @@
 const RSS = require('rss');
 
 const config = require('config');
-const createPosts = require('resources/posts');
+const Post = require('resources/Post');
 
 const rss = {};
 
 for (let i = 0; i < config.languages.length; i++) {
   const lang = config.languages[i];
-  const posts = createPosts(lang);
 
   const feed = new RSS({
     title: config.name,
@@ -29,21 +28,24 @@ for (let i = 0; i < config.languages.length; i++) {
     custom_namespaces: null,
     custom_elements: null,
   });
-  posts.find().forEach(post => {
-    feed.item({
-      title: post.title,
-      description: post.description,
-      url: `${config.url}/posts/${post.id}`,
-      guid: '',
-      categories: ['media'],
-      author: config.name,
-      date: new Date(post.publishedAt),
-      lat: null,
-      long: null,
-      custom_elements: null,
-      enclosure: null,
+
+  Post(lang)
+    .find()
+    .forEach(post => {
+      feed.item({
+        title: post.title,
+        description: post.description,
+        url: `${config.url}/posts/${post.id}`,
+        guid: '',
+        categories: ['media'],
+        author: config.name,
+        date: new Date(post.publishedAt),
+        lat: null,
+        long: null,
+        custom_elements: null,
+        enclosure: null,
+      });
     });
-  });
   rss[lang] = feed.xml();
 }
 

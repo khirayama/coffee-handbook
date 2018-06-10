@@ -8,5 +8,6 @@ module.exports = {
   rules: {
     'prettier/prettier': 'error',
     'comma-dangle': ['error', 'always-multiline'],
+    'new-cap': 0,
   },
 };
