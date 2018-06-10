@@ -39,7 +39,7 @@
     .Beverages--Content--List {
       .Beverages--Content--List--Item {
         display: flex;
-        padding: 16px 12px 36px;
+        padding: 16px 16px 36px;
 
         .Beverages--Content--List--Item--Title {
           flex: 1;
