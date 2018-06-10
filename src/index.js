@@ -87,11 +87,12 @@ app.use(
         lang: req.lang,
         path: req.originalUrl,
         dic,
-        title: dic.t('Beverages.BEVERAGES'),
+        title: `${dic.t('Beverages.BEVERAGES')} | ${config.name}`,
         description: 'test',
         thumbnailUrl: 'test',
         type: 'type',
 
+        heading: dic.t('Beverages.BEVERAGES'),
         items: beverages,
       });
     })
@@ -155,11 +156,12 @@ app.get('/foods', (req, res) => {
     lang: req.lang,
     path: req.originalUrl,
     dic,
-    title: dic.t('Foods.FOODS'),
+    title: `${dic.t('Foods.FOODS')} | ${config.name}`,
     description: 'test',
     thumbnailUrl: 'test',
     type: 'type',
 
+    heading: dic.t('Foods.FOODS'),
     items: foods,
   });
 });
