@@ -7,6 +7,7 @@ const config = require('config');
 const Post = require('resources/Post');
 const Recipe = require('resources/Recipe');
 const Beverage = require('resources/Beverage');
+const Food = require('resources/Food');
 const Dictionary = require('utils/Dictionary');
 const rss = require('utils/rss');
 
@@ -80,18 +81,18 @@ app.use(
       const dic = new Dictionary(req.lang);
       const beverages = Beverage(req.lang).find();
 
-      res.render('pages/Beverages', {
+      res.render('templates/Menu', {
         basedir,
         config,
         lang: req.lang,
         path: req.originalUrl,
         dic,
-        title: 'BEVERAGES',
+        title: dic.t('Beverages.BEVERAGES'),
         description: 'test',
         thumbnailUrl: 'test',
         type: 'type',
 
-        beverages,
+        items: beverages,
       });
     })
     .use(
@@ -146,17 +147,20 @@ app.use(
 
 app.get('/foods', (req, res) => {
   const dic = new Dictionary(req.lang);
+  const foods = Food(req.lang).find();
 
-  res.render('pages/Foods', {
+  res.render('templates/Menu', {
     basedir,
     config,
     lang: req.lang,
     path: req.originalUrl,
     dic,
-    title: 'FOODS',
+    title: dic.t('Foods.FOODS'),
     description: 'test',
     thumbnailUrl: 'test',
     type: 'type',
+
+    items: foods,
   });
 });
 

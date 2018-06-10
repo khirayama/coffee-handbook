@@ -17,20 +17,20 @@ block body
       .Menu--Content--CategoryTitle
         h2= title
       .Menu--Content--List
-        for beverage in beverages
+        for item in items
           .Menu--Content--List--Item
-            .Menu--Content--List--Item--Title= beverage.name
+            .Menu--Content--List--Item--Title= item.name
             .Menu--Content--List--Item--RecipeList
-              if beverage.default
+              if item.default
                 .Menu--Content--List--Item--RecipeList--Item
-                  +RecipeLink(beverage.default.url, dic)
-              if beverage.hot
+                  +RecipeLink(item.default.url, dic)
+              if item.hot
                 .Menu--Content--List--Item--RecipeList--Item
                   .Menu--Content--List--Item--RecipeList--Item--Hot= dic.t('Recipe.HOT')
-                  +RecipeLink(beverage.hot.url, dic)
-              if beverage.iced
+                  +RecipeLink(item.hot.url, dic)
+              if item.iced
                 .Menu--Content--List--Item--RecipeList--Item
                   .Menu--Content--List--Item--RecipeList--Item--Iced= dic.t('Recipe.ICED')
-                  +RecipeLink(beverage.iced.url, dic)
+                  +RecipeLink(item.iced.url, dic)
       .Menu--Content--CategoryTitle
     +Footer(lang)

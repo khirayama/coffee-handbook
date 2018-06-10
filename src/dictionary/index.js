@@ -41,22 +41,22 @@ module.exports = {
       en: 'Latest Articles',
     },
   },
+  // Templates
+  // Template: Menu
   Beverages: {
     BEVERAGES: {
       ja: 'ビバレッジ',
       en: 'BEVERAGES',
     },
   },
+  // Template: Menu
   Foods: {
     FOODS: {
       ja: 'フード',
       en: 'FOODS',
     },
-    MADELEINE: {
-      ja: 'マドレーヌ',
-      en: 'MADELEINE',
-    },
   },
+  // Template: Recipe
   Recipe: {
     INGREDIENTS: {
       ja: '材料',
