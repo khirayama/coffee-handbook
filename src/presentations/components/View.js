@@ -21,13 +21,25 @@ class ViewElement {
     return data;
   }
 
+  current() {
+    return this.el;
+  }
+
   find(selector) {
     const el = this.el.querySelector(selector);
     return new ViewElement(el);
   }
 
-  on(eventType, handler) {
-    this.el.addEventListener(eventType, handler);
+  on(eventType, handler, options) {
+    this.el.addEventListener(eventType, handler, options);
+  }
+
+  get(attr) {
+    return this.el[attr];
+  }
+
+  set(attr, value) {
+    this.el[attr] = value;
   }
 
   addClass(className) {
@@ -37,11 +49,18 @@ class ViewElement {
   removeClass(className) {
     this.el.classList.remove(className);
   }
+
+  html(html) {
+    if (html || html === '') {
+      this.el.innerHTML = html;
+    } else {
+      return this.el.innerHTML;
+    }
+  }
 }
 
 export class View {
   constructor(el) {
-    this.el = el;
     this.$el = new ViewElement(el);
 
     if (this.init) {

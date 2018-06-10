@@ -15,34 +15,40 @@ export class Picture extends View {
   }
 
   setEventListeners() {
-    onscreen(
-      window,
-      this.el,
-      () => {
-        this.$el.removeClass('Picture__Ready');
-      },
-      100,
-    );
+    onscreen(window, this.$el.current(), this.onPreScreenHandler.bind(this), 100);
 
-    onscreen(
-      window,
-      this.el,
-      () => {
-        this.$imageEl.el.innerHTML = '';
-        let html = this.$imageEl.el.parentNode.innerHTML;
-        html = html.replace('<span ', '<img ');
-        this.$imageEl.el.parentNode.innerHTML = html;
+    onscreen(window, this.$el.current(), this.onScreenHandler.bind(this), 0);
 
-        this.$imageEl = this.$el.find('.Picture--Image');
-        this.$imageEl.on('error', () => {
-          console.log('error');
-        });
-      },
-      0,
-    );
+    this.$el.on('load', this.onLoadHandler.bind(this), true);
 
-    this.$imageEl.on('load', () => {
-      this.$el.addClass('Picture__Loaded');
-    });
+    this.$el.on('error', this.onErrorHandler.bind(this), true);
+  }
+
+  onLoadHandler() {
+    this.$el.addClass('Picture__Loaded');
+  }
+
+  onErrorHandler() {
+    this.$el.addClass('Picture__Failed');
+
+    const text = this.$imageEl.get('alt');
+    let html = this.$el.html();
+    html = html.replace('<img ', '<span ').replace('>', `>${text}</span>`);
+    this.$el.html(html);
+
+    this.$imageEl = this.$el.find('.Picture--Image');
+  }
+
+  onPreScreenHandler() {
+    this.$el.removeClass('Picture__Ready');
+  }
+
+  onScreenHandler() {
+    this.$imageEl.html('');
+    let html = this.$el.html();
+    html = html.replace('<span ', '<img ').replace('></span>', '>');
+    this.$el.html(html);
+
+    this.$imageEl = this.$el.find('.Picture--Image');
   }
 }

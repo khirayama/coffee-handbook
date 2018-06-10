@@ -36,6 +36,10 @@
   &.Picture__Loaded {
     background: none;
   }
+
+  &.Picture__Failed {
+    background: $color-shadow;
+  }
 }
 
 @keyframes blink {
