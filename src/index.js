@@ -120,25 +120,51 @@ app.use(
     }),
 );
 
-app.get('/foods', (req, res) => {
-  const dic = new Dictionary(req.lang);
-  const foods = Food(req.lang).find();
+app.use(
+  '/foods',
+  new express.Router()
+    .get('/', (req, res) => {
+      const dic = new Dictionary(req.lang);
+      const foods = Food(req.lang).find();
 
-  res.render('templates/Menu', {
-    basedir,
-    config,
-    lang: req.lang,
-    path: req.originalUrl,
-    dic,
-    title: `${dic.t('Foods.FOODS')} | ${config.name}`,
-    description: 'test',
-    thumbnailUrl: 'test',
-    type: 'type',
+      res.render('templates/Menu', {
+        basedir,
+        config,
+        lang: req.lang,
+        path: req.originalUrl,
+        dic,
+        title: `${dic.t('Foods.FOODS')} | ${config.name}`,
+        description: 'test',
+        thumbnailUrl: 'test',
+        type: 'type',
 
-    heading: dic.t('Foods.FOODS'),
-    items: foods,
-  });
-});
+        heading: dic.t('Foods.FOODS'),
+        items: foods,
+      });
+    })
+    .get('/:food', (req, res) => {
+      const dic = new Dictionary(req.lang);
+      const recipe = Recipe(req.lang)
+        .where({
+          key: req.params.food,
+        })
+        .findOne();
+
+      res.render('templates/Recipe', {
+        basedir,
+        config,
+        lang: req.lang,
+        path: req.originalUrl,
+        dic,
+        title: `${recipe.title} | ${config.name}`,
+        description: recipe.description,
+        thumbnailUrl: recipe.thumbnailUrl.rectangle,
+        type: '',
+
+        recipe,
+      });
+    }),
+);
 
 app.get('/goods', (req, res) => {
   const dic = new Dictionary(req.lang);
