@@ -144,6 +144,7 @@
           content: '';
           position: absolute;
           display: inline-block;
+          background-color: $color-divider;
         }
 
         &:before {
