@@ -7,6 +7,6 @@
   "keywords": "coffee, about our coffee",
   "facebookAppId": "test id",
   "facebookPageUrl": "facebook page url",
-  "twitterCardType": "twitter card type",
+  "twitterCardType": "summary_large_image",
   "twitterAccount": "@about_our_coffee"
 }
