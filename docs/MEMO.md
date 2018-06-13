@@ -39,6 +39,7 @@
     - OGP Twitter
     - Instagram
     - Desktop
+      - https://singoro.net/note/ogp-og_type/
   - GA
   - AB Testing
   - SEO
