@@ -19,22 +19,22 @@ html(lang=lang)
     link(rel="alternate" type="application/rss+xml" title="RSS 2.0" href=`/rss?lang=${lang}`)
 
     //- OGP
-    meta(property="og:site_name" content=config.name)
+    meta(property="og:site_name" content=dic.t('name'))
     meta(property="og:title" content=title)
+    meta(property="og:description" content=description)
+    meta(property="og:image" content=thumbnailUrl)
     meta(property="og:type" content=type)
     meta(property="og:url" content=`${config.url}${path}?lang=${lang}`)
-    meta(property="og:image" content=thumbnailUrl)
-    meta(property="og:description" content=description)
     //- Facebook
     meta(property="fb:app_id" content=config.facebookAppId)
     meta(property="article:publisher" content=config.facebookPageUrl)
     //- Twitter
-    meta(property="twitter:card" content=config.twitterCardType)
-    meta(property="twitter:site" content=config.twitterAccount)
     meta(property="twitter:title" content=title)
-    meta(property="twitter:url" content=`${config.url}${path}?lang={lang}`)
     meta(property="twitter:description" content=description)
     meta(property="twitter:image" content=thumbnailUrl)
+    meta(property="twitter:card" content=config.twitterCardType)
+    meta(property="twitter:site" content=config.twitterAccount)
+    meta(property="twitter:url" content=`${config.url}${path}?lang={lang}`)
 
     script
       include /application/service-worker.js

@@ -30,9 +30,9 @@ function homeHandler(req, res) {
     lang: req.lang,
     path: req.originalUrl,
     dic,
-    title: config.name,
-    description: config.description,
-    thumbnailUrl: 'test',
+    title: dic.t('name'),
+    description: dic.t('Home.description'),
+    thumbnailUrl: 'TODO',
     type: 'cafe',
 
     featuredPost,

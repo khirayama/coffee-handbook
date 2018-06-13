@@ -1,4 +1,9 @@
 module.exports = {
+  // Common
+  name: {
+    ja: 'ABOUT OUR COFFEE',
+    en: 'ABOUT OUR COFFEE',
+  },
   // Components
   Navigation: {
     BEVERAGES: {
@@ -36,6 +41,10 @@ module.exports = {
   },
   // Pages
   Home: {
+    description: {
+      ja: 'ABOUT OUR COFFEE について',
+      en: 'About ABOUT OUR COFFEE',
+    },
     LATEST_ARTICLES: {
       ja: '新着記事',
       en: 'Latest Articles',
