@@ -12,7 +12,7 @@ function goodsHandler(req, res) {
     title: 'GOODS',
     description: 'test',
     thumbnailUrl: 'test',
-    type: 'type',
+    type: 'product',
   });
 }
 

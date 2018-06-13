@@ -28,7 +28,7 @@ function foodsHandler(req, res) {
     title: `${dic.t('Foods.FOODS')} | ${config.name}`,
     description: 'test',
     thumbnailUrl: 'test',
-    type: 'type',
+    type: 'food',
 
     heading: dic.t('Foods.FOODS'),
     items,

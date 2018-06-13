@@ -18,7 +18,7 @@ function foodHandler(req, res) {
     title: `${recipe.title} | ${config.name}`,
     description: recipe.description,
     thumbnailUrl: recipe.thumbnailUrl.rectangle,
-    type: '',
+    type: 'food',
 
     recipe,
   });

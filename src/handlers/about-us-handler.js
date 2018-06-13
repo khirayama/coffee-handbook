@@ -12,7 +12,7 @@ function aboutUsHandler(req, res) {
     title: 'ABOUT US',
     description: 'test',
     thumbnailUrl: 'test',
-    type: 'type',
+    type: 'author',
   });
 }
 

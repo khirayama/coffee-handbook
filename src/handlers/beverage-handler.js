@@ -18,7 +18,7 @@ function beverageHandler(req, res) {
     title: `${recipe.title} | ${config.name}`,
     description: recipe.description,
     thumbnailUrl: recipe.thumbnailUrl.rectangle,
-    type: '',
+    type: 'drink',
 
     recipe,
   });

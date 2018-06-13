@@ -17,7 +17,7 @@ function postHandler(req, res) {
     title: post.title,
     description: 'test',
     thumbnailUrl: 'test',
-    type: 'type',
+    type: 'article',
 
     post,
   });

@@ -30,10 +30,10 @@ function homeHandler(req, res) {
     lang: req.lang,
     path: req.originalUrl,
     dic,
-    title: 'home',
-    description: 'test',
+    title: config.name,
+    description: config.description,
     thumbnailUrl: 'test',
-    type: 'type',
+    type: 'cafe',
 
     featuredPost,
     posts: exceptedFeaturedPosts,
