@@ -1,5 +1,11 @@
 const madeleineRecipe = {
   key: 'madeleine',
+  url: '/foods/madeleine',
+  category: {
+    ja: 'フード',
+    en: 'FOODS',
+  },
+  type: null,
   title: {
     ja: 'マドレーヌ',
     en: 'MADELEINE',
@@ -12,7 +18,6 @@ const madeleineRecipe = {
     ja: 'マドレーヌ desc',
     en: 'MADELEINE desc',
   },
-  type: null,
   thumbnailUrl: {
     default: {
       ja: '/images/image_1@square.jpg',

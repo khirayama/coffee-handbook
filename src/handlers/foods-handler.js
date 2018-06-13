@@ -1,10 +1,24 @@
 const config = require('config');
-const Food = require('resources/Food');
+const Recipe = require('resources/Recipe');
 const Dictionary = require('utils/Dictionary');
 
 function foodsHandler(req, res) {
   const dic = new Dictionary(req.lang);
-  const foods = Food(req.lang).find();
+  const foodRecipes = Recipe(req.lang)
+    .where({
+      category: dic.t('Foods.FOODS'),
+    })
+    .find();
+  const items = foodRecipes.map(foodRecipe => {
+    return {
+      name: foodRecipe.name,
+      hot: null,
+      iced: null,
+      default: {
+        url: foodRecipe.url,
+      },
+    };
+  });
 
   res.render('templates/Menu', {
     config,
@@ -17,7 +31,7 @@ function foodsHandler(req, res) {
     type: 'type',
 
     heading: dic.t('Foods.FOODS'),
-    items: foods,
+    items,
   });
 }
 

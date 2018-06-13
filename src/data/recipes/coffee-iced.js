@@ -1,5 +1,14 @@
 const coffeeIcedRecipe = {
   key: 'coffee-iced',
+  url: '/beverages/coffee/iced',
+  category: {
+    ja: 'ビバレッジ',
+    en: 'BEVERAGES',
+  },
+  type: {
+    ja: 'アイス',
+    en: 'ICED',
+  },
   title: {
     ja: 'コーヒー',
     en: 'COFFEE',
@@ -11,10 +20,6 @@ const coffeeIcedRecipe = {
   description: {
     ja: 'コーヒー desc',
     en: 'COFFEE desc',
-  },
-  type: {
-    ja: 'アイス',
-    en: 'ICED',
   },
   thumbnailUrl: {
     default: {

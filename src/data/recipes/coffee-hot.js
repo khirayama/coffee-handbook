@@ -1,5 +1,14 @@
 const coffeeHotRecipe = {
   key: 'coffee-hot',
+  url: '/beverages/coffee/hot',
+  category: {
+    ja: 'ビバレッジ',
+    en: 'BEVERAGES',
+  },
+  type: {
+    ja: 'ホット',
+    en: 'HOT',
+  },
   title: {
     ja: 'コーヒー',
     en: 'COFFEE',
@@ -11,10 +20,6 @@ const coffeeHotRecipe = {
   description: {
     ja: 'コーヒー desc',
     en: 'COFFEE desc',
-  },
-  type: {
-    ja: 'ホット',
-    en: 'HOT',
   },
   thumbnailUrl: {
     default: {
