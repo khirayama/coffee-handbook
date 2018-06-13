@@ -4,17 +4,22 @@ const compression = require('compression');
 const cookieParser = require('cookie-parser');
 
 const config = require('config');
-const Post = require('resources/Post');
-const Recipe = require('resources/Recipe');
-const Beverage = require('resources/Beverage');
-const Food = require('resources/Food');
-const Dictionary = require('utils/Dictionary');
 const rss = require('utils/rss');
+// Handlers
+const homeHandler = require('handlers/home-handler');
+const beveragesHandler = require('handlers/beverages-handler');
+const beverageHandler = require('handlers/beverage-handler');
+const foodsHandler = require('handlers/foods-handler');
+const foodHandler = require('handlers/food-handler');
+const goodsHandler = require('handlers/goods-handler');
+const aboutUsHandler = require('handlers/about-us-handler');
+const postHandler = require('handlers/post-handler');
 
 const app = express();
 
+// Set middleware
 const basedir = path.join(__dirname, 'presentations');
-
+app.locals.basedir = basedir;
 app.set('views', basedir);
 app.set('view engine', 'pug');
 app.use(
@@ -35,195 +40,19 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get('/', (req, res) => {
-  const dic = new Dictionary(req.lang);
-  const featuredPost = Post(req.lang)
-    .where({
-      categories: {
-        id: 1,
-      },
-      tags: {
-        id: 1,
-      },
-    })
-    .findOne();
-  const exceptedFeaturedPosts = Post(req.lang)
-    .where({
-      categories: {
-        id: 1,
-      },
-      excepted: {
-        id: featuredPost.id,
-      },
-    })
-    .find();
-
-  res.render('pages/Home', {
-    basedir,
-    config,
-    lang: req.lang,
-    path: req.originalUrl,
-    dic,
-    title: 'home',
-    description: 'test',
-    thumbnailUrl: 'test',
-    type: 'type',
-
-    featuredPost,
-    posts: exceptedFeaturedPosts,
+// Routing
+app
+  .get('/', homeHandler)
+  .use('/beverages', new express.Router().get('/', beveragesHandler).get('/:beverage/:type', beverageHandler))
+  .use('/foods', new express.Router().get('/', foodsHandler).get('/:food', foodHandler))
+  .use('/goods', new express.Router().get('/', goodsHandler))
+  .get('/about-us', aboutUsHandler)
+  .get('/posts/:id', postHandler)
+  .get('/rss*', (req, res) => {
+    res.set('Content-Type', 'text/xml').send(rss[req.lang]);
   });
-});
 
-app.use(
-  '/beverages',
-  new express.Router()
-    .get('/', (req, res) => {
-      const dic = new Dictionary(req.lang);
-      const beverages = Beverage(req.lang).find();
-
-      res.render('templates/Menu', {
-        basedir,
-        config,
-        lang: req.lang,
-        path: req.originalUrl,
-        dic,
-        title: `${dic.t('Beverages.BEVERAGES')} | ${config.name}`,
-        description: 'test',
-        thumbnailUrl: 'test',
-        type: 'type',
-
-        heading: dic.t('Beverages.BEVERAGES'),
-        items: beverages,
-      });
-    })
-    .get('/:beverage/:type', (req, res) => {
-      const dic = new Dictionary(req.lang);
-      const recipe = Recipe(req.lang)
-        .where({
-          key: `${req.params.beverage}-${req.params.type}`,
-        })
-        .findOne();
-
-      res.render('templates/Recipe', {
-        basedir,
-        config,
-        lang: req.lang,
-        path: req.originalUrl,
-        dic,
-        title: `${recipe.title} | ${config.name}`,
-        description: recipe.description,
-        thumbnailUrl: recipe.thumbnailUrl.rectangle,
-        type: '',
-
-        recipe,
-      });
-    }),
-);
-
-app.use(
-  '/foods',
-  new express.Router()
-    .get('/', (req, res) => {
-      const dic = new Dictionary(req.lang);
-      const foods = Food(req.lang).find();
-
-      res.render('templates/Menu', {
-        basedir,
-        config,
-        lang: req.lang,
-        path: req.originalUrl,
-        dic,
-        title: `${dic.t('Foods.FOODS')} | ${config.name}`,
-        description: 'test',
-        thumbnailUrl: 'test',
-        type: 'type',
-
-        heading: dic.t('Foods.FOODS'),
-        items: foods,
-      });
-    })
-    .get('/:food', (req, res) => {
-      const dic = new Dictionary(req.lang);
-      const recipe = Recipe(req.lang)
-        .where({
-          key: req.params.food,
-        })
-        .findOne();
-
-      res.render('templates/Recipe', {
-        basedir,
-        config,
-        lang: req.lang,
-        path: req.originalUrl,
-        dic,
-        title: `${recipe.title} | ${config.name}`,
-        description: recipe.description,
-        thumbnailUrl: recipe.thumbnailUrl.rectangle,
-        type: '',
-
-        recipe,
-      });
-    }),
-);
-
-app.get('/goods', (req, res) => {
-  const dic = new Dictionary(req.lang);
-
-  res.render('pages/Goods', {
-    basedir,
-    config,
-    lang: req.lang,
-    path: req.originalUrl,
-    dic,
-    title: 'GOODS',
-    description: 'test',
-    thumbnailUrl: 'test',
-    type: 'type',
-  });
-});
-
-app.get('/about-us', (req, res) => {
-  const dic = new Dictionary(req.lang);
-
-  res.render('pages/AboutUs', {
-    basedir,
-    config,
-    lang: req.lang,
-    path: req.originalUrl,
-    dic,
-    title: 'ABOUT US',
-    description: 'test',
-    thumbnailUrl: 'test',
-    type: 'type',
-  });
-});
-
-app.get('/posts/:id', (req, res) => {
-  const id = Number(req.params.id);
-  const dic = new Dictionary(req.lang);
-  const post = Post(req.lang)
-    .where({ id })
-    .findOne();
-
-  res.render('pages/Post', {
-    basedir,
-    config,
-    lang: req.lang,
-    path: req.originalUrl,
-    dic,
-    title: post.title,
-    description: 'test',
-    thumbnailUrl: 'test',
-    type: 'type',
-
-    post,
-  });
-});
-
-app.get('/rss*', (req, res) => {
-  res.set('Content-Type', 'text/xml').send(rss[req.lang]);
-});
-
+// Server
 app.listen(3030, () => {
   console.log(`Start app at ${new Date().toString()}.`);
 });
