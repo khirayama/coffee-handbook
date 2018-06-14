@@ -1,9 +1,6 @@
 {
-  "name": "ABOUT OUR COFFEE",
-  "description": "About ABOUT OUR COFFEE",
   "url": "https://about-our-coffee.com",
   "languages": ["ja", "en"],
-  "author": "ABOUT OUR COFFEE",
   "keywords": "coffee, コーヒー, about our coffee",
   "facebookAppId": "test id",
   "facebookPageUrl": "facebook page url",

@@ -4,6 +4,10 @@ module.exports = {
     ja: 'ABOUT OUR COFFEE',
     en: 'ABOUT OUR COFFEE',
   },
+  author: {
+    ja: 'ABOUT OUR COFFEE',
+    en: 'ABOUT OUR COFFEE',
+  },
   // Components
   Navigation: {
     BEVERAGES: {
