@@ -1,0 +1,78 @@
+@import 'application/vars';
+@import 'components/Header';
+@import 'components/Footer';
+@import 'components/Navigation';
+@import 'components/Picture';
+
+.Products {
+  background-color: $color-background;
+
+  .Products--Content {
+    max-width: calc($width-content * 3 / 4);
+    margin: 0 auto;
+
+    .Products--Content--CategoryTitle {
+      font-weight: $font-bold;
+      text-align: center;
+      margin: 36px auto;
+      text-align: center;
+
+      h2 {
+        position: relative;
+        display: inline-block;
+        font-size: 1.75rem;
+
+        &:before {
+          display: inline-block;
+          content: '';
+          position: absolute;
+          bottom: -4px;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 88%;
+          height: 1px;
+          background-color: $color-text;
+        }
+      }
+    }
+  }
+
+  .Products--Content--ProductList {
+    padding: 0 0 24px;
+
+    .Products--Content--ProductList--Item {
+      display: inline-block;
+      width: calc(100% / 3);
+      text-align: center;
+      padding: 0 0 48px;
+      opacity: 1;
+      transition: opacity 200ms ease-out;
+
+      .Products--Content--ProductList--Item--Picture {
+        .Picture {
+          padding-top: 100%;
+        }
+      }
+      .Products--Content--ProductList--Item--Name {
+        padding: 16px 0 4px;
+        font-weight: $font-bold;
+      }
+      .Products--Content--ProductList--Item--Category {
+        color: $color-text-secondary;
+        font-size: 0.75rem;
+      }
+
+      &:hover {
+        opacity: 0.8;
+      }
+
+      &:active {
+        background-color: $color-active;
+      }
+    }
+  }
+}
+
+.Footer {
+  box-shadow: $shadow-inverse;
+}

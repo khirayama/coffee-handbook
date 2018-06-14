@@ -3,15 +3,17 @@ const RSS = require('rss');
 
 const config = require('config');
 const Post = require('resources/Post');
+const Dictionary = require('utils/Dictionary');
 
 const rss = {};
 
 for (let i = 0; i < config.languages.length; i++) {
   const lang = config.languages[i];
+  const dic = new Dictionary(lang);
 
   const feed = new RSS({
-    title: config.name,
-    description: config.description,
+    title: dic.t('name'),
+    description: dic.t('Home.description'),
     generaror: 'by myself',
     feed_url: `${config.url}/rss`,
     site_url: config.url,
@@ -19,7 +21,7 @@ for (let i = 0; i < config.languages.length; i++) {
     docs: `${config.url}/rss-docs`,
     managingEditor: 'khirayama',
     webMaster: 'khirayama',
-    copyright: config.name,
+    copyright: dic.t('name'),
     language: lang,
     categories: ['media'],
     pubDate: new Date(),
@@ -38,7 +40,7 @@ for (let i = 0; i < config.languages.length; i++) {
         url: `${config.url}/posts/${post.id}`,
         guid: '',
         categories: ['media'],
-        author: config.name,
+        author: dic.t('author'),
         date: new Date(post.publishedAt),
         lat: null,
         long: null,

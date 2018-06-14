@@ -25,9 +25,9 @@ function foodsHandler(req, res) {
     lang: req.lang,
     path: req.originalUrl,
     dic,
-    title: `${dic.t('Foods.FOODS')} | ${config.name}`,
-    description: 'test',
-    thumbnailUrl: 'test',
+    title: `${dic.t('Foods.FOODS')} | ${dic.t('name')}`,
+    description: dic.t('Foods.description'),
+    thumbnailUrl: 'TODO',
     type: 'food',
 
     heading: dic.t('Foods.FOODS'),

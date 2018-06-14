@@ -15,7 +15,7 @@ function foodHandler(req, res) {
     lang: req.lang,
     path: req.originalUrl,
     dic,
-    title: `${recipe.title} | ${config.name}`,
+    title: `${recipe.title} | ${dic.t('name')}`,
     description: recipe.description,
     thumbnailUrl: recipe.thumbnailUrl.rectangle,
     type: 'food',

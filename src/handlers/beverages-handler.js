@@ -42,9 +42,9 @@ function beveragesHandler(req, res) {
     lang: req.lang,
     path: req.originalUrl,
     dic,
-    title: `${dic.t('Beverages.BEVERAGES')} | ${config.name}`,
-    description: 'test',
-    thumbnailUrl: 'test',
+    title: `${dic.t('Beverages.BEVERAGES')} | ${dic.t('name')}`,
+    description: dic.t('Beverages.description'),
+    thumbnailUrl: 'TODO',
     type: 'drink',
 
     heading: dic.t('Beverages.BEVERAGES'),

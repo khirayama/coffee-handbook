@@ -18,9 +18,9 @@ module.exports = {
       ja: 'FOODS',
       en: 'FOODS',
     },
-    GOODS: {
-      ja: 'GOODS',
-      en: 'GOODS',
+    PRODUCTS: {
+      ja: 'PRODUCTS',
+      en: 'PRODUCTS',
     },
   },
   Footer: {
@@ -54,9 +54,23 @@ module.exports = {
       en: 'Latest Articles',
     },
   },
+  Products: {
+    description: {
+      ja: 'プロダクト',
+      en: 'PRODUCTS',
+    },
+    PRODUCTS: {
+      ja: 'プロダクト',
+      en: 'PRODUCTS',
+    },
+  },
   // Templates
   // Template: Menu
   Beverages: {
+    description: {
+      ja: 'ビバレッジメニュー',
+      en: 'Beverages menu',
+    },
     BEVERAGES: {
       ja: 'ビバレッジ',
       en: 'BEVERAGES',
@@ -64,6 +78,10 @@ module.exports = {
   },
   // Template: Menu
   Foods: {
+    description: {
+      ja: 'フードメニュー',
+      en: 'Foods menu',
+    },
     FOODS: {
       ja: 'フード',
       en: 'FOODS',

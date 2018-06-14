@@ -1,0 +1,27 @@
+extends /application/layout
+
+block import
+  include /components/Header
+  include /components/Footer
+  include /components/Navigation
+  include /components/Picture
+
+block meta
+  link(rel="stylesheet" href="/templates/Product/index.css")
+
+block body
+  .Product
+    +Header(lang)
+    +Navigation(path, dic)
+    .Product--Content
+      .Product--Content--Pictures
+        .Product--Content--Pictures--Cover
+          +Picture(product.pictures[0].url, product.pictures[0].caption)
+        .Product--Content--Pictures--List
+          for picture in product.pictures
+            .Product--Content--Pictures--List--Picture
+              +Picture(picture.url, picture.caption)
+        p= product.pictures[0].caption
+      .Product--Content--Information
+        p= product.name
+    +Footer(lang)

@@ -1,0 +1,40 @@
+@import 'application/vars';
+@import 'components/Header';
+@import 'components/Footer';
+@import 'components/Navigation';
+@import 'components/Picture';
+
+.Product {
+  background-color: $color-background;
+
+  .Product--Content {
+    .Product--Content--Pictures {
+      width: 100%;
+      max-width: calc($width-content * 3 / 4);
+      margin: 0 auto;
+      padding: 0 28px 48px;
+
+      .Product--Content--Pictures--Cover {
+        .Picture {
+          padding-top: 100%;
+        }
+      }
+
+      .Product--Content--Pictures--List {
+        .Product--Content--Pictures--List--Picture {
+          display: inline-block;
+          width: 20%;
+
+          .Picture {
+            padding-top: 100%;
+          }
+        }
+      }
+    }
+    .Product--Content--Information {
+      vertical-align: top;
+      display: inline-block;
+      padding: 16px;
+    }
+  }
+}
