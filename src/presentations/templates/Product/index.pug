@@ -14,14 +14,17 @@ block body
     +Header(lang)
     +Navigation(path, dic)
     .Product--Content
-      .Product--Content--Pictures
-        .Product--Content--Pictures--Cover
-          +Picture(product.pictures[0].url, product.pictures[0].caption)
-        .Product--Content--Pictures--List
-          for picture in product.pictures
-            .Product--Content--Pictures--List--Picture
-              +Picture(picture.url, picture.caption)
-        p= product.pictures[0].caption
-      .Product--Content--Information
-        p= product.name
+      .Product--Content--Cover
+        .Product--Content--Cover--Pictures
+          .Product--Content--Cover--Pictures--Cover
+            +Picture(product.pictures[0].url, product.pictures[0].caption)
+          .Product--Content--Cover--Pictures--List
+            for picture in product.pictures
+              .Product--Content--Cover--Pictures--List--Picture
+                +Picture(picture.url, picture.caption)
+        .Product--Content--Cover--Information
+          p= product.name
+      .Product--Content--Content
+        .Product--Content--Content--Content
+          p!= product.content
     +Footer(lang)

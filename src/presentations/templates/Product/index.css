@@ -5,36 +5,67 @@
 @import 'components/Picture';
 
 .Product {
-  background-color: $color-background;
-
   .Product--Content {
-    .Product--Content--Pictures {
+    .Product--Content--Cover {
       width: 100%;
-      max-width: calc($width-content * 3 / 4);
+      max-width: $width-content;
       margin: 0 auto;
-      padding: 0 28px 48px;
 
-      .Product--Content--Pictures--Cover {
-        .Picture {
-          padding-top: 100%;
-        }
-      }
-
-      .Product--Content--Pictures--List {
-        .Product--Content--Pictures--List--Picture {
-          display: inline-block;
-          width: 20%;
+      .Product--Content--Cover--Pictures {
+        .Product--Content--Cover--Pictures--Cover {
+          padding: 12px;
 
           .Picture {
             padding-top: 100%;
           }
         }
+
+        .Product--Content--Cover--Pictures--List {
+          padding: 0 6px;
+
+          .Product--Content--Cover--Pictures--List--Picture {
+            display: inline-block;
+            width: 20%;
+            padding: 0 6px;
+
+            .Picture {
+              padding-top: 100%;
+            }
+          }
+        }
+      }
+
+      .Product--Content--Cover--Information {
+        vertical-align: top;
+        display: inline-block;
+        padding: 16px;
       }
     }
-    .Product--Content--Information {
-      vertical-align: top;
-      display: inline-block;
-      padding: 16px;
+
+    @media screen and (min-width: calc($width-content / 2)) {
+      .Product--Content--Cover--Pictures {
+        display: inline-block;
+        width: 50%;
+
+        .Product--Content--Cover--Pictures--Cover {
+        }
+      }
+
+      .Product--Content--Information {
+        display: inline-block;
+        width: 50%;
+      }
+    }
+
+    .Product--Content--Content {
+      width: 100%;
+      background-color: $color-white;
+
+      .Product--Content--Content--Content {
+        width: 100%;
+        max-width: $width-content;
+        margin: 0 auto;
+      }
     }
   }
 }
