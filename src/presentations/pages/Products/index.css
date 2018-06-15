@@ -41,9 +41,8 @@
 
     .Products--Content--ProductList--Item {
       display: inline-block;
-      width: calc(100% / 3);
-      text-align: center;
-      padding: 0 0 48px;
+      width: calc(100% / 2);
+      padding: 12px 12px 48px;
       opacity: 1;
       transition: opacity 200ms ease-out;
 
@@ -52,10 +51,12 @@
           padding-top: 100%;
         }
       }
+
       .Products--Content--ProductList--Item--Name {
-        padding: 16px 0 4px;
+        padding: 8px 0 0;
         font-weight: $font-bold;
       }
+
       .Products--Content--ProductList--Item--Category {
         color: $color-text-secondary;
         font-size: 0.75rem;
@@ -67,6 +68,12 @@
 
       &:active {
         background-color: $color-active;
+      }
+    }
+
+    @media screen and (min-width: calc($width-content / 2)) {
+      .Products--Content--ProductList--Item {
+        width: calc(100% / 3);
       }
     }
   }
