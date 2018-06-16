@@ -2,7 +2,7 @@
 @import 'components/Header';
 @import 'components/Footer';
 @import 'components/Navigation';
-@import 'components/Picture';
+@import 'components/ProductCard';
 
 .Products {
   background-color: $color-background;
@@ -42,33 +42,7 @@
     .Products--Content--ProductList--Item {
       display: inline-block;
       width: calc(100% / 2);
-      padding: 12px 12px 48px;
-      opacity: 1;
-      transition: opacity 200ms ease-out;
-
-      .Products--Content--ProductList--Item--Picture {
-        .Picture {
-          padding-top: 100%;
-        }
-      }
-
-      .Products--Content--ProductList--Item--Name {
-        padding: 8px 0 0;
-        font-weight: $font-bold;
-      }
-
-      .Products--Content--ProductList--Item--Category {
-        color: $color-text-secondary;
-        font-size: 0.75rem;
-      }
-
-      &:hover {
-        opacity: 0.8;
-      }
-
-      &:active {
-        background-color: $color-active;
-      }
+      padding: 12px 12px;
     }
 
     @media screen and (min-width: calc($width-content / 2)) {

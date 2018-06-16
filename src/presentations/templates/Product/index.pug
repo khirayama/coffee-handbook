@@ -5,6 +5,7 @@ block import
   include /components/Footer
   include /components/Navigation
   include /components/Picture
+  include /components/ProductCard
 
 block meta
   link(rel="stylesheet" href="/templates/Product/index.css")
@@ -23,8 +24,25 @@ block body
               .Product--Content--Cover--Pictures--List--Picture
                 +Picture(picture.url, picture.caption)
         .Product--Content--Cover--Information
-          p= product.name
+          .Product--Content--Cover--Information--Name= product.name
+          .Product--Content--Cover--Information--Category= product.category
+          .Product--Content--Cover--Information--Summary!= product.summary
+          table.Product--Content--Cover--Information--Spec
+            tbody
+              for spec in product.specs
+                tr
+                  th= spec.name
+                  td= spec.value
+          .Product--Content--Cover--Information--Button Amazonで購入
       .Product--Content--Content
         .Product--Content--Content--Content
           p!= product.content
+      .Product--Content--RelatedList
+        .Product--Content--RelatedList--Title Related items
+        .Product--Content--RelatedList--Item
+          +ProductCard(product)
+      .Product--Content--RelatedList
+        .Product--Content--RelatedList--Title Related recipes
+        .Product--Content--RelatedList--Item
+          +ProductCard(product)
     +Footer(dic)

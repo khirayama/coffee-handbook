@@ -4,7 +4,7 @@ block import
   include /components/Header
   include /components/Footer
   include /components/Navigation
-  include /components/Picture
+  include /components/ProductCard
 
 block meta
   link(rel="stylesheet" href="/pages/Products/index.css")
@@ -18,9 +18,6 @@ block body
         h2= heading
       .Products--Content--ProductList
         for product in products
-          a.Products--Content--ProductList--Item(href=product.url)
-            .Products--Content--ProductList--Item--Picture
-              +Picture(product.thumbnailUrl.square, product.title)
-            .Products--Content--ProductList--Item--Name= product.name
-            .Products--Content--ProductList--Item--Category= product.category
+          .Products--Content--ProductList--Item
+            +ProductCard(product)
     +Footer(dic)
