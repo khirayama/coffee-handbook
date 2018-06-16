@@ -40,7 +40,7 @@
   }
 
   .Header--Link {
-    $size: 56px;
+    $size: 60px;
     display: inline-block;
     width: $size;
     height: $size;

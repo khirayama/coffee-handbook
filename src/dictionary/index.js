@@ -1,12 +1,12 @@
-module.exports = {
+const dictionary = {
   // Common
   name: {
-    ja: 'ABOUT OUR COFFEE',
-    en: 'ABOUT OUR COFFEE',
+    ja: '平山珈琲研究所',
+    en: 'HIRAYAMA COFFEE INSTITUTE',
   },
   author: {
-    ja: 'ABOUT OUR COFFEE',
-    en: 'ABOUT OUR COFFEE',
+    ja: 'HIRAYAMA COFFEE INSTITUTE',
+    en: 'HIRAYAMA COFFEE INSTITUTE',
   },
   // Components
   Navigation: {
@@ -33,8 +33,8 @@ module.exports = {
       en: 'SITEMAP',
     },
     copyright: {
-      ja: 'ABOUT OUR COFFEE, All rights reserved.',
-      en: 'ABOUT OUR COFFEE, All rights reserved.',
+      ja: ', All rights reserved.',
+      en: ', All rights reserved.',
     },
   },
   RecipeLink: {
@@ -46,8 +46,8 @@ module.exports = {
   // Pages
   Home: {
     description: {
-      ja: 'ABOUT OUR COFFEE について',
-      en: 'About ABOUT OUR COFFEE',
+      ja: '平山珈琲研究所について',
+      en: 'About HIRAYAMA COFFEE INSTITUTE',
     },
     LATEST_ARTICLES: {
       ja: '新着記事',
@@ -107,3 +107,5 @@ module.exports = {
     },
   },
 };
+
+module.exports = dictionary;
