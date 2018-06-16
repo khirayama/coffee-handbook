@@ -3,17 +3,17 @@
 @import 'components/Footer';
 @import 'components/Navigation';
 @import 'components/Picture';
-@import 'components/ProductCard';
+@import 'components/GoodCard';
 
-.Product {
-  .Product--Content {
-    .Product--Content--Cover {
+.Good {
+  .Good--Content {
+    .Good--Content--Cover {
       width: 100%;
       max-width: $width-content;
       margin: 0 auto;
 
-      .Product--Content--Cover--Pictures {
-        .Product--Content--Cover--Pictures--Cover {
+      .Good--Content--Cover--Pictures {
+        .Good--Content--Cover--Pictures--Cover {
           padding: 12px;
 
           .Picture {
@@ -21,10 +21,10 @@
           }
         }
 
-        .Product--Content--Cover--Pictures--List {
+        .Good--Content--Cover--Pictures--List {
           padding: 0 6px;
 
-          .Product--Content--Cover--Pictures--List--Picture {
+          .Good--Content--Cover--Pictures--List--Picture {
             display: inline-block;
             width: 20%;
             padding: 0 6px;
@@ -36,27 +36,27 @@
         }
       }
 
-      .Product--Content--Cover--Information {
+      .Good--Content--Cover--Information {
         vertical-align: top;
         display: inline-block;
         padding: 24px 12px;
         width: 100%;
 
-        .Product--Content--Cover--Information--Name {
+        .Good--Content--Cover--Information--Name {
           font-size: 1.25rem;
           font-weight: $font-bold;
         }
 
-        .Product--Content--Cover--Information--Category {
+        .Good--Content--Cover--Information--Category {
           font-size: 0.75rem;
           color: $color-text-secondary;
         }
 
-        .Product--Content--Cover--Information--Summary {
+        .Good--Content--Cover--Information--Summary {
           margin: 24px 0;
         }
 
-        .Product--Content--Cover--Information--Spec {
+        .Good--Content--Cover--Information--Spec {
           width: 100%;
           border: $border;
           font-size: 0.75rem;
@@ -75,7 +75,7 @@
           }
         }
 
-        .Product--Content--Cover--Information--Button {
+        .Good--Content--Cover--Information--Button {
           display: inline-block;
           color: $color-white;
           background-color: #f90;
@@ -88,22 +88,22 @@
       }
 
       @media screen and (min-width: calc($width-content / 2)) {
-        .Product--Content--Cover--Pictures {
+        .Good--Content--Cover--Pictures {
           display: inline-block;
           width: 45%;
         }
 
-        .Product--Content--Cover--Information {
+        .Good--Content--Cover--Information {
           width: 55%;
         }
       }
     }
 
-    .Product--Content--Content {
+    .Good--Content--Content {
       width: 100%;
       background-color: $color-white;
 
-      .Product--Content--Content--Content {
+      .Good--Content--Content--Content {
         width: 100%;
         max-width: $width-content;
         margin: 0 auto;
@@ -112,24 +112,24 @@
     }
   }
 
-  .Product--Content--RelatedList {
+  .Good--Content--RelatedList {
     width: 100%;
     max-width: $width-content;
     margin: 0 auto;
 
-    .Product--Content--RelatedList--Title {
+    .Good--Content--RelatedList--Title {
       font-weight: $font-bold;
       padding: 4px 12px;
     }
 
-    .Product--Content--RelatedList--Item {
+    .Good--Content--RelatedList--Item {
       display: inline-block;
       width: calc(100% / 3);
       padding: 12px 12px;
     }
 
     @media screen and (min-width: calc($width-content / 2)) {
-      .Product--Content--RelatedList--Item {
+      .Good--Content--RelatedList--Item {
         width: calc(100% / 4);
       }
     }

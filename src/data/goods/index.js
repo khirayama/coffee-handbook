@@ -1,6 +1,6 @@
 const harioV60 = {
   key: 'hario-v60',
-  url: '/products/hario-v60',
+  url: '/goods/hario-v60',
   category: {
     ja: '抽出器具',
     en: 'Brewers',
@@ -112,6 +112,6 @@ const harioV60 = {
   ],
 };
 
-const products = [harioV60, harioV60, harioV60, harioV60];
+const goods = [harioV60, harioV60, harioV60, harioV60];
 
-module.exports = products;
+module.exports = goods;

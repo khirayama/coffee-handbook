@@ -1,24 +1,24 @@
 @import 'components/Picture';
 
-.ProductCard {
+.GoodCard {
   display: inline-block;
   width: 100%;
   padding: 0 0 48px;
   opacity: 1;
   transition: opacity 200ms ease-out;
 
-  .ProductCard--Picture {
+  .GoodCard--Picture {
     .Picture {
       padding-top: 100%;
     }
   }
 
-  .ProductCard--Name {
+  .GoodCard--Name {
     padding: 8px 0 0;
     font-weight: $font-bold;
   }
 
-  .ProductCard--Category {
+  .GoodCard--Category {
     color: $color-text-secondary;
     font-size: 0.75rem;
   }

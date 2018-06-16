@@ -1,0 +1,8 @@
+include /components/Picture
+
+mixin GoodCard(good)
+  a.GoodCard(href=good.url)
+    .GoodCard--Picture
+      +Picture(good.thumbnailUrl.square, good.title)
+    .GoodCard--Name= good.name
+    .GoodCard--Category= good.category

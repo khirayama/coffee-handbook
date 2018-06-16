@@ -2,16 +2,16 @@
 @import 'components/Header';
 @import 'components/Footer';
 @import 'components/Navigation';
-@import 'components/ProductCard';
+@import 'components/GoodCard';
 
-.Products {
+.Goods {
   background-color: $color-background;
 
-  .Products--Content {
+  .Goods--Content {
     max-width: calc($width-content * 3 / 4);
     margin: 0 auto;
 
-    .Products--Content--CategoryTitle {
+    .Goods--Content--CategoryTitle {
       font-weight: $font-bold;
       margin: 36px auto;
       text-align: center;
@@ -36,17 +36,17 @@
     }
   }
 
-  .Products--Content--ProductList {
+  .Goods--Content--GoodList {
     padding: 0 0 24px;
 
-    .Products--Content--ProductList--Item {
+    .Goods--Content--GoodList--Item {
       display: inline-block;
       width: calc(100% / 2);
       padding: 12px 12px;
     }
 
     @media screen and (min-width: calc($width-content / 2)) {
-      .Products--Content--ProductList--Item {
+      .Goods--Content--GoodList--Item {
         width: calc(100% / 3);
       }
     }

@@ -18,9 +18,9 @@ const dictionary = {
       ja: 'FOODS',
       en: 'FOODS',
     },
-    PRODUCTS: {
-      ja: 'PRODUCTS',
-      en: 'PRODUCTS',
+    GOODS: {
+      ja: 'GOODS',
+      en: 'GOODS',
     },
   },
   Footer: {
@@ -54,14 +54,14 @@ const dictionary = {
       en: 'Latest Articles',
     },
   },
-  Products: {
+  Goods: {
     description: {
-      ja: 'プロダクト',
-      en: 'PRODUCTS',
+      ja: 'グッズ',
+      en: 'GOODS',
     },
-    PRODUCTS: {
-      ja: 'プロダクト',
-      en: 'PRODUCTS',
+    GOODS: {
+      ja: 'グッズ',
+      en: 'GOODS',
     },
   },
   // Templates

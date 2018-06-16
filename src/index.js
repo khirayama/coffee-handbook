@@ -11,8 +11,8 @@ const beveragesHandler = require('handlers/beverages-handler');
 const beverageHandler = require('handlers/beverage-handler');
 const foodsHandler = require('handlers/foods-handler');
 const foodHandler = require('handlers/food-handler');
-const productsHandler = require('handlers/products-handler');
-const productHandler = require('handlers/product-handler');
+const goodsHandler = require('handlers/goods-handler');
+const goodHandler = require('handlers/good-handler');
 const aboutUsHandler = require('handlers/about-us-handler');
 const postHandler = require('handlers/post-handler');
 
@@ -46,7 +46,7 @@ app
   .get('/', homeHandler)
   .use('/beverages', new express.Router().get('/', beveragesHandler).get('/:beverage/:type', beverageHandler))
   .use('/foods', new express.Router().get('/', foodsHandler).get('/:food', foodHandler))
-  .use('/products', new express.Router().get('/', productsHandler).get('/:product', productHandler))
+  .use('/goods', new express.Router().get('/', goodsHandler).get('/:goodKey', goodHandler))
   .get('/about-us', aboutUsHandler)
   .get('/posts/:id', postHandler)
   .get('/rss*', (req, res) => {

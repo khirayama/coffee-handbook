@@ -1,0 +1,23 @@
+extends /application/layout
+
+block import
+  include /components/Header
+  include /components/Footer
+  include /components/Navigation
+  include /components/GoodCard
+
+block meta
+  link(rel="stylesheet" href="/pages/Goods/index.css")
+
+block body
+  .Goods
+    +Header(lang)
+    +Navigation(path, dic)
+    .Goods--Content
+      .Goods--Content--CategoryTitle
+        h2= heading
+      .Goods--Content--GoodList
+        for good in goods
+          .Goods--Content--GoodList--Item
+            +GoodCard(good)
+    +Footer(dic)

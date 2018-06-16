@@ -1,0 +1,48 @@
+extends /application/layout
+
+block import
+  include /components/Header
+  include /components/Footer
+  include /components/Navigation
+  include /components/Picture
+  include /components/GoodCard
+
+block meta
+  link(rel="stylesheet" href="/templates/Good/index.css")
+
+block body
+  .Good
+    +Header(lang)
+    +Navigation(path, dic)
+    .Good--Content
+      .Good--Content--Cover
+        .Good--Content--Cover--Pictures
+          .Good--Content--Cover--Pictures--Cover
+            +Picture(good.pictures[0].url, good.pictures[0].caption)
+          .Good--Content--Cover--Pictures--List
+            for picture in good.pictures
+              .Good--Content--Cover--Pictures--List--Picture
+                +Picture(picture.url, picture.caption)
+        .Good--Content--Cover--Information
+          .Good--Content--Cover--Information--Name= good.name
+          .Good--Content--Cover--Information--Category= good.category
+          .Good--Content--Cover--Information--Summary!= good.summary
+          table.Good--Content--Cover--Information--Spec
+            tbody
+              for spec in good.specs
+                tr
+                  th= spec.name
+                  td= spec.value
+          .Good--Content--Cover--Information--Button Amazonで購入
+      .Good--Content--Content
+        .Good--Content--Content--Content
+          p!= good.content
+      .Good--Content--RelatedList
+        .Good--Content--RelatedList--Title Related items
+        .Good--Content--RelatedList--Item
+          +GoodCard(good)
+      .Good--Content--RelatedList
+        .Good--Content--RelatedList--Title Related recipes
+        .Good--Content--RelatedList--Item
+          +GoodCard(good)
+    +Footer(dic)
