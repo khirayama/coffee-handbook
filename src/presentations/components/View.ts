@@ -1,4 +1,8 @@
-class ViewElement {
+export class ViewElement {
+  public el: HTMLElement;
+
+  public data: any;
+
   constructor(el) {
     this.el = el;
     this.data = this.extractData();
@@ -50,7 +54,7 @@ class ViewElement {
     this.el.classList.remove(className);
   }
 
-  html(html) {
+  html(html?: string) {
     if (html || html === '') {
       this.el.innerHTML = html;
     } else {
@@ -60,16 +64,20 @@ class ViewElement {
 }
 
 export class View {
+  public $el: ViewElement;
+
   constructor(el) {
     this.$el = new ViewElement(el);
 
-    if (this.init) {
-      this.init();
-    }
+    this.init();
     this.setEventListeners();
   }
 
-  setEventListeners() {
+  protected init() {
+    // Noop
+  }
+
+  protected setEventListeners() {
     // Noop
   }
 }

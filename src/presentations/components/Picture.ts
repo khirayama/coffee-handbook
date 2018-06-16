@@ -1,7 +1,11 @@
-import { View } from 'presentations/components/View';
+import { View, ViewElement } from 'presentations/components/View';
 import { onscreen } from 'presentations/utils/onscreen';
 
 export class Picture extends View {
+  private $imageEl: ViewElement;
+
+  private props: any;
+
   init() {
     this.$imageEl = this.$el.find('.Picture--Image');
 

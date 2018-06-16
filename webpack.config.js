@@ -2,17 +2,18 @@
 const path = require('path');
 const glob = require('glob');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
 const NODE_ENV = process.env.NODE_ENV;
 const DIST = './src/public';
 
-const inputFilenames = glob.sync(path.join(__dirname, 'src', 'presentations', '**', 'index.js'));
+const inputFilenames = glob.sync(path.join(__dirname, 'src', 'presentations', '**', 'index.ts'));
 const entry = {};
 for (let i = 0; i < inputFilenames.length; i++) {
   const inputFilename = inputFilenames[i];
   const outputFilename = inputFilename
     .replace(path.join(__dirname, 'src', 'presentations'), DIST)
-    .replace('index.js', 'bundle');
+    .replace('index.ts', 'bundle');
   entry[outputFilename] = inputFilename;
 }
 
@@ -23,8 +24,12 @@ const config = {
     path: __dirname,
   },
   resolve: {
-    modules: ['src', 'node_modules'],
-    extensions: ['.js', '.json'],
+    extensions: ['.ts', '.tsx', '.js', '.json'],
+    plugins: [
+      new TsconfigPathsPlugin({
+        configFile: './tsconfig.web.json',
+      }),
+    ],
   },
   plugins: [],
   optimization: {
@@ -36,9 +41,13 @@ const config = {
   module: {
     rules: [
       {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        loader: 'babel-loader',
+        test: /\.tsx?$/,
+        use: {
+          loader: 'ts-loader',
+          options: {
+            configFile: 'tsconfig.web.json',
+          },
+        },
       },
     ],
   },
