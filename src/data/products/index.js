@@ -83,6 +83,22 @@ const harioV60 = {
       },
     },
   ],
+  summary: {
+    ja: 'V60なんです',
+    en: 'This is V60',
+  },
+  specs: [
+    {
+      name: {
+        ja: '製品サイズ',
+        en: 'Size',
+      },
+      value: {
+        ja: '幅137x奥行116x高102mm',
+        en: '137 x 116 x 102mm',
+      },
+    },
+  ],
   content: {
     ja: '<h2>V60なんです</h2>',
     en: '<h2>This is V60</h2>',
