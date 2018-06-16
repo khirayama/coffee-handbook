@@ -1,0 +1,33 @@
+@import 'components/Picture';
+
+.ProductCard {
+  display: inline-block;
+  width: 100%;
+  padding: 0 0 48px;
+  opacity: 1;
+  transition: opacity 200ms ease-out;
+
+  .ProductCard--Picture {
+    .Picture {
+      padding-top: 100%;
+    }
+  }
+
+  .ProductCard--Name {
+    padding: 8px 0 0;
+    font-weight: $font-bold;
+  }
+
+  .ProductCard--Category {
+    color: $color-text-secondary;
+    font-size: 0.75rem;
+  }
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  &:active {
+    background-color: $color-active;
+  }
+}

@@ -1,0 +1,8 @@
+include /components/Picture
+
+mixin ProductCard(product)
+  a.ProductCard(href=product.url)
+    .ProductCard--Picture
+      +Picture(product.thumbnailUrl.square, product.title)
+    .ProductCard--Name= product.name
+    .ProductCard--Category= product.category
