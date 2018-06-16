@@ -6,7 +6,7 @@ function foodHandler(req, res) {
   const dic = new Dictionary(req.lang);
   const recipe = Recipe(req.lang)
     .where({
-      key: req.params.food,
+      key: req.params.foodKey,
     })
     .findOne();
 

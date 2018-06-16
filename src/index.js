@@ -44,8 +44,8 @@ app.use((req, res, next) => {
 // Routing
 app
   .get('/', homeHandler)
-  .use('/beverages', new express.Router().get('/', beveragesHandler).get('/:beverage/:type', beverageHandler))
-  .use('/foods', new express.Router().get('/', foodsHandler).get('/:food', foodHandler))
+  .use('/beverages', new express.Router().get('/', beveragesHandler).get('/:beverageKey/:type', beverageHandler))
+  .use('/foods', new express.Router().get('/', foodsHandler).get('/:foodKey', foodHandler))
   .use('/goods', new express.Router().get('/', goodsHandler).get('/:goodKey', goodHandler))
   .get('/about-us', aboutUsHandler)
   .get('/posts/:id', postHandler)
