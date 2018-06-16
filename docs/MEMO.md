@@ -1,3 +1,38 @@
+## TODO
+
+- [ ] ABOUT OUR COFFEE to HIRAYAMA COFFEE LABORATORY
+- [ ] PRODUCTS to GOODS
+
+## Checklist
+
+- Design
+  - [ ] Create square icon
+  - [ ] Create circle icon
+  - [ ] Make marketing space
+  - [ ] Define our mission
+  - [x] Create compress script
+  - [x] Define image rules
+- Relations
+  - [ ] Create instagram account
+  - [ ] Create twitter account
+  - [ ] Create facebook page
+  - [ ] Create privacy policy
+  - [ ] Create terms of service
+  - [ ] Create contact
+  - [x] Config for OGP
+- Engineering
+  - [ ] Create sitemap
+  - [ ] Base on WAI-ARIA
+  - [ ] Logging client error
+  - [ ] Install service worker
+  - [ ] Build AB testing
+  - [x] Create RSS
+  - [x] Load image lazy
+- Marketing
+  - [ ] Install Google Analytics
+  - [ ] Consider ad
+  - [ ] Consider affiliate
+
 ## Pages
 
 - Home / ホーム
@@ -63,36 +98,6 @@
     - 音楽
     - 本
     - 映像
-
-## TODO
-
-- Design
-  - [ ] Create square icon
-  - [ ] Create circle icon
-  - [ ] Make marketing space
-  - [ ] Define our mission
-  - [x] Create compress script
-  - [x] Define image rules
-- Relations
-  - [ ] Create instagram account
-  - [ ] Create twitter account
-  - [ ] Create facebook page
-  - [ ] Create privacy policy
-  - [ ] Create terms of service
-  - [ ] Create contact
-  - [x] Config for OGP
-- Engineering
-  - [ ] Create sitemap
-  - [ ] Base on WAI-ARIA
-  - [ ] Logging client error
-  - [ ] Install service worker
-  - [ ] Build AB testing
-  - [x] Create RSS
-  - [x] Load image lazy
-- Marketing
-  - [ ] Install Google Analytics
-  - [ ] Consider ad
-  - [ ] Consider affiliate
 
 ## PR
 
