@@ -2,13 +2,14 @@ import * as path from 'path';
 
 import * as pug from 'pug';
 
+import { Dictionary } from 'utils/Dictionary';
+
+const dic = new Dictionary(null);
+
 export const harioV60 = {
   key: 'hario-v60',
   url: '/goods/hario-v60',
-  category: {
-    ja: '抽出器具',
-    en: 'Brewers',
-  },
+  category: dic.v('meta.good.category.BREWERS'),
   name: {
     ja: 'ハリオ V60',
     en: 'HARIO V60',
@@ -104,8 +105,8 @@ export const harioV60 = {
     },
   ],
   content: {
-    ja: pug.compileFile(path.join(__dirname, '..', 'goods', 'hario-v60-content.ja.pug'))(),
-    en: pug.compileFile(path.join(__dirname, '..', 'goods', 'hario-v60-content.en.pug'))(),
+    ja: pug.compileFile(path.join(__dirname, 'hario-v60-content.ja.pug'))(),
+    en: pug.compileFile(path.join(__dirname, 'hario-v60-content.en.pug'))(),
   },
   colos: [],
   links: [

@@ -8,6 +8,39 @@ export const dictionary = {
     ja: 'HIRAYAMA COFFEE INSTITUTE',
     en: 'HIRAYAMA COFFEE INSTITUTE',
   },
+  // Meta
+  meta: {
+    recipe: {
+      category: {
+        BEVERAGES: {
+          ja: 'ビバレッジ',
+          en: 'BEVERAGES',
+        },
+        FOODS: {
+          ja: 'フード',
+          en: 'FOODS',
+        },
+      },
+      type: {
+        HOT: {
+          ja: 'ホット',
+          en: 'HOT',
+        },
+        ICED: {
+          ja: 'アイス',
+          en: 'ICED',
+        },
+      },
+    },
+    good: {
+      category: {
+        BREWERS: {
+          ja: '抽出器具',
+          en: 'BREWERS',
+        },
+      },
+    },
+  },
   // Components
   Navigation: {
     BEVERAGES: {

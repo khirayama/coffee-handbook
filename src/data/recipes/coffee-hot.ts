@@ -1,14 +1,12 @@
+import { Dictionary } from 'utils/Dictionary';
+
+const dic = new Dictionary(null);
+
 export const coffeeHotRecipe = {
   key: 'coffee-hot',
   url: '/beverages/coffee/hot',
-  category: {
-    ja: 'ビバレッジ',
-    en: 'BEVERAGES',
-  },
-  type: {
-    ja: 'ホット',
-    en: 'HOT',
-  },
+  category: dic.v('meta.recipe.category.BEVERAGES'),
+  type: dic.v('meta.recipe.type.HOT'),
   title: {
     ja: 'コーヒー',
     en: 'COFFEE',

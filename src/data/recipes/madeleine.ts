@@ -1,10 +1,11 @@
+import { Dictionary } from 'utils/Dictionary';
+
+const dic = new Dictionary(null);
+
 export const madeleineRecipe = {
   key: 'madeleine',
   url: '/foods/madeleine',
-  category: {
-    ja: 'フード',
-    en: 'FOODS',
-  },
+  category: dic.v('meta.recipe.category.FOODS'),
   type: null,
   title: {
     ja: 'マドレーヌ',
