@@ -5,9 +5,8 @@
   "main": "dist/index.js",
   "scripts": {
     "clean": "rm -rf src/public dist",
-    "start": "npm run clean && npm run generate && npm run bundle:scripts && npm run build:styles && npm run compile:scripts && npm run copy:files && NODE_PATH=dist node dist/index.js",
+    "start": "npm run clean && npm run bundle:scripts && npm run build:styles && npm run compile:scripts && npm run copy:files && NODE_PATH=dist node dist/index.js",
     "dev": "npm run clean && concurrently 'npm run bundle:scripts:watch' 'npm run build:styles:watch' 'npm run compile:scripts:watch' 'npm run copy:files:watch' 'NODE_PATH=dist nodemon dist/index.js'",
-    "generate": "node ./bin/generator.js data/posts -o src/data/posts/index.json -m data/meta",
     "compile:scripts": "tsc -p tsconfig.server.json",
     "compile:scripts:watch": "tsc -p tsconfig.server.json -w",
     "bundle:scripts": "NODE_ENV=production webpack --mode production",
@@ -18,7 +17,6 @@
     "copy:files": "cpx 'src/**/*.{json,woff2,png,jpg,ico,wepb,js,svg,pug}' dist",
     "copy:files:watch": "cpx -w 'src/**/*.{json,woff2,png,jpg,ico,webp,js,svg,pug}' dist",
     "build:images": "node bin/minimize-images.js",
-    "compress:images": "node bin/minimize-images.js",
     "lint": "eslint --ignore-path .gitignore src bin webpack.config.js",
     "lint:fix": "eslint --fix --ignore-path .gitignore src bin webpack.config.js",
     "format": "prettier --ignore-path .gitignore --config .prettierrc --write 'src/**/!(*.json|*.jpg|*.pug|*.html|*.png|*.webp|*.svg)' bin webpack.config.js .eslintrc.js .postcssrc.js",
