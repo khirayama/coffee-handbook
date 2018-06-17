@@ -1,8 +1,8 @@
-const config = require('config');
-const Dictionary = require('utils/Dictionary');
-const Post = require('resources/Post');
+import { config } from 'config';
+import { Dictionary } from 'utils/Dictionary';
+import { Post } from 'resources/Post';
 
-function postHandler(req, res) {
+export function postHandler(req, res) {
   const id = Number(req.params.id);
   const dic = new Dictionary(req.lang);
   const post = Post(req.lang)
@@ -22,5 +22,3 @@ function postHandler(req, res) {
     post,
   });
 }
-
-module.exports = postHandler;

@@ -1,4 +1,4 @@
-const madeleineRecipe = {
+export const madeleineRecipe = {
   key: 'madeleine',
   url: '/foods/madeleine',
   category: {
@@ -79,5 +79,3 @@ const madeleineRecipe = {
     },
   ],
 };
-
-module.exports = madeleineRecipe;

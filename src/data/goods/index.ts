@@ -112,6 +112,4 @@ const harioV60 = {
   ],
 };
 
-const goods = [harioV60, harioV60, harioV60, harioV60];
-
-module.exports = goods;
+export const goods = [harioV60, harioV60, harioV60, harioV60];

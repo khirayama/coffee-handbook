@@ -1,7 +1,7 @@
-const config = require('config');
-const Dictionary = require('utils/Dictionary');
+import { config } from 'config';
+import { Dictionary } from 'utils/Dictionary';
 
-function aboutUsHandler(req, res) {
+export function aboutUsHandler(req, res) {
   const dic = new Dictionary(req.lang);
 
   res.render('pages/AboutUs', {
@@ -15,5 +15,3 @@ function aboutUsHandler(req, res) {
     type: 'author',
   });
 }
-
-module.exports = aboutUsHandler;

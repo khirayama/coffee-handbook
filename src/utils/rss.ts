@@ -1,11 +1,11 @@
 /* eslint-disable camelcase */
-const RSS = require('rss');
+import * as RSS from 'rss';
 
-const config = require('config');
-const Post = require('resources/Post');
-const Dictionary = require('utils/Dictionary');
+import { config } from 'config';
+import { Post } from 'resources/Post';
+import { Dictionary } from 'utils/Dictionary';
 
-const rss = {};
+export const rss = {};
 
 for (let i = 0; i < config.languages.length; i++) {
   const lang = config.languages[i];
@@ -50,5 +50,3 @@ for (let i = 0; i < config.languages.length; i++) {
     });
   rss[lang] = feed.xml();
 }
-
-module.exports = rss;

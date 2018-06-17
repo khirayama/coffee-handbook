@@ -29,14 +29,20 @@ function build(value, lang) {
 find, findOne, where, page, order
 */
 
-class Resource {
+export class Resource {
+  private resources: any;
+
+  private lang: string;
+
+  private tmp: any;
+
   constructor(resources, lang) {
     this.resources = resources;
     this.lang = lang;
     this.tmp = build(this.resources, this.lang);
   }
 
-  find(num) {
+  find(num?: number) {
     const tmp = this.tmp.slice();
     this.tmp = build(this.resources, this.lang);
     return tmp.slice(tmp.length - num);
@@ -95,5 +101,3 @@ class Resource {
     return result;
   }
 }
-
-module.exports = Resource;

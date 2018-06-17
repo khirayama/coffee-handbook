@@ -1,8 +1,8 @@
-const config = require('config');
-const Dictionary = require('utils/Dictionary');
-const Post = require('resources/Post');
+import { config } from 'config';
+import { Dictionary } from 'utils/Dictionary';
+import { Post } from 'resources/Post';
 
-function homeHandler(req, res) {
+export function homeHandler(req, res) {
   const dic = new Dictionary(req.lang);
   const featuredPost = Post(req.lang)
     .where({
@@ -39,5 +39,3 @@ function homeHandler(req, res) {
     posts: exceptedFeaturedPosts,
   });
 }
-
-module.exports = homeHandler;

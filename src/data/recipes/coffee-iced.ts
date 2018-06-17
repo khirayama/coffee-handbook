@@ -1,4 +1,4 @@
-const coffeeIcedRecipe = {
+export const coffeeIcedRecipe = {
   key: 'coffee-iced',
   url: '/beverages/coffee/iced',
   category: {
@@ -96,5 +96,3 @@ const coffeeIcedRecipe = {
     },
   ],
 };
-
-module.exports = coffeeIcedRecipe;

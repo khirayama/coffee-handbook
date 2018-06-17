@@ -1,20 +1,21 @@
-const path = require('path');
-const express = require('express');
-const compression = require('compression');
-const cookieParser = require('cookie-parser');
+import * as path from 'path';
 
-const config = require('config');
-const rss = require('utils/rss');
+import * as express from 'express';
+import * as compression from 'compression';
+import * as cookieParser from 'cookie-parser';
+
+import { config } from 'config';
+import { rss } from 'utils/rss';
 // Handlers
-const homeHandler = require('handlers/home-handler');
-const beveragesHandler = require('handlers/beverages-handler');
-const beverageHandler = require('handlers/beverage-handler');
-const foodsHandler = require('handlers/foods-handler');
-const foodHandler = require('handlers/food-handler');
-const goodsHandler = require('handlers/goods-handler');
-const goodHandler = require('handlers/good-handler');
-const aboutUsHandler = require('handlers/about-us-handler');
-const postHandler = require('handlers/post-handler');
+import { homeHandler } from 'handlers/home-handler';
+import { beveragesHandler } from 'handlers/beverages-handler';
+import { beverageHandler } from 'handlers/beverage-handler';
+import { foodsHandler } from 'handlers/foods-handler';
+import { foodHandler } from 'handlers/food-handler';
+import { goodsHandler } from 'handlers/goods-handler';
+import { goodHandler } from 'handlers/good-handler';
+import { aboutUsHandler } from 'handlers/about-us-handler';
+import { postHandler } from 'handlers/post-handler';
 
 const app = express();
 

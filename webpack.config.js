@@ -5,7 +5,7 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
 const NODE_ENV = process.env.NODE_ENV;
-const DIST = './src/public';
+const DIST = './dist/public';
 
 const inputFilenames = glob.sync(path.join(__dirname, 'src', 'presentations', '**', 'index.ts'));
 const entry = {};

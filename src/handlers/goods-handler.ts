@@ -1,8 +1,8 @@
-const config = require('config');
-const Dictionary = require('utils/Dictionary');
-const Good = require('resources/Good');
+import { config } from 'config';
+import { Dictionary } from 'utils/Dictionary';
+import { Good } from 'resources/Good';
 
-function goodsHandler(req, res) {
+export function goodsHandler(req, res) {
   const dic = new Dictionary(req.lang);
   const goods = Good(req.lang).find();
 
@@ -20,5 +20,3 @@ function goodsHandler(req, res) {
     goods,
   });
 }
-
-module.exports = goodsHandler;

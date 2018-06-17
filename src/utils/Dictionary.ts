@@ -1,6 +1,10 @@
-const dictionaryData = require('dictionary');
+import { dictionary as dictionaryData } from 'dictionary';
 
-class Dictionary {
+export class Dictionary {
+  private lang: string;
+
+  private dic: any;
+
   constructor(lang) {
     this.lang = lang;
     this.dic = dictionaryData;
@@ -15,5 +19,3 @@ class Dictionary {
     return val[this.lang];
   }
 }
-
-module.exports = Dictionary;

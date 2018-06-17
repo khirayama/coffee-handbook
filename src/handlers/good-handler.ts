@@ -1,8 +1,8 @@
-const config = require('config');
-const Dictionary = require('utils/Dictionary');
-const Good = require('resources/Good');
+import { config } from 'config';
+import { Dictionary } from 'utils/Dictionary';
+import { Good } from 'resources/Good';
 
-function goodHandler(req, res) {
+export function goodHandler(req, res) {
   const dic = new Dictionary(req.lang);
   const good = Good(req.lang)
     .where({
@@ -23,5 +23,3 @@ function goodHandler(req, res) {
     good,
   });
 }
-
-module.exports = goodHandler;

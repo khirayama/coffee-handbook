@@ -1,8 +1,8 @@
-const config = require('config');
-const Recipe = require('resources/Recipe');
-const Dictionary = require('utils/Dictionary');
+import { config } from 'config';
+import { Dictionary } from 'utils/Dictionary';
+import { Recipe } from 'resources/Recipe';
 
-function foodsHandler(req, res) {
+export function foodsHandler(req, res) {
   const dic = new Dictionary(req.lang);
   const foodRecipes = Recipe(req.lang)
     .where({
@@ -34,5 +34,3 @@ function foodsHandler(req, res) {
     items,
   });
 }
-
-module.exports = foodsHandler;

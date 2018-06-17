@@ -1,4 +1,4 @@
-const dictionary = {
+export const dictionary = {
   // Common
   name: {
     ja: '平山珈琲研究所',
@@ -107,5 +107,3 @@ const dictionary = {
     },
   },
 };
-
-module.exports = dictionary;
