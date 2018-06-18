@@ -1,4 +1,4 @@
-export type TResource = (lang: string) => Resource;
+export type TResource<IRawResource, IResource> = (lang: string) => Resource<IRawResource, IResource>;
 
 function build(value: any, lang: string): any {
   if (Array.isArray(value)) {
@@ -31,34 +31,34 @@ function build(value: any, lang: string): any {
 find, findOne, where, page, order
 */
 
-export class Resource {
-  private resources: any;
+export class Resource<IRawResource, IResource> {
+  private resources: IRawResource[];
 
   private lang: string;
 
-  private tmp: any;
+  private tmp: IResource[];
 
-  constructor(resources: any, lang: string) {
+  constructor(resources: IRawResource[], lang: string) {
     this.resources = resources;
     this.lang = lang;
     this.tmp = build(this.resources, this.lang);
   }
 
-  public find(num?: number): any[] {
-    const tmp: any = this.tmp.slice();
+  public find(num?: number): IResource[] {
+    const tmp: IResource[] = this.tmp.slice();
     this.tmp = build(this.resources, this.lang);
 
     return tmp.slice(tmp.length - num);
   }
 
-  public findOne(): any {
-    const tmp: any = this.tmp.slice();
+  public findOne(): IResource {
+    const tmp: IResource[] = this.tmp.slice();
     this.tmp = build(this.resources, this.lang);
 
     return tmp[0];
   }
 
-  public where(condition: any): Resource {
+  public where(condition: { [key: string]: any }): Resource<IRawResource, IResource> {
     this.tmp = this.include(this.tmp, condition);
 
     if (condition.excepted) {
@@ -69,7 +69,7 @@ export class Resource {
   }
 
   private include(items: any[], condition: any): any {
-    let result: any = items;
+    let result: any[] = items;
     const keys: string[] = Object.keys(condition);
     for (const key of keys) {
       const val: any = condition[key];
@@ -89,7 +89,7 @@ export class Resource {
   }
 
   private except(items: any[], condition: any): any {
-    let result: any = items;
+    let result: any[] = items;
     const keys: string[] = Object.keys(condition);
     for (const key of keys) {
       const val: any = condition[key];
