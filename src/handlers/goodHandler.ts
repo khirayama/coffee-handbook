@@ -1,10 +1,10 @@
 import { config } from 'config';
-import { Dictionary } from 'utils/Dictionary';
 import { Good } from 'resources/Good';
+import { Dictionary } from 'utils/Dictionary';
 
-export function goodHandler(req, res) {
-  const dic = new Dictionary(req.lang);
-  const good = Good(req.lang)
+export function goodHandler(req: any, res: any): void {
+  const dic: Dictionary = new Dictionary(req.lang);
+  const good: any = Good(req.lang)
     .where({
       key: req.params.goodKey,
     })

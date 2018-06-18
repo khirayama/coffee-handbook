@@ -1,26 +1,25 @@
 import * as path from 'path';
 
-import * as express from 'express';
 import * as compression from 'compression';
 import * as cookieParser from 'cookie-parser';
+import * as express from 'express';
 
 import { config } from 'config';
+import { aboutUsHandler } from 'handlers/aboutUsHandler';
+import { beverageHandler } from 'handlers/beverageHandler';
+import { beveragesHandler } from 'handlers/beveragesHandler';
+import { foodHandler } from 'handlers/foodHandler';
+import { foodsHandler } from 'handlers/foodsHandler';
+import { goodHandler } from 'handlers/goodHandler';
+import { goodsHandler } from 'handlers/goodsHandler';
+import { homeHandler } from 'handlers/homeHandler';
+import { postHandler } from 'handlers/postHandler';
 import { rss } from 'utils/rss';
-// Handlers
-import { homeHandler } from 'handlers/home-handler';
-import { beveragesHandler } from 'handlers/beverages-handler';
-import { beverageHandler } from 'handlers/beverage-handler';
-import { foodsHandler } from 'handlers/foods-handler';
-import { foodHandler } from 'handlers/food-handler';
-import { goodsHandler } from 'handlers/goods-handler';
-import { goodHandler } from 'handlers/good-handler';
-import { aboutUsHandler } from 'handlers/about-us-handler';
-import { postHandler } from 'handlers/post-handler';
 
-const app = express();
+const app: express = express();
 
 // Set middleware
-const basedir = path.join(__dirname, 'presentations');
+const basedir: string = path.join(__dirname, 'presentations');
 app.locals.basedir = basedir;
 app.set('views', basedir);
 app.set('view engine', 'pug');
@@ -32,8 +31,8 @@ app.use(
 app.use(express.static(path.join(__dirname, 'assets')));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cookieParser());
-app.use((req, res, next) => {
-  let lang = req.query.lang || req.cookies.lang || config.languages[0];
+app.use((req: any, res: any, next: any) => {
+  let lang: string = req.query.lang || req.cookies.lang || config.languages[0];
   if (config.languages.indexOf(lang) === -1) {
     lang = config.languages[0];
   }
@@ -50,11 +49,11 @@ app
   .use('/goods', new express.Router().get('/', goodsHandler).get('/:goodKey', goodHandler))
   .get('/about-us', aboutUsHandler)
   .get('/posts/:id', postHandler)
-  .get('/rss*', (req, res) => {
+  .get('/rss*', (req: any, res: any) => {
     res.set('Content-Type', 'text/xml').send(rss[req.lang]);
   });
 
 // Server
 app.listen(3030, () => {
-  console.log(`Start app at ${new Date().toString()}.`);
+  console.log(`Start app at ${new Date().toString()}.`); // tslint:disable-line:no-console
 });

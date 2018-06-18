@@ -2,7 +2,7 @@ import * as path from 'path';
 
 import * as pug from 'pug';
 
-export const post2 = {
+export const post2: any = {
   id: 2,
   createdAt: '2018-05-26 12:00',
   publishedAt: '2018-05-27 15:00',
@@ -25,8 +25,8 @@ export const post2 = {
     en: '[Feature] Why we start this activities. - 2',
   },
   content: {
-    ja: pug.compileFile(path.join(__dirname, '2-content.ja.pug'))(),
-    en: pug.compileFile(path.join(__dirname, '2-content.en.pug'))(),
+    ja: pug.compileFile(path.join(__dirname, 'post2-content.ja.pug'))(),
+    en: pug.compileFile(path.join(__dirname, 'post2-content.en.pug'))(),
   },
   categories: [
     {

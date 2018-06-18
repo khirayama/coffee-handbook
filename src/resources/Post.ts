@@ -1,6 +1,7 @@
 import { posts } from 'data/posts';
-import { Resource } from 'resources/Resource';
+import { Resource, TResource } from 'resources/Resource';
 
-export const Post = function(lang: string) {
+// tslint:disable-next-line:variable-name
+export const Post: TResource = (lang: string): Resource => {
   return new Resource(posts, lang);
 };

@@ -1,4 +1,4 @@
-export const config = {
+export const config: any = {
   url: 'https://hirayamacoffee.com',
   languages: ['ja', 'en'],
   keywords: 'hirayama, 平山, coffee, コーヒー, 珈琲, institute, 研究所',

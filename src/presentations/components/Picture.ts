@@ -6,7 +6,7 @@ export class Picture extends View {
 
   private props: any;
 
-  init() {
+  public init(): void {
     this.$imageEl = this.$el.find('.Picture--Image');
 
     this.props = {
@@ -18,7 +18,7 @@ export class Picture extends View {
     }
   }
 
-  setEventListeners() {
+  public setEventListeners(): void {
     onscreen(window, this.$el.current(), this.onPreScreenHandler.bind(this), 100);
 
     onscreen(window, this.$el.current(), this.onScreenHandler.bind(this), 0);
@@ -28,28 +28,28 @@ export class Picture extends View {
     this.$el.on('error', this.onErrorHandler.bind(this), true);
   }
 
-  onLoadHandler() {
+  private onLoadHandler(): void {
     this.$el.addClass('Picture__Loaded');
   }
 
-  onErrorHandler() {
+  private onErrorHandler(): void {
     this.$el.addClass('Picture__Failed');
 
-    const text = this.$imageEl.get('alt');
-    let html = this.$el.html();
+    const text: string = this.$imageEl.attr('alt');
+    let html: string = this.$el.html() || '';
     html = html.replace('<img ', '<span ').replace('>', `>${text}</span>`);
     this.$el.html(html);
 
     this.$imageEl = this.$el.find('.Picture--Image');
   }
 
-  onPreScreenHandler() {
+  private onPreScreenHandler(): void {
     this.$el.removeClass('Picture__Ready');
   }
 
-  onScreenHandler() {
+  private onScreenHandler(): void {
     this.$imageEl.html('');
-    let html = this.$el.html();
+    let html: string = this.$el.html() || '';
     html = html.replace('<span ', '<img ').replace('></span>', '>');
     this.$el.html(html);
 

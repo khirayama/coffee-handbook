@@ -4,9 +4,9 @@ import * as pug from 'pug';
 
 import { Dictionary } from 'utils/Dictionary';
 
-const dic = new Dictionary(null);
+const dic: Dictionary = new Dictionary(null);
 
-export const harioV60 = {
+export const harioV60: any = {
   key: 'hario-v60',
   url: '/goods/hario-v60',
   category: dic.v('meta.good.category.BREWERS'),
@@ -105,8 +105,8 @@ export const harioV60 = {
     },
   ],
   content: {
-    ja: pug.compileFile(path.join(__dirname, 'hario-v60-content.ja.pug'))(),
-    en: pug.compileFile(path.join(__dirname, 'hario-v60-content.en.pug'))(),
+    ja: pug.compileFile(path.join(__dirname, 'harioV60-content.ja.pug'))(),
+    en: pug.compileFile(path.join(__dirname, 'harioV60-content.en.pug'))(),
   },
   colos: [],
   links: [

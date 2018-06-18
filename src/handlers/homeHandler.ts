@@ -1,10 +1,10 @@
 import { config } from 'config';
-import { Dictionary } from 'utils/Dictionary';
 import { Post } from 'resources/Post';
+import { Dictionary } from 'utils/Dictionary';
 
-export function homeHandler(req, res) {
-  const dic = new Dictionary(req.lang);
-  const featuredPost = Post(req.lang)
+export function homeHandler(req: any, res: any): void {
+  const dic: Dictionary = new Dictionary(req.lang);
+  const featuredPost: any = Post(req.lang)
     .where({
       categories: {
         id: 1,
@@ -14,7 +14,7 @@ export function homeHandler(req, res) {
       },
     })
     .findOne();
-  const exceptedFeaturedPosts = Post(req.lang)
+  const exceptedFeaturedPosts: any[] = Post(req.lang)
     .where({
       categories: {
         id: 1,

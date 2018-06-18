@@ -1,17 +1,15 @@
-/* eslint-disable camelcase */
 import * as RSS from 'rss';
 
 import { config } from 'config';
 import { Post } from 'resources/Post';
 import { Dictionary } from 'utils/Dictionary';
 
-export const rss = {};
+export const rss: any = {};
 
-for (let i = 0; i < config.languages.length; i++) {
-  const lang = config.languages[i];
-  const dic = new Dictionary(lang);
+for (const lang of config.languages) {
+  const dic: Dictionary = new Dictionary(lang);
 
-  const feed = new RSS({
+  const feed: any = new RSS({
     title: dic.t('name'),
     description: dic.t('Home.description'),
     generaror: 'by myself',
@@ -33,7 +31,7 @@ for (let i = 0; i < config.languages.length; i++) {
 
   Post(lang)
     .find()
-    .forEach(post => {
+    .forEach((post: any) => {
       feed.item({
         title: post.title,
         description: post.description,

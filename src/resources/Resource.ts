@@ -1,21 +1,23 @@
-function build(value, lang) {
+export type TResource = (lang: string) => Resource;
+
+function build(value: any, lang: string): any {
   if (Array.isArray(value)) {
-    const result = [];
-    for (let i = 0; i < value.length; i++) {
-      const val = value[i];
-      result[i] = build(val, lang);
+    const res: any[] = [];
+    for (let i: number = 0; i < value.length; i += 1) {
+      const val: any = value[i];
+      res[i] = build(val, lang);
     }
-    return result;
+
+    return res;
   }
 
   if (typeof value === 'boolean' || typeof value === 'string' || typeof value === 'number' || value === null) {
     return value;
   }
 
-  const result = {};
-  const keys = Object.keys(value);
-  for (let i = 0; i < keys.length; i++) {
-    const key = keys[i];
+  const result: any = {};
+  const keys: string[] = Object.keys(value);
+  for (const key of keys) {
     if (key === lang) {
       return build(value[key], lang);
     }
@@ -36,64 +38,67 @@ export class Resource {
 
   private tmp: any;
 
-  constructor(resources, lang) {
+  constructor(resources: any, lang: string) {
     this.resources = resources;
     this.lang = lang;
     this.tmp = build(this.resources, this.lang);
   }
 
-  find(num?: number) {
-    const tmp = this.tmp.slice();
+  public find(num?: number): any[] {
+    const tmp: any = this.tmp.slice();
     this.tmp = build(this.resources, this.lang);
+
     return tmp.slice(tmp.length - num);
   }
 
-  findOne() {
-    const tmp = this.tmp.slice();
+  public findOne(): any {
+    const tmp: any = this.tmp.slice();
     this.tmp = build(this.resources, this.lang);
+
     return tmp[0];
   }
 
-  where(condition) {
-    this.tmp = this._include(this.tmp, condition);
+  public where(condition: any): Resource {
+    this.tmp = this.include(this.tmp, condition);
 
     if (condition.excepted) {
-      this.tmp = this._except(this.tmp, condition.excepted);
+      this.tmp = this.except(this.tmp, condition.excepted);
     }
 
     return this;
   }
 
-  _include(items, condition) {
-    let result = items;
-    const keys = Object.keys(condition);
-    for (let i = 0; i < keys.length; i++) {
-      const key = keys[i];
-      const val = condition[key];
+  private include(items: any[], condition: any): any {
+    let result: any = items;
+    const keys: string[] = Object.keys(condition);
+    for (const key of keys) {
+      const val: any = condition[key];
       if (key !== 'excepted') {
-        result = result.filter(item => {
-          const target = item[key];
+        result = result.filter((item: any) => {
+          const target: any = item[key];
           if (Array.isArray(target)) {
-            return this._include(target, val).length;
+            return this.include(target, val).length;
           }
+
           return target === val;
         });
       }
     }
+
     return result;
   }
 
-  _except(items, condition) {
-    let result = items;
-    const keys = Object.keys(condition);
-    for (let i = 0; i < keys.length; i++) {
-      const key = keys[i];
-      const val = condition[key];
-      result = result.filter(item => {
-        const target = item[key];
+  private except(items: any[], condition: any): any {
+    let result: any = items;
+    const keys: string[] = Object.keys(condition);
+    for (const key of keys) {
+      const val: any = condition[key];
+      result = result.filter((item: any) => {
+        const target: any = item[key];
         if (Array.isArray(target)) {
-          return !this._except(target, val).length;
+          return !this.except(target, val).length;
         }
+
         return target !== val;
       });
     }

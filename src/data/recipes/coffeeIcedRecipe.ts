@@ -1,23 +1,23 @@
 import { Dictionary } from 'utils/Dictionary';
 
-const dic = new Dictionary(null);
+const dic: Dictionary = new Dictionary(null);
 
-export const madeleineRecipe = {
-  key: 'madeleine',
-  url: '/foods/madeleine',
-  category: dic.v('meta.recipe.category.FOODS'),
-  type: null,
+export const coffeeIcedRecipe: any = {
+  key: 'coffee-iced',
+  url: '/beverages/coffee/iced',
+  category: dic.v('meta.recipe.category.BEVERAGES'),
+  type: dic.v('meta.recipe.type.ICED'),
   title: {
-    ja: 'マドレーヌ',
-    en: 'MADELEINE',
+    ja: 'コーヒー',
+    en: 'COFFEE',
   },
   name: {
-    ja: 'マドレーヌ',
-    en: 'MADELEINE',
+    ja: 'コーヒー',
+    en: 'COFFEE',
   },
   description: {
-    ja: 'マドレーヌ desc',
-    en: 'MADELEINE desc',
+    ja: 'コーヒー desc',
+    en: 'COFFEE desc',
   },
   thumbnailUrl: {
     default: {
@@ -36,8 +36,8 @@ export const madeleineRecipe = {
   ingredients: [
     {
       name: {
-        ja: 'バター',
-        en: 'Butter',
+        ja: 'コーヒー豆',
+        en: 'Coffee Beans',
       },
       quantity: {
         ja: '20g',
@@ -46,6 +46,20 @@ export const madeleineRecipe = {
       note: {
         ja: '中細挽き',
         en: 'Middle casdcadscasdcasdcas',
+      },
+    },
+    {
+      name: {
+        ja: '水',
+        en: 'Water',
+      },
+      quantity: {
+        ja: '200ml',
+        en: '200ml',
+      },
+      note: {
+        ja: '94℃程度',
+        en: 'Around 94℃(201℉)',
       },
     },
   ],

@@ -1,10 +1,10 @@
 import { config } from 'config';
-import { Dictionary } from 'utils/Dictionary';
 import { Recipe } from 'resources/Recipe';
+import { Dictionary } from 'utils/Dictionary';
 
-export function foodHandler(req, res) {
-  const dic = new Dictionary(req.lang);
-  const recipe = Recipe(req.lang)
+export function foodHandler(req: any, res: any): void {
+  const dic: Dictionary = new Dictionary(req.lang);
+  const recipe: any = Recipe(req.lang)
     .where({
       key: req.params.foodKey,
     })

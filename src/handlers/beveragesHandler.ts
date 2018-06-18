@@ -1,20 +1,19 @@
 import { config } from 'config';
-import { Dictionary } from 'utils/Dictionary';
 import { Recipe } from 'resources/Recipe';
+import { Dictionary } from 'utils/Dictionary';
 
-export function beveragesHandler(req, res) {
-  const dic = new Dictionary(req.lang);
-  const beverageRecipes = Recipe(req.lang)
+export function beveragesHandler(req: any, res: any): void {
+  const dic: Dictionary = new Dictionary(req.lang);
+  const beverageRecipes: any[] = Recipe(req.lang)
     .where({
       category: dic.t('Beverages.BEVERAGES'),
     })
     .find();
   // Const beverages = Beverage(req.lang).find();
-  const items = [];
-  beverageRecipes.forEach(beverageRecipe => {
-    let exsting = false;
-    for (let i = 0; i < items.length; i++) {
-      const item = items[i];
+  const items: any[] = [];
+  beverageRecipes.forEach((beverageRecipe: any) => {
+    let exsting: boolean = false;
+    for (const item of items) {
       if (item.name === beverageRecipe.name) {
         exsting = true;
         if (beverageRecipe.type === dic.t('Recipe.HOT')) {

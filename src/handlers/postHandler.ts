@@ -1,11 +1,11 @@
 import { config } from 'config';
-import { Dictionary } from 'utils/Dictionary';
 import { Post } from 'resources/Post';
+import { Dictionary } from 'utils/Dictionary';
 
-export function postHandler(req, res) {
-  const id = Number(req.params.id);
-  const dic = new Dictionary(req.lang);
-  const post = Post(req.lang)
+export function postHandler(req: any, res: any): void {
+  const id: number = Number(req.params.id);
+  const dic: Dictionary = new Dictionary(req.lang);
+  const post: any = Post(req.lang)
     .where({ id })
     .findOne();
 

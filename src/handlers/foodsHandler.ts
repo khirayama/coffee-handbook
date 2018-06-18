@@ -1,24 +1,26 @@
 import { config } from 'config';
-import { Dictionary } from 'utils/Dictionary';
 import { Recipe } from 'resources/Recipe';
+import { Dictionary } from 'utils/Dictionary';
 
-export function foodsHandler(req, res) {
-  const dic = new Dictionary(req.lang);
-  const foodRecipes = Recipe(req.lang)
+export function foodsHandler(req: any, res: any): void {
+  const dic: Dictionary = new Dictionary(req.lang);
+  const foodRecipes: any = Recipe(req.lang)
     .where({
       category: dic.t('Foods.FOODS'),
     })
     .find();
-  const items = foodRecipes.map(foodRecipe => {
-    return {
-      name: foodRecipe.name,
-      hot: null,
-      iced: null,
-      default: {
-        url: foodRecipe.url,
-      },
-    };
-  });
+  const items: any[] = foodRecipes.map(
+    (foodRecipe: any): any => {
+      return {
+        name: foodRecipe.name,
+        hot: null,
+        iced: null,
+        default: {
+          url: foodRecipe.url,
+        },
+      };
+    },
+  );
 
   res.render('templates/Menu', {
     config,

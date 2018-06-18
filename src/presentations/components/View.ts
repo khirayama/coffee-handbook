@@ -3,17 +3,16 @@ export class ViewElement {
 
   public data: any;
 
-  constructor(el) {
+  constructor(el: HTMLElement) {
     this.el = el;
     this.data = this.extractData();
   }
 
-  extractData() {
-    const data = {};
-    const keys = Object.keys(this.el.dataset);
-    for (let i = 0; i < keys.length; i++) {
-      const key = keys[i];
-      const value = this.el.dataset[key];
+  public extractData(): { [key: string]: string | boolean | number } {
+    const data: { [key: string]: string | boolean | number } = {};
+    const keys: string[] = Object.keys(this.el.dataset);
+    for (const key of keys) {
+      const value: string = this.el.dataset[key];
       if (value === 'true') {
         data[key] = true;
       } else if (value === 'false') {
@@ -22,39 +21,41 @@ export class ViewElement {
         data[key] = value;
       }
     }
+
     return data;
   }
 
-  current() {
+  public current(): HTMLElement {
     return this.el;
   }
 
-  find(selector) {
-    const el = this.el.querySelector(selector);
+  public find(selector: string): ViewElement {
+    const el: HTMLElement = this.el.querySelector(selector);
+
     return new ViewElement(el);
   }
 
-  on(eventType, handler, options) {
+  public on(eventType: string, handler: any, options: any): void {
     this.el.addEventListener(eventType, handler, options);
   }
 
-  get(attr) {
+  public attr(attr: string): any {
     return this.el[attr];
   }
 
-  set(attr, value) {
-    this.el[attr] = value;
-  }
+  // public set(attr: string, value: string): void {
+  //   this.el[attr] = value;
+  // }
 
-  addClass(className) {
+  public addClass(className: string): void {
     this.el.classList.add(className);
   }
 
-  removeClass(className) {
+  public removeClass(className: string): void {
     this.el.classList.remove(className);
   }
 
-  html(html?: string) {
+  public html(html?: string): string | void {
     if (html || html === '') {
       this.el.innerHTML = html;
     } else {
@@ -66,18 +67,18 @@ export class ViewElement {
 export class View {
   public $el: ViewElement;
 
-  constructor(el) {
+  constructor(el: HTMLElement) {
     this.$el = new ViewElement(el);
 
     this.init();
     this.setEventListeners();
   }
 
-  protected init() {
+  protected init(): void {
     // Noop
   }
 
-  protected setEventListeners() {
+  protected setEventListeners(): void {
     // Noop
   }
 }

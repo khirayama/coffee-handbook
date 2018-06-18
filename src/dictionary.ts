@@ -1,4 +1,4 @@
-export const dictionary = {
+export const dictionary: any = {
   // Common
   name: {
     ja: '平山珈琲研究所',

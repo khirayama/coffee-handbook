@@ -1,11 +1,11 @@
 import { Picture } from 'presentations/components/Picture';
+import { logger } from 'presentations/utils/logger';
 
 window.addEventListener('DOMContentLoaded', () => {
-  console.log(`Start app at ${new Date().toString()}.`);
+  logger.log(`Start app at ${new Date().toString()}.`);
 
-  const pictureElements = window.document.querySelectorAll('.Picture');
-  for (let i = 0; i < pictureElements.length; i++) {
-    const pictureElement = pictureElements[i];
-    new Picture(pictureElement); // eslint-disable-line no-new
+  const pictureElements: NodeListOf<HTMLElement> = window.document.querySelectorAll('.Picture');
+  for (const pictureElement of pictureElements) {
+    new Picture(pictureElement); // tslint:disable-line:no-unused-expression
   }
 });

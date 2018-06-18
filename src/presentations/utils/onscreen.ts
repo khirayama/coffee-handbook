@@ -1,5 +1,5 @@
-const screenHeight = window.innerHeight;
-const listeners = [];
+const screenHeight: number = window.innerHeight;
+const listeners: any[] = [];
 /* {
   container: null,
   targets: [{
@@ -9,13 +9,12 @@ const listeners = [];
   }],
 } */
 
-function handleEvent(container) {
-  for (let i = 0; i < listeners.length; i++) {
-    const listener = listeners[i];
+function handleEvent(container: Window | HTMLElement): void {
+  for (const listener of listeners) {
     if (listener.container === container) {
-      listener.targets.forEach(target => {
+      listener.targets.forEach((target: any) => {
         if (!target.displayed) {
-          const rect = target.el.getBoundingClientRect();
+          const rect: any = target.el.getBoundingClientRect();
           if (rect.top - target.offset < screenHeight) {
             target.displayed = true;
             target.handler();
@@ -26,12 +25,10 @@ function handleEvent(container) {
   }
 }
 
-export function onscreen(container, target, handler, offset) {
-  let attached = false;
+export function onscreen(container: Window | HTMLElement, target: HTMLElement, handler: any, offset: number): void {
+  let attached: boolean = false;
 
-  for (let i = 0; i < listeners.length; i++) {
-    const listener = listeners[i];
-
+  for (const listener of listeners) {
     if (listener.container === container) {
       attached = true;
       listener.targets.push({
@@ -45,9 +42,9 @@ export function onscreen(container, target, handler, offset) {
 
   handleEvent(container);
   if (!attached) {
-    container.addEventListener('scroll', handleEvent.bind(this, container));
-    container.addEventListener('resize', handleEvent.bind(this, container));
-    container.addEventListener('touchmove', handleEvent.bind(this, container));
+    container.addEventListener('scroll', handleEvent.bind(null, container));
+    container.addEventListener('resize', handleEvent.bind(null, container));
+    container.addEventListener('touchmove', handleEvent.bind(null, container));
     listeners.push({
       container,
       targets: [{ el: target, handler }],

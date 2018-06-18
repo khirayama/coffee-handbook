@@ -1,10 +1,10 @@
 import { config } from 'config';
-import { Dictionary } from 'utils/Dictionary';
 import { Good } from 'resources/Good';
+import { Dictionary } from 'utils/Dictionary';
 
-export function goodsHandler(req, res) {
-  const dic = new Dictionary(req.lang);
-  const goods = Good(req.lang).find();
+export function goodsHandler(req: any, res: any): void {
+  const dic: Dictionary = new Dictionary(req.lang);
+  const goods: any[] = Good(req.lang).find();
 
   res.render('pages/Goods', {
     config,

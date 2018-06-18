@@ -1,8 +1,8 @@
 import { config } from 'config';
 import { Dictionary } from 'utils/Dictionary';
 
-export function aboutUsHandler(req, res) {
-  const dic = new Dictionary(req.lang);
+export function aboutUsHandler(req: any, res: any): void {
+  const dic: Dictionary = new Dictionary(req.lang);
 
   res.render('pages/AboutUs', {
     config,
