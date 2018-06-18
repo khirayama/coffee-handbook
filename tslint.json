@@ -1,0 +1,18 @@
+{
+    "extends": [
+      "tslint-microsoft-contrib",
+      "tslint-config-prettier"
+    ],
+    "rulesDirectory": [
+      "tslint-plugin-prettier"
+    ],
+    "rules": {
+      "_prettier": true,
+      "missing-jsdoc": false,
+      "no-backbone-get-set-outside-model": false,
+      "no-implicit-dependencies": false,
+      "no-submodule-imports": false,
+      "no-any": false,
+      "no-inner-html": false
+    }
+}
