@@ -10,15 +10,15 @@ export class Dictionary {
     this.dic = dictionaryData;
   }
 
+  // tslint:disable-next-line:function-name
   public t(key: string): string {
-    // tslint:disable-line:function-name
     const val: any = this.v(key);
 
     return val[this.lang];
   }
 
+  // tslint:disable-next-line:function-name
   public v(key: string): any {
-    // tslint:disable-line:function-name
     const keys: string[] = key.split('.');
     let val: any = this.dic;
     for (const valueKey of keys) {
