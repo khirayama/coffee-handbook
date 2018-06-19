@@ -2,15 +2,13 @@ import * as path from 'path';
 
 import * as pug from 'pug';
 
-export const post1: any = {
-  id: 1,
+import { IRawPost } from 'data/posts';
+
+export const post1: IRawPost = {
+  key: 'post1',
   createdAt: '2018-05-26 12:00',
   publishedAt: '2018-05-26 15:00',
   thumbnailUrl: {
-    default: {
-      ja: '/images/image_1.jpg',
-      en: '/images/image_1.jpg',
-    },
     square: {
       ja: '/images/image_1@square.jpg',
       en: '/images/image_1@square.jpg',
