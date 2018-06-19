@@ -26,10 +26,10 @@ block body
         h2= recipe.name
         if recipe.recipeType
           div
-            .Recipe--Content--Title--Type(class= recipe.recipeType === dic.t('Recipe.HOT') ? 'Recipe--Content--Title--Type__Hot' : 'Recipe--Content--Title--Type__Iced')= recipe.recipeType
+            .Recipe--Content--Title--Type(class= recipe.recipeType === dic.t('meta.recipe.recipeType.HOT') ? 'Recipe--Content--Title--Type__Hot' : 'Recipe--Content--Title--Type__Iced')= recipe.recipeType
 
       .Recipe--Content--Ingredient
-        .Recipe--Content--Ingredient--Title= dic.t('Recipe.INGREDIENTS')
+        .Recipe--Content--Ingredient--Title= dic.t('Templates.Recipe.INGREDIENTS')
         table.Recipe--Content--Ingredient--Table
           tbody
             for ingredient in recipe.ingredients
@@ -40,7 +40,7 @@ block body
 
       .Recipe--Content--StepList
         for step in recipe.steps
-          .Recipe--Content--StepList--Item(class= recipe.recipeType === dic.t('Recipe.HOT') ? 'Recipe--Content--StepList--Item__Hot' : (recipe.recipeType === dic.t('Recipe.ICED') ? 'Recipe--Content--StepList--Item__Iced' : ''))
+          .Recipe--Content--StepList--Item(class= recipe.recipeType === dic.t('meta.recipe.recipeType.HOT') ? 'Recipe--Content--StepList--Item__Hot' : (recipe.recipeType === dic.t('meta.recipe.recipeType.ICED') ? 'Recipe--Content--StepList--Item__Iced' : ''))
             .Recipe--Content--StepList--Item--Summary= step.summary
             .Recipe--Content--StepList--Item--Description= step.description
             if step.note

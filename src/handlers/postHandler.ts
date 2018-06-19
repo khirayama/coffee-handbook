@@ -1,15 +1,17 @@
+import * as express from 'express';
+
 import { config } from 'config';
-import { Post } from 'resources/Post';
+import { IPost, Post } from 'resources/Post';
 import { Dictionary } from 'utils/Dictionary';
 
-export function postHandler(req: any, res: any): void {
+export function postHandler(req: express.Request, res: express.Response): void {
   const id: number = Number(req.params.id);
   const dic: Dictionary = new Dictionary(req.lang);
-  const post: any = Post(req.lang)
+  const post: IPost = Post(req.lang)
     .where({ id })
     .findOne();
 
-  res.render('pages/Post', {
+  const vars: any = {
     config,
     lang: req.lang,
     path: req.originalUrl,
@@ -20,5 +22,7 @@ export function postHandler(req: any, res: any): void {
     pageType: 'article',
 
     post,
-  });
+  };
+
+  res.render('pages/Post', vars);
 }

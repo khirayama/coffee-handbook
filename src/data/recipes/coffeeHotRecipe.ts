@@ -7,7 +7,7 @@ export const coffeeHotRecipe: IRawRecipe = {
   key: 'coffee-hot',
   url: '/beverages/coffee/hot',
   category: dic.v('meta.recipe.category.BEVERAGES'),
-  recipeType: dic.v('meta.recipe.type.HOT'),
+  recipeType: dic.v('meta.recipe.recipeType.HOT'),
   title: {
     ja: 'コーヒー',
     en: 'COFFEE',

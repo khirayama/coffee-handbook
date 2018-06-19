@@ -6,7 +6,7 @@ export function beverageHandler(req: any, res: any): void {
   const dic: Dictionary = new Dictionary(req.lang);
   const recipe: any = Recipe(req.lang)
     .where({
-      key: `${req.params.beverageKey}-${req.params.type}`,
+      key: `${req.params.beverageKey}-${req.params.recipeType}`,
     })
     .findOne();
 

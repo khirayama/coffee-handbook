@@ -2,8 +2,8 @@ mixin Navigation(path, dic)
   nav.Navigation
     ul.Navigation--List
       li.Navigation--List--Item(class= path.indexOf('/beverages') === 0 ? 'Navigation--List--Item__Active' : '')
-        a.Navigation--List--Item--Link(href="/beverages")= dic.t('Navigation.BEVERAGES')
+        a.Navigation--List--Item--Link(href="/beverages")= dic.t('Components.Navigation.BEVERAGES')
       li.Navigation--List--Item(class= path.indexOf('/foods') === 0 ? 'Navigation--List--Item__Active' : '')
-        a.Navigation--List--Item--Link(href="/foods")= dic.t('Navigation.FOODS')
+        a.Navigation--List--Item--Link(href="/foods")= dic.t('Components.Navigation.FOODS')
       li.Navigation--List--Item(class= path.indexOf('/goods') === 0 ? 'Navigation--List--Item__Active' : '')
-        a.Navigation--List--Item--Link(href="/goods")= dic.t('Navigation.GOODS')
+        a.Navigation--List--Item--Link(href="/goods")= dic.t('Components.Navigation.GOODS')

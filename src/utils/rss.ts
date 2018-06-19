@@ -11,7 +11,7 @@ for (const lang of config.languages) {
 
   const feed: any = new RSS({
     title: dic.t('name'),
-    description: dic.t('Home.description'),
+    description: dic.t('Pages.Home.description'),
     generaror: 'by myself',
     feed_url: `${config.url}/rss`,
     site_url: config.url,

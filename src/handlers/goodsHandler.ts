@@ -12,12 +12,12 @@ export function goodsHandler(req: any, res: any): void {
     lang: req.lang,
     path: req.originalUrl,
     dic,
-    title: `${dic.t('Goods.GOODS')} | ${dic.t('name')}`,
-    description: dic.t('Goods.description'),
+    title: `${dic.t('Pages.Goods.GOODS')} | ${dic.t('name')}`,
+    description: dic.t('Pages.Goods.description'),
     thumbnailUrl: 'TODO',
     pageType: 'product',
 
-    heading: dic.t('Goods.GOODS'),
+    heading: dic.t('Pages.Goods.GOODS'),
     goods,
   };
 
