@@ -30,7 +30,7 @@ export function foodsHandler(req: any, res: any): void {
     title: `${dic.t('Foods.FOODS')} | ${dic.t('name')}`,
     description: dic.t('Foods.description'),
     thumbnailUrl: 'TODO',
-    type: 'food',
+    pageType: 'food',
 
     heading: dic.t('Foods.FOODS'),
     items,

@@ -18,7 +18,7 @@ export function beverageHandler(req: any, res: any): void {
     title: `${recipe.title} | ${dic.t('name')}`,
     description: recipe.description,
     thumbnailUrl: recipe.thumbnailUrl.rectangle,
-    type: 'drink',
+    pageType: 'drink',
 
     recipe,
   });

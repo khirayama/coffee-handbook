@@ -44,7 +44,7 @@ export function beveragesHandler(req: any, res: any): void {
     title: `${dic.t('Beverages.BEVERAGES')} | ${dic.t('name')}`,
     description: dic.t('Beverages.description'),
     thumbnailUrl: 'TODO',
-    type: 'drink',
+    pageType: 'drink',
 
     heading: dic.t('Beverages.BEVERAGES'),
     items,

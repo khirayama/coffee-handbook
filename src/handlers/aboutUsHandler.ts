@@ -12,6 +12,6 @@ export function aboutUsHandler(req: any, res: any): void {
     title: 'ABOUT US',
     description: 'test',
     thumbnailUrl: 'test',
-    type: 'author',
+    pageType: 'author',
   });
 }

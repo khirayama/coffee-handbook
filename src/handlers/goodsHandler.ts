@@ -14,7 +14,7 @@ export function goodsHandler(req: any, res: any): void {
     title: `${dic.t('Goods.GOODS')} | ${dic.t('name')}`,
     description: dic.t('Goods.description'),
     thumbnailUrl: 'TODO',
-    type: 'product',
+    pageType: 'product',
 
     heading: dic.t('Goods.GOODS'),
     goods,

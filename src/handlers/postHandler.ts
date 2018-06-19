@@ -17,7 +17,7 @@ export function postHandler(req: any, res: any): void {
     title: post.title,
     description: 'test',
     thumbnailUrl: 'test',
-    type: 'article',
+    pageType: 'article',
 
     post,
   });

@@ -33,7 +33,7 @@ export function homeHandler(req: any, res: any): void {
     title: dic.t('name'),
     description: dic.t('Home.description'),
     thumbnailUrl: 'TODO',
-    type: 'cafe',
+    pageType: 'cafe',
 
     featuredPost,
     posts: exceptedFeaturedPosts,
