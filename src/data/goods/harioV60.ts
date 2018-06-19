@@ -2,39 +2,38 @@ import * as path from 'path';
 
 import * as pug from 'pug';
 
+import { IRawGood } from 'data/goods';
 import { Dictionary } from 'utils/Dictionary';
 
 const dic: Dictionary = new Dictionary(null);
 
-export const harioV60: any = {
+export const harioV60: IRawGood = {
   key: 'hario-v60',
   url: '/goods/hario-v60',
+  meta: {
+    title: {
+      ja: 'ハリオ V60',
+      en: 'HARIO V60',
+    },
+    description: {
+      ja: 'コーヒー desc',
+      en: 'COFFEE desc',
+    },
+    thumbnailUrl: {
+      square: {
+        ja: '/images/image_1@square.jpg',
+        en: '/images/image_1@square.jpg',
+      },
+      rectangle: {
+        ja: '/images/image_1@rectangle.jpg',
+        en: '/images/image_1@rectangle.jpg',
+      },
+    },
+  },
   category: dic.v('meta.good.category.BREWERS'),
   name: {
     ja: 'ハリオ V60',
     en: 'HARIO V60',
-  },
-  title: {
-    ja: 'ハリオ V60',
-    en: 'HARIO V60',
-  },
-  description: {
-    ja: 'コーヒー desc',
-    en: 'COFFEE desc',
-  },
-  thumbnailUrl: {
-    default: {
-      ja: '/images/image_1@square.jpg',
-      en: '/images/image_1@square.jpg',
-    },
-    square: {
-      ja: '/images/image_1@square.jpg',
-      en: '/images/image_1@square.jpg',
-    },
-    rectangle: {
-      ja: '/images/image_1@rectangle.jpg',
-      en: '/images/image_1@rectangle.jpg',
-    },
   },
   pictures: [
     {
@@ -108,7 +107,7 @@ export const harioV60: any = {
     ja: pug.compileFile(path.join(__dirname, 'harioV60-content.ja.pug'))(),
     en: pug.compileFile(path.join(__dirname, 'harioV60-content.en.pug'))(),
   },
-  colos: [],
+  colors: [],
   links: [
     {
       site: 'Amazon',
