@@ -1,12 +1,13 @@
 import { config } from 'config';
-import { Good } from 'resources/Good';
+import { IGoodsPage } from 'presentations/pages/Goods/index';
+import { Good, IGood } from 'resources/Good';
 import { Dictionary } from 'utils/Dictionary';
 
 export function goodsHandler(req: any, res: any): void {
   const dic: Dictionary = new Dictionary(req.lang);
-  const goods: any[] = Good(req.lang).find();
+  const goods: IGood[] = Good(req.lang).find();
 
-  res.render('pages/Goods', {
+  const vars: IGoodsPage = {
     config,
     lang: req.lang,
     path: req.originalUrl,
@@ -18,5 +19,7 @@ export function goodsHandler(req: any, res: any): void {
 
     heading: dic.t('Goods.GOODS'),
     goods,
-  });
+  };
+
+  res.render('pages/Goods', vars);
 }
