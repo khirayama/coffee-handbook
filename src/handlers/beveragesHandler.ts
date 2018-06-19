@@ -16,11 +16,11 @@ export function beveragesHandler(req: any, res: any): void {
     for (const item of items) {
       if (item.name === beverageRecipe.name) {
         exsting = true;
-        if (beverageRecipe.type === dic.t('Recipe.HOT')) {
+        if (beverageRecipe.recipeType === dic.t('Recipe.HOT')) {
           item.hot = {
             url: beverageRecipe.url,
           };
-        } else if (beverageRecipe.type === dic.t('Recipe.ICED')) {
+        } else if (beverageRecipe.recipeType === dic.t('Recipe.ICED')) {
           item.iced = {
             url: beverageRecipe.url,
           };
@@ -30,8 +30,8 @@ export function beveragesHandler(req: any, res: any): void {
     if (!exsting) {
       items.push({
         name: beverageRecipe.name,
-        hot: beverageRecipe.type === dic.t('Recipe.HOT') ? { url: beverageRecipe.url } : null,
-        iced: beverageRecipe.type === dic.t('Recipe.ICED') ? { url: beverageRecipe.url } : null,
+        hot: beverageRecipe.recipeType === dic.t('Recipe.HOT') ? { url: beverageRecipe.url } : null,
+        iced: beverageRecipe.recipeType === dic.t('Recipe.ICED') ? { url: beverageRecipe.url } : null,
       });
     }
   });

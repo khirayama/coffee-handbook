@@ -1,12 +1,13 @@
+import { IRawRecipe } from 'data/recipes';
 import { Dictionary } from 'utils/Dictionary';
 
 const dic: Dictionary = new Dictionary(null);
 
-export const coffeeIcedRecipe: any = {
+export const coffeeIcedRecipe: IRawRecipe = {
   key: 'coffee-iced',
   url: '/beverages/coffee/iced',
   category: dic.v('meta.recipe.category.BEVERAGES'),
-  type: dic.v('meta.recipe.type.ICED'),
+  recipeType: dic.v('meta.recipe.type.ICED'),
   title: {
     ja: 'コーヒー',
     en: 'COFFEE',
@@ -20,10 +21,6 @@ export const coffeeIcedRecipe: any = {
     en: 'COFFEE desc',
   },
   thumbnailUrl: {
-    default: {
-      ja: '/images/image_1@square.jpg',
-      en: '/images/image_1@square.jpg',
-    },
     square: {
       ja: '/images/image_1@square.jpg',
       en: '/images/image_1@square.jpg',

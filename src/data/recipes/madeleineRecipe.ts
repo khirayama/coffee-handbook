@@ -1,12 +1,13 @@
+import { IRawRecipe } from 'data/recipes';
 import { Dictionary } from 'utils/Dictionary';
 
 const dic: Dictionary = new Dictionary(null);
 
-export const madeleineRecipe: any = {
+export const madeleineRecipe: IRawRecipe = {
   key: 'madeleine',
   url: '/foods/madeleine',
   category: dic.v('meta.recipe.category.FOODS'),
-  type: null,
+  recipeType: null,
   title: {
     ja: 'マドレーヌ',
     en: 'MADELEINE',
@@ -20,10 +21,6 @@ export const madeleineRecipe: any = {
     en: 'MADELEINE desc',
   },
   thumbnailUrl: {
-    default: {
-      ja: '/images/image_1@square.jpg',
-      en: '/images/image_1@square.jpg',
-    },
     square: {
       ja: '/images/image_1@square.jpg',
       en: '/images/image_1@square.jpg',
