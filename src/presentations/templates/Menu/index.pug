@@ -26,10 +26,10 @@ block body
                   +RecipeLink(item.default.url, dic)
               if item.hot
                 .Menu--Content--List--Item--RecipeList--Item
-                  .Menu--Content--List--Item--RecipeList--Item--Hot= dic.t('Recipe.HOT')
+                  .Menu--Content--List--Item--RecipeList--Item--Hot= dic.t('meta.recipe.recipeType.HOT')
                   +RecipeLink(item.hot.url, dic)
               if item.iced
                 .Menu--Content--List--Item--RecipeList--Item
-                  .Menu--Content--List--Item--RecipeList--Item--Iced= dic.t('Recipe.ICED')
+                  .Menu--Content--List--Item--RecipeList--Item--Iced= dic.t('meta.recipe.recipeType.ICED')
                   +RecipeLink(item.iced.url, dic)
     +Footer(dic)

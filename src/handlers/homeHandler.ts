@@ -20,7 +20,7 @@ export function homeHandler(req: any, res: any): void {
         id: 1,
       },
       excepted: {
-        id: featuredPost.id,
+        key: featuredPost.key,
       },
     })
     .find();
@@ -31,7 +31,7 @@ export function homeHandler(req: any, res: any): void {
     path: req.originalUrl,
     dic,
     title: dic.t('name'),
-    description: dic.t('Home.description'),
+    description: dic.t('Pages.Home.description'),
     thumbnailUrl: 'TODO',
     pageType: 'cafe',
 

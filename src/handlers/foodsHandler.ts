@@ -6,7 +6,7 @@ export function foodsHandler(req: any, res: any): void {
   const dic: Dictionary = new Dictionary(req.lang);
   const foodRecipes: any = Recipe(req.lang)
     .where({
-      category: dic.t('Foods.FOODS'),
+      category: dic.t('Templates.Foods.FOODS'),
     })
     .find();
   const items: any[] = foodRecipes.map(
@@ -27,12 +27,12 @@ export function foodsHandler(req: any, res: any): void {
     lang: req.lang,
     path: req.originalUrl,
     dic,
-    title: `${dic.t('Foods.FOODS')} | ${dic.t('name')}`,
-    description: dic.t('Foods.description'),
+    title: `${dic.t('Templates.Foods.FOODS')} | ${dic.t('name')}`,
+    description: dic.t('Templates.Foods.description'),
     thumbnailUrl: 'TODO',
     pageType: 'food',
 
-    heading: dic.t('Foods.FOODS'),
+    heading: dic.t('Templates.Foods.FOODS'),
     items,
   });
 }

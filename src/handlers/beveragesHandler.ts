@@ -6,7 +6,7 @@ export function beveragesHandler(req: any, res: any): void {
   const dic: Dictionary = new Dictionary(req.lang);
   const beverageRecipes: any[] = Recipe(req.lang)
     .where({
-      category: dic.t('Beverages.BEVERAGES'),
+      category: dic.t('Templates.Beverages.BEVERAGES'),
     })
     .find();
   // Const beverages = Beverage(req.lang).find();
@@ -16,11 +16,11 @@ export function beveragesHandler(req: any, res: any): void {
     for (const item of items) {
       if (item.name === beverageRecipe.name) {
         exsting = true;
-        if (beverageRecipe.recipeType === dic.t('Recipe.HOT')) {
+        if (beverageRecipe.recipeType === dic.t('meta.recipe.recipeType.HOT')) {
           item.hot = {
             url: beverageRecipe.url,
           };
-        } else if (beverageRecipe.recipeType === dic.t('Recipe.ICED')) {
+        } else if (beverageRecipe.recipeType === dic.t('meta.recipe.recipeType.ICED')) {
           item.iced = {
             url: beverageRecipe.url,
           };
@@ -30,8 +30,8 @@ export function beveragesHandler(req: any, res: any): void {
     if (!exsting) {
       items.push({
         name: beverageRecipe.name,
-        hot: beverageRecipe.recipeType === dic.t('Recipe.HOT') ? { url: beverageRecipe.url } : null,
-        iced: beverageRecipe.recipeType === dic.t('Recipe.ICED') ? { url: beverageRecipe.url } : null,
+        hot: beverageRecipe.recipeType === dic.t('meta.recipe.recipeType.HOT') ? { url: beverageRecipe.url } : null,
+        iced: beverageRecipe.recipeType === dic.t('meta.recipe.recipeType.ICED') ? { url: beverageRecipe.url } : null,
       });
     }
   });
@@ -41,12 +41,12 @@ export function beveragesHandler(req: any, res: any): void {
     lang: req.lang,
     path: req.originalUrl,
     dic,
-    title: `${dic.t('Beverages.BEVERAGES')} | ${dic.t('name')}`,
-    description: dic.t('Beverages.description'),
+    title: `${dic.t('Templates.Beverages.BEVERAGES')} | ${dic.t('name')}`,
+    description: dic.t('Templates.Beverages.description'),
     thumbnailUrl: 'TODO',
     pageType: 'drink',
 
-    heading: dic.t('Beverages.BEVERAGES'),
+    heading: dic.t('Templates.Beverages.BEVERAGES'),
     items,
   });
 }
