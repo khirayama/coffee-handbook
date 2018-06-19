@@ -19,7 +19,6 @@
     "build:images": "node bin/minimize-images.js",
     "lint": "tslint --format verbose -c tslint.json 'src/**/*.{ts,tsx}'",
     "lint:fix": "tslint --fix --format verbose -c tslint.json 'src/**/*.{ts,tsx}'",
-    "format": "prettier --ignore-path .gitignore --config .prettierrc --write 'src/**/!(*.html|*.png|*.webp|*.svg)'",
     "format": "prettier --ignore-path .gitignore --config .prettierrc --write 'src/**/!(*.json|*.jpg|*.pug|*.html|*.png|*.webp|*.svg)' bin webpack.config.js .eslintrc.js .postcssrc.js",
     "precommit": "npm run lint:fix && npm run format",
     "check": "npx npm-check-updates"
