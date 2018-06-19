@@ -65,6 +65,7 @@
       height: $size;
       line-height: 1.2;
       border: solid 2px $color-text;
+      letter-spacing: -0.25px;
 
       .Header--Link--Logo--Text {
         position: absolute;
