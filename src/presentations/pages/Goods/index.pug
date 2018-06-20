@@ -11,13 +11,13 @@ block meta
 
 block body
   .Goods
-    +Header(lang)
-    +Navigation(path, dic)
+    +Header(props.header)
+    +Navigation(props.navigation)
     .Goods--Content
       .Goods--Content--CategoryTitle
-        h2= heading
+        h2= props.categoryTitle.heading
       .Goods--Content--GoodList
-        for good in goods
+        for goodListItem in props.goodList
           .Goods--Content--GoodList--Item
-            +GoodCard(good)
-    +Footer(dic)
+            +GoodCard(goodListItem)
+    +Footer
