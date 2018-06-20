@@ -1,8 +1,8 @@
 include /components/Picture
 
-mixin GoodCard(good)
-  a.GoodCard(href=good.url)
+mixin GoodCard(props)
+  a.GoodCard(href=props.url)
     .GoodCard--Picture
-      +Picture(good.meta.thumbnailUrl.square, good.title)
-    .GoodCard--Name= good.name
-    .GoodCard--Category= good.category
+      +Picture(props.picture)
+    .GoodCard--Name= props.name
+    .GoodCard--Category= props.category

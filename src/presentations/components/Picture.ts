@@ -1,6 +1,12 @@
 import { View, ViewElement } from 'presentations/components/View';
 import { onscreen } from 'presentations/utils/onscreen';
 
+export interface IPictureComponent {
+  src: string;
+  alt: string;
+  lazy: boolean;
+}
+
 export class Picture extends View {
   private $imageEl: ViewElement;
 

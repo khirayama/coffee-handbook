@@ -1,8 +1,8 @@
 include /components/Picture
 
-mixin StoryCard(post)
+mixin StoryCard(props)
   .StoryCard
     .StoryCard--Thumbnail
-      +Picture(post.thumbnailUrl.rectangle, post.title, true)
-    .StoryCard--Date= post.publishedAt
-    .StoryCard--Title= post.title
+      +Picture(props.picture)
+    .StoryCard--Date= props.publishedAt
+    .StoryCard--Title= props.title

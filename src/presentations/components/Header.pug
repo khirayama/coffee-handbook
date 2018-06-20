@@ -1,9 +1,9 @@
-mixin Header(lang)
+mixin Header(props)
   header.Header
     ul.Header--LangList
-      li.Header--LangList--Item(class= lang === 'ja' ? 'Header--LangList--Item__Active' : '')
+      li.Header--LangList--Item(class= props.lang === 'ja' ? 'Header--LangList--Item__Active' : '')
         a(href="?lang=ja") 日本語
-      li.Header--LangList--Item(class= lang === 'en' ? 'Header--LangList--Item__Active' : '')
+      li.Header--LangList--Item(class= props.lang === 'en' ? 'Header--LangList--Item__Active' : '')
         a(href="?lang=en") ENGLISH
     a.Header--Link(href="/")
       h1.Header--Link--Logo
