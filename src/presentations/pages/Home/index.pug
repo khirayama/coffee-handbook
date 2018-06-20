@@ -2,10 +2,10 @@ extends /application/Layout
 
 block import
   include /components/Header
-  include /components/Footer
   include /components/Navigation
   include /components/Picture
   include /components/StoryCard
+  include /components/Footer
 
 block meta
   script(src="/pages/Home/bundle.js" defer)
@@ -13,25 +13,25 @@ block meta
 
 block body
   .Home
-    +Header(lang)
-    +Navigation(path, dic)
+    +Header(props.header)
+    +Navigation(props.navigation)
 
-    a.Home--CoverStory(href=`/posts/${featuredPost.id}`)
+    a.Home--CoverStory(href=`/posts/${props.coverStory.key}`)
       .Home--CoverStory--Content
         .Home--CoverStory--Content--Image
-          +Picture(featuredPost.thumbnailUrl.default, featuredPost.title)
-            source(media="(min-width: 446px)" srcset=featuredPost.thumbnailUrl.rectangle)
-            source(media="(max-width: 446px)" srcset=featuredPost.thumbnailUrl.square)
+          +Picture(props.coverStory)
+            source(media="(min-width: 446px)" srcset=props.coverStory.rectangleImagePath)
+            source(media="(max-width: 446px)" srcset=props.coverStory.squareImagePath)
           .Home--CoverStory--Content--Image--Cover
           .Home--CoverStory--Content--Title
-            = featuredPost.title
+            = props.coverStory.title
 
     .Home--Content
       .Home--Content--Heading= dic.t('Pages.Home.LATEST_ARTICLES')
 
       ul.Home--Content--StoryList
-        each post in posts
+        each storyListItem in props.storyList
           li.Home--Content--StoryList--Item
-            a.Home--Content--StoryList--Item--Link(href=`/posts/${post.id}`)
-              +StoryCard(post)
-    +Footer(dic)
+            a.Home--Content--StoryList--Item--Link(href=`/posts/${storyListItem.key}`)
+              +StoryCard(storyListItem)
+    +Footer

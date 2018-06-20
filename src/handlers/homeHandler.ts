@@ -1,10 +1,13 @@
+import * as express from 'express';
+
 import { config } from 'config';
-import { Post } from 'resources/Post';
+import { IHomePage, IStoryListItemComponent } from 'presentations/pages/Home';
+import { IPost, Post } from 'resources/Post';
 import { Dictionary } from 'utils/Dictionary';
 
-export function homeHandler(req: any, res: any): void {
+export function homeHandler(req: express.Request, res: express.Response): void {
   const dic: Dictionary = new Dictionary(req.lang);
-  const featuredPost: any = Post(req.lang)
+  const featuredPost: IPost = Post(req.lang)
     .where({
       categories: {
         id: 1,
@@ -14,7 +17,7 @@ export function homeHandler(req: any, res: any): void {
       },
     })
     .findOne();
-  const exceptedFeaturedPosts: any[] = Post(req.lang)
+  const exceptedFeaturedPosts: IPost[] = Post(req.lang)
     .where({
       categories: {
         id: 1,
@@ -25,17 +28,54 @@ export function homeHandler(req: any, res: any): void {
     })
     .find();
 
-  res.render('pages/Home', {
-    config,
+  const props: IHomePage = {
+    author: dic.t('author'),
+    name: dic.t('name'),
+    baseUrl: config.url,
+    facebookAppId: config.facebookAppId,
+    facebookPageUrl: config.facebookPageUrl,
+    twitterCardType: config.twitterCardType,
+    twitterAccount: config.twitterAccount,
+
     lang: req.lang,
     path: req.originalUrl,
-    dic,
+
     title: dic.t('name'),
     description: dic.t('Pages.Home.description'),
-    thumbnailUrl: 'TODO',
+    keywords: ['hirayama', '平山', 'coffee', 'コーヒー', '珈琲', 'institute', '研究所'],
+    image: 'TODO',
     pageType: 'cafe',
 
-    featuredPost,
-    posts: exceptedFeaturedPosts,
-  });
+    header: {
+      lang: req.lang,
+    },
+    navigation: {
+      path: req.originalUrl,
+    },
+    coverStory: {
+      alt: featuredPost.title,
+      src: featuredPost.thumbnailUrl.square,
+      lazy: false,
+      key: featuredPost.key,
+      title: featuredPost.title,
+      squareImagePath: featuredPost.thumbnailUrl.square,
+      rectangleImagePath: featuredPost.thumbnailUrl.rectangle,
+    },
+    storyList: exceptedFeaturedPosts.map(
+      (post: IPost): IStoryListItemComponent => {
+        return {
+          key: post.key,
+          publishedAt: post.publishedAt,
+          title: post.title,
+          picture: {
+            alt: post.title,
+            src: post.thumbnailUrl.rectangle,
+            lazy: true,
+          },
+        };
+      },
+    ),
+  };
+
+  res.render('pages/Home', { dic, props });
 }
