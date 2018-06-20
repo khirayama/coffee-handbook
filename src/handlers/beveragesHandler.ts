@@ -1,28 +1,31 @@
+import * as express from 'express';
+
 import { config } from 'config';
-import { Recipe } from 'resources/Recipe';
+import { IMenuPage, IRecipeItemComponent } from 'presentations/templates/Menu';
+import { IRecipe, Recipe } from 'resources/Recipe';
 import { Dictionary } from 'utils/Dictionary';
 
-export function beveragesHandler(req: any, res: any): void {
+export function beveragesHandler(req: express.Request, res: express.Response): void {
   const dic: Dictionary = new Dictionary(req.lang);
-  const beverageRecipes: any[] = Recipe(req.lang)
+  const beverageRecipes: IRecipe[] = Recipe(req.lang)
     .where({
       category: dic.t('Templates.Beverages.BEVERAGES'),
     })
     .find();
-  // Const beverages = Beverage(req.lang).find();
-  const items: any[] = [];
-  beverageRecipes.forEach((beverageRecipe: any) => {
+
+  const items: IRecipeItemComponent[] = [];
+  beverageRecipes.forEach((beverageRecipe: IRecipe) => {
     let exsting: boolean = false;
     for (const item of items) {
       if (item.name === beverageRecipe.name) {
         exsting = true;
         if (beverageRecipe.recipeType === dic.t('meta.recipe.recipeType.HOT')) {
           item.hot = {
-            url: beverageRecipe.url,
+            href: beverageRecipe.url,
           };
         } else if (beverageRecipe.recipeType === dic.t('meta.recipe.recipeType.ICED')) {
           item.iced = {
-            url: beverageRecipe.url,
+            href: beverageRecipe.url,
           };
         }
       }
@@ -30,23 +33,42 @@ export function beveragesHandler(req: any, res: any): void {
     if (!exsting) {
       items.push({
         name: beverageRecipe.name,
-        hot: beverageRecipe.recipeType === dic.t('meta.recipe.recipeType.HOT') ? { url: beverageRecipe.url } : null,
-        iced: beverageRecipe.recipeType === dic.t('meta.recipe.recipeType.ICED') ? { url: beverageRecipe.url } : null,
+        hot: beverageRecipe.recipeType === dic.t('meta.recipe.recipeType.HOT') ? { href: beverageRecipe.url } : null,
+        iced: beverageRecipe.recipeType === dic.t('meta.recipe.recipeType.ICED') ? { href: beverageRecipe.url } : null,
+        defaults: null,
       });
     }
   });
 
-  res.render('templates/Menu', {
-    config,
+  const props: IMenuPage = {
+    author: dic.t('author'),
+    name: dic.t('name'),
+    baseUrl: config.url,
+    facebookAppId: config.facebookAppId,
+    facebookPageUrl: config.facebookPageUrl,
+    twitterCardType: config.twitterCardType,
+    twitterAccount: config.twitterAccount,
+
     lang: req.lang,
     path: req.originalUrl,
-    dic,
+
     title: `${dic.t('Templates.Beverages.BEVERAGES')} | ${dic.t('name')}`,
     description: dic.t('Templates.Beverages.description'),
-    thumbnailUrl: 'TODO',
+    keywords: ['hirayama', '平山', 'coffee', 'コーヒー', '珈琲', 'institute', '研究所'],
+    image: 'TODO',
     pageType: 'drink',
 
-    heading: dic.t('Templates.Beverages.BEVERAGES'),
+    header: {
+      lang: req.lang,
+    },
+    navigation: {
+      path: req.originalUrl,
+    },
+    categoryTitle: {
+      heading: dic.t('Templates.Beverages.BEVERAGES'),
+    },
     items,
-  });
+  };
+
+  res.render('templates/Menu', { dic, props });
 }
