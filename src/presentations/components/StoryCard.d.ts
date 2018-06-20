@@ -1,8 +1,7 @@
 import { IPictureComponent } from 'presentations/components/Picture';
 
-export interface IGoodCardComponent {
-  url: string;
-  name: string;
-  category: string;
+export interface IStoryCardComponent {
+  publishedAt: string;
+  title: string;
   picture: IPictureComponent;
 }

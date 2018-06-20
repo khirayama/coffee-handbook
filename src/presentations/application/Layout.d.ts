@@ -1,12 +1,18 @@
 import { Dictionary } from 'utils/Dictionary';
 
-export interface ILayout {
-  config: any;
+interface ILayout {
   lang: string;
-  path: string;
-  dic: Dictionary;
   title: string;
   description: string;
-  thumbnailUrl: string;
+  author: string;
+  baseUrl: string;
+  path: string;
+  name: string;
+  keywords: string[];
+  image: string;
+  facebookAppId: string;
+  facebookPageUrl: string;
+  twitterCardType: string;
+  twitterAccount: string;
   pageType: string;
 }

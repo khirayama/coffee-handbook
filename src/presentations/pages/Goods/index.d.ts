@@ -1,22 +1,13 @@
 import { ILayout } from 'presentations/application/Layout';
 import { IGoodCardComponent } from 'presentations/components/GoodCard';
+import { IHeaderComponent } from 'presentations/components/Header';
+import { INavigationComponent } from 'presentations/components/Navigation';
 
 export interface IGoodsPage extends ILayout {
-  heading: string;
-  goods: (
-    | {
-        name: string;
-        category: string;
-        summary: string;
-        content: string;
-        pictures: {
-          url: string;
-          caption: string;
-        }[];
-        specs: {
-          name: string;
-          value: string;
-        }[];
-      }
-    | IGoodCardComponent)[];
+  header: IHeaderComponent;
+  navigation: INavigationComponent;
+  categoryTitle: {
+    heading: string;
+  };
+  goodList: IGoodCardComponent[];
 }
