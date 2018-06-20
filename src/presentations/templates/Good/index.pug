@@ -12,37 +12,39 @@ block meta
 
 block body
   .Good
-    +Header(lang)
-    +Navigation(path, dic)
+    +Header(props.header)
+    +Navigation(props.navigation)
     .Good--Content
       .Good--Content--Cover
         .Good--Content--Cover--Pictures
           .Good--Content--Cover--Pictures--Cover
-            +Picture(good.pictures[0].url, good.pictures[0].caption)
+            +Picture(props.good.pictures[0])
           .Good--Content--Cover--Pictures--List
-            for picture in good.pictures
+            for picture in props.good.pictures
               .Good--Content--Cover--Pictures--List--Picture
-                +Picture(picture.url, picture.caption)
+                +Picture(picture)
         .Good--Content--Cover--Information
-          .Good--Content--Cover--Information--Name= good.name
-          .Good--Content--Cover--Information--Category= good.category
-          .Good--Content--Cover--Information--Summary!= good.summary
+          .Good--Content--Cover--Information--Name= props.good.name
+          .Good--Content--Cover--Information--Category= props.good.category
+          .Good--Content--Cover--Information--Summary!= props.good.summary
           table.Good--Content--Cover--Information--Spec
             tbody
-              for spec in good.specs
+              for spec in props.good.specs
                 tr
                   th= spec.name
                   td= spec.value
           .Good--Content--Cover--Information--Button Amazonで購入
       .Good--Content--Content
         .Good--Content--Content--Content
-          p!= good.content
+          p!= props.good.content
       .Good--Content--RelatedList
         .Good--Content--RelatedList--Title Related items
-        .Good--Content--RelatedList--Item
-          +GoodCard(good)
+        for relatedGood in props.relatedGoods
+          .Good--Content--RelatedList--Item
+            +GoodCard(relatedGood)
       .Good--Content--RelatedList
         .Good--Content--RelatedList--Title Related recipes
-        .Good--Content--RelatedList--Item
-          +GoodCard(good)
-    +Footer(dic)
+        for relatedGood in props.relatedGoods
+          .Good--Content--RelatedList--Item
+            +GoodCard(relatedGood)
+    +Footer
