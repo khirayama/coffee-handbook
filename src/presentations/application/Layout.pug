@@ -4,37 +4,37 @@ block import
 
 block vars
 
-html(lang=lang)
+html(lang=props.lang)
   head
     meta(charset="utf-8")
     meta(http-equiv="X-UA-Compatible" content="IE=edge")
     meta(name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=5, minimum-scale=1, user-scalable=yes, viewport-fit=cover")
-    link(rel="manifest" href=`/manifest.${lang}.json`)
+    link(rel="manifest" href=`/manifest.${props.lang}.json`)
     link(rel="stylesheet" href="/application/index.css")
 
-    title= title
-    meta(name="description" content=description)
-    meta(name="author" content=dic.t('author'))
-    meta(name="keywords" content=config.keywords)
-    link(rel="alternate" type="application/rss+xml" title="RSS 2.0" href=`/rss?lang=${lang}`)
+    title= props.title
+    meta(name="description" content=props.description)
+    meta(name="author" content=props.author)
+    meta(name="keywords" content=props.keywords.join(','))
+    link(rel="alternate" type="application/rss+xml" title="RSS 2.0" href=`/rss?lang=${props.lang}`)
 
     //- OGP
-    meta(property="og:site_name" content=dic.t('name'))
-    meta(property="og:title" content=title)
-    meta(property="og:description" content=description)
-    meta(property="og:image" content=thumbnailUrl)
-    meta(property="og:type" content=pageType)
-    meta(property="og:url" content=`${config.url}${path}?lang=${lang}`)
+    meta(property="og:site_name" content=props.name)
+    meta(property="og:title" content=props.title)
+    meta(property="og:description" content=props.description)
+    meta(property="og:image" content=props.image)
+    meta(property="og:type" content=props.pageType)
+    meta(property="og:url" content=`${props.baseUrl}${props.path}?lang=${props.lang}`)
     //- Facebook
-    meta(property="fb:app_id" content=config.facebookAppId)
-    meta(property="article:publisher" content=config.facebookPageUrl)
+    meta(property="fb:app_id" content=props.facebookAppId)
+    meta(property="article:publisher" content=props.facebookPageUrl)
     //- Twitter
-    meta(property="twitter:title" content=title)
-    meta(property="twitter:description" content=description)
-    meta(property="twitter:image" content=thumbnailUrl)
-    meta(property="twitter:card" content=config.twitterCardType)
-    meta(property="twitter:site" content=config.twitterAccount)
-    meta(property="twitter:url" content=`${config.url}${path}?lang={lang}`)
+    meta(property="twitter:title" content=props.title)
+    meta(property="twitter:description" content=props.description)
+    meta(property="twitter:image" content=props.image)
+    meta(property="twitter:card" content=props.twitterCardType)
+    meta(property="twitter:site" content=props.twitterAccount)
+    meta(property="twitter:url" content=`${props.baseUrl}${props.path}?lang={props.lang}`)
 
     script
       include /application/service-worker.js
