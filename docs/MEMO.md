@@ -1,9 +1,5 @@
 ## TODO
 
-- [x] ABOUT OUR COFFEE to HIRAYAMA COFFEE INSTITUTE
-- [x] PRODUCTS to GOODS
-- [x] TypeScript
-
 ## Checklist
 
 - Design
