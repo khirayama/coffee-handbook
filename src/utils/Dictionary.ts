@@ -1,3 +1,4 @@
+// tslint:disable:no-any
 import { dictionary as dictionaryData } from 'dictionary';
 
 export class Dictionary {
