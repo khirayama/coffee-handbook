@@ -1,4 +1,11 @@
-export const config: any = {
+export const config: {
+  url: string;
+  languages: string[];
+  facebookAppId: string;
+  facebookPageUrl: string;
+  twitterCardType: string;
+  twitterAccount: string;
+} = {
   url: 'https://hirayamacoffee.com',
   languages: ['ja', 'en'],
   facebookAppId: 'test id',
