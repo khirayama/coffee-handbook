@@ -11,6 +11,7 @@ export function postHandler(req: express.Request, res: express.Response): void {
     .where({ id })
     .findOne();
 
+  // tslint:disable-next-line
   const vars: any = {
     config,
     lang: req.lang,
