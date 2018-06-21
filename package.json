@@ -33,7 +33,7 @@
     "pug": "2.0.3"
   },
   "devDependencies": {
-    "@types/node": "10.3.3",
+    "@types/node": "10.3.4",
     "babel-core": "6.26.3",
     "babel-eslint": "8.2.3",
     "babel-loader": "7.1.4",
