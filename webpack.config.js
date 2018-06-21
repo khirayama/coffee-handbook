@@ -1,6 +1,8 @@
 /* eslint-disable no-console */
 const path = require('path');
+
 const glob = require('glob');
+const webpack = require('webpack');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
@@ -16,54 +18,57 @@ for (let i = 0; i < inputFilenames.length; i++) {
     .replace('index.ts', 'bundle');
   entry[outputFilename] = inputFilename;
 }
-
-const config = {
-  entry,
-  output: {
-    filename: '[name].js',
-    path: __dirname,
-  },
-  resolve: {
-    extensions: ['.ts', '.tsx', '.js', '.json'],
+module.exports = (env, argv) => {
+  const config = {
+    entry,
+    output: {
+      filename: '[name].js',
+      path: __dirname,
+    },
+    resolve: {
+      extensions: ['.ts', '.tsx', '.js', '.json'],
+      plugins: [
+        new TsconfigPathsPlugin({
+          configFile: './tsconfig.web.json',
+        }),
+      ],
+    },
     plugins: [
-      new TsconfigPathsPlugin({
-        configFile: './tsconfig.web.json',
+      new webpack.DefinePlugin({
+        'process.env': JSON.stringify({
+          NODE_ENV: process.env.NODE_ENV,
+        }),
       }),
     ],
-  },
-  plugins: [],
-  optimization: {
-    splitChunks: {
-      name: 'commons',
-      chunks: 'initial',
+    optimization: {
+      minimize: argv.mode === 'production',
     },
-  },
-  module: {
-    rules: [
-      {
-        test: /\.tsx?$/,
-        use: {
-          loader: 'ts-loader',
-          options: {
-            configFile: 'tsconfig.web.json',
+    module: {
+      rules: [
+        {
+          test: /\.tsx?$/,
+          use: {
+            loader: 'ts-loader',
+            options: {
+              configFile: 'tsconfig.web.json',
+            },
           },
         },
-      },
-    ],
-  },
-};
+      ],
+    },
+  };
 
-if (NODE_ENV === 'production') {
-  console.log(`Building as production...`);
-  config.optimization.minimize = true;
+  if (NODE_ENV === 'production') {
+    console.log(`Building as production...`);
+    config.optimization.minimize = true;
 
-  if (process.env.ANALYSIS === 'true') {
-    console.log(`Building for analyze...`);
-    config.plugins.push(new BundleAnalyzerPlugin());
+    if (process.env.ANALYSIS === 'true') {
+      console.log(`Building for analyze...`);
+      config.plugins.push(new BundleAnalyzerPlugin());
+    }
+  } else {
+    console.log('Building as development...');
+    config.devtool = 'inline-source-map';
   }
-} else {
-  console.log('Building as development...');
-  config.devtool = 'inline-source-map';
-}
-
-module.exports = config;
+  return config;
+};
