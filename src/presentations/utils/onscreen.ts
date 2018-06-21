@@ -1,20 +1,22 @@
+interface ITarget {
+  el: HTMLElement;
+  offset: number;
+  displayed: boolean;
+  handler(): void;
+}
+
 const screenHeight: number = window.innerHeight;
-const listeners: any[] = [];
-/* {
-  container: null,
-  targets: [{
-   target: null,
-   handler: () => {},
-   displayed: false,
-  }],
-} */
+const listeners: {
+  container: Window | HTMLElement;
+  targets: ITarget[];
+}[] = [];
 
 function handleEvent(container: Window | HTMLElement): void {
   for (const listener of listeners) {
     if (listener.container === container) {
-      listener.targets.forEach((target: any) => {
+      listener.targets.forEach((target: ITarget) => {
         if (!target.displayed) {
-          const rect: any = target.el.getBoundingClientRect();
+          const rect: ClientRect = target.el.getBoundingClientRect();
           if (rect.top - target.offset < screenHeight) {
             target.displayed = true;
             target.handler();
@@ -25,7 +27,12 @@ function handleEvent(container: Window | HTMLElement): void {
   }
 }
 
-export function onscreen(container: Window | HTMLElement, target: HTMLElement, handler: any, offset: number): void {
+export function onscreen(
+  container: Window | HTMLElement,
+  target: HTMLElement,
+  handler: () => void,
+  offset: number,
+): void {
   let attached: boolean = false;
 
   for (const listener of listeners) {
@@ -47,7 +54,14 @@ export function onscreen(container: Window | HTMLElement, target: HTMLElement, h
     container.addEventListener('touchmove', handleEvent.bind(null, container));
     listeners.push({
       container,
-      targets: [{ el: target, handler }],
+      targets: [
+        {
+          el: target,
+          handler,
+          offset,
+          displayed: false,
+        },
+      ],
     });
   }
 }
