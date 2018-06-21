@@ -10,7 +10,7 @@ block meta
 
 block body
   .AboutUs
-    +Header(lang)
-    +Navigation(path, dic)
+    +Header(props.header)
+    +Navigation(props.navigation)
     h1= title
-    +Footer(dic)
+    +Footer
