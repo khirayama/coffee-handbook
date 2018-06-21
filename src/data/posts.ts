@@ -22,6 +22,10 @@ export interface IRawPost {
     ja: string;
     en: string;
   };
+  description: {
+    ja: string;
+    en: string;
+  };
   content: {
     ja: string;
     en: string;

@@ -22,6 +22,10 @@ export const post2: IRawPost = {
     ja: '【特集】なぜ僕らがこの活動をはじめたのか。- 2',
     en: '[Feature] Why we start this activities. - 2',
   },
+  description: {
+    ja: '【特集】なぜ僕らがこの活動をはじめたのか。- 2',
+    en: '[Feature] Why we start this activities. - 2',
+  },
   content: {
     ja: pug.compileFile(path.join(__dirname, 'post2-content.ja.pug'))(),
     en: pug.compileFile(path.join(__dirname, 'post2-content.en.pug'))(),

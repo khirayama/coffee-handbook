@@ -10,6 +10,7 @@ export interface IPost {
     rectangle: string;
   };
   title: string;
+  description: string;
   content: string;
   categories: { id: number }[];
   tags: { id: number }[];

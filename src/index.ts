@@ -40,7 +40,7 @@ app
   .get('/goods', goodsHandler)
   .get('/goods/:goodKey', goodHandler)
   .get('/about-us', aboutUsHandler)
-  .get('/posts/:id', postHandler)
+  .get('/posts/:postKey', postHandler)
   .get('/rss*', rssHandler);
 
 // Server

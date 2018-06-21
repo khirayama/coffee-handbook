@@ -22,6 +22,10 @@ export const post5: IRawPost = {
     ja: '通常記事',
     en: 'Regular',
   },
+  description: {
+    ja: '通常記事',
+    en: 'Regular',
+  },
   content: {
     ja: pug.compileFile(path.join(__dirname, 'post5-content.ja.pug'))(),
     en: pug.compileFile(path.join(__dirname, 'post5-content.en.pug'))(),
