@@ -10,13 +10,15 @@ export interface IPictureComponent {
 export class Picture extends View {
   private $imageEl: ViewElement;
 
-  private props: any;
+  private props: {
+    lazy: boolean;
+  };
 
   public init(): void {
     this.$imageEl = this.$el.find('.Picture--Image');
 
     this.props = {
-      lazy: this.$el.data.lazy,
+      lazy: Boolean(this.$el.data.lazy),
     };
 
     if (this.props.lazy) {

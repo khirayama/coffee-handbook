@@ -1,7 +1,7 @@
 export class ViewElement {
   public el: HTMLElement;
 
-  public data: any;
+  public data: { [key: string]: string | boolean | number };
 
   constructor(el: HTMLElement) {
     this.el = el;
@@ -35,17 +35,13 @@ export class ViewElement {
     return new ViewElement(el);
   }
 
-  public on(eventType: string, handler: any, options: any): void {
+  public on(eventType: string, handler: () => void, options: {}): void {
     this.el.addEventListener(eventType, handler, options);
   }
 
-  public attr(attr: string): any {
+  public attr(attr: string): string {
     return this.el[attr];
   }
-
-  // public set(attr: string, value: string): void {
-  //   this.el[attr] = value;
-  // }
 
   public addClass(className: string): void {
     this.el.classList.add(className);
