@@ -1,25 +1,75 @@
+import * as express from 'express';
+
 import { config } from 'config';
-import { Recipe } from 'resources/Recipe';
+import { IIngredientTableRow, IRecipeTemplate, IStepListItem } from 'presentations/templates/Recipe';
+import { IRecipe, Recipe } from 'resources/Recipe';
 import { Dictionary } from 'utils/Dictionary';
 
-export function foodHandler(req: any, res: any): void {
+export function foodHandler(req: express.Request, res: express.Response): void {
   const dic: Dictionary = new Dictionary(req.lang);
-  const recipe: any = Recipe(req.lang)
+  const recipe: IRecipe = Recipe(req.lang)
     .where({
       key: req.params.foodKey,
     })
     .findOne();
 
-  res.render('templates/Recipe', {
-    config,
+  const props: IRecipeTemplate = {
+    author: dic.t('author'),
+    name: dic.t('name'),
+    baseUrl: config.url,
+    facebookAppId: config.facebookAppId,
+    facebookPageUrl: config.facebookPageUrl,
+    twitterCardType: config.twitterCardType,
+    twitterAccount: config.twitterAccount,
+
     lang: req.lang,
     path: req.originalUrl,
-    dic,
+
     title: `${recipe.title} | ${dic.t('name')}`,
     description: recipe.description,
-    thumbnailUrl: recipe.thumbnailUrl.rectangle,
-    pageType: 'food',
+    keywords: ['hirayama', '平山', 'coffee', 'コーヒー', '珈琲', 'institute', '研究所'],
+    image: recipe.thumbnailUrl.rectangle,
+    pageType: 'drink',
 
-    recipe,
-  });
+    header: {
+      lang: req.lang,
+    },
+    navigation: {
+      path: req.originalUrl,
+    },
+    contentTitle: {
+      heading: recipe.name,
+      recipeType: recipe.recipeType,
+    },
+    coverPicture: {
+      src: recipe.thumbnailUrl.square,
+      squareSrc: recipe.thumbnailUrl.square,
+      rectangleSrc: recipe.thumbnailUrl.rectangle,
+      alt: recipe.name,
+      lazy: true,
+    },
+    ingredientTable: recipe.ingredients.map(
+      (ingredient: { name: string; note: string; quantity: string }): IIngredientTableRow => {
+        return {
+          name: ingredient.name,
+          note: ingredient.note,
+          quantity: ingredient.quantity,
+        };
+      },
+    ),
+    stepList: {
+      recipeType: recipe.recipeType,
+      items: recipe.steps.map(
+        (step: { summary: string; description: string; note: string }): IStepListItem => {
+          return {
+            summary: step.summary,
+            description: step.description,
+            note: step.note,
+          };
+        },
+      ),
+    },
+  };
+
+  res.render('templates/Recipe', { dic, props });
 }

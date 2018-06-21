@@ -7,42 +7,43 @@ block import
   include /components/Picture
 
 block meta
+  script(src="/templates/Recipe/bundle.js" defer)
   link(rel="stylesheet" href="/templates/Recipe/index.css")
 
 block body
   .Recipe
-    +Header(lang)
-    +Navigation(path, dic)
+    +Header(props.header)
+    +Navigation(props.navigation)
 
     .Recipe--CoverPicture
       .Recipe--CoverPicture--Content
         .Recipe--CoverPicture--Content--Image
-          +Picture(recipe.thumbnailUrl.default, recipe.name)
-            source(media="(min-width: 446px)" srcset=recipe.thumbnailUrl.rectangle)
-            source(media="(max-width: 446px)" srcset=recipe.thumbnailUrl.square)
+          +Picture(props.coverPicture)
+            source(media="(min-width: 446px)" srcset=props.coverPicture.rectangleSrc)
+            source(media="(max-width: 446px)" srcset=props.coverPicture.squareSrc)
 
     .Recipe--Content
       .Recipe--Content--Title
-        h2= recipe.name
-        if recipe.recipeType
+        h2= props.contentTitle.heading
+        if props.contentTitle.recipeType
           div
-            .Recipe--Content--Title--Type(class= recipe.recipeType === dic.t('meta.recipe.recipeType.HOT') ? 'Recipe--Content--Title--Type__Hot' : 'Recipe--Content--Title--Type__Iced')= recipe.recipeType
+            .Recipe--Content--Title--Type(class= props.contentTitle.recipeType === dic.t('meta.recipe.recipeType.HOT') ? 'Recipe--Content--Title--Type__Hot' : 'Recipe--Content--Title--Type__Iced')= props.contentTitle.recipeType
 
       .Recipe--Content--Ingredient
         .Recipe--Content--Ingredient--Title= dic.t('Templates.Recipe.INGREDIENTS')
         table.Recipe--Content--Ingredient--Table
           tbody
-            for ingredient in recipe.ingredients
+            for ingredientRow in props.ingredientTable
               tr.Recipe--Content--Ingredient--Table--Row
-                td.Recipe--Content--Ingredient--Table--Row--NameCell= ingredient.name
-                td.Recipe--Content--Ingredient--Table--Row--NoteCell= ingredient.note
-                td.Recipe--Content--Ingredient--Table--Row--QuantityCell= ingredient.quantity
+                td.Recipe--Content--Ingredient--Table--Row--NameCell= ingredientRow.name
+                td.Recipe--Content--Ingredient--Table--Row--NoteCell= ingredientRow.note
+                td.Recipe--Content--Ingredient--Table--Row--QuantityCell= ingredientRow.quantity
 
       .Recipe--Content--StepList
-        for step in recipe.steps
-          .Recipe--Content--StepList--Item(class= recipe.recipeType === dic.t('meta.recipe.recipeType.HOT') ? 'Recipe--Content--StepList--Item__Hot' : (recipe.recipeType === dic.t('meta.recipe.recipeType.ICED') ? 'Recipe--Content--StepList--Item__Iced' : ''))
-            .Recipe--Content--StepList--Item--Summary= step.summary
-            .Recipe--Content--StepList--Item--Description= step.description
-            if step.note
-              .Recipe--Content--StepList--Item--Note= step.note
-    +Footer(dic)
+        for stepListItem in props.stepList.items
+          .Recipe--Content--StepList--Item(class= props.stepList.recipeType === dic.t('meta.recipe.recipeType.HOT') ? 'Recipe--Content--StepList--Item__Hot' : (props.stepList.recipeType === dic.t('meta.recipe.recipeType.ICED') ? 'Recipe--Content--StepList--Item__Iced' : ''))
+            .Recipe--Content--StepList--Item--Summary= stepListItem.summary
+            .Recipe--Content--StepList--Item--Description= stepListItem.description
+            if stepListItem.note
+              .Recipe--Content--StepList--Item--Note= stepListItem.note
+    +Footer
