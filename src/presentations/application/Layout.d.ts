@@ -1,6 +1,4 @@
-import { Dictionary } from 'utils/Dictionary';
-
-interface ILayout {
+export interface ILayout {
   lang: string;
   title: string;
   description: string;
