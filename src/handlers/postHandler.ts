@@ -6,24 +6,14 @@ import { IPost, Post } from 'resources/Post';
 import { Dictionary } from 'utils/Dictionary';
 
 export function postHandler(req: express.Request, res: express.Response): void {
+  const dic: Dictionary = req.dic;
   const postKey: string = req.params.postKey;
-  const dic: Dictionary = new Dictionary(req.lang);
   const post: IPost = Post(req.lang)
     .where({ key: postKey })
     .findOne();
 
   const props: IPostTemplate = {
-    author: dic.t('author'),
-    name: dic.t('name'),
-    baseUrl: config.url,
-    facebookAppId: config.facebookAppId,
-    facebookPageUrl: config.facebookPageUrl,
-    twitterCardType: config.twitterCardType,
-    twitterAccount: config.twitterAccount,
-
-    lang: req.lang,
-    path: req.originalUrl,
-
+    ...req.layout,
     title: post.title,
     description: post.description,
     keywords: ['hirayama', '平山', 'coffee', 'コーヒー', '珈琲', 'institute', '研究所'],

@@ -6,7 +6,7 @@ import { IRecipe, Recipe } from 'resources/Recipe';
 import { Dictionary } from 'utils/Dictionary';
 
 export function foodsHandler(req: express.Request, res: express.Response): void {
-  const dic: Dictionary = new Dictionary(req.lang);
+  const dic: Dictionary = req.dic;
   const foodRecipes: IRecipe[] = Recipe(req.lang)
     .where({
       category: dic.t('Templates.Foods.FOODS'),
@@ -26,17 +26,7 @@ export function foodsHandler(req: express.Request, res: express.Response): void 
   );
 
   const props: IMenuPage = {
-    author: dic.t('author'),
-    name: dic.t('name'),
-    baseUrl: config.url,
-    facebookAppId: config.facebookAppId,
-    facebookPageUrl: config.facebookPageUrl,
-    twitterCardType: config.twitterCardType,
-    twitterAccount: config.twitterAccount,
-
-    lang: req.lang,
-    path: req.originalUrl,
-
+    ...req.layout,
     title: `${dic.t('Templates.Foods.FOODS')} | ${dic.t('name')}`,
     description: dic.t('Templates.Foods.description'),
     keywords: ['hirayama', '平山', 'coffee', 'コーヒー', '珈琲', 'institute', '研究所'],

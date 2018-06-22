@@ -6,7 +6,7 @@ import { IRecipe, Recipe } from 'resources/Recipe';
 import { Dictionary } from 'utils/Dictionary';
 
 export function beverageHandler(req: express.Request, res: express.Response): void {
-  const dic: Dictionary = new Dictionary(req.lang);
+  const dic: Dictionary = req.dic;
   const recipe: IRecipe = Recipe(req.lang)
     .where({
       key: `${req.params.beverageKey}-${req.params.recipeType}`,
@@ -14,17 +14,7 @@ export function beverageHandler(req: express.Request, res: express.Response): vo
     .findOne();
 
   const props: IRecipeTemplate = {
-    author: dic.t('author'),
-    name: dic.t('name'),
-    baseUrl: config.url,
-    facebookAppId: config.facebookAppId,
-    facebookPageUrl: config.facebookPageUrl,
-    twitterCardType: config.twitterCardType,
-    twitterAccount: config.twitterAccount,
-
-    lang: req.lang,
-    path: req.originalUrl,
-
+    ...req.layout,
     title: `${recipe.title} | ${dic.t('name')}`,
     description: recipe.description,
     keywords: ['hirayama', '平山', 'coffee', 'コーヒー', '珈琲', 'institute', '研究所'],

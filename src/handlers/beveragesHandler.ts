@@ -6,7 +6,7 @@ import { IRecipe, Recipe } from 'resources/Recipe';
 import { Dictionary } from 'utils/Dictionary';
 
 export function beveragesHandler(req: express.Request, res: express.Response): void {
-  const dic: Dictionary = new Dictionary(req.lang);
+  const dic: Dictionary = req.dic;
   const beverageRecipes: IRecipe[] = Recipe(req.lang)
     .where({
       category: dic.t('Templates.Beverages.BEVERAGES'),
@@ -41,17 +41,7 @@ export function beveragesHandler(req: express.Request, res: express.Response): v
   });
 
   const props: IMenuPage = {
-    author: dic.t('author'),
-    name: dic.t('name'),
-    baseUrl: config.url,
-    facebookAppId: config.facebookAppId,
-    facebookPageUrl: config.facebookPageUrl,
-    twitterCardType: config.twitterCardType,
-    twitterAccount: config.twitterAccount,
-
-    lang: req.lang,
-    path: req.originalUrl,
-
+    ...req.layout,
     title: `${dic.t('Templates.Beverages.BEVERAGES')} | ${dic.t('name')}`,
     description: dic.t('Templates.Beverages.description'),
     keywords: ['hirayama', '平山', 'coffee', 'コーヒー', '珈琲', 'institute', '研究所'],
