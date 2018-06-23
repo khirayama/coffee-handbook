@@ -17,6 +17,11 @@ import { rssHandler } from 'handlers/rssHandler';
 import { setLang } from 'middlewares/setLang';
 import { setLayoutProps } from 'middlewares/setLayoutProps';
 
+function preHandler(req: express.Request, res: express.Response, next: express.NextFunction): void {
+  req.layout.route = req.route.path;
+  next();
+}
+
 const app: express = express();
 
 // Middleware
@@ -34,16 +39,16 @@ app
 
 // Routing
 app
-  .get('/', homeHandler)
-  .get('/beverages', beveragesHandler)
-  .get('/beverages/:beverageKey/:recipeType', beverageHandler)
-  .get('/foods', foodsHandler)
-  .get('/foods/:foodKey', foodHandler)
-  .get('/goods', goodsHandler)
-  .get('/goods/:goodKey', goodHandler)
-  .get('/about-us', aboutUsHandler)
-  .get('/posts/:postKey', postHandler)
-  .get('/rss*', rssHandler);
+  .get('/', preHandler, homeHandler)
+  .get('/beverages', preHandler, beveragesHandler)
+  .get('/beverages/:beverageKey/:recipeType', preHandler, beverageHandler)
+  .get('/foods', preHandler, foodsHandler)
+  .get('/foods/:foodKey', preHandler, foodHandler)
+  .get('/goods', preHandler, goodsHandler)
+  .get('/goods/:goodKey', preHandler, goodHandler)
+  .get('/about-us', preHandler, aboutUsHandler)
+  .get('/posts/:postKey', preHandler, postHandler)
+  .get('/rss*', preHandler, rssHandler);
 
 // Server
 app.listen(3030, () => {
