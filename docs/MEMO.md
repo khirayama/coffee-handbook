@@ -26,9 +26,8 @@
   - [x] Create RSS
   - [x] Load image lazy
 - Marketing
-  - [ ] Install Google Analytics
-  - [ ] Consider ad
-  - [ ] Consider affiliate
+  - [ ] Consider ad / affiliate
+  - [x] Install Google Analytics
 
 ## Memo
 
