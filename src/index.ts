@@ -12,6 +12,7 @@ import { foodsHandler } from 'handlers/foodsHandler';
 import { goodHandler } from 'handlers/goodHandler';
 import { goodsHandler } from 'handlers/goodsHandler';
 import { homeHandler } from 'handlers/homeHandler';
+import { manifestHandler } from 'handlers/manifestHandler';
 import { postHandler } from 'handlers/postHandler';
 import { rssHandler } from 'handlers/rssHandler';
 import { setLang } from 'middlewares/setLang';
@@ -48,7 +49,8 @@ app
   .get('/goods/:goodKey', preHandler, goodHandler)
   .get('/about-us', preHandler, aboutUsHandler)
   .get('/posts/:postKey', preHandler, postHandler)
-  .get('/rss*', preHandler, rssHandler);
+  .get('/rss*', preHandler, rssHandler)
+  .get('/manifest.json', preHandler, manifestHandler);
 
 // Server
 app.listen(3030, () => {
