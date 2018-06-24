@@ -3,8 +3,7 @@
 ## Checklist
 
 - Design
-  - [ ] Create square icon
-  - [ ] Create circle icon
+  - [ ] Create square/circle icon
   - [ ] Make marketing space
   - [ ] Define our mission
   - [x] Create compress script
