@@ -4,6 +4,7 @@ module.exports = {
   env: {
     browser: true,
     node: true,
+    serviceWorker: true,
   },
   rules: {
     'prettier/prettier': 'error',
