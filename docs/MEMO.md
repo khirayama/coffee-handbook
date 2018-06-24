@@ -20,11 +20,11 @@
 - Engineering
   - [ ] Create sitemap
   - [ ] Base on WAI-ARIA
-  - [ ] Logging client error
   - [ ] Install service worker
   - [ ] Build AB testing
   - [x] Create RSS
   - [x] Load image lazy
+  - [x] Logging client error
 - Marketing
   - [ ] Consider ad / affiliate
   - [x] Install Google Analytics
