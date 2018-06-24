@@ -9,7 +9,7 @@ html(lang=props.lang)
     meta(charset="utf-8")
     meta(http-equiv="X-UA-Compatible" content="IE=edge")
     meta(name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=5, minimum-scale=1, user-scalable=yes, viewport-fit=cover")
-    link(rel="manifest" href=`/manifest.${props.lang}.json`)
+    link(rel="manifest" href=`/manifest.json?lang=${props.lang}`)
     link(rel="stylesheet" href="/application/index.css")
 
     title= props.title
@@ -17,6 +17,8 @@ html(lang=props.lang)
     meta(name="author" content=props.author)
     meta(name="keywords" content=props.keywords.join(','))
     link(rel="alternate" type="application/rss+xml" title="RSS 2.0" href=`/rss?lang=${props.lang}`)
+
+    meta(name="theme-color" content="white")
 
     //- OGP
     meta(property="og:site_name" content=props.name)
