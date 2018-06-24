@@ -97,7 +97,7 @@ export class Tracker {
   }
 
   private log(...args: string[]): void {
-    const texts: string[] = ['TRACK:'];
+    const texts: string[] = ['[TRACK]:'];
     for (const arg of args) {
       if (typeof arg === 'object') {
         texts.push(JSON.stringify(arg));

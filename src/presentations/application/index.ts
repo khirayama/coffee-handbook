@@ -1,4 +1,4 @@
-import { tracker, Tracker } from 'presentations/application/tracker';
+import { tracker, Tracker } from 'presentations/utils/tracker';
 
 declare global {
   // tslint:disable-next-line:interface-name
