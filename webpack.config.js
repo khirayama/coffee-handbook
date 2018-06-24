@@ -9,15 +9,16 @@ const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const NODE_ENV = process.env.NODE_ENV;
 const DIST = './dist/public';
 
-const inputFilenames = glob.sync(path.join(__dirname, 'src', 'presentations', '**', 'index.ts'));
+const inputFileNames = glob.sync(path.join(__dirname, 'src', 'presentations', '**', 'index.ts'));
 const entry = {};
-for (let i = 0; i < inputFilenames.length; i++) {
-  const inputFilename = inputFilenames[i];
-  const outputFilename = inputFilename
+for (let i = 0; i < inputFileNames.length; i++) {
+  const inputFileName = inputFileNames[i];
+  const outputFileName = inputFileName
     .replace(path.join(__dirname, 'src', 'presentations'), DIST)
     .replace('index.ts', 'bundle');
-  entry[outputFilename] = inputFilename;
+  entry[outputFileName] = inputFileName;
 }
+
 module.exports = (env, argv) => {
   const config = {
     entry,
