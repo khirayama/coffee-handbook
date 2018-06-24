@@ -1,12 +1,28 @@
-self.addEventListener('install', () => {
-  console.log('%cInstalling', 'color: #9e9e9e;');
-  self.skipWaiting();
-});
+importScripts('https://storage.googleapis.com/workbox-cdn/releases/3.2.0/workbox-sw.js');
 
-self.addEventListener('activate', () => {
-  console.log('%cActivating', 'color: #9e9e9e;');
-});
-
-self.addEventListener('fetch', event => {
-  console.log(`%cFetching ${event.request.url}`, 'color: #9e9e9e;');
-});
+if (workbox) {
+  workbox.routing.registerRoute(
+    /.*/,
+    workbox.strategies.networkFirst({
+      cacheName: 'all-cache',
+    }),
+  );
+  workbox.routing.registerRoute(
+    /.*\.(?:css|js)/,
+    workbox.strategies.staleWhileRevalidate({
+      cacheName: 'assets-cache',
+    }),
+  );
+  workbox.routing.registerRoute(
+    /.*\.(?:webp|png|jpg|jpeg|svg|gif)/,
+    workbox.strategies.cacheFirst({
+      cacheName: 'image-cache',
+      plugins: [
+        new workbox.expiration.Plugin({
+          maxEntries: 20,
+          maxAgeSeconds: 7 * 24 * 60 * 60,
+        }),
+      ],
+    }),
+  );
+}
