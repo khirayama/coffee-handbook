@@ -1,6 +1,12 @@
 declare global {
   // tslint:disable-next-line:interface-name
   interface Window {
+    options: {
+      env: string;
+      lang: string;
+      gaCode: string;
+      route: string;
+    };
     ga(...args: (string | IPageViewOptions | IEventOptions | IExceptionOptions)[]): void;
   }
 }
@@ -8,7 +14,7 @@ declare global {
 interface IOptions {
   code?: string;
   debug?: boolean;
-};
+}
 
 export interface IPageViewOptions {
   title: string;
@@ -103,3 +109,8 @@ export class Tracker {
     console.log(`%c${texts.join(' ')}`, 'color: #9e9e9e;');
   }
 }
+
+export const tracker: Tracker = new Tracker({
+  code: window.options.gaCode,
+  debug: window.options.env !== 'production',
+});
