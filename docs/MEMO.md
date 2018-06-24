@@ -69,3 +69,4 @@
 - Facebook
 - YouTube
 - Google Maps
+- Foursquare
