@@ -18,12 +18,12 @@ export function setLang(req: express.Request, res: express.Response, next: expre
       },
     )
     .filter((language: string) => !!language);
-  let lang: string = req.query.lang || req.cookies.lang || langs[0] || config.languages[0];
+  let lang: string = req.query.lang || req.cookies._lang || langs[0] || config.languages[0];
   if (config.languages.indexOf(lang) === -1) {
     lang = config.languages[0];
   }
-  res.cookie('lang', lang, {
-    maxAge: 60000,
+  res.cookie('_lang', lang, {
+    maxAge: 31536000,
     httpOnly: false,
   });
   req.lang = lang;
