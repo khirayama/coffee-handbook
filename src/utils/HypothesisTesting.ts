@@ -1,6 +1,16 @@
+export interface ICase {
+  name: string;
+  weight: number;
+}
+
+interface IThreshold {
+  name: string;
+  value: number;
+}
+
 export interface IExperiment {
   key: string;
-  weights: number[];
+  cases: ICase[];
 }
 
 export class HypothesisTesting {
@@ -14,7 +24,7 @@ export class HypothesisTesting {
     this.validate(this.experiments);
   }
 
-  public segment(experimentKey: string, segId: string): number {
+  public segment(experimentKey: string, segId: string): string | null {
     const targetExperiment: IExperiment = this.experiments.filter(
       (experiment: IExperiment): boolean => {
         return experiment.key === experimentKey;
@@ -23,20 +33,26 @@ export class HypothesisTesting {
 
     if (targetExperiment) {
       const seg: number = Number(segId.replace('SEG', ''));
-      const thresholds: number[] = targetExperiment.weights.map(
-        (weight: number): number => {
-          return HypothesisTesting.max * weight;
+      const thresholds: IThreshold[] = targetExperiment.cases.map(
+        (experimentCase: ICase): IThreshold => {
+          return {
+            name: experimentCase.name,
+            value: HypothesisTesting.max * experimentCase.weight,
+          };
         },
       );
-      let threshold: number = 0;
-      for (let i: number = 0; i < thresholds.length; i += 1) {
-        if (threshold < seg && seg <= threshold + thresholds[i]) {
-          return i;
+
+      let thresholdWeight: number = 0;
+      for (const threshold of thresholds) {
+        if (thresholdWeight < seg && seg <= thresholdWeight + threshold.value) {
+          return threshold.name;
         } else {
-          threshold += thresholds[i];
+          thresholdWeight += threshold.value;
         }
       }
     }
+
+    return null;
   }
 
   public getSegId(): string {
@@ -49,7 +65,7 @@ export class HypothesisTesting {
   private validate(experiments: IExperiment[]): void {
     experiments.forEach(
       (experiment: IExperiment): void => {
-        const total: number = experiment.weights.reduce(
+        const total: number = experiment.cases.map((experimentCase: ICase) => experimentCase.weight).reduce(
           (weight: number, totalWeight: number): number => {
             return weight + totalWeight;
           },
