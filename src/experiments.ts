@@ -3,10 +3,36 @@ import { IExperiment } from 'utils/HypothesisTesting';
 export const experiments: IExperiment[] = [
   {
     key: 'top-page1',
-    weights: [0.67, 0.23, 0.1],
+    cases: [
+      {
+        name: 'A',
+        weight: 0.67,
+      },
+      {
+        name: 'B',
+        weight: 0.23,
+      },
+      {
+        name: 'C',
+        weight: 0.09,
+      },
+      {
+        name: 'D',
+        weight: 0.01,
+      },
+    ],
   },
   {
     key: 'top-page2',
-    weights: [0.5, 0.5],
+    cases: [
+      {
+        name: 'A',
+        weight: 0.5,
+      },
+      {
+        name: 'B',
+        weight: 0.5,
+      },
+    ],
   },
 ];
