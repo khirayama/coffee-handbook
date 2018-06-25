@@ -23,13 +23,13 @@ import { experiments } from 'experiments';
 import { HypothesisTesting } from 'utils/HypothesisTesting';
 
 const hypothesisTesting: HypothesisTesting = new HypothesisTesting(experiments);
-// const topPageSegment: number = req.hypothesisTesting.segment('top-page1', req.segId);
+// const topPageSegment: string = req.hypothesisTesting.segment('top-page1', req.segId);
 
 function preHandler(req: express.Request, res: express.Response, next: express.NextFunction): void {
   // For GA
   req.layout.route = req.route.path;
 
-// For AB Testing
+  // For AB Testing
   const segId: string = req.cookies._seg_id || hypothesisTesting.getSegId();
   res.cookie('_seg_id', segId, {
     maxAge: 31536000,
