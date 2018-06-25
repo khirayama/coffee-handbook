@@ -21,7 +21,7 @@ export class HypothesisTesting {
   constructor(experiments: IExperiment[]) {
     this.experiments = experiments;
 
-    this.validate(this.experiments);
+    this.valid(this.experiments);
   }
 
   public segment(experimentKey: string, segId: string): string | null {
@@ -62,7 +62,7 @@ export class HypothesisTesting {
     return `SEG${num}`;
   }
 
-  private validate(experiments: IExperiment[]): void {
+  private valid(experiments: IExperiment[]): void {
     experiments.forEach(
       (experiment: IExperiment): void => {
         const total: number = experiment.cases.map((experimentCase: ICase) => experimentCase.weight).reduce(
