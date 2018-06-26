@@ -17,7 +17,7 @@
     "copy:files": "cpx 'src/**/*.{json,woff2,png,jpg,ico,wepb,js,svg,pug}' dist",
     "copy:files:watch": "cpx -w 'src/**/*.{json,woff2,png,jpg,ico,webp,js,svg,pug}' dist",
     "build:images": "node bin/minimize-images.js",
-    "test": "mocha --require espower-typescript/guess test/**/*.ts",
+    "test": "NODE_PATH=src mocha --require espower-typescript/guess test/**/*.ts",
     "lint": "tslint --format verbose -c tslint.json 'src/**/*.{ts,tsx}'",
     "lint:fix": "tslint --fix --format verbose -c tslint.json 'src/**/*.{ts,tsx}'",
     "format": "prettier --ignore-path .gitignore --config .prettierrc --write 'src/**/!(*.json|*.jpg|*.pug|*.html|*.png|*.webp|*.svg)' bin webpack.config.js .eslintrc.js .postcssrc.js",

@@ -1,7 +1,7 @@
 // tslint:disable:no-relative-imports
 import * as assert from 'power-assert';
 
-import { HypothesisTesting, ICase, IExperiment } from '../../src/utils/HypothesisTesting';
+import { HypothesisTesting, ICase, IExperiment } from 'utils/HypothesisTesting';
 
 const sampleExperiment: IExperiment = {
   key: 'sample-experiment',
