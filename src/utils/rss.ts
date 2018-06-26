@@ -2,13 +2,14 @@
 import * as RSS from 'rss';
 
 import { config } from 'config';
+import { dictionary } from 'dictionary';
 import { Post } from 'resources/Post';
 import { Dictionary } from 'utils/Dictionary';
 
 export const rss: { [key: string]: any } = {};
 
 for (const lang of config.languages) {
-  const dic: Dictionary = new Dictionary(lang);
+  const dic: Dictionary = new Dictionary(lang, dictionary);
 
   const feed: RSS = new RSS({
     title: dic.t('name'),

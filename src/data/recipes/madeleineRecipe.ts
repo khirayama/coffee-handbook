@@ -1,7 +1,8 @@
 import { IRawRecipe } from 'data/recipes';
+import { dictionary } from 'dictionary';
 import { Dictionary } from 'utils/Dictionary';
 
-const dic: Dictionary = new Dictionary(null);
+const dic: Dictionary = new Dictionary(null, dictionary);
 
 export const madeleineRecipe: IRawRecipe = {
   key: 'madeleine',

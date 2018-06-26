@@ -3,9 +3,10 @@ import * as path from 'path';
 import * as pug from 'pug';
 
 import { IRawGood } from 'data/goods';
+import { dictionary } from 'dictionary';
 import { Dictionary } from 'utils/Dictionary';
 
-const dic: Dictionary = new Dictionary(null);
+const dic: Dictionary = new Dictionary(null, dictionary);
 
 export const harioV60: IRawGood = {
   key: 'hario-v60',
