@@ -1,4 +1,3 @@
-// tslint:disable:no-relative-imports
 import * as assert from 'power-assert';
 
 import { HypothesisTesting, ICase, IExperiment } from 'utils/HypothesisTesting';
@@ -98,7 +97,7 @@ describe('HypothesisTesting', () => {
         result.expect = result.expect / counts.length;
         result.actual = result.actual / counts.length;
         // FYI: When the weight is small, offset get big.
-        const offset: number = 0.03;
+        const offset: number = 0.05;
         const min: number = 1 - offset;
         const max: number = offset + 1;
         assert(result.expect * min < result.actual && result.actual < result.expect * max);
