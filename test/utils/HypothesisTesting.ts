@@ -24,9 +24,13 @@ const sampleExperiment: IExperiment = {
   ],
 };
 
-function verify(experiment: IExperiment, testing: HypothesisTesting, log: boolean): { [name: string]: { expect: number; actual: number } } {
+function verify(
+  experiment: IExperiment,
+  testing: HypothesisTesting,
+  log: boolean,
+): { [name: string]: { expect: number; actual: number } } {
   const num: number = 100000;
-  const count: {[key: string]: { expect: number; actual: number }} = {};
+  const count: { [key: string]: { expect: number; actual: number } } = {};
   experiment.cases.forEach((experimentCase: ICase) => {
     count[experimentCase.name] = {
       expect: experimentCase.weight * num,
@@ -41,7 +45,9 @@ function verify(experiment: IExperiment, testing: HypothesisTesting, log: boolea
   if (log) {
     for (const key of Object.keys(count)) {
       // tslint:disable-next-line:no-console
-      console.log(`${key}: ${count[key].actual} - ${count[key].actual / num * 100}% (${count[key].expect / num * 100}%)`);
+      console.log(
+        `${key}: ${count[key].actual} - ${(count[key].actual / num) * 100}% (${(count[key].expect / num) * 100}%)`,
+      );
     }
   }
 
@@ -60,48 +66,54 @@ describe('HypothesisTesting', () => {
   });
 
   describe('segment', () => {
-    it('run', () => {
-      const seg1: string = testing.segment('sample-experiment', 'SEG1000000000000000');
-      assert(seg1 === 'D');
+    describe('run', () => {
+      it('normal', () => {
+        const seg1: string = testing.segment('sample-experiment', 'SEG1000000000000000');
+        assert(seg1 === 'D');
 
-      const seg2: string = testing.segment('sample-experiment', 'SEG0000000000000010');
-      assert(seg2 === 'A');
+        const seg2: string = testing.segment('sample-experiment', 'SEG0000000000000010');
+        assert(seg2 === 'A');
 
-      const seg3: string = testing.segment('sample-experiment', 'SEG0000010000000000');
-      assert(seg3 === 'A');
+        const seg3: string = testing.segment('sample-experiment', 'SEG0000010000000000');
+        assert(seg3 === 'A');
+      });
     });
   });
 
   describe('getSegId', () => {
-    it('run', () => {
-      const segId: string = testing.getSegId();
-      assert(segId.indexOf('SEG') === 0);
+    describe('run', () => {
+      it('normal', () => {
+        const segId: string = testing.getSegId();
+        assert(segId.indexOf('SEG') === 0);
+      });
     });
   });
 
   describe('verify', () => {
-    it('run', () => {
-      const counts: {[key: string]: { expect: number; actual: number }}[] = [
-        verify(sampleExperiment, testing, false),
-        verify(sampleExperiment, testing, false),
-        verify(sampleExperiment, testing, false),
-        verify(sampleExperiment, testing, false),
-        verify(sampleExperiment, testing, false),
-      ];
-      for (const key of Object.keys(counts[0])) {
-        const result: {expect: number; actual: number} = {expect: 0, actual: 0};
-        for (const count of counts) {
-          result.expect += count[key].expect;
-          result.actual += count[key].actual;
+    describe('run', () => {
+      it('normal', () => {
+        const counts: { [key: string]: { expect: number; actual: number } }[] = [
+          verify(sampleExperiment, testing, false),
+          verify(sampleExperiment, testing, false),
+          verify(sampleExperiment, testing, false),
+          verify(sampleExperiment, testing, false),
+          verify(sampleExperiment, testing, false),
+        ];
+        for (const key of Object.keys(counts[0])) {
+          const result: { expect: number; actual: number } = { expect: 0, actual: 0 };
+          for (const count of counts) {
+            result.expect += count[key].expect;
+            result.actual += count[key].actual;
+          }
+          result.expect = result.expect / counts.length;
+          result.actual = result.actual / counts.length;
+          // FYI: When the weight is small, offset get big.
+          const offset: number = 0.05;
+          const min: number = 1 - offset;
+          const max: number = offset + 1;
+          assert(result.expect * min < result.actual && result.actual < result.expect * max);
         }
-        result.expect = result.expect / counts.length;
-        result.actual = result.actual / counts.length;
-        // FYI: When the weight is small, offset get big.
-        const offset: number = 0.05;
-        const min: number = 1 - offset;
-        const max: number = offset + 1;
-        assert(result.expect * min < result.actual && result.actual < result.expect * max);
-      }
+      });
     });
   });
 });
