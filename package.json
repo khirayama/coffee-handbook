@@ -18,9 +18,9 @@
     "copy:files:watch": "cpx -w 'src/**/*.{json,woff2,png,jpg,ico,webp,js,svg,pug}' dist",
     "build:images": "node bin/minimize-images.js",
     "test": "NODE_PATH=src mocha --require espower-typescript/guess test/**/*.ts",
-    "lint": "tslint --format verbose -c tslint.json 'src/**/*.{ts,tsx}'",
-    "lint:fix": "tslint --fix --format verbose -c tslint.json 'src/**/*.{ts,tsx}'",
-    "format": "prettier --ignore-path .gitignore --config .prettierrc --write 'src/**/!(*.json|*.jpg|*.pug|*.html|*.png|*.webp|*.svg)' bin webpack.config.js .eslintrc.js .postcssrc.js",
+    "lint": "tslint --format verbose -c tslint.json 'src/**/*.{ts,tsx}' 'test/**/*.{ts,tsx}'",
+    "lint:fix": "tslint --fix --format verbose -c tslint.json 'src/**/*.{ts,tsx}' 'test/**/*.{ts,tsx}'",
+    "format": "prettier --ignore-path .gitignore --config .prettierrc --write 'src/**/!(*.json|*.jpg|*.pug|*.html|*.png|*.webp|*.svg)' 'test/**/!(*.json|*.jpg|*.pug|*.html|*.png|*.webp|*.svg)' bin webpack.config.js .eslintrc.js .postcssrc.js",
     "precommit": "npm run lint:fix && npm run format",
     "check": "npx npm-check-updates"
   },
