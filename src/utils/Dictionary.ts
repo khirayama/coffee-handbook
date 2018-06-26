@@ -1,21 +1,13 @@
 // tslint:disable:no-any
-import { dictionary as dictionaryData } from 'dictionary';
 
 export class Dictionary {
   private lang: string | null;
 
   private dic: any;
 
-  constructor(lang: string | null) {
+  constructor(lang: string | null, dic: any) {
     this.lang = lang;
-    this.dic = dictionaryData;
-  }
-
-  // tslint:disable-next-line:function-name
-  public t(key: string): string {
-    const val: any = this.v(key);
-
-    return val[this.lang];
+    this.dic = dic;
   }
 
   // tslint:disable-next-line:function-name
@@ -27,5 +19,12 @@ export class Dictionary {
     }
 
     return val;
+  }
+
+  // tslint:disable-next-line:function-name
+  public t(key: string): string {
+    const val: any = this.v(key);
+
+    return val[this.lang];
   }
 }
