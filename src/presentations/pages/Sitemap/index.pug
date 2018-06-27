@@ -1,0 +1,16 @@
+extends /application/Layout
+
+block import
+  include /components/Header
+  include /components/Navigation
+  include /components/Footer
+
+block meta
+  script(src="/pages/Home/bundle.js" defer)
+  link(rel="stylesheet" href="/pages/Home/index.css")
+
+block body
+  .Home
+    +Header(props.header)
+    +Navigation(props.navigation)
+    +Footer
