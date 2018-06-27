@@ -18,6 +18,7 @@
   - [x] Config for OGP
 - Engineering
   - [ ] Create sitemap
+  - [ ] Create robot.txt
   - [ ] Base on WAI-ARIA
   - [x] Create RSS
   - [x] Load image lazy
