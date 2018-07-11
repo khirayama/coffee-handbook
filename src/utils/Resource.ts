@@ -29,7 +29,7 @@ export class Resource<IRawResource, IResource> {
     const tmp: IResource[] = this.tmp.slice();
     this.tmp = this.build(this.resources, this.lang);
 
-    return tmp[0];
+    return tmp[0] || null;
   }
 
   public where(condition: { [key: string]: any }): Resource<IRawResource, IResource> {
@@ -80,6 +80,8 @@ export class Resource<IRawResource, IResource> {
             const target: any = item[key];
             if (Array.isArray(target)) {
               return !!this.include(target, val).length;
+            } else if (typeof target === 'object') {
+              return !!this.include([target], val).length;
             }
 
             return target === val;
