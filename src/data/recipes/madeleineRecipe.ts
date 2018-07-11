@@ -107,6 +107,10 @@ export const madeleineRecipe: IRawPost<IRawRecipe> = {
           ja: 'マドレーヌ型に生地を流し込み、180&#8451; 20分で焼き上げる。',
           en: 'Puts batters into a mold. And bakes with 180&#8451; for 20mins.',
         },
+        note: {
+          ja: '上記分量でおおよそ14 ~ 16個程度できる。',
+          en: 'Makes 14 - 16 madeleines according to quantity.',
+        },
       },
       {
         summary: {
