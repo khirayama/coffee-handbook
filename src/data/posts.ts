@@ -8,7 +8,7 @@ export interface IRawArticle {
   content: {
     ja: string;
     en: string;
-  },
+  };
 }
 
 export interface IRawPost<T> {

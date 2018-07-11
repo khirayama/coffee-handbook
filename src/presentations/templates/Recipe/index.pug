@@ -42,8 +42,11 @@ block body
       .Recipe--Content--StepList
         for stepListItem in props.stepList.items
           .Recipe--Content--StepList--Item(class= props.stepList.recipeType === dic.t('meta.recipe.recipeType.HOT') ? 'Recipe--Content--StepList--Item__Hot' : (props.stepList.recipeType === dic.t('meta.recipe.recipeType.ICED') ? 'Recipe--Content--StepList--Item__Iced' : ''))
-            .Recipe--Content--StepList--Item--Summary= stepListItem.summary
-            .Recipe--Content--StepList--Item--Description= stepListItem.description
+            .Recipe--Content--StepList--Item--Summary!= stepListItem.summary
+            .Recipe--Content--StepList--Item--Description!= stepListItem.description
+            if stepListItem.image
+              .Recipe--Content--StepList--Item--Image
+                +Picture(stepListItem.image)
             if stepListItem.note
-              .Recipe--Content--StepList--Item--Note= stepListItem.note
+              .Recipe--Content--StepList--Item--Note!= stepListItem.note
     +Footer

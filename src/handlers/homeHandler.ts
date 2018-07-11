@@ -7,8 +7,7 @@ import { Dictionary } from 'utils/Dictionary';
 
 export function homeHandler(req: express.Request, res: express.Response): void {
   const dic: Dictionary = req.dic;
-  const featuredPost: IPost<IArticle> = Post(req.lang)
-    .findOne();
+  const featuredPost: IPost<IArticle> = Post(req.lang).findOne();
   const exceptedFeaturedPosts: IPost<IArticle>[] = Post(req.lang)
     .where({
       excepted: {

@@ -36,8 +36,14 @@ export function beveragesHandler(req: express.Request, res: express.Response): v
     if (!exsting) {
       items.push({
         name: beverageRecipe.data.name,
-        hot: beverageRecipe.data.recipeType === dic.t('meta.recipe.recipeType.HOT') ? { href: beverageRecipe.meta.url } : null,
-        iced: beverageRecipe.data.recipeType === dic.t('meta.recipe.recipeType.ICED') ? { href: beverageRecipe.meta.url } : null,
+        hot:
+          beverageRecipe.data.recipeType === dic.t('meta.recipe.recipeType.HOT')
+            ? { href: beverageRecipe.meta.url }
+            : null,
+        iced:
+          beverageRecipe.data.recipeType === dic.t('meta.recipe.recipeType.ICED')
+            ? { href: beverageRecipe.meta.url }
+            : null,
         defaults: null,
       });
     }

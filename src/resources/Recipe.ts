@@ -20,16 +20,14 @@ export interface IRecipe {
   ingredients: {
     name: string;
     quantity: string;
-    note: string;
+    note?: string;
   }[];
-  steps: {
-    summary: string;
-    description: string;
-    note: string;
-  }[];
+  steps: IRecipeStep[];
 }
 
 // tslint:disable-next-line:variable-name
-export const Recipe: TResource<IRawPost<IRawRecipe>, IPost<IRecipe>> = (lang: string): Resource<IRawPost<IRawRecipe>, IPost<IRecipe>> => {
+export const Recipe: TResource<IRawPost<IRawRecipe>, IPost<IRecipe>> = (
+  lang: string,
+): Resource<IRawPost<IRawRecipe>, IPost<IRecipe>> => {
   return new Resource(recipes, lang);
 };

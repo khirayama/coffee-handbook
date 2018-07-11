@@ -187,6 +187,12 @@
           margin-bottom: 12px;
         }
 
+        .Recipe--Content--StepList--Item--Image {
+          .Picture {
+            padding-top: 100%;
+          }
+        }
+
         .Recipe--Content--StepList--Item--Note {
           color: $color-text-secondary;
           background-color: $color-note;

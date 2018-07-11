@@ -22,6 +22,8 @@ export interface IPost<T> {
 }
 
 // tslint:disable-next-line:variable-name
-export const Post: TResource<IRawPost<IRawArticle>, IPost<IArticle>> = (lang: string): Resource<IRawPost<IRawArticle>, IPost<IArticle>> => {
+export const Post: TResource<IRawPost<IRawArticle>, IPost<IArticle>> = (
+  lang: string,
+): Resource<IRawPost<IRawArticle>, IPost<IArticle>> => {
   return new Resource(posts, lang);
 };
