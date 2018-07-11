@@ -7,7 +7,7 @@ export const config: {
   twitterAccount: string;
 } = {
   url: 'https://hirayamacoffee.com',
-  languages: ['ja', 'en'],
+  languages: ['en', 'ja'],
   facebookAppId: 'test id',
   facebookPageUrl: 'facebook page url',
   twitterCardType: 'summary_large_image',
