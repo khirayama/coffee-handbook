@@ -4,11 +4,12 @@ import { config } from 'config';
 import { IPictureComponent } from 'presentations/components/Picture';
 import { IGoodTemplate, ISpecRowComponent } from 'presentations/templates/Good';
 import { Good, IGood } from 'resources/Good';
+import { IPost } from 'resources/Post';
 import { Dictionary } from 'utils/Dictionary';
 
 export function goodHandler(req: express.Request, res: express.Response): void {
   const dic: Dictionary = req.dic;
-  const good: IGood = Good(req.lang)
+  const good: IPost<IGood> = Good(req.lang)
     .where({
       key: req.params.goodKey,
     })
@@ -29,11 +30,11 @@ export function goodHandler(req: express.Request, res: express.Response): void {
       path: req.originalUrl,
     },
     good: {
-      name: good.name,
-      category: good.category,
-      summary: good.summary,
-      content: good.content,
-      pictures: good.pictures.map(
+      name: good.data.name,
+      category: good.data.category,
+      summary: good.data.summary,
+      content: good.data.content,
+      pictures: good.data.pictures.map(
         (picture: { url: string; caption: string }): IPictureComponent => {
           return {
             src: picture.url,
@@ -42,7 +43,7 @@ export function goodHandler(req: express.Request, res: express.Response): void {
           };
         },
       ),
-      specs: good.specs.map(
+      specs: good.data.specs.map(
         (spec: { name: string; value: string }): ISpecRowComponent => {
           return {
             name: spec.name,
@@ -54,11 +55,11 @@ export function goodHandler(req: express.Request, res: express.Response): void {
     relatedGoods: [
       {
         url: 'TODO',
-        name: good.name,
-        category: good.category,
+        name: good.data.name,
+        category: good.data.category,
         picture: {
           src: good.meta.thumbnailUrl.square,
-          alt: good.name,
+          alt: good.data.name,
           lazy: true,
         },
       },

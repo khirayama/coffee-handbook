@@ -2,39 +2,42 @@ import * as express from 'express';
 
 import { config } from 'config';
 import { IMenuPage, IRecipeItemComponent } from 'presentations/templates/Menu';
+import { IPost } from 'resources/Post';
 import { IRecipe, Recipe } from 'resources/Recipe';
 import { Dictionary } from 'utils/Dictionary';
 
 export function beveragesHandler(req: express.Request, res: express.Response): void {
   const dic: Dictionary = req.dic;
-  const beverageRecipes: IRecipe[] = Recipe(req.lang)
+  const beverageRecipes: IPost<IRecipe>[] = Recipe(req.lang)
     .where({
-      category: dic.t('Templates.Beverages.BEVERAGES'),
+      data: {
+        category: dic.t('Templates.Beverages.BEVERAGES'),
+      },
     })
     .find();
 
   const items: IRecipeItemComponent[] = [];
-  beverageRecipes.forEach((beverageRecipe: IRecipe) => {
+  beverageRecipes.forEach((beverageRecipe: IPost<IRecipe>) => {
     let exsting: boolean = false;
     for (const item of items) {
-      if (item.name === beverageRecipe.name) {
+      if (item.name === beverageRecipe.data.name) {
         exsting = true;
-        if (beverageRecipe.recipeType === dic.t('meta.recipe.recipeType.HOT')) {
+        if (beverageRecipe.data.recipeType === dic.t('meta.recipe.recipeType.HOT')) {
           item.hot = {
-            href: beverageRecipe.url,
+            href: beverageRecipe.meta.url,
           };
-        } else if (beverageRecipe.recipeType === dic.t('meta.recipe.recipeType.ICED')) {
+        } else if (beverageRecipe.data.recipeType === dic.t('meta.recipe.recipeType.ICED')) {
           item.iced = {
-            href: beverageRecipe.url,
+            href: beverageRecipe.meta.url,
           };
         }
       }
     }
     if (!exsting) {
       items.push({
-        name: beverageRecipe.name,
-        hot: beverageRecipe.recipeType === dic.t('meta.recipe.recipeType.HOT') ? { href: beverageRecipe.url } : null,
-        iced: beverageRecipe.recipeType === dic.t('meta.recipe.recipeType.ICED') ? { href: beverageRecipe.url } : null,
+        name: beverageRecipe.data.name,
+        hot: beverageRecipe.data.recipeType === dic.t('meta.recipe.recipeType.HOT') ? { href: beverageRecipe.meta.url } : null,
+        iced: beverageRecipe.data.recipeType === dic.t('meta.recipe.recipeType.ICED') ? { href: beverageRecipe.meta.url } : null,
         defaults: null,
       });
     }

@@ -2,26 +2,15 @@ import * as express from 'express';
 
 import { config } from 'config';
 import { IHomePage, IStoryListItemComponent } from 'presentations/pages/Home';
-import { IPost, Post } from 'resources/Post';
+import { IArticle, IPost, Post } from 'resources/Post';
 import { Dictionary } from 'utils/Dictionary';
 
 export function homeHandler(req: express.Request, res: express.Response): void {
   const dic: Dictionary = req.dic;
-  const featuredPost: IPost = Post(req.lang)
-    .where({
-      categories: {
-        id: 1,
-      },
-      tags: {
-        id: 1,
-      },
-    })
+  const featuredPost: IPost<IArticle> = Post(req.lang)
     .findOne();
-  const exceptedFeaturedPosts: IPost[] = Post(req.lang)
+  const exceptedFeaturedPosts: IPost<IArticle>[] = Post(req.lang)
     .where({
-      categories: {
-        id: 1,
-      },
       excepted: {
         key: featuredPost.key,
       },
@@ -43,23 +32,23 @@ export function homeHandler(req: express.Request, res: express.Response): void {
       path: req.originalUrl,
     },
     coverStory: {
-      alt: featuredPost.title,
-      src: featuredPost.thumbnailUrl.square,
+      alt: featuredPost.meta.title,
+      src: featuredPost.meta.thumbnailUrl.square,
       lazy: false,
       key: featuredPost.key,
-      title: featuredPost.title,
-      squareImagePath: featuredPost.thumbnailUrl.square,
-      rectangleImagePath: featuredPost.thumbnailUrl.rectangle,
+      title: featuredPost.meta.title,
+      squareImagePath: featuredPost.meta.thumbnailUrl.square,
+      rectangleImagePath: featuredPost.meta.thumbnailUrl.rectangle,
     },
     storyList: exceptedFeaturedPosts.map(
-      (post: IPost): IStoryListItemComponent => {
+      (post: IPost<IArticle>): IStoryListItemComponent => {
         return {
           key: post.key,
-          publishedAt: post.publishedAt,
-          title: post.title,
+          publishedAt: post.meta.publishedAt,
+          title: post.meta.title,
           picture: {
-            alt: post.title,
-            src: post.thumbnailUrl.rectangle,
+            alt: post.meta.title,
+            src: post.meta.thumbnailUrl.rectangle,
             lazy: true,
           },
         };

@@ -2,22 +2,22 @@ import * as express from 'express';
 
 import { config } from 'config';
 import { IPostTemplate } from 'presentations/templates/Post';
-import { IPost, Post } from 'resources/Post';
+import { IArticle, IPost, Post } from 'resources/Post';
 import { Dictionary } from 'utils/Dictionary';
 
 export function postHandler(req: express.Request, res: express.Response): void {
   const dic: Dictionary = req.dic;
   const postKey: string = req.params.postKey;
-  const post: IPost = Post(req.lang)
+  const post: IPost<IArticle> = Post(req.lang)
     .where({ key: postKey })
     .findOne();
 
   const props: IPostTemplate = {
     ...req.layout,
-    title: post.title,
-    description: post.description,
+    title: post.meta.title,
+    description: post.meta.description,
     keywords: ['hirayama', '平山', 'coffee', 'コーヒー', '珈琲', 'institute', '研究所'],
-    image: post.thumbnailUrl.rectangle,
+    image: post.meta.thumbnailUrl.rectangle,
     pageType: 'article',
 
     header: {
@@ -27,8 +27,8 @@ export function postHandler(req: express.Request, res: express.Response): void {
       path: req.originalUrl,
     },
     post: {
-      title: post.title,
-      content: post.content,
+      title: post.meta.title,
+      content: post.data.content,
     },
   };
 

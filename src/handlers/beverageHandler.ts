@@ -2,12 +2,13 @@ import * as express from 'express';
 
 import { config } from 'config';
 import { IIngredientTableRow, IRecipeTemplate, IStepListItem } from 'presentations/templates/Recipe';
+import { IPost } from 'resources/Post';
 import { IRecipe, Recipe } from 'resources/Recipe';
 import { Dictionary } from 'utils/Dictionary';
 
 export function beverageHandler(req: express.Request, res: express.Response): void {
   const dic: Dictionary = req.dic;
-  const recipe: IRecipe = Recipe(req.lang)
+  const recipe: IPost<IRecipe> = Recipe(req.lang)
     .where({
       key: `${req.params.beverageKey}-${req.params.recipeType}`,
     })
@@ -15,10 +16,10 @@ export function beverageHandler(req: express.Request, res: express.Response): vo
 
   const props: IRecipeTemplate = {
     ...req.layout,
-    title: `${recipe.title} | ${dic.t('name')}`,
-    description: recipe.description,
+    title: `${recipe.meta.title} | ${dic.t('name')}`,
+    description: recipe.meta.description,
     keywords: ['hirayama', '平山', 'coffee', 'コーヒー', '珈琲', 'institute', '研究所'],
-    image: recipe.thumbnailUrl.rectangle,
+    image: recipe.meta.thumbnailUrl.rectangle,
     pageType: 'drink',
 
     header: {
@@ -28,17 +29,17 @@ export function beverageHandler(req: express.Request, res: express.Response): vo
       path: req.originalUrl,
     },
     contentTitle: {
-      heading: recipe.name,
-      recipeType: recipe.recipeType,
+      heading: recipe.data.name,
+      recipeType: recipe.data.recipeType,
     },
     coverPicture: {
-      src: recipe.thumbnailUrl.square,
-      squareSrc: recipe.thumbnailUrl.square,
-      rectangleSrc: recipe.thumbnailUrl.rectangle,
-      alt: recipe.name,
+      src: recipe.meta.thumbnailUrl.square,
+      squareSrc: recipe.meta.thumbnailUrl.square,
+      rectangleSrc: recipe.meta.thumbnailUrl.rectangle,
+      alt: recipe.data.name,
       lazy: true,
     },
-    ingredientTable: recipe.ingredients.map(
+    ingredientTable: recipe.data.ingredients.map(
       (ingredient: { name: string; note: string; quantity: string }): IIngredientTableRow => {
         return {
           name: ingredient.name,
@@ -48,8 +49,8 @@ export function beverageHandler(req: express.Request, res: express.Response): vo
       },
     ),
     stepList: {
-      recipeType: recipe.recipeType,
-      items: recipe.steps.map(
+      recipeType: recipe.data.recipeType,
+      items: recipe.data.steps.map(
         (step: { summary: string; description: string; note: string }): IStepListItem => {
           return {
             summary: step.summary,

@@ -1,18 +1,12 @@
+import { IRawPost } from 'data/posts';
 import { IRawRecipe, recipes } from 'data/recipes';
-import { Resource, TResource } from 'resources/Resource';
+import { IPost } from 'resources/Post';
+import { Resource, TResource } from 'utils/Resource';
 
 export interface IRecipe {
-  key: string;
-  url: string;
   category: string;
-  recipeType: string;
-  title: string;
   name: string;
-  description: string;
-  thumbnailUrl: {
-    square: string;
-    rectangle: string;
-  };
+  recipeType: string;
   ingredients: {
     name: string;
     quantity: string;
@@ -26,6 +20,6 @@ export interface IRecipe {
 }
 
 // tslint:disable-next-line:variable-name
-export const Recipe: TResource<IRawRecipe, IRecipe> = (lang: string): Resource<IRawRecipe, IRecipe> => {
+export const Recipe: TResource<IRawPost<IRawRecipe>, IPost<IRecipe>> = (lang: string): Resource<IRawPost<IRawRecipe>, IPost<IRecipe>> => {
   return new Resource(recipes, lang);
 };

@@ -4,9 +4,9 @@ import { coffeeIcedRecipe } from 'data/recipes/coffeeIcedRecipe';
 // Foods
 import { madeleineRecipe } from 'data/recipes/madeleineRecipe';
 
+import { IRawPost } from 'data/posts';
+
 export interface IRawRecipe {
-  key: string;
-  url: string;
   category: {
     ja: string;
     en: string;
@@ -15,27 +15,9 @@ export interface IRawRecipe {
     ja: string;
     en: string;
   } | null;
-  title: {
-    ja: string;
-    en: string;
-  };
   name: {
     ja: string;
     en: string;
-  };
-  description: {
-    ja: string;
-    en: string;
-  };
-  thumbnailUrl: {
-    square: {
-      ja: string;
-      en: string;
-    };
-    rectangle: {
-      ja: string;
-      en: string;
-    };
   };
   ingredients: {
     name: {
@@ -67,4 +49,4 @@ export interface IRawRecipe {
   }[];
 }
 
-export const recipes: IRawRecipe[] = [coffeeHotRecipe, coffeeIcedRecipe, madeleineRecipe];
+export const recipes: IRawPost<IRawRecipe>[] = [coffeeHotRecipe, coffeeIcedRecipe, madeleineRecipe];

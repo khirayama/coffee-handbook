@@ -2,24 +2,27 @@ import * as express from 'express';
 
 import { config } from 'config';
 import { IMenuPage, IRecipeItemComponent } from 'presentations/templates/Menu';
+import { IPost } from 'resources/Post';
 import { IRecipe, Recipe } from 'resources/Recipe';
 import { Dictionary } from 'utils/Dictionary';
 
 export function foodsHandler(req: express.Request, res: express.Response): void {
   const dic: Dictionary = req.dic;
-  const foodRecipes: IRecipe[] = Recipe(req.lang)
+  const foodRecipes: IPost<IRecipe>[] = Recipe(req.lang)
     .where({
-      category: dic.t('Templates.Foods.FOODS'),
+      data: {
+        category: dic.t('Templates.Foods.FOODS'),
+      },
     })
     .find();
   const items: IRecipeItemComponent[] = foodRecipes.map(
-    (foodRecipe: IRecipe): IRecipeItemComponent => {
+    (foodRecipe: IPost<IRecipe>): IRecipeItemComponent => {
       return {
-        name: foodRecipe.name,
+        name: foodRecipe.data.name,
         hot: null,
         iced: null,
         defaults: {
-          href: foodRecipe.url,
+          href: foodRecipe.meta.url,
         },
       };
     },

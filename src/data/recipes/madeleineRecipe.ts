@@ -1,80 +1,87 @@
+import { IRawPost } from 'data/posts';
 import { IRawRecipe } from 'data/recipes';
 import { dictionary } from 'dictionary';
 import { Dictionary } from 'utils/Dictionary';
 
 const dic: Dictionary = new Dictionary(null, dictionary);
 
-export const madeleineRecipe: IRawRecipe = {
+export const madeleineRecipe: IRawPost<IRawRecipe> = {
   key: 'madeleine',
-  url: '/foods/madeleine',
-  category: dic.v('meta.recipe.category.FOODS'),
-  recipeType: null,
-  title: {
-    ja: 'マドレーヌ',
-    en: 'MADELEINE',
-  },
-  name: {
-    ja: 'マドレーヌ',
-    en: 'MADELEINE',
-  },
-  description: {
-    ja: 'マドレーヌ desc',
-    en: 'MADELEINE desc',
-  },
-  thumbnailUrl: {
-    square: {
-      ja: '/images/image_1@square.jpg',
-      en: '/images/image_1@square.jpg',
+  meta: {
+    createdAt: '2018-05-26 12:00',
+    publishedAt: '2018-05-27 16:00',
+    url: '/foods/madeleine',
+    title: {
+      ja: 'マドレーヌ',
+      en: 'MADELEINE',
     },
-    rectangle: {
-      ja: '/images/image_1@rectangle.jpg',
-      en: '/images/image_1@rectangle.jpg',
+    description: {
+      ja: 'マドレーヌ desc',
+      en: 'MADELEINE desc',
+    },
+    thumbnailUrl: {
+      square: {
+        ja: '/images/image_1@square.jpg',
+        en: '/images/image_1@square.jpg',
+      },
+      rectangle: {
+        ja: '/images/image_1@rectangle.jpg',
+        en: '/images/image_1@rectangle.jpg',
+      },
     },
   },
-  ingredients: [
-    {
-      name: {
-        ja: 'バター',
-        en: 'Butter',
-      },
-      quantity: {
-        ja: '20g',
-        en: '20g',
-      },
-      note: {
-        ja: '中細挽き',
-        en: 'Middle casdcadscasdcasdcas',
-      },
+  data: {
+    category: dic.v('meta.recipe.category.FOODS'),
+    recipeType: null,
+    name: {
+      ja: 'マドレーヌ',
+      en: 'MADELEINE',
     },
-  ],
-  steps: [
-    {
-      summary: {
-        ja: '水をあれあれ',
-        en: 'Water Water',
+    ingredients: [
+      {
+        name: {
+          ja: 'バター',
+          en: 'Butter',
+        },
+        quantity: {
+          ja: '20g',
+          en: '20g',
+        },
+        note: {
+          ja: '中細挽き',
+          en: 'Middle casdcadscasdcasdcas',
+        },
       },
-      description: {
-        ja: 'いろいろ細かく',
-        en: 'Do something',
+    ],
+    steps: [
+      {
+        summary: {
+          ja: '水をあれあれ',
+          en: 'Water Water',
+        },
+        description: {
+          ja: 'いろいろ細かく',
+          en: 'Do something',
+        },
+        note: {
+          ja: 'ほげほげ',
+          en: 'hogehoge',
+        },
       },
-      note: {
-        ja: 'ほげほげ',
-        en: 'hogehoge',
+      {
+        summary: {
+          ja: '水をあれあれ',
+          en: 'Water Water',
+        },
+        description: {
+          ja: 'いろいろ細かく',
+          en: 'Do something',
+        },
+        note: {
+          ja: 'ほげほげ',
+          en: 'hogehoge',
+        },
       },
-    },
-    {
-      summary: {
-        ja: '水をあれあれ',
-        en: 'Water Water',
-      },
-      description: {
-        ja: 'いろいろ細かく',
-        en: 'Do something',
-      },
-      note: {
-        ja: 'ほげほげ',
-        en: 'hogehoge',
-      },
-    },
-  ],
+    ],
+  },
 };
