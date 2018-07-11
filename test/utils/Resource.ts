@@ -9,22 +9,26 @@ interface ISample {
   };
 }
 
-const samples: ISample[] = [{
-  key: 'sample-1',
-  data: {
-    category: 'sample-category-1',
+const samples: ISample[] = [
+  {
+    key: 'sample-1',
+    data: {
+      category: 'sample-category-1',
+    },
   },
-}, {
-  key: 'sample-2',
-  data: {
-    category: 'sample-category-2',
+  {
+    key: 'sample-2',
+    data: {
+      category: 'sample-category-2',
+    },
   },
-}, {
-  key: 'sample-3',
-  data: {
-    category: 'sample-category-3',
+  {
+    key: 'sample-3',
+    data: {
+      category: 'sample-category-3',
+    },
   },
-}];
+];
 
 // tslint:disable-next-line:variable-name
 const SampleResouce: TResource<ISample, ISample> = (lang: string): Resource<ISample, ISample> => {
@@ -34,9 +38,11 @@ const SampleResouce: TResource<ISample, ISample> = (lang: string): Resource<ISam
 describe('Resource', () => {
   describe('where', () => {
     it('normal', () => {
-      const sample2: ISample = SampleResouce('').where({
-        key: 'sample-2',
-      }).findOne();
+      const sample2: ISample = SampleResouce('')
+        .where({
+          key: 'sample-2',
+        })
+        .findOne();
       assert.deepEqual(sample2, {
         key: 'sample-2',
         data: {
@@ -46,11 +52,13 @@ describe('Resource', () => {
     });
 
     it('nested condition', () => {
-      const sample2: ISample = SampleResouce('').where({
-        data: {
-          category: 'sample-category-2',
-        }
-      }).findOne();
+      const sample2: ISample = SampleResouce('')
+        .where({
+          data: {
+            category: 'sample-category-2',
+          },
+        })
+        .findOne();
       assert.deepEqual(sample2, {
         key: 'sample-2',
         data: {
@@ -60,12 +68,14 @@ describe('Resource', () => {
     });
 
     it('nested no matched condition', () => {
-      const sample2: ISample = SampleResouce('').where({
-        key: 'sample2',
-        data: {
-          category: 'sample-category-1',
-        }
-      }).findOne();
+      const sample2: ISample = SampleResouce('')
+        .where({
+          key: 'sample2',
+          data: {
+            category: 'sample-category-1',
+          },
+        })
+        .findOne();
       assert.deepEqual(sample2, null);
     });
   });
