@@ -3,6 +3,16 @@ import { IRawRecipe, recipes } from 'data/recipes';
 import { IPost } from 'resources/Post';
 import { Resource, TResource } from 'utils/Resource';
 
+export interface IRecipeStep {
+  summary: string;
+  description: string;
+  image?: {
+    src: string;
+    caption: string;
+  };
+  note?: string;
+}
+
 export interface IRecipe {
   category: string;
   name: string;

@@ -6,13 +6,18 @@ import { logger } from 'presentations/utils/logger';
 
 export interface IIngredientTableRow {
   name: string;
-  note: string;
   quantity: string;
+  note: string;
 }
 
 export interface IStepListItem {
   summary: string;
   description: string;
+  image: {
+    src: string;
+    alt: string;
+    lazy: boolean;
+  } | null;
   note: string;
 }
 

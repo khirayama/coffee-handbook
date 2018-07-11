@@ -28,7 +28,7 @@ export interface IRawRecipe {
       ja: string;
       en: string;
     };
-    note: {
+    note?: {
       ja: string;
       en: string;
     };
@@ -38,11 +38,21 @@ export interface IRawRecipe {
       ja: string;
       en: string;
     };
-    description: {
+    description?: {
       ja: string;
       en: string;
     };
-    note: {
+    image?: {
+      src: {
+        ja: string;
+        en: string;
+      };
+      caption: {
+        ja: string;
+        en: string;
+      };
+    };
+    note?: {
       ja: string;
       en: string;
     };

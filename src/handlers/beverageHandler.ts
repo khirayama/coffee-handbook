@@ -3,7 +3,7 @@ import * as express from 'express';
 import { config } from 'config';
 import { IIngredientTableRow, IRecipeTemplate, IStepListItem } from 'presentations/templates/Recipe';
 import { IPost } from 'resources/Post';
-import { IRecipe, Recipe } from 'resources/Recipe';
+import { IRecipe, IRecipeStep, Recipe } from 'resources/Recipe';
 import { Dictionary } from 'utils/Dictionary';
 
 export function beverageHandler(req: express.Request, res: express.Response): void {
@@ -51,10 +51,17 @@ export function beverageHandler(req: express.Request, res: express.Response): vo
     stepList: {
       recipeType: recipe.data.recipeType,
       items: recipe.data.steps.map(
-        (step: { summary: string; description: string; note: string }): IStepListItem => {
+        (step: IRecipeStep): IStepListItem => {
           return {
             summary: step.summary,
             description: step.description,
+            image: step.image
+              ? {
+                  src: step.image.src,
+                  alt: step.image.caption,
+                  lazy: true,
+                }
+              : null,
             note: step.note,
           };
         },
