@@ -5,7 +5,7 @@ import { Dictionary } from 'utils/Dictionary';
 
 const dic: Dictionary = new Dictionary(null, dictionary);
 
-export const coldBrewRecipe: IRawPost<IRawRecipe> = {
+export const coldBrewIcedRecipe: IRawPost<IRawRecipe> = {
   key: 'cold-brew-iced',
   meta: {
     createdAt: '2018-05-26 12:00',
