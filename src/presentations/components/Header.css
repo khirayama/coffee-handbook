@@ -59,19 +59,32 @@
       position: relative;
       display: inline-block;
       font-weight: $font-bold;
-      font-size: 0.5rem;
       text-align: left;
       width: $size;
       height: $size;
-      line-height: 1.2;
       border: solid 2px $color-text;
-      letter-spacing: -0.25px;
 
       .Header--Link--Logo--Text {
+        display: inline-block;
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
+      }
+
+      &.Header--Link--Logo__EN .Header--Link--Logo--Text {
+        display: inline-block;
+        font-size: 0.625rem;
+        line-height: 1.2;
+        letter-spacing: -0.25px;
+      }
+
+      &.Header--Link--Logo__JA .Header--Link--Logo--Text {
+        font-size: 1rem;
+        line-height: 1.2;
+        letter-spacing: 1px;
+        width: 100%;
+        text-align: center;
       }
     }
   }

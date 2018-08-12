@@ -19,7 +19,7 @@ export function goodHandler(req: express.Request, res: express.Response): void {
     ...req.layout,
     title: `${good.meta.title} | ${dic.t('name')}`,
     description: good.meta.description,
-    keywords: ['hirayama', '平山', 'coffee', 'コーヒー', '珈琲', 'institute', '研究所'],
+    keywords: ['coffee', 'コーヒー', '珈琲', 'handbook', '手帖'],
     image: good.meta.thumbnailUrl.rectangle,
     pageType: 'product',
 

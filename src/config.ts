@@ -6,10 +6,10 @@ export const config: {
   twitterCardType: string;
   twitterAccount: string;
 } = {
-  url: 'https://hirayamacoffee.com',
+  url: 'https://coffeehandbook.app',
   languages: ['en', 'ja'],
   facebookAppId: 'test id',
   facebookPageUrl: 'facebook page url',
   twitterCardType: 'summary_large_image',
-  twitterAccount: '@hirayama_coffee_institute',
+  twitterAccount: '@coffee_handbook',
 };

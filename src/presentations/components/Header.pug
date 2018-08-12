@@ -6,10 +6,17 @@ mixin Header(props)
       li.Header--LangList--Item(class= props.lang === 'ja' ? 'Header--LangList--Item__Active' : '')
         a(href="?lang=ja") 日本語
     a.Header--Link(href="/")
-      h1.Header--Link--Logo
-        .Header--Link--Logo--Text
-          |HIRAYAMA
-          br
-          |COFFEE
-          br
-          |INSTITUTE
+      if props.lang === 'en'
+        h1.Header--Link--Logo.Header--Link--Logo__EN
+          .Header--Link--Logo--Text
+            |COFFEE
+            br
+            |HAND
+            br
+            |BOOK
+      if props.lang === 'ja'
+        h1.Header--Link--Logo.Header--Link--Logo__JA
+          .Header--Link--Logo--Text
+            |珈琲
+            br
+            |手帖

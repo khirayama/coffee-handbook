@@ -15,7 +15,7 @@ export function goodsHandler(req: express.Request, res: express.Response): void 
     ...req.layout,
     title: `${dic.t('Pages.Goods.GOODS')} | ${dic.t('name')}`,
     description: dic.t('Pages.Goods.description'),
-    keywords: ['hirayama', '平山', 'coffee', 'コーヒー', '珈琲', 'institute', '研究所'],
+    keywords: ['coffee', 'コーヒー', '珈琲', 'handbook', '手帖'],
     image: 'TODO',
     pageType: 'product',
 

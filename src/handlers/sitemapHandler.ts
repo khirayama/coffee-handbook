@@ -17,7 +17,7 @@ export function sitemapHandler(req: express.Request, res: express.Response): voi
     ...req.layout,
     title: 'TODO',
     description: 'TODO',
-    keywords: ['hirayama', '平山', 'coffee', 'コーヒー', '珈琲', 'institute', '研究所'],
+    keywords: ['coffee', 'コーヒー', '珈琲', 'handbook', '手帖'],
     image: 'TODO',
     pageType: 'cafe',
 

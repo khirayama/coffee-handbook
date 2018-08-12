@@ -53,7 +53,7 @@ export function beveragesHandler(req: express.Request, res: express.Response): v
     ...req.layout,
     title: `${dic.t('Templates.Beverages.BEVERAGES')} | ${dic.t('name')}`,
     description: dic.t('Templates.Beverages.description'),
-    keywords: ['hirayama', '平山', 'coffee', 'コーヒー', '珈琲', 'institute', '研究所'],
+    keywords: ['coffee', 'コーヒー', '珈琲', 'handbook', '手帖'],
     image: 'TODO',
     pageType: 'drink',
 

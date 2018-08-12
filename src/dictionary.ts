@@ -64,12 +64,12 @@ export const dictionary: {
 } = {
   // Common
   name: {
-    ja: '平山珈琲研究所',
-    en: 'HIRAYAMA COFFEE INSTITUTE',
+    ja: '珈琲手帖',
+    en: 'COFFEE HANDBOOK',
   },
   author: {
-    ja: 'HIRAYAMA COFFEE INSTITUTE',
-    en: 'HIRAYAMA COFFEE INSTITUTE',
+    ja: 'COFFEE HANDBOOK',
+    en: 'COFFEE HANDBOOK',
   },
   // Meta
   meta: {

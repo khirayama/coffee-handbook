@@ -16,7 +16,7 @@ export function postHandler(req: express.Request, res: express.Response): void {
     ...req.layout,
     title: post.meta.title,
     description: post.meta.description,
-    keywords: ['hirayama', '平山', 'coffee', 'コーヒー', '珈琲', 'institute', '研究所'],
+    keywords: ['coffee', 'コーヒー', '珈琲', 'handbook', '手帖'],
     image: post.meta.thumbnailUrl.rectangle,
     pageType: 'article',
 
