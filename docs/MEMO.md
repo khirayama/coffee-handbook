@@ -1,33 +1,57 @@
 ## TODO
 
+- [ ] 各種コンテンツ
+  - [ ] About us
+  - [ ] コーヒー
+  - [ ] コールドブリュー
+
 ## Checklist
 
-- Design
+- [ ] Editing
+  - [ ] About us
+  - [ ] Coffee Hot
+  - [ ] Coffee Iced
+  - [ ] Cold Brew
+  - [ ] Latte Hot
+  - [ ] Latte Iced
+  - [ ] Americano Hot
+  - [ ] Americano Iced
+  - [ ] Mocha Hot
+  - [ ] Mocha Iced
+  - [ ] Vanilla Latte Hot
+  - [ ] Vanilla Latte Iced
+  - [ ] Cocoa Hot
+  - [ ] Cocoa Iced
+  - [ ] Espresso
+  - [ ] Madleine
+  - [ ] V60
+- [ ] Design
   - [ ] Create square/circle icon
   - [ ] Make marketing space
   - [ ] Define our mission
   - [x] Create compress script
   - [x] Define image rules
-- Relations
+- [ ] Relations
+  - [ ] Create privacy policy
+  - [ ] Create terms of service
   - [ ] Create instagram account
   - [ ] Create twitter account
   - [ ] Create facebook page
-  - [ ] Create privacy policy
-  - [ ] Create terms of service
-  - [ ] Create contact
   - [x] Config for OGP
-- Engineering
-  - [ ] Create sitemap
-  - [ ] Create robot.txt
-  - [ ] Base on WAI-ARIA
+  - [-] Create contact
+- [ ] Marketing
+  - [ ] Consider ad / affiliate
+  - [x] Install Google Analytics
+- [ ] Engineering
+  - [ ] Search
   - [x] Create RSS
   - [x] Load image lazy
   - [x] Logging client error
   - [x] Build AB testing
   - [x] Install service worker
-- Marketing
-  - [ ] Consider ad / affiliate
-  - [x] Install Google Analytics
+  - [x] Create sitemap
+  - [x] Create robots.txt
+  - [-] Base on WAI-ARIA
 
 ## Memo
 
