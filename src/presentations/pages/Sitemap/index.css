@@ -1,0 +1,31 @@
+@import 'application/vars';
+@import 'components/Header';
+@import 'components/Footer';
+@import 'components/Navigation';
+
+.Sitemap {
+  background-color: $color-background;
+
+  .Sitemap--Content {
+    max-width: calc($width-content * 3 / 4);
+    margin: 0 auto;
+    padding: 36px 16px;
+
+    & > ul {
+      a {
+        display: inline-block;
+        font-weight: $font-bold;
+        text-decoration: underline;
+        padding-bottom: 8px;
+      }
+
+      ul {
+        padding: 0 36px;
+      }
+    }
+  }
+}
+
+.Footer {
+  box-shadow: $shadow-inverse;
+}

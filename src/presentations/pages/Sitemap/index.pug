@@ -6,11 +6,12 @@ block import
   include /components/Footer
 
 block meta
-  script(src="/pages/Home/bundle.js" defer)
-  link(rel="stylesheet" href="/pages/Home/index.css")
+  link(rel="stylesheet" href="/pages/Sitemap/index.css")
 
 block body
-  .Home
+  .Sitemap
     +Header(props.header)
     +Navigation(props.navigation)
+    .Sitemap--Content
+      !=props.content
     +Footer
