@@ -14,8 +14,9 @@ import { goodsHandler } from 'handlers/goodsHandler';
 import { homeHandler } from 'handlers/homeHandler';
 import { manifestHandler } from 'handlers/manifestHandler';
 import { postHandler } from 'handlers/postHandler';
+import { robotsHandler } from 'handlers/robotsHandler';
 import { rssHandler } from 'handlers/rssHandler';
-import { sitemapHandler } from 'handlers/sitemapHandler';
+import { sitemapHandler, sitemapXmlHandler } from 'handlers/sitemapHandler';
 import { setLang } from 'middlewares/setLang';
 import { setLayoutProps } from 'middlewares/setLayoutProps';
 
@@ -68,8 +69,10 @@ app
   .get('/goods/:goodKey', preHandler, goodHandler)
   .get('/about-us', preHandler, aboutUsHandler)
   .get('/posts/:postKey', preHandler, postHandler)
+  .get('/sitemap.xml', preHandler, sitemapXmlHandler)
   .get('/sitemap', preHandler, sitemapHandler)
   .get('/rss*', preHandler, rssHandler)
+  .get('/robots.txt', preHandler, robotsHandler)
   .get('/manifest.json', preHandler, manifestHandler);
 
 // Server
