@@ -6,7 +6,7 @@ export const config: {
   twitterCardType: string;
   twitterAccount: string;
 } = {
-  url: 'https://coffeehandbook.app',
+  url: (process.env.NODE_ENV === 'production') ? 'https://coffeehandbook.app' : '//localhost:3030',
   languages: ['en', 'ja'],
   facebookAppId: 'test id',
   facebookPageUrl: 'facebook page url',
