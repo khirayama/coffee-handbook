@@ -4,6 +4,7 @@ import { ILayout } from 'presentations/application/Layout';
 import { IHeaderComponent } from 'presentations/components/Header';
 import { INavigationComponent } from 'presentations/components/Navigation';
 import { Dictionary } from 'utils/Dictionary';
+import { buildHtmlSitemap, buildXmlSitemap } from 'utils/sitemap';
 
 interface ISitemapPage extends ILayout {
   header: IHeaderComponent;
@@ -27,7 +28,12 @@ export function sitemapHandler(req: express.Request, res: express.Response): voi
     navigation: {
       path: req.originalUrl,
     },
+    content: buildHtmlSitemap(req.lang),
   };
 
   res.render('pages/Sitemap', { dic, props });
+}
+
+export function sitemapXmlHandler(req: express.Request, res: express.Response): void {
+  res.set('Content-Type', 'text/xml').send(buildXmlSitemap());
 }
