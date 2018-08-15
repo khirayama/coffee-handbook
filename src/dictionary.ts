@@ -60,6 +60,11 @@ export const dictionary: {
     Recipe: {
       INGREDIENTS: IText;
     };
+    Good: {
+      buyAtAmazon: IText;
+      relatedGoods: IText;
+      relatedRecipes: IText;
+    };
   };
 } = {
   // Common
@@ -193,6 +198,21 @@ export const dictionary: {
       INGREDIENTS: {
         ja: '材料',
         en: 'INGREDIENTS',
+      },
+    },
+    // Template: Good
+    Good: {
+      buyAtAmazon: {
+        ja: 'Amazonで購入',
+        en: 'Buy it at Amazon',
+      },
+      relatedGoods: {
+        ja: '関連グッズ',
+        en: 'Related Goods',
+      },
+      relatedRecipes: {
+        ja: '関連レシピ',
+        en: 'Related Recipes',
       },
     },
   },
