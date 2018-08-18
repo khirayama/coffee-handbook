@@ -52,6 +52,7 @@
   - [x] Create sitemap
   - [x] Create robots.txt
   - [-] Base on WAI-ARIA
+  - [-] Support AMP
 
 ## Memo
 
