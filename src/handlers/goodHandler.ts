@@ -29,11 +29,7 @@ export function goodHandler(req: express.Request, res: express.Response): void {
     navigation: {
       path: req.originalUrl,
     },
-    good: {
-      name: good.data.name,
-      category: good.data.category,
-      summary: good.data.summary,
-      content: good.data.content,
+    pictureGallery: {
       pictures: good.data.pictures.map(
         (picture: { url: string; caption: string }): IPictureComponent => {
           return {
@@ -43,6 +39,12 @@ export function goodHandler(req: express.Request, res: express.Response): void {
           };
         },
       ),
+    },
+    good: {
+      name: good.data.name,
+      category: good.data.category,
+      summary: good.data.summary,
+      content: good.data.content,
       specs: good.data.specs.map(
         (spec: { name: string; value: string }): ISpecRowComponent => {
           return {
@@ -54,7 +56,19 @@ export function goodHandler(req: express.Request, res: express.Response): void {
     },
     relatedGoods: [
       {
-        url: 'TODO',
+        url: good.meta.url,
+        name: good.data.name,
+        category: good.data.category,
+        picture: {
+          src: good.meta.thumbnailUrl.square,
+          alt: good.data.name,
+          lazy: true,
+        },
+      },
+    ],
+    relatedRecipes: [
+      {
+        url: good.meta.url,
         name: good.data.name,
         category: good.data.category,
         picture: {

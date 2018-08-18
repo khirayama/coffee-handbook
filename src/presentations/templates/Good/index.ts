@@ -3,6 +3,7 @@ import { IGoodCardComponent } from 'presentations/components/GoodCard';
 import { IHeaderComponent } from 'presentations/components/Header';
 import { INavigationComponent } from 'presentations/components/Navigation';
 import { IPictureComponent, Picture } from 'presentations/components/Picture';
+import { IPictureGalleryComponent, PictureGallery } from 'presentations/components/PictureGallery';
 import { logger } from 'presentations/utils/logger';
 
 export interface ISpecRowComponent {
@@ -13,12 +14,12 @@ export interface ISpecRowComponent {
 export interface IGoodTemplate extends ILayout {
   header: IHeaderComponent;
   navigation: INavigationComponent;
+  pictureGallery: IPictureGalleryComponent;
   good: {
     name: string;
     category: string;
     summary: string;
     content: string;
-    pictures: IPictureComponent[];
     specs: ISpecRowComponent[];
   };
   relatedGoods: IGoodCardComponent[];
@@ -29,6 +30,11 @@ window.addEventListener('DOMContentLoaded', () => {
 
   const pictureElements: NodeListOf<HTMLElement> = window.document.querySelectorAll('.Picture');
   for (const pictureElement of pictureElements) {
-    new Picture(pictureElement); // tslint:disable-line:no-unused-expression
+    // tslint:disable-next-line:no-unused-expression
+    new Picture(pictureElement);
   }
+
+  const pictureGalleryElement: HTMLElement = window.document.querySelector('.PictureGallery');
+  // tslint:disable-next-line:no-unused-expression
+  new PictureGallery(pictureGalleryElement);
 });

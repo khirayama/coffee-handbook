@@ -35,11 +35,26 @@ export class ViewElement {
     return new ViewElement(el);
   }
 
-  public on(eventType: string, handler: () => void, options: {}): void {
+  public findAll(selector: string): ViewElement[] {
+    const els: NodeListOf<HTMLElement> = this.el.querySelectorAll(selector);
+    const viewElements: ViewElement[] = [];
+
+    for (const el of els) {
+      viewElements.push(new ViewElement(el));
+    }
+
+    return viewElements;
+  }
+
+  public on(eventType: string, handler: () => void, options?: {}): void {
     this.el.addEventListener(eventType, handler, options);
   }
 
-  public attr(attr: string): string {
+  public attr(attr: string, value?: string): string {
+    if (value) {
+      this.el[attr] = value;
+    }
+
     return this.el[attr];
   }
 
@@ -51,12 +66,12 @@ export class ViewElement {
     this.el.classList.remove(className);
   }
 
-  public html(html?: string): string | void {
+  public html(html?: string): string {
     if (html || html === '') {
       this.el.innerHTML = html;
-    } else {
-      return this.el.innerHTML;
     }
+
+    return this.el.innerHTML;
   }
 }
 

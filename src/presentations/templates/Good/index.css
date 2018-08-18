@@ -4,6 +4,7 @@
 @import 'components/Navigation';
 @import 'components/Picture';
 @import 'components/GoodCard';
+@import 'components/PictureGallery';
 
 .Good {
   .Good--Content {
@@ -11,30 +12,6 @@
       width: 100%;
       max-width: $width-content;
       margin: 0 auto;
-
-      .Good--Content--Cover--Pictures {
-        .Good--Content--Cover--Pictures--Cover {
-          padding: 12px;
-
-          .Picture {
-            padding-top: 100%;
-          }
-        }
-
-        .Good--Content--Cover--Pictures--List {
-          padding: 0 6px;
-
-          .Good--Content--Cover--Pictures--List--Picture {
-            display: inline-block;
-            width: 20%;
-            padding: 0 6px;
-
-            .Picture {
-              padding-top: 100%;
-            }
-          }
-        }
-      }
 
       .Good--Content--Cover--Information {
         vertical-align: top;
@@ -88,7 +65,7 @@
       }
 
       @media screen and (min-width: calc($width-content / 2)) {
-        .Good--Content--Cover--Pictures {
+        .Good--Content--Cover--PictureGallery {
           display: inline-block;
           width: 45%;
         }

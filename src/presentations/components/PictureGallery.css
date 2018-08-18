@@ -1,0 +1,23 @@
+.PictureGallery {
+  .PictureGallery--Cover {
+    padding: 12px;
+
+    .Picture {
+      padding-top: 100%;
+    }
+  }
+
+  .PictureGallery--List {
+    padding: 0 6px;
+
+    .PictureGallery--List--Picture {
+      display: inline-block;
+      width: 20%;
+      padding: 0 6px;
+
+      .Picture {
+        padding-top: 100%;
+      }
+    }
+  }
+}

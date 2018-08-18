@@ -1,0 +1,10 @@
+include /components/Picture
+
+mixin PictureGallery(props)
+  .PictureGallery
+    .PictureGallery--Cover
+      +Picture(props.pictures[0])
+    .PictureGallery--List
+      for picture in props.pictures
+        .PictureGallery--List--Picture
+          +Picture(picture)

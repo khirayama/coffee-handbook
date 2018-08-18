@@ -6,6 +6,7 @@ block import
   include /components/Navigation
   include /components/Picture
   include /components/GoodCard
+  include /components/PictureGallery
 
 block meta
   script(src="/templates/Good/bundle.js" defer)
@@ -17,13 +18,8 @@ block body
     +Navigation(props.navigation)
     .Good--Content
       .Good--Content--Cover
-        .Good--Content--Cover--Pictures
-          .Good--Content--Cover--Pictures--Cover
-            +Picture(props.good.pictures[0])
-          .Good--Content--Cover--Pictures--List
-            for picture in props.good.pictures
-              .Good--Content--Cover--Pictures--List--Picture
-                +Picture(picture)
+        .Good--Content--Cover--PictureGallery
+          +PictureGallery(props.pictureGallery)
         .Good--Content--Cover--Information
           .Good--Content--Cover--Information--Name= props.good.name
           .Good--Content--Cover--Information--Category= props.good.category
