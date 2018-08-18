@@ -30,18 +30,20 @@ block body
                 tr
                   th= spec.name
                   td= spec.value
-          .Good--Content--Cover--Information--Button Amazonで購入
+          .Good--Content--Cover--Information--Button= dic.t('Templates.Good.buyAtAmazon')
       .Good--Content--Content
         .Good--Content--Content--Content
           p!= props.good.content
-      .Good--Content--RelatedList
-        .Good--Content--RelatedList--Title Related items
-        for relatedGood in props.relatedGoods
-          .Good--Content--RelatedList--Item
-            +GoodCard(relatedGood)
-      .Good--Content--RelatedList
-        .Good--Content--RelatedList--Title Related recipes
-        for relatedGood in props.relatedGoods
-          .Good--Content--RelatedList--Item
-            +GoodCard(relatedGood)
+      if props.relatedGoods.length
+        .Good--Content--RelatedList
+          .Good--Content--RelatedList--Title= dic.t('Templates.Good.relatedGoods')
+          for relatedGood in props.relatedGoods
+            .Good--Content--RelatedList--Item
+              +GoodCard(relatedGood)
+      if props.relatedRecipes.length
+        .Good--Content--RelatedList
+          .Good--Content--RelatedList--Title= dic.t('Templates.Good.relatedRecipes')
+          for relatedGood in props.relatedRecipes
+            .Good--Content--RelatedList--Item
+              +GoodCard(relatedGood)
     +Footer
