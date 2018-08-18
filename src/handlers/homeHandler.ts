@@ -1,6 +1,5 @@
 import * as express from 'express';
 
-import { config } from 'config';
 import { IHomePage, IStoryListItemComponent } from 'presentations/pages/Home';
 import { IArticle, IPost, Post } from 'resources/Post';
 import { Dictionary } from 'utils/Dictionary';
