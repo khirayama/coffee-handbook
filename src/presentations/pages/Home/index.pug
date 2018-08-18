@@ -20,8 +20,8 @@ block body
       .Home--CoverStory--Content
         .Home--CoverStory--Content--Image
           +Picture(props.coverStory)
-            source(media="(min-width: 446px)" srcset=props.coverStory.rectangleImagePath)
-            source(media="(max-width: 446px)" srcset=props.coverStory.squareImagePath)
+            source(media="(min-width: calc(816px / 2))" srcset=props.coverStory.rectangleImagePath)
+            source(media="(max-width: calc(816px / 2))" srcset=props.coverStory.squareImagePath)
           .Home--CoverStory--Content--Image--Cover
           .Home--CoverStory--Content--Title
             = props.coverStory.title
