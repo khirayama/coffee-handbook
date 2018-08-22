@@ -1,0 +1,55 @@
+@import 'application/vars';
+@import 'components/Header';
+@import 'components/Footer';
+@import 'components/Navigation';
+
+.Privacy {
+  background-color: $color-background;
+
+  .Privacy--Content {
+    max-width: calc($width-content * 3 / 4);
+    margin: 0 auto;
+    padding: 48px 16px;
+
+    .Privacy--Title {
+      font-weight: $font-bold;
+      text-align: center;
+      font-size: 1.5rem;
+      padding-bottom: 44px;
+    }
+
+    .Privacy--Date {
+      text-align: right;
+      padding-bottom: 24px;
+
+      .Privacy--Date--Text {
+        font-size: 0.875rem;
+      }
+    }
+
+    .Privacy--Description {
+      padding-bottom: 24px;
+    }
+
+    .Privacy--List {
+      padding-bottom: 24px;
+
+      .Privacy--List--Heading {
+        font-weight: $font-bold;
+        padding-bottom: 8px;
+      }
+
+      .Privacy--List--Content {
+        a {
+          color: $color-text-secondary;
+          text-decoration: underline;
+          padding: 0 4px;
+        }
+      }
+    }
+  }
+}
+
+.Footer {
+  box-shadow: $shadow-inverse;
+}

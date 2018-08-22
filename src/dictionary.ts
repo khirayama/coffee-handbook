@@ -32,6 +32,7 @@ export const dictionary: {
     Footer: {
       ABOUT_US: IText;
       SITEMAP: IText;
+      PRIVACY: IText;
       copyright: IText;
     };
     RecipeLink: {
@@ -46,6 +47,10 @@ export const dictionary: {
     Goods: {
       description: IText;
       GOODS: IText;
+    };
+    Privacy: {
+      description: IText;
+      PRIVACY: IText;
     };
   };
   Templates: {
@@ -134,6 +139,10 @@ export const dictionary: {
         ja: 'SITEMAP',
         en: 'SITEMAP',
       },
+      PRIVACY: {
+        ja: 'PRIVACY',
+        en: 'PRIVACY [JA]',
+      },
       copyright: {
         ja: ', All rights reserved.',
         en: ', All rights reserved.',
@@ -166,6 +175,16 @@ export const dictionary: {
       GOODS: {
         ja: 'グッズ',
         en: 'GOODS',
+      },
+    },
+    Privacy: {
+      description: {
+        ja: 'プライバーポリシー',
+        en: 'Privacy',
+      },
+      PRIVACY: {
+        ja: 'プライバーポリシー',
+        en: 'PRIVACY',
       },
     },
   },

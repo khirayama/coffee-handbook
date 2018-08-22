@@ -1,0 +1,89 @@
+extends /application/Layout
+
+block import
+  include /components/Header
+  include /components/Footer
+  include /components/Navigation
+
+block meta
+  link(rel="stylesheet" href="/pages/Privacy/index.css")
+
+block body
+  .Privacy
+    +Header(props.header)
+    +Navigation(props.navigation)
+    .Privacy--Content
+      .Privacy--Title 個人情報保護方針
+
+      .Privacy--Description
+        |珈琲手帖・Coffee Handbook（以下「当サイト」）は、ユーザの個人情報をお預かりするにあたり、以下のとおり個人情報保護方針を定め、個人情報保護の仕組みを構築します。
+        |当サイトは個人情報に関する法令を遵守し、個人情報保護の重要性の認識と取組みを徹底し、個人情報の適切な取扱いと保護を推進致します。
+
+      .Privacy--List
+        .Privacy--List--Heading 個人情報の取得
+        .Privacy--List--Content
+          |当サイトは、適正に個人情報を取得いたします。
+
+      .Privacy--List
+        .Privacy--List--Heading 個人情報の管理
+        .Privacy--List--Content
+          |当サイトは、お客さまの個人情報を正確かつ最新の状態に保ち、個人情報への不正アクセス・紛失・破損・改ざん・漏洩などを防止するため、セキュリティシステムの維持・管理体制の整備・社員教育の徹底等の必要な措置を講じ、安全対策を実施し個人情報の厳重な管理を行ないます。
+          |個人情報の利用目的
+          |当サイトは、個人情報を以下の目的のために利用いたします。
+
+      .Privacy--List
+        .Privacy--List--Heading 当サイトからのご連絡や業務のご案内やご質問に対する回答
+        .Privacy--List--Content
+          |ご注文いだいた商品を発送する場合
+          |当サイト主催の催し物、商品、サービスに関する情報提供
+
+      .Privacy--List
+        .Privacy--List--Heading 個人情報の第三者への開示・提供の禁止
+        .Privacy--List--Content
+          |当サイトは、お客さまよりお預かりした個人情報を適切に管理し、次のいずれかに該当する場合を除き、個人情報を第三者に開示いたしません。
+
+      .Privacy--List
+        .Privacy--List--Heading お客さまの同意がある場合
+        .Privacy--List--Content
+          |お客さまが希望されるサービスを行なうために当サイトが業務を委託する業者に対して開示する場合
+          |法令に基づき開示することが必要である場合
+
+      .Privacy--List
+        .Privacy--List--Heading 個人情報の安全管理
+        .Privacy--List--Content
+          |当サイトは、個人情報の漏えい・紛失防止のため、また正確性及び安全性確保のために、セキュリティに万全の対策を講じています。
+
+      .Privacy--List
+        .Privacy--List--Heading ご本人の照会
+        .Privacy--List--Content
+          |お客さまがご本人の個人情報の照会・修正・削除などをご希望される場合には、ご本人であることを確認の上、対応させていただきます。
+
+      .Privacy--List
+        .Privacy--List--Heading 法令、規範の遵守と見直し
+        .Privacy--List--Content
+          |当サイトは、保有する個人情報に関して適用される日本の法令を遵守するとともに、本ポリシーの内容を適宜見直し、その改善に努めます。
+
+      .Privacy--List
+        .Privacy--List--Heading 当サイトに掲載されている広告について
+        .Privacy--List--Content
+          |当サイトでは、第三者配信の広告サービス（Googleアドセンス、A8.net、Amazonアソシエイトなど）を利用しています。
+          |このような広告配信事業者は、ユーザーの興味に応じた商品やサービスの広告を表示するため、当サイトや他サイトへのアクセスに関する情報 『Cookie』(氏名、住所、メール アドレス、電話番号は含まれません) を使用することがあります。
+          |またGoogleアドセンスに関して、このプロセスの詳細やこのような情報が広告配信事業者に使用されないようにする方法については、
+          a(href="https://policies.google.com/technologies/ads") こちら
+          |をご覧ください。
+
+      .Privacy--List
+        .Privacy--List--Heading 当サイトが使用しているアクセス解析ツールについて
+        .Privacy--List--Content
+          |当サイトでは、Googleによるアクセス解析ツール「Googleアナリティクス」を利用しています。
+          |このGoogleアナリティクスはトラフィックデータの収集のためにCookieを使用しています。
+          |このトラフィックデータは匿名で収集されており、個人を特定するものではありません。
+          |この機能はCookieを無効にすることで収集を拒否することが出来ますので、お使いのブラウザの設定をご確認ください。
+          |この規約に関して、詳しくは
+          a(href="https://www.google.com/analytics/terms/jp.html") こちら
+          |をご覧ください。
+
+      .Privacy--Date
+        .Privacy--Date--Text 制定日：2018年08月22日
+        .Privacy--Date--Text 最終改訂日：2018年08月22日
+    +Footer

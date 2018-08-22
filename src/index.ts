@@ -14,6 +14,7 @@ import { goodsHandler } from 'handlers/goodsHandler';
 import { homeHandler } from 'handlers/homeHandler';
 import { manifestHandler } from 'handlers/manifestHandler';
 import { postHandler } from 'handlers/postHandler';
+import { privacyHandler } from 'handlers/privacyHandler';
 import { robotsHandler } from 'handlers/robotsHandler';
 import { rssHandler } from 'handlers/rssHandler';
 import { sitemapHandler, sitemapXmlHandler } from 'handlers/sitemapHandler';
@@ -69,6 +70,7 @@ app
   .get('/goods/:goodKey', preHandler, goodHandler)
   .get('/about-us', preHandler, aboutUsHandler)
   .get('/posts/:postKey', preHandler, postHandler)
+  .get('/privacy', preHandler, privacyHandler)
   .get('/sitemap.xml', preHandler, sitemapXmlHandler)
   .get('/sitemap', preHandler, sitemapHandler)
   .get('/rss*', preHandler, rssHandler)
