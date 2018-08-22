@@ -8,7 +8,7 @@
 ## Checklist
 
 - [ ] Editing
-  - [ ] About us
+  - [ ] About Us
   - [ ] Coffee Hot
   - [ ] Coffee Iced
   - [ ] Cold Brew
@@ -32,18 +32,18 @@
   - [x] Create compress script
   - [x] Define image rules
 - [ ] Relations
-  - [ ] Create privacy policy
-  - [ ] Create terms of service
   - [ ] Create instagram account
   - [ ] Create twitter account
   - [ ] Create facebook page
   - [x] Config for OGP
+  - [x] Create privacy
+  - [-] Create terms of service
   - [-] Create contact
 - [ ] Marketing
   - [ ] Consider ad / affiliate
   - [x] Install Google Analytics
-- [ ] Engineering
-  - [ ] Search
+- [x] Engineering
+  - [x] Search
   - [x] Create RSS
   - [x] Load image lazy
   - [x] Logging client error
