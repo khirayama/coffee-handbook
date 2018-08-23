@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="324px" height="324px" viewBox="0 0 324 324" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>icon_en_circle</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="icon_en_circle">
+            <circle id="Oval" stroke-opacity="0.87" stroke="#000000" stroke-width="12" fill="#FFFFFF" fill-rule="nonzero" cx="162" cy="162" r="156"></circle>
+            <text id="COFFEE-HAND-BOOK" font-family="Helvetica-Bold, Helvetica" font-size="50" font-weight="bold" letter-spacing="-1" fill="#000000" fill-opacity="0.87">
+                <tspan x="62" y="106">COFFEE</tspan>
+                <tspan x="62" y="166">HAND</tspan>
+                <tspan x="62" y="226">BOO</tspan>
+                <tspan x="172.891602" y="226">K</tspan>
+            </text>
+        </g>
+    </g>
+</svg>
