@@ -47,45 +47,17 @@
     opacity: 1;
     transition: opacity 200ms ease-out;
 
+    .Header--Link--Image {
+      width: 100%;
+      height: 100%;
+    }
+
     &:hover {
       opacity: 0.8;
     }
 
     &:active {
       background-color: $color-active;
-    }
-
-    .Header--Link--Logo {
-      position: relative;
-      display: inline-block;
-      font-weight: $font-bold;
-      text-align: left;
-      width: $size;
-      height: $size;
-      border: solid 2px $color-text;
-
-      .Header--Link--Logo--Text {
-        display: inline-block;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-      }
-
-      &.Header--Link--Logo__EN .Header--Link--Logo--Text {
-        display: inline-block;
-        font-size: 0.625rem;
-        line-height: 1.2;
-        letter-spacing: -0.25px;
-      }
-
-      &.Header--Link--Logo__JA .Header--Link--Logo--Text {
-        font-size: 1rem;
-        line-height: 1.2;
-        letter-spacing: 1px;
-        width: 100%;
-        text-align: center;
-      }
     }
   }
 }

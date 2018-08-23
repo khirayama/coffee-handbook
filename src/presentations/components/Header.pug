@@ -7,16 +7,6 @@ mixin Header(props)
         a(href="?lang=ja") 日本語
     a.Header--Link(href="/")
       if props.lang === 'en'
-        h1.Header--Link--Logo.Header--Link--Logo__EN
-          .Header--Link--Logo--Text
-            |COFFEE
-            br
-            |HAND
-            br
-            |BOOK
+        img.Header--Link--Image(srcset="/images/icon_en_square.png 1x, /images/icon_en_square@2x.png 2x, /images/icon_en_square@3x.png 3x")
       if props.lang === 'ja'
-        h1.Header--Link--Logo.Header--Link--Logo__JA
-          .Header--Link--Logo--Text
-            |珈琲
-            br
-            |手帖
+        img.Header--Link--Image(srcset="/images/icon_ja_square.png 1x, /images/icon_ja_square@2x.png 2x, /images/icon_ja_square@3x.png 3x")
