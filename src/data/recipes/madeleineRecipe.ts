@@ -20,14 +20,8 @@ export const madeleineRecipe: IRawPost<IRawRecipe> = {
       en: 'A recipe of madeleine that traditional small cake from the Lorraine region in northeastern France.',
     },
     thumbnailUrl: {
-      square: {
-        ja: '/images/image_1@square.jpg',
-        en: '/images/image_1@square.jpg',
-      },
-      rectangle: {
-        ja: '/images/image_1@rectangle.jpg',
-        en: '/images/image_1@rectangle.jpg',
-      },
+      square: null,
+      rectangle: null,
     },
   },
   data: {
@@ -116,16 +110,6 @@ export const madeleineRecipe: IRawPost<IRawRecipe> = {
         summary: {
           ja: '出来上がり！',
           en: "It's ready to eat!",
-        },
-        image: {
-          src: {
-            ja: '/images/image_1@square.jpg',
-            en: '/images/image_1@square.jpg',
-          },
-          caption: {
-            ja: 'マドレーヌ 出来上がり！',
-            en: 'Madeleine is ready to eat!',
-          },
         },
       },
     ],
