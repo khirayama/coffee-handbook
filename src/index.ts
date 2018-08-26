@@ -13,6 +13,7 @@ import { goodHandler } from 'handlers/goodHandler';
 import { goodsHandler } from 'handlers/goodsHandler';
 import { homeHandler } from 'handlers/homeHandler';
 import { manifestHandler } from 'handlers/manifestHandler';
+import { mapsHandler } from 'handlers/mapsHandler';
 import { postHandler } from 'handlers/postHandler';
 import { privacyHandler } from 'handlers/privacyHandler';
 import { robotsHandler } from 'handlers/robotsHandler';
@@ -62,6 +63,7 @@ app
 // Routing
 app
   .get('/', preHandler, homeHandler)
+  .get('/maps', preHandler, mapsHandler)
   .get('/beverages', preHandler, beveragesHandler)
   .get('/beverages/:beverageKey/:recipeType', preHandler, beverageHandler)
   .get('/foods', preHandler, foodsHandler)

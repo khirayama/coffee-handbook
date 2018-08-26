@@ -1,0 +1,16 @@
+extends /application/Layout
+
+block import
+  include /components/Header
+  include /components/Navigation
+  include /components/Footer
+
+block meta
+  script(src="/pages/Maps/bundle.js" defer)
+  link(rel="stylesheet" href="/pages/Maps/index.css")
+
+block body
+  .Maps
+    +Header(props.header)
+    +Navigation(props.navigation)
+    +Footer
