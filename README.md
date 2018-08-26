@@ -1,4 +1,4 @@
-# HIRAYAMA COFFEE INSTITUTE - 平山珈琲研究所 -
+# COFFEE HANDBOOK - 珈琲手帖 -
 
 ## Development
 

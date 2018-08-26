@@ -159,8 +159,8 @@ export const dictionary: {
   Pages: {
     Home: {
       description: {
-        ja: '平山珈琲研究所について',
-        en: 'About HIRAYAMA COFFEE INSTITUTE',
+        ja: '珈琲手帖について',
+        en: 'About COFFEE HANDBOOK',
       },
       LATEST_ARTICLES: {
         ja: '新着記事',
