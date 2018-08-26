@@ -15,12 +15,13 @@ block body
     +Header(props.header)
     +Navigation(props.navigation)
 
-    .Recipe--CoverPicture
-      .Recipe--CoverPicture--Content
-        .Recipe--CoverPicture--Content--Image
-          +Picture(props.coverPicture)
-            source(media="(min-width: calc(816px / 2))" srcset=props.coverPicture.rectangleSrc)
-            source(media="(max-width: calc(816px / 2))" srcset=props.coverPicture.squareSrc)
+    if props.coverPicture.src
+      .Recipe--CoverPicture
+        .Recipe--CoverPicture--Content
+          .Recipe--CoverPicture--Content--Image
+            +Picture(props.coverPicture)
+              source(media="(min-width: calc(816px / 2))" srcset=props.coverPicture.rectangleSrc)
+              source(media="(max-width: calc(816px / 2))" srcset=props.coverPicture.squareSrc)
 
     .Recipe--Content
       .Recipe--Content--Title

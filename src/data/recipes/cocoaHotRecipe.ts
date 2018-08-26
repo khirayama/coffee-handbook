@@ -20,14 +20,8 @@ export const cocoaHotRecipe: IRawPost<IRawRecipe> = {
       en: 'COCOA desc',
     },
     thumbnailUrl: {
-      square: {
-        ja: '/images/image_1@square.jpg',
-        en: '/images/image_1@square.jpg',
-      },
-      rectangle: {
-        ja: '/images/image_1@rectangle.jpg',
-        en: '/images/image_1@rectangle.jpg',
-      },
+      square: null,
+      rectangle: null,
     },
   },
   data: {

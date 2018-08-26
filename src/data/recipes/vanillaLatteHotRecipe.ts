@@ -20,14 +20,8 @@ export const vanillaLatteHotRecipe: IRawPost<IRawRecipe> = {
       en: 'VANILLA LATTE desc',
     },
     thumbnailUrl: {
-      square: {
-        ja: '/images/image_1@square.jpg',
-        en: '/images/image_1@square.jpg',
-      },
-      rectangle: {
-        ja: '/images/image_1@rectangle.jpg',
-        en: '/images/image_1@rectangle.jpg',
-      },
+      square: null,
+      rectangle: null,
     },
   },
   data: {

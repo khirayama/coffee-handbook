@@ -19,7 +19,7 @@ export function beverageHandler(req: express.Request, res: express.Response): vo
     title: `${recipe.meta.title} | ${dic.t('name')}`,
     description: recipe.meta.description,
     keywords: ['coffee', 'コーヒー', '珈琲', 'handbook', '手帖'],
-    image: recipe.meta.thumbnailUrl.rectangle,
+    image: recipe.meta.thumbnailUrl.rectangle ? recipe.meta.thumbnailUrl.rectangle : null,
     pageType: 'drink',
 
     header: {
