@@ -1,9 +1,45 @@
 ## TODO
 
-- [ ] 各種コンテンツ
-  - [ ] About us
-  - [ ] コーヒー
-  - [ ] コールドブリュー
+- [ ] Considers Maps (Display stores and events)
+
+- SpotType
+  - id
+  - name [cafe, store, beans]
+- Spot
+  - id
+  - typeId
+  - name
+  - address
+  - lat
+  - lng
+  - hours
+  - email
+  - tel
+  - media
+    - web
+    - ec
+    - facebook
+    - twitter
+    - instagram
+    - instagram hash tag
+    - google maps
+  - roaster
+  - power
+  - wifi
+  - credit
+  - permanentClosed
+  - checker (headless chromeで死活監視)
+- Events
+  - name
+  - hostIds storeId[]
+  - position if store is not same
+  - fee
+  - description
+  - cycle [annual, monthly, weekly, daily, none]
+  - startAt
+  - endAt
+  - hours
+  - checker (headless chromeで死活監視)
 
 ## Checklist
 
