@@ -30,10 +30,12 @@
   "author": "khirayama",
   "license": "",
   "dependencies": {
+    "@types/leaflet": "1.2.10",
     "compression": "1.7.2",
     "cookie-parser": "1.4.3",
     "express": "4.16.3",
     "fuse.js": "3.2.1",
+    "leaflet": "1.3.4",
     "pug": "2.0.3"
   },
   "devDependencies": {
