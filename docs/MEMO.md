@@ -26,22 +26,22 @@
   - [ ] Madleine
   - [ ] V60
 - [ ] Design
-  - [ ] Create square/circle icon
-  - [ ] Make marketing space
   - [ ] Define our mission
+  - [x] Create square/circle icon
   - [x] Create compress script
   - [x] Define image rules
-- [ ] Relations
-  - [ ] Create instagram account
-  - [ ] Create twitter account
-  - [ ] Create facebook page
+  - [-] Make marketing space
+- [x] Relations
   - [x] Config for OGP
   - [x] Create privacy
+  - [x] Create instagram account https://www.instagram.com/coffee_handbook/
+  - [x] Create twitter account https://twitter.com/coffee_handbook
   - [-] Create terms of service
   - [-] Create contact
-- [ ] Marketing
-  - [ ] Consider ad / affiliate
+  - [-] Create facebook page
+- [x] Marketing
   - [x] Install Google Analytics
+  - [-] Consider ad / affiliate
 - [x] Engineering
   - [x] Search
   - [x] Create RSS
