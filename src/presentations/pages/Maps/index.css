@@ -1,7 +1,23 @@
+@import 'pages/Maps/leaflet';
+
 @import 'application/vars';
 @import 'components/Header';
 @import 'components/Footer';
 @import 'components/Navigation';
 
 .Maps {
+  .Maps--Content {
+    .Maps--Content--Map {
+      width: 100%;
+      height: 400px;
+    }
+  }
+
+  .icon {
+    background: red;
+    width: 16px!important;
+    height: 16px!important;
+    border-radius: 50%;
+    opacity: 0.88;
+  }
 }
