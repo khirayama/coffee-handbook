@@ -17,22 +17,54 @@ interface IPosition {
 }
 
 const stores: any[] = [{
-  name: 'Saredo Coffee',
-  address: '福岡県福岡市中央区六本松3-11-33エステートビル101',
   lat: 33.5794,
   lng: 130.381028,
+  name: 'Saredo Coffee',
+  address: '福岡県福岡市中央区六本松3-11-33エステートビル101',
+  hours: 'OPEN 11:00 - 20:00・Drink O/S 19:00・CLOSED 水曜日',
+  email: null,
+  tel: '0927911313',
+  media: {
+    web: 'https://www.saredocoffee.com/',
+    ec: 'https://www.saredocoffee.com/shop',
+    facebook: 'https://www.facebook.com/SaredoCoffee/',
+    twitter: null,
+    instagram: 'https://www.instagram.com/saredocoffee/',
+    instagramTag: 'https://www.instagram.com/explore/tags/saredocoffee/',
+    googleMaps: 'https://goo.gl/maps/jfZhdSXprhn',
+  },
+  facilities: {
+    roaster: true,
+    power: false,
+    wifi: true,
+    // credit: {
+    //   visa: false,
+    //   masterCard: false,
+    //   unionPay: false,
+    //   amex: false,
+    //   jcb: false,
+    //   diners: false,
+    //   discover: false,
+    // },
+    cash: true,
+    credit: null,
+  },
+  permanentClosed: false,
 }];
 
 class Map {
   public map: leaflet.Map;
 
-  constructor(el: HTMLElement) {
+  private props: any;
+
+  constructor(el: HTMLElement, props?: any) {
     const view: {
       pos: IPosition;
       zoom: number;
     } = this.loadView();
 
     this.map = leaflet.map(el).setView(view.pos, view.zoom);
+    this.props = props;
     const tiles: leaflet.TileLayer = leaflet.tileLayer('//{s}.tile.osm.org/{z}/{x}/{y}.png', {
       maxZoom: 100,
       attribution: '&copy; <a href="//osm.org/copyright">OpenStreetMap</a> contributors',
@@ -68,6 +100,10 @@ class Map {
     this.map.on('moveend', () => {
       this.saveView();
     });
+
+    if (this.props.onClick) {
+      this.map.on('click', this.props.onClick);
+    }
   }
 }
 
@@ -76,11 +112,14 @@ class Store {
 
   private map: Map;
 
+  private props: any;
+
   private marker: leaflet.Marker;
 
-  constructor(store: any, map: Map) {
+  constructor(store: any, map: Map, props: any) {
     this.store = store;
     this.map = map;
+    this.props = props;
     this.marker = leaflet
       .marker([store.lat, store.lng], {
         icon: leaflet.divIcon({
@@ -94,16 +133,61 @@ class Store {
   private setEventHandlers(): void {
     this.marker.on('click', () => {
       console.log(this.store);
+
+      const store: any = this.store;
+
+      const el: HTMLElement = window.document.querySelector('.Maps--Content--Modal');
+      el.innerHTML = `
+        <div class="Modal">
+          <div class="Modal--Content">
+            <h2 class="Modal--Name">${store.name}</h2>
+            <div class="Modal--Address">${store.address}</div>
+            <div class="Modal--Hours">${store.hours}</div>
+            ${(store.email) ? `<div class="Modal--Email">${store.email}</div>` : ''}
+            ${(store.tel) ? `<div class="Modal--Tel">${store.tel}</div>` : ''}
+            <ul>
+              ${((Object.keys(store.media)).map((key: string): string => (store.media[key]) ? `<li><div class="Modal--Media Modal--Media__Active">${key[0]}</div></li>` : `<li><div class="Modal--Media">${key[0]}</div></li>`)).join('')}
+            </ul>
+          </div>
+        </div>
+      `;
     });
+
+    if (this.props.onClick) {
+      this.marker.on('click', this.props.onClick);
+    }
+  }
+}
+
+class Modal {
+  private el: HTMLElement;
+
+  constructor(el: HTMLElement) {
+    this.el = el;
+  }
+
+  public open(): void {
+    this.el.classList.add('Maps--Content--Modal__Open');
+  }
+
+  public close(): void {
+    this.el.classList.remove('Maps--Content--Modal__Open');
   }
 }
 
 window.addEventListener('DOMContentLoaded', () => {
   logger.log(`Start app at ${new Date().toString()}.`);
 
+  const modalElement: HTMLElement = window.document.querySelector('.Maps--Content--Modal');
+  const modal: Modal = new Modal(modalElement);
+
   const mapElement: HTMLElement = window.document.querySelector('.Maps--Content--Map');
-  const map: Map = new Map(mapElement);
+  const map: Map = new Map(mapElement, {
+    onClick: () => modal.close(),
+  });
   stores.forEach((store: any) => {
-    new Store(store, map);
+    new Store(store, map, {
+      onClick: () => modal.open(),
+    });
   });
 });
