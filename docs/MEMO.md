@@ -23,10 +23,11 @@
     - instagram
     - instagram hash tag
     - google maps
-  - roaster
-  - power
-  - wifi
-  - credit
+  - facilities
+    - roaster
+    - power
+    - wifi
+    - credit
   - permanentClosed
   - checker (headless chromeで死活監視)
 - Events
