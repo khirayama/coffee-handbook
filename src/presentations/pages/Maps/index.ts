@@ -4,6 +4,7 @@ import * as leaflet from 'leaflet';
 import { ILayout } from 'presentations/application/Layout';
 import { IHeaderComponent } from 'presentations/components/Header';
 import { INavigationComponent } from 'presentations/components/Navigation';
+import { getOpenStatusMessage } from 'presentations/utils/getOpenStatusMessage';
 import { logger } from 'presentations/utils/logger';
 
 export interface IMapsPage extends ILayout {
@@ -16,41 +17,58 @@ interface IPosition {
   lng: number;
 }
 
-const stores: any[] = [{
-  lat: 33.5794,
-  lng: 130.381028,
-  name: 'Saredo Coffee',
-  address: '福岡県福岡市中央区六本松3-11-33エステートビル101',
-  hours: 'OPEN 11:00 - 20:00・Drink O/S 19:00・CLOSED 水曜日',
-  email: null,
-  tel: '0927911313',
-  media: {
-    web: 'https://www.saredocoffee.com/',
-    ec: 'https://www.saredocoffee.com/shop',
-    facebook: 'https://www.facebook.com/SaredoCoffee/',
-    twitter: null,
-    instagram: 'https://www.instagram.com/saredocoffee/',
-    instagramTag: 'https://www.instagram.com/explore/tags/saredocoffee/',
-    googleMaps: 'https://goo.gl/maps/jfZhdSXprhn',
+const stores: any[] = [
+  {
+    lat: 33.5794,
+    lng: 130.381028,
+    name: 'Saredo Coffee',
+    address: '福岡県福岡市中央区六本松3-11-33エステートビル101',
+    // hours: 'OPEN 11:00 - 20:00・Drink O/S 19:00・CLOSED 水曜日',
+    hours: [
+      [['11:00', '20:00']],
+      [['11:00', '20:00']],
+      [['11:00', '20:00']],
+      [],
+      [['11:00', '20:00']],
+      [['11:00', '20:00']],
+      [['11:00', '20:00']],
+    ],
+    email: null,
+    tel: '0927911313',
+    permanentClosed: false,
+    transforTo: null,
+    media: {
+      web: 'https://www.saredocoffee.com/',
+      ec: 'https://www.saredocoffee.com/shop',
+      facebook: 'https://www.facebook.com/SaredoCoffee/',
+      twitter: null,
+      instagram: 'https://www.instagram.com/saredocoffee/',
+      instagramTag: 'https://www.instagram.com/explore/tags/saredocoffee/',
+      googleMaps: 'https://goo.gl/maps/jfZhdSXprhn',
+    },
+    payments: {
+      cash: true,
+      credit: {
+        visa: false,
+        masterCard: false,
+        unionPay: false,
+        amex: false,
+        jcb: false,
+        diners: false,
+        discover: false,
+      },
+    },
+    services: {
+      roaster: true,
+      speciality: true,
+      beans: true,
+      power: false,
+      wifi: true,
+      pet: 0, // 0: なし、1: あり、2: 部分的にあり
+      smoking: 0, // 0: 禁煙、1: 喫煙、2: 喫煙スペースあり
+    },
   },
-  facilities: {
-    roaster: true,
-    power: false,
-    wifi: true,
-    // credit: {
-    //   visa: false,
-    //   masterCard: false,
-    //   unionPay: false,
-    //   amex: false,
-    //   jcb: false,
-    //   diners: false,
-    //   discover: false,
-    // },
-    cash: true,
-    credit: null,
-  },
-  permanentClosed: false,
-}];
+];
 
 class Map {
   public map: leaflet.Map;
@@ -83,17 +101,22 @@ class Map {
   }
 
   private loadView(): { pos: IPosition; zoom: number } {
-    return JSON.parse(window.localStorage.getItem('__MAP_CENTER')) || {
-      pos: [35.664035, 139.698212],
-      zoom: 8,
-    };
+    return (
+      JSON.parse(window.localStorage.getItem('__MAP_CENTER')) || {
+        pos: [35.664035, 139.698212],
+        zoom: 8,
+      }
+    );
   }
 
   private saveView(): void {
-    window.localStorage.setItem('__MAP_CENTER', JSON.stringify({
-      pos: this.getCenter(),
-      zoom: this.getZoom(),
-    }));
+    window.localStorage.setItem(
+      '__MAP_CENTER',
+      JSON.stringify({
+        pos: this.getCenter(),
+        zoom: this.getZoom(),
+      }),
+    );
   }
 
   private setEventHandlers(): void {
@@ -125,7 +148,8 @@ class Store {
         icon: leaflet.divIcon({
           className: 'icon',
         }),
-      }).addTo(this.map.map);
+      })
+      .addTo(this.map.map);
 
     this.setEventHandlers();
   }
@@ -136,17 +160,49 @@ class Store {
 
       const store: any = this.store;
 
+      const openStatus: string = getOpenStatusMessage(new Date(), store.hours);
+
       const el: HTMLElement = window.document.querySelector('.Maps--Content--Modal');
       el.innerHTML = `
         <div class="Modal">
           <div class="Modal--Content">
             <h2 class="Modal--Name">${store.name}</h2>
             <div class="Modal--Address">${store.address}</div>
-            <div class="Modal--Hours">${store.hours}</div>
-            ${(store.email) ? `<div class="Modal--Email">${store.email}</div>` : ''}
-            ${(store.tel) ? `<div class="Modal--Tel">${store.tel}</div>` : ''}
+            <div class="Modal--OpenStatus">${openStatus}</div>
+            <ul class="Modal--Hours">${(store.hours.map((hours: string[][]) => {
+              console.log(hours);
+              return hours.map(hour => hour.join('-'));
+            })).join('<br>')}</ul>
+            ${store.email ? `<div class="Modal--Email">${store.email}</div>` : ''}
+            ${store.tel ? `<div class="Modal--Tel">${store.tel}</div>` : ''}
             <ul>
-              ${((Object.keys(store.media)).map((key: string): string => (store.media[key]) ? `<li><div class="Modal--Media Modal--Media__Active">${key[0]}</div></li>` : `<li><div class="Modal--Media">${key[0]}</div></li>`)).join('')}
+              ${Object.keys(store.media)
+                .map(
+                  (key: string): string => {
+                    return store.media[key]
+                      ? `
+                        <li>
+                          <a target='__blank' class="Modal--Media Modal--Media__Active" href="${store.media[key]}">${key[0]}</a>
+                        </li>
+                      ` : `
+                        <li>
+                          <div class="Modal--Media">${key[0]}</div>
+                        </li>
+                      `;
+                  },
+                )
+                .join('')}
+            </ul>
+            <ul>
+              ${Object.keys(store.services)
+                .map(
+                  (key: string): string => {
+                    return store.services[key]
+                      ? `<li><div class="Modal--Media Modal--Media__Active">${key[0]}</div></li>`
+                      : `<li><div class="Modal--Media">${key[0]}</div></li>`;
+                  },
+                )
+                .join('')}
             </ul>
           </div>
         </div>
@@ -183,11 +239,11 @@ window.addEventListener('DOMContentLoaded', () => {
 
   const mapElement: HTMLElement = window.document.querySelector('.Maps--Content--Map');
   const map: Map = new Map(mapElement, {
-    onClick: () => modal.close(),
+    onClick: (): void => modal.close(),
   });
   stores.forEach((store: any) => {
     new Store(store, map, {
-      onClick: () => modal.open(),
+      onClick: (): void => modal.open(),
     });
   });
 });
