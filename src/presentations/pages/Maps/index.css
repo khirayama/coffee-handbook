@@ -10,6 +10,7 @@ body {
 .Maps {
   width: 100%;
   height: 100%;
+  overflow: hidden;
 
   .Maps--Content {
     position: relative;
@@ -39,8 +40,8 @@ body {
 
   .icon {
     background: red;
-    width: 16px!important;
-    height: 16px!important;
+    width: 16px !important;
+    height: 16px !important;
     border-radius: 50%;
     opacity: 0.88;
   }
@@ -55,18 +56,24 @@ body {
     }
 
     ul {
-      display: inline-block;
+      /* font-size: 0; */
 
       li {
         display: inline-block;
+        font-size: 1rem;
 
         .Modal--Media {
           display: inline-block;
           width: 24px;
           height: 24px;
-          background: black;
+          background: gray;
           color: white;
           text-align: center;
+          margin: 0;
+
+          &.Modal--Media__Active {
+            background: black;
+          }
         }
       }
     }
