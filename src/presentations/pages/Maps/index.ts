@@ -191,6 +191,8 @@ class ModalView {
 window.addEventListener('DOMContentLoaded', () => {
   logger.log(`Start app at ${new Date().toString()}.`);
 
+  const stores: IStore[] = Store(window.options.lang).find();
+
   const modalElement: HTMLElement = window.document.querySelector('.Maps--Content--Modal');
   const modal: ModalView = new ModalView(modalElement);
 
@@ -198,7 +200,6 @@ window.addEventListener('DOMContentLoaded', () => {
   const map: MapView = new MapView(mapElement, {
     onClick: (): void => modal.close(),
   });
-  const stores: IStore[] = Store('en').find();
   stores.forEach((store: IStore) => {
     new StoreView(store, map, {
       onClick: (): void => modal.open(),

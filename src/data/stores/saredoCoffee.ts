@@ -10,7 +10,7 @@ export const saredoCoffee: IRawStore = {
   },
   address: {
     ja: '福岡県福岡市中央区六本松3-11-33エステートビル101',
-    en: '福岡県福岡市中央区六本松3-11-33エステートビル101',
+    en: 'Estate Building 101, 3-11-33, Ropponmatsu, Chuo-ku, Fukuoka-shi, Fukuoka-ken',
   },
   hours: [
     [['11:00', '20:00']],
