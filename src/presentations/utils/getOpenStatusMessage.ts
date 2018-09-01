@@ -11,7 +11,7 @@ export function getOpenStatusMessage(
   // 30分前の場合、まもなく開店
   // 範囲内の場合、開店
   // それ以外の場合、閉店かつ次の開く時間
-  const todayOpenHours: any = hours[now.getDay()];
+  const todayOpenHours: string[][] = hours[now.getDay()];
 
   if (todayOpenHours.length) {
     for (const openHour of todayOpenHours) {
