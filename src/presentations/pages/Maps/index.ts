@@ -3,6 +3,7 @@ import * as leaflet from 'leaflet';
 import { ILayout } from 'presentations/application/Layout';
 import { IHeaderComponent } from 'presentations/components/Header';
 import { INavigationComponent } from 'presentations/components/Navigation';
+import { View, ViewElement } from 'presentations/components/View';
 import { getOpenStatusMessage } from 'presentations/utils/getOpenStatusMessage';
 import { logger } from 'presentations/utils/logger';
 import { IStore, Store } from 'resources/Store';
@@ -17,28 +18,35 @@ interface IPosition {
   lng: number;
 }
 
-class MapView {
+class MapView extends View {
   public map: leaflet.Map;
 
-  private props: {
+  public props: {
     onClick(): void;
   };
 
-  constructor(el: HTMLElement, props?: { onClick(): void }) {
+  public init(): void {
     const view: {
       pos: IPosition;
       zoom: number;
     } = this.loadView();
 
-    this.map = leaflet.map(el).setView(view.pos, view.zoom);
-    this.props = props;
+    this.map = leaflet.map(this.el).setView(view.pos, view.zoom);
     const tiles: leaflet.TileLayer = leaflet.tileLayer('//{s}.tile.osm.org/{z}/{x}/{y}.png', {
       maxZoom: 100,
       attribution: '&copy; <a href="//osm.org/copyright">OpenStreetMap</a> contributors',
     });
     this.map.addLayer(tiles);
+  }
 
-    this.setEventHandlers();
+  public setEventListeners(): void {
+    this.map.on('moveend', () => {
+      this.saveView();
+    });
+
+    if (this.props.onClick) {
+      this.map.on('click', this.props.onClick);
+    }
   }
 
   private getCenter(): IPosition {
@@ -50,12 +58,15 @@ class MapView {
   }
 
   private loadView(): { pos: IPosition; zoom: number } {
-    return (
-      JSON.parse(window.localStorage.getItem('__MAP_CENTER')) || {
-        pos: [35.664035, 139.698212],
-        zoom: 8,
-      }
-    );
+    const defaultView: { pos: IPosition; zoom: number } = {
+      pos: {
+        lat: 35.664035,
+        lng: 139.698212,
+      },
+      zoom: 8,
+    };
+
+    return JSON.parse(window.localStorage.getItem('__MAP_CENTER')) || defaultView;
   }
 
   private saveView(): void {
@@ -66,16 +77,6 @@ class MapView {
         zoom: this.getZoom(),
       }),
     );
-  }
-
-  private setEventHandlers(): void {
-    this.map.on('moveend', () => {
-      this.saveView();
-    });
-
-    if (this.props.onClick) {
-      this.map.on('click', this.props.onClick);
-    }
   }
 }
 

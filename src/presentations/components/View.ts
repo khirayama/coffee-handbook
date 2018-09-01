@@ -76,10 +76,16 @@ export class ViewElement {
 }
 
 export class View {
+  public el: HTMLElement;
+
   public $el: ViewElement;
 
-  constructor(el: HTMLElement) {
+  protected props: object;
+
+  constructor(el: HTMLElement, props?: object) {
+    this.el = el;
     this.$el = new ViewElement(el);
+    this.props = props;
 
     this.init();
     this.setEventListeners();
