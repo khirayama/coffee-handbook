@@ -8,11 +8,11 @@ export interface IPictureComponent {
 }
 
 export class Picture extends View {
-  private $imageEl: ViewElement;
-
-  private props: {
+  public props: {
     lazy: boolean;
   };
+
+  private $imageEl: ViewElement;
 
   public init(): void {
     this.$imageEl = this.$el.find('.Picture--Image');

@@ -4,6 +4,7 @@ block import
   include /components/Header
   include /components/Navigation
   include /components/Footer
+  include /components/Map
 
 block meta
   script(src="/pages/Maps/bundle.js" defer)
@@ -12,5 +13,5 @@ block meta
 block body
   .Maps
     .Maps--Content
-      .Maps--Content--Map
+      +Map
       .Maps--Content--Modal
