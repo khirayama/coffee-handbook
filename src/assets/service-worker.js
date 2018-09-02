@@ -14,7 +14,7 @@ if (workbox) {
     }),
   );
   workbox.routing.registerRoute(
-    /.*\.(?:webp|png|jpg|jpeg|svg|gif)/,
+    /images\/*\.(?:webp|png|jpg|jpeg|svg|gif)/,
     workbox.strategies.cacheFirst({
       cacheName: 'image-cache',
       plugins: [
