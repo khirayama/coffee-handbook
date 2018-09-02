@@ -1,0 +1,7 @@
+.StoreMarker {
+  background: red;
+  width: 16px !important;
+  height: 16px !important;
+  border-radius: 50%;
+  opacity: 0.88;
+}
