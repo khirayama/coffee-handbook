@@ -6,6 +6,18 @@ import { StoreMarker } from 'presentations/components/StoreMarker';
 import { logger } from 'presentations/utils/logger';
 import { IStore, Store } from 'resources/Store';
 
+declare global {
+  // tslint:disable-next-line:interface-name
+  interface Window {
+    options: {
+      env: string;
+      lang: string;
+      gaCode: string;
+      route: string;
+    };
+  }
+}
+
 export interface IMapsPage extends ILayout {
   header: IHeaderComponent;
   navigation: INavigationComponent;

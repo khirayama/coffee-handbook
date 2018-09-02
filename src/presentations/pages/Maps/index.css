@@ -40,6 +40,42 @@ body {
 
     .Modal--Name {
       font-weight: $font-bold;
+      padding-bottom: 8px;
+    }
+
+    .Modal--Address {
+      font-size: 0.875rem;
+      padding-bottom: 8px;
+    }
+
+    .Modal--OpenStatus {
+      .Modal--OpenStatus--Status {
+        font-weight: $font-bold;
+      }
+
+      .Modal--OpenStatus--NextStatus {
+        padding-right: 8px;
+      }
+    }
+
+    .Modal--Hours {
+      .Modal--Hours--Item {
+        display: flex;
+        width: 100%;
+
+        &.Modal--Hours--Item__Active {
+          font-weight: $font-bold;
+        }
+
+        .Modal--Hours--Item--Day {
+          flex: 1;
+        }
+
+        .Modal--Hours--Item--Time {
+          flex: 1;
+          text-align: right;
+        }
+      }
     }
 
     ul {
