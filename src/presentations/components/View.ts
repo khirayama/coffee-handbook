@@ -5,7 +5,9 @@ export class ViewElement {
 
   constructor(el: HTMLElement) {
     this.el = el;
-    this.data = this.extractData();
+    if (this.el) {
+      this.data = this.extractData();
+    }
   }
 
   public extractData(): { [key: string]: string | boolean | number } {
