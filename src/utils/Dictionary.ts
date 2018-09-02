@@ -22,9 +22,10 @@ export class Dictionary {
   }
 
   // tslint:disable-next-line:function-name
-  public t(key: string): string {
-    const val: any = this.v(key);
+  public t(key: string, ...args: any[]): string {
+    const val: any = args ? this.v(key) : this.v(key)(...args);
 
+    // Consider fallback
     return val[this.lang];
   }
 }

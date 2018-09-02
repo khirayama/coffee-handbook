@@ -52,6 +52,25 @@ export const dictionary: {
       description: IText;
       PRIVACY: IText;
     };
+    Maps: {
+      day: {
+        0: IText;
+        1: IText;
+        2: IText;
+        3: IText;
+        4: IText;
+        5: IText;
+        6: IText;
+      };
+      openStatus: {
+        0: IText;
+        1: IText;
+        2: IText;
+        3: IText;
+      };
+      openAt(time: string): IText;
+      closeAt(time: string): IText;
+    };
   };
   Templates: {
     Beverages: {
@@ -185,6 +204,68 @@ export const dictionary: {
       PRIVACY: {
         ja: 'プライバーポリシー',
         en: 'PRIVACY',
+      },
+    },
+    Maps: {
+      day: {
+        0: {
+          ja: '日曜日',
+          en: 'Sunday',
+        },
+        1: {
+          ja: '月曜日',
+          en: 'Monday',
+        },
+        2: {
+          ja: '火曜日',
+          en: 'Tuesday',
+        },
+        3: {
+          ja: '水曜日',
+          en: 'Wednesday',
+        },
+        4: {
+          ja: '木曜日',
+          en: 'Thursday',
+        },
+        5: {
+          ja: '金曜日',
+          en: 'Friday',
+        },
+        6: {
+          ja: '土曜日',
+          en: 'Saturday',
+        },
+      },
+      openStatus: {
+        0: {
+          ja: '営業時間外',
+          en: 'Closed',
+        },
+        1: {
+          ja: 'まもなく開店',
+          en: 'Open soon',
+        },
+        2: {
+          ja: '営業中',
+          en: 'Open now',
+        },
+        3: {
+          ja: 'まもなく閉店',
+          en: 'Close soon',
+        },
+      },
+      openAt: (time: string): IText => {
+        return {
+          ja: `${time} 開店`,
+          en: `Opens at ${time}`,
+        };
+      },
+      closeAt: (time: string): IText => {
+        return {
+          ja: `${time} 閉店`,
+          en: `Closes at ${time}`,
+        };
       },
     },
   },
