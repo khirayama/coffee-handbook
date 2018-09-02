@@ -1,7 +1,11 @@
 export interface IOpenStatus {
   // 0 閉店, 1: まもなく開店, 2: 開店, 3: まもなく閉店
   status: 0 | 1 | 2 | 3;
-  nextOpen: {
+  openAt: {
+    day: number;
+    time: string;
+  } | null;
+  closeAt: {
     day: number;
     time: string;
   } | null;
@@ -22,14 +26,22 @@ export function getOpenStatus(now: Date, hours: string[][][]): IOpenStatus {
           // 'まもなく閉店';
           return {
             status: 3,
-            nextOpen: null,
+            openAt: null,
+            closeAt: {
+              day: now.getDay(),
+              time: openHour[1],
+            },
           };
         }
 
         // 開店
         return {
           status: 2,
-          nextOpen: null,
+          openAt: null,
+          closeAt: {
+            day: now.getDay(),
+            time: openHour[1],
+          },
         };
       }
     }
@@ -48,20 +60,22 @@ export function getOpenStatus(now: Date, hours: string[][][]): IOpenStatus {
           // まもなく開店
           return {
             status: 1,
-            nextOpen: {
+            openAt: {
               day: index,
               time: openHour[0],
             },
+            closeAt: null,
           };
         }
 
         // 閉店 開店は ${index} ${openHour[0]}
         return {
           status: 0,
-          nextOpen: {
+          openAt: {
             day: index,
             time: openHour[0],
           },
+          closeAt: null,
         };
       }
     }
