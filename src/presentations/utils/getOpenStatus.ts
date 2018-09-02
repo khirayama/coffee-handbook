@@ -7,7 +7,7 @@ export interface IOpenStatus {
   } | null;
 }
 
-export function getOpenStatusMessage(now: Date, hours: string[][][]): IOpenStatus {
+export function getOpenStatus(now: Date, hours: string[][][]): IOpenStatus {
   // 30分前の場合、まもなく開店
   // 範囲内の場合、開店
   // それ以外の場合、閉店かつ次の開く時間

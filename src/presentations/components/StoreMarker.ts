@@ -2,7 +2,7 @@ import * as leaflet from 'leaflet';
 
 import { Map } from 'presentations/components/Map';
 import { View } from 'presentations/components/View';
-import { getOpenStatusMessage, IOpenStatus } from 'presentations/utils/getOpenStatusMessage';
+import { getOpenStatus, IOpenStatus } from 'presentations/utils/getOpenStatus';
 import { IStore } from 'resources/Store';
 
 export class StoreMarker extends View {
@@ -28,7 +28,7 @@ export class StoreMarker extends View {
     this.marker.on('click', () => {
       const store: IStore = this.props.store;
 
-      const openStatus: IOpenStatus = getOpenStatusMessage(new Date(), store.hours);
+      const openStatus: IOpenStatus = getOpenStatus(new Date(), store.hours);
 
       const el: HTMLElement = window.document.querySelector('.Maps--Content--Modal');
       el.innerHTML = `
