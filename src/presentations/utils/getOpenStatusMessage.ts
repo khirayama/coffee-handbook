@@ -1,13 +1,13 @@
-export function getOpenStatusMessage(
-  now: Date,
-  hours: string[][][],
-): {
-  openStatus: number; // 0 閉店, 1: まもなく開店, 2: 開店, 3: まもなく閉店
+export interface IOpenStatus {
+  // 0 閉店, 1: まもなく開店, 2: 開店, 3: まもなく閉店
+  status: 0 | 1 | 2 | 3;
   nextOpen: {
     day: number;
     time: string;
   } | null;
-} {
+}
+
+export function getOpenStatusMessage(now: Date, hours: string[][][]): IOpenStatus {
   // 30分前の場合、まもなく開店
   // 範囲内の場合、開店
   // それ以外の場合、閉店かつ次の開く時間
@@ -21,14 +21,14 @@ export function getOpenStatusMessage(
         if (endTime.getTime() <= now.getTime() + 1000 * 60 * 30) {
           // 'まもなく閉店';
           return {
-            openStatus: 3,
+            status: 3,
             nextOpen: null,
           };
         }
 
         // 開店
         return {
-          openStatus: 2,
+          status: 2,
           nextOpen: null,
         };
       }
@@ -47,7 +47,7 @@ export function getOpenStatusMessage(
         if (startTime.getTime() <= now.getTime() + 1000 * 60 * 30) {
           // まもなく開店
           return {
-            openStatus: 1,
+            status: 1,
             nextOpen: {
               day: index,
               time: openHour[0],
@@ -57,7 +57,7 @@ export function getOpenStatusMessage(
 
         // 閉店 開店は ${index} ${openHour[0]}
         return {
-          openStatus: 0,
+          status: 0,
           nextOpen: {
             day: index,
             time: openHour[0],
