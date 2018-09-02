@@ -8,7 +8,7 @@ export interface IOpenStatus {
 }
 
 export function getOpenStatus(now: Date, hours: string[][][]): IOpenStatus {
-  // 30分前の場合、まもなく開店
+  // 15分前の場合、まもなく開店
   // 範囲内の場合、開店
   // それ以外の場合、閉店かつ次の開く時間
   const todayOpenHours: string[][] = hours[now.getDay()];
@@ -18,7 +18,7 @@ export function getOpenStatus(now: Date, hours: string[][][]): IOpenStatus {
       const startTime: Date = new Date(`${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()} ${openHour[0]}`);
       const endTime: Date = new Date(`${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()} ${openHour[1]}`);
       if (startTime.getTime() <= now.getTime() && now.getTime() < endTime.getTime()) {
-        if (endTime.getTime() <= now.getTime() + 1000 * 60 * 30) {
+        if (endTime.getTime() <= now.getTime() + 1000 * 60 * 15) {
           // 'まもなく閉店';
           return {
             status: 3,
@@ -44,7 +44,7 @@ export function getOpenStatus(now: Date, hours: string[][][]): IOpenStatus {
       );
       const endTime: Date = new Date(`${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate() + i} ${openHour[1]}`);
       if (now.getTime() < startTime.getTime()) {
-        if (startTime.getTime() <= now.getTime() + 1000 * 60 * 30) {
+        if (startTime.getTime() <= now.getTime() + 1000 * 60 * 15) {
           // まもなく開店
           return {
             status: 1,

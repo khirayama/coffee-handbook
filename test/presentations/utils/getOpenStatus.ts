@@ -15,14 +15,14 @@ const sampleHours: string[][][] = [
 describe('getOpenStatus', () => {
   it('run', () => {
     // 2018-8-28 Thu(2)
-    assert.deepEqual(getOpenStatus(new Date('2018-8-28 10:29'), sampleHours), {
+    assert.deepEqual(getOpenStatus(new Date('2018-8-28 10:44'), sampleHours), {
       status: 0,
       nextOpen: {
         day: 2,
         time: '11:00',
       },
     });
-    assert.deepEqual(getOpenStatus(new Date('2018-8-28 10:30'), sampleHours), {
+    assert.deepEqual(getOpenStatus(new Date('2018-8-28 10:45'), sampleHours), {
       status: 1,
       nextOpen: {
         day: 2,
@@ -51,7 +51,7 @@ describe('getOpenStatus', () => {
         time: '17:00',
       },
     });
-    assert.deepEqual(getOpenStatus(new Date('2018-8-28 16:30'), sampleHours), {
+    assert.deepEqual(getOpenStatus(new Date('2018-8-28 16:45'), sampleHours), {
       status: 1,
       nextOpen: {
         day: 2,
@@ -62,11 +62,11 @@ describe('getOpenStatus', () => {
       status: 2,
       nextOpen: null,
     });
-    assert.deepEqual(getOpenStatus(new Date('2018-8-28 21:29'), sampleHours), {
+    assert.deepEqual(getOpenStatus(new Date('2018-8-28 21:44'), sampleHours), {
       status: 2,
       nextOpen: null,
     });
-    assert.deepEqual(getOpenStatus(new Date('2018-8-28 21:30'), sampleHours), {
+    assert.deepEqual(getOpenStatus(new Date('2018-8-28 21:45'), sampleHours), {
       status: 3,
       nextOpen: null,
     });
