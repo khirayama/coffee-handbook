@@ -23,7 +23,10 @@ export class Dictionary {
 
   // tslint:disable-next-line:function-name
   public t(key: string, ...args: any[]): string {
-    const val: any = args ? this.v(key) : this.v(key)(...args);
+    let val: any = this.v(key);
+    if (typeof val === 'function') {
+      val = val(...args);
+    }
 
     // Consider fallback
     return val[this.lang];
