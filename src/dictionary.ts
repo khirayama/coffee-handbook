@@ -68,6 +68,7 @@ export const dictionary: {
         2: IText;
         3: IText;
       };
+      closed: IText;
       openAt(time: string): IText;
       closeAt(time: string): IText;
     };
@@ -264,8 +265,12 @@ export const dictionary: {
       closeAt: (time: string): IText => {
         return {
           ja: `${time} 閉店`,
-          en: `Closes at ${time}`,
+          en: `Closes ${time}`,
         };
+      },
+      closed: {
+        ja: '定休日',
+        en: 'Closed',
       },
     },
   },
