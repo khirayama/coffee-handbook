@@ -1,9 +1,11 @@
 import * as leaflet from 'leaflet';
 
+import { dictionary } from 'dictionary';
 import { Map } from 'presentations/components/Map';
 import { View } from 'presentations/components/View';
 import { getOpenStatus, IOpenStatus } from 'presentations/utils/getOpenStatus';
 import { IStore } from 'resources/Store';
+import { Dictionary } from 'utils/Dictionary';
 
 export class StoreMarker extends View {
   public props: {
@@ -14,7 +16,10 @@ export class StoreMarker extends View {
 
   private marker: leaflet.Marker;
 
+  private dic: Dictionary;
+
   public init(): void {
+    this.dic = new Dictionary(window.options.lang, dictionary);
     this.marker = leaflet
       .marker([this.props.store.lat, this.props.store.lng], {
         icon: leaflet.divIcon({
@@ -36,7 +41,7 @@ export class StoreMarker extends View {
           <div class="Modal--Content">
             <h2 class="Modal--Name">${store.name}</h2>
             <div class="Modal--Address">${store.address}</div>
-            <div class="Modal--OpenStatus">${openStatus.status}</div>
+            <div class="Modal--OpenStatus">${this.dic.t(`Pages.Maps.openStatus.${openStatus.status}`)}</div>
             <ul class="Modal--Hours">${store.hours
               .map((hours: string[][]) => hours.map((hour: string[]) => hour.join('-')))
               .join('<br>')}</ul>
