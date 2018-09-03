@@ -40,6 +40,14 @@ export class Map extends View {
     }
   }
 
+  public setView(pos: IPosition, zoom: number): void {
+    this.map.setView(pos, zoom);
+  }
+
+  public panBy(x: number, y: number, options?: { animate: boolean }): void {
+    this.map.panBy([x, y], options);
+  }
+
   private getCenter(): IPosition {
     return this.map.getCenter();
   }
