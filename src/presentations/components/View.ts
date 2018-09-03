@@ -1,7 +1,8 @@
+// tslint:disable:no-any
 export class ViewElement {
   public el: HTMLElement;
 
-  public data: { [key: string]: string | boolean | number };
+  public data: { [key: string]: any };
 
   constructor(el: HTMLElement) {
     this.el = el;
@@ -10,16 +11,14 @@ export class ViewElement {
     }
   }
 
-  public extractData(): { [key: string]: string | boolean | number } {
+  public extractData(): { [key: string]: any } {
     const data: { [key: string]: string | boolean | number } = {};
     const keys: string[] = Object.keys(this.el.dataset);
     for (const key of keys) {
       const value: string = this.el.dataset[key];
-      if (value === 'true') {
-        data[key] = true;
-      } else if (value === 'false') {
-        data[key] = false;
-      } else {
+      try {
+        data[key] = JSON.parse(value);
+      } catch (e) {
         data[key] = value;
       }
     }
