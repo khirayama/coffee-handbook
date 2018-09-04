@@ -67,6 +67,14 @@ export class ViewElement {
     this.el.classList.remove(className);
   }
 
+  public toggleClass(className: string): void {
+    if (this.el.classList.contains(className)) {
+      this.el.classList.remove(className);
+    } else {
+      this.el.classList.add(className);
+    }
+  }
+
   public html(html?: string): string {
     if (html || html === '') {
       this.el.innerHTML = html;
