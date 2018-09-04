@@ -1,0 +1,149 @@
+.StoreCard {
+  position: relative;
+
+  .StoreCard--Hours {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    border-bottom: $border;
+    padding: 16px;
+    transform: translateY(0);
+    transition: transform 170ms ease-in-out;
+    background: $color-white;
+
+    &.StoreCard--Hours__Show {
+      transform: translateY(-100%);
+    }
+
+    .StoreCard--Hours--List {
+      .StoreCard--Hours--List--Item {
+        display: flex;
+        width: 100%;
+
+        &.StoreCard--Hours--List--Item__Active {
+          font-weight: $font-bold;
+        }
+
+        .StoreCard--Hours--List--Item--Day {
+          flex: 1;
+        }
+
+        .StoreCard--Hours--List--Item--Time {
+          flex: 1;
+          text-align: right;
+        }
+      }
+    }
+  }
+
+  .StoreCard--Content {
+    padding: 16px;
+    background: $color-white;
+
+    .StoreCard--Content--Name {
+      font-weight: $font-bold;
+      font-size: 1.5rem;
+      padding-bottom: 8px;
+    }
+
+    .StoreCard--Content--Address {
+      font-size: 0.875rem;
+      padding-bottom: 8px;
+    }
+
+    .StoreCard--Content--OpenStatus {
+      padding-bottom: 8px;
+      cursor: pointer;
+
+      .StoreCard--Content--OpenStatus--Status {
+        display: inline-block;
+        font-weight: $font-bold;
+      }
+
+      .StoreCard--Content--OpenStatus--NextStatus {
+        display: inline-block;
+        padding-left: 16px;
+      }
+
+      .StoreCard--Content--OpenStatus--Description {
+        font-size: 0.5rem;
+        color: $color-text-attention;
+      }
+    }
+
+    .StoreCard--Content--Tel {
+      display: inline-block;
+      padding-bottom: 8px;
+    }
+
+    .StoreCard--Content--Email {
+      display: inline-block;
+      padding-bottom: 8px;
+    }
+
+    .StoreCard--Content--Media {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 16px;
+
+      .StoreCard--Content--Media--Item {
+        $size: 36px;
+        display: inline-block;
+        width: $size;
+        height: $size;
+        line-height: $size;
+        background: gray;
+        color: white;
+        text-align: center;
+        margin: 0;
+
+        &.StoreCard--Content--Media--Item__Active {
+          background: black;
+        }
+      }
+    }
+
+    .StoreCard--Content--Services {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+
+      .StoreCard--Content--Services--Item {
+        display: inline-block;
+        min-width: 24%;
+        max-width: 24%;
+        margin-bottom: 8px;
+
+        .StoreCard--Content--Services--Item--Content {
+          $height: 28px;
+          display: inline-block;
+          width: 100%;
+          height: $height;
+          line-height: $height;
+          color: $color-text-hint;
+          border: $border;
+          font-size: 0.75rem;
+          text-align: center;
+          border-radius: calc($height / 2);
+          font-weight: $font-bold;
+        }
+
+        &.StoreCard--Content--Services--Item__PartialSupport .StoreCard--Content--Services--Item--Content {
+          $color: #fb8c00;
+          border-color: $color;
+          color: $color;
+          font-weight: $font-bold;
+        }
+
+        &.StoreCard--Content--Services--Item__Support .StoreCard--Content--Services--Item--Content {
+          $color: #e53935;
+          border-color: $color;
+          color: $color;
+          font-weight: $font-bold;
+        }
+      }
+    }
+  }
+}

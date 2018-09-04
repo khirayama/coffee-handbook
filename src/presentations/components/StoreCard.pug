@@ -1,0 +1,46 @@
+mixin StoreCard(store, currentDay, openStatus, nextStatusMessage)
+  .StoreCard
+    .StoreCard--Hours
+      ul.StoreCard--Hours--List
+        each hours, i in store.hours
+          if hours.length
+            each hour in hours
+              li.StoreCard--Hours--List--Item(class= (currentDay === i) ? 'StoreCard--Hours--List--Item__Active' : '')
+                span.StoreCard--Hours--List--Item--Day= dic.t(`Pages.Maps.day.${i}`)
+                span.StoreCard--Hours--List--Item--Time= hour.join(' - ')
+          else
+            li.StoreCard--Hours--List--Item
+                span.StoreCard--Hours--List--Item--Day= dic.t(`Pages.Maps.day.${i}`)
+                span.StoreCard--Hours--List--Item--Time= dic.t(`Pages.Maps.closed`)
+      if store.hoursNote
+        span.StoreCard--Hours--Note= store.hoursNote
+    .StoreCard--Content
+      .StoreCard--Content--Name= store.name
+      .StoreCard--Content--Address= store.address
+      .StoreCard--Content--OpenStatus
+        .StoreCard--Content--OpenStatus--Status= dic.t(`Pages.Maps.openStatus.${openStatus.status}`)
+        .StoreCard--Content--OpenStatus--NextStatus= nextStatusMessage
+        .StoreCard--Content--OpenStatus--Description= dic.t(`Pages.Maps.openStatusDescription`)
+      if store.tel
+        a.StoreCard--Content--Tel(href=`tel:${store.tel}`)= store.tel
+      if store.email
+        a.StoreCard--Content--Email(href=`mailto:${store.email}`)= store.email
+      ul.StoreCard--Content--Media
+        each val, key in store.media
+          if val
+            li.StoreCard--Content--Media--Item.StoreCard--Content--Media--Item__Active
+              a(href=val target="_blank")= key[0]
+          else
+            li.StoreCard--Content--Media--Item
+              span= key[0]
+      ul.StoreCard--Content--Services
+        each val, key in store.services
+          if val === true || val === 1
+            li.StoreCard--Content--Services--Item.StoreCard--Content--Services--Item__Support
+              .StoreCard--Content--Services--Item--Content= key
+          else if val === 2
+            li.StoreCard--Content--Services--Item.StoreCard--Content--Services--Item__PartialSupport
+              .StoreCard--Content--Services--Item--Content= key
+          else
+            li.StoreCard--Content--Services--Item
+              .StoreCard--Content--Services--Item--Content= key
