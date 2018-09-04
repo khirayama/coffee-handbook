@@ -21,6 +21,7 @@ export const saredoCoffee: IRawStore = {
     [['11:00', '20:00']],
     [['11:00', '20:00']],
   ],
+  hoursNote: null,
   email: null,
   tel: '0927911313',
   permanentClosed: false,

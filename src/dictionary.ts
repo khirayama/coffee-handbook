@@ -68,6 +68,7 @@ export const dictionary: {
         2: IText;
         3: IText;
       };
+      openStatusDescription: IText;
       closed: IText;
       openAt(time: string): IText;
       closeAt(time: string): IText;
@@ -267,6 +268,10 @@ export const dictionary: {
           ja: `${time} 閉店`,
           en: `Closes ${time}`,
         };
+      },
+      openStatusDescription: {
+        ja: '営業状況・日程などは必ずご確認の上、ご利用ください。',
+        en: 'Please make sure the status for visiting.',
       },
       closed: {
         ja: '定休日',

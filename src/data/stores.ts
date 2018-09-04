@@ -13,6 +13,10 @@ export interface IRawStore {
     en: string;
   };
   hours: string[][][];
+  hoursNote: {
+    ja: string;
+    en: string;
+  }|null;
   email: string | null;
   tel: string | null;
   permanentClosed: boolean;
