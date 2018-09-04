@@ -16,7 +16,7 @@ export class Map extends View {
   public map: leaflet.Map;
 
   public props: {
-    onClick(): void;
+    onClick?(): void;
   };
 
   public init(): void {
@@ -40,15 +40,15 @@ export class Map extends View {
     }
   }
 
-  public setView(pos: IPosition, zoom: number): void {
+  public setView(pos: IPosition, zoom: number, options?: { animate?: boolean; duration?: number }): void {
     this.map.setView(pos, zoom);
   }
 
-  public panBy(x: number, y: number, options?: { animate: boolean }): void {
+  public panBy(x: number, y: number, options?: { animate?: boolean; duration?: number }): void {
     this.map.panBy([x, y], options);
   }
 
-  private getCenter(): IPosition {
+  public getCenter(): IPosition {
     return this.map.getCenter();
   }
 
