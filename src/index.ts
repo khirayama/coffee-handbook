@@ -4,6 +4,11 @@ import * as compression from 'compression';
 import * as cookieParser from 'cookie-parser';
 import * as express from 'express';
 
+// Middleware
+import { setLang } from 'middlewares/setLang';
+import { setLayoutProps } from 'middlewares/setLayoutProps';
+
+// Handlers
 import { aboutUsHandler } from 'handlers/aboutUsHandler';
 import { beverageHandler } from 'handlers/beverageHandler';
 import { beveragesHandler } from 'handlers/beveragesHandler';
@@ -19,8 +24,9 @@ import { privacyHandler } from 'handlers/privacyHandler';
 import { robotsHandler } from 'handlers/robotsHandler';
 import { rssHandler } from 'handlers/rssHandler';
 import { sitemapHandler, sitemapXmlHandler } from 'handlers/sitemapHandler';
-import { setLang } from 'middlewares/setLang';
-import { setLayoutProps } from 'middlewares/setLayoutProps';
+
+// API Handlers
+import { storeAPIHandler } from 'handlers/storeAPIHandler';
 
 // For AB Testing
 import { experiments } from 'experiments';
@@ -78,6 +84,9 @@ app
   .get('/rss*', preHandler, rssHandler)
   .get('/robots.txt', preHandler, robotsHandler)
   .get('/manifest.json', preHandler, manifestHandler);
+
+// API Routing
+app.get('/api/v1/html/stores/:storeKey', preHandler, storeAPIHandler);
 
 // Server
 app.listen(3030, () => {
