@@ -1,10 +1,8 @@
 extends /application/Layout
 
 block import
-  include /components/Header
-  include /components/Navigation
-  include /components/Footer
   include /components/Map
+  include /components/StoreCard
 
 block meta
   script(src="/pages/Maps/bundle.js" defer)
@@ -14,4 +12,8 @@ block body
   .Maps
     .Maps--Content
       +Map
-      .Maps--Content--Modal
+      if props.store
+        .Modal.Modal__Open
+          +StoreCard(props.store, props.currentDay, props.openStatus, props.nextStatusMessage)
+      else
+        .Modal

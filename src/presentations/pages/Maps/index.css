@@ -1,5 +1,6 @@
 @import 'application/vars';
 @import 'components/Map';
+@import 'components/StoreCard';
 @import 'components/StoreMarker';
 
 html,
@@ -16,89 +17,41 @@ body {
     position: relative;
     width: 100%;
     height: 100%;
-
-    .Maps--Content--Modal {
-      position: absolute;
-      top: 100%;
-      left: 0;
-      width: 100%;
-      background: $color-white;
-      z-index: 4000;
-      transform: translateY(0);
-      transition: transform 170ms ease-in-out;
-
-      &.Maps--Content--Modal__Open {
-        transform: translateY(-100%);
-      }
-    }
   }
 }
 
 .Modal {
-  .Modal--Content {
-    padding: 16px;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: unset;
+  width: 100%;
+  height: auto;
+  background: $color-white;
+  z-index: 4000;
+  transform: translateY(0);
+  transition: transform 170ms ease-in-out;
 
-    .Modal--Name {
-      font-weight: $font-bold;
-      padding-bottom: 8px;
-    }
+  &.Modal__Open {
+    transform: translateY(-100%);
+  }
+}
 
-    .Modal--Address {
-      font-size: 0.875rem;
-      padding-bottom: 8px;
-    }
+@media screen and (min-width: calc($width-content / 2)) {
+  .Modal {
+    position: absolute;
+    top: 0;
+    left: unset;
+    right: 100%;
+    width: 408px;
+    height: 100%;
+    background: $color-white;
+    z-index: 4000;
+    transform: translateX(0);
+    transition: transform 170ms ease-in-out;
 
-    .Modal--OpenStatus {
-      .Modal--OpenStatus--Status {
-        font-weight: $font-bold;
-      }
-
-      .Modal--OpenStatus--NextStatus {
-        padding-right: 8px;
-      }
-    }
-
-    .Modal--Hours {
-      .Modal--Hours--Item {
-        display: flex;
-        width: 100%;
-
-        &.Modal--Hours--Item__Active {
-          font-weight: $font-bold;
-        }
-
-        .Modal--Hours--Item--Day {
-          flex: 1;
-        }
-
-        .Modal--Hours--Item--Time {
-          flex: 1;
-          text-align: right;
-        }
-      }
-    }
-
-    ul {
-      /* font-size: 0; */
-
-      li {
-        display: inline-block;
-        font-size: 1rem;
-
-        .Modal--Media {
-          display: inline-block;
-          width: 24px;
-          height: 24px;
-          background: gray;
-          color: white;
-          text-align: center;
-          margin: 0;
-
-          &.Modal--Media__Active {
-            background: black;
-          }
-        }
-      }
+    &.Modal__Open {
+      transform: translateX(100%);
     }
   }
 }
