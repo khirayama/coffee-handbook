@@ -16,7 +16,7 @@ export interface IRawStore {
   hoursNote: {
     ja: string;
     en: string;
-  }|null;
+  } | null;
   email: string | null;
   tel: string | null;
   permanentClosed: boolean;
@@ -44,14 +44,14 @@ export interface IRawStore {
     };
   };
   services: {
-    roaster: boolean | null;
-    speciality: boolean | null;
-    beans: boolean | null;
-    power: boolean | null;
-    wifi: boolean | null;
     // 0: なし、1: あり、2: 部分的にあり
+    roaster: number | null;
+    speciality: number | null;
+    beans: number | null;
+    power: number | null;
+    wifi: number | null;
+    barrierFree: number | null;
     pet: number | null;
-    // 0: 禁煙、1: 喫煙、2: 喫煙スペースあり
     smoking: number | null;
   };
 }

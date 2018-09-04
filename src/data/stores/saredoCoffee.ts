@@ -48,12 +48,13 @@ export const saredoCoffee: IRawStore = {
     },
   },
   services: {
-    roaster: true,
-    speciality: true,
-    beans: true,
-    power: false,
-    wifi: true,
-    pet: 0, // 0: なし、1: あり、2: 部分的にあり
-    smoking: 0, // 0: 禁煙、1: 喫煙、2: 喫煙スペースあり
+    roaster: 1,
+    speciality: 1,
+    beans: 1,
+    power: 2,
+    wifi: 1,
+    barrierFree: 0,
+    pet: 2,
+    smoking: 2,
   },
 };
