@@ -17,10 +17,10 @@ export class StoreCard extends View {
   }
 
   public toggleHours(): void {
-    this.$el.find('.StoreCard--Hours').toggleClass('StoreCard--Hours__Show');
+    this.$el.find('.StoreCard--Content--Hours').toggleClass('StoreCard--Content--Hours__Show');
   }
 
   public hideHours(): void {
-    this.$el.find('.StoreCard--Hours').removeClass('StoreCard--Hours__Show');
+    this.$el.find('.StoreCard--Content--Hours').removeClass('StoreCard--Content--Hours__Show');
   }
 }

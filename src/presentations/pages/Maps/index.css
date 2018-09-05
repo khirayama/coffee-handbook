@@ -37,13 +37,13 @@ body {
   }
 }
 
-@media screen and (min-width: calc($width-content / 2)) {
+@media screen and (min-width: calc($width-map-modal * 2)) {
   .Modal {
     position: absolute;
     top: 0;
     left: unset;
     right: 100%;
-    width: 408px;
+    width: auto;
     height: 100%;
     background: $color-white;
     z-index: 4000;

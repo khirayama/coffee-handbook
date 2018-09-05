@@ -1,19 +1,5 @@
 mixin StoreCard(store, currentDay, openStatus, nextStatusMessage)
   .StoreCard
-    .StoreCard--Hours
-      ul.StoreCard--Hours--List
-        each hours, i in store.hours
-          if hours.length
-            each hour in hours
-              li.StoreCard--Hours--List--Item(class= (currentDay === i) ? 'StoreCard--Hours--List--Item__Active' : '')
-                span.StoreCard--Hours--List--Item--Day= dic.t(`Pages.Maps.day.${i}`)
-                span.StoreCard--Hours--List--Item--Time= hour.join(' - ')
-          else
-            li.StoreCard--Hours--List--Item
-                span.StoreCard--Hours--List--Item--Day= dic.t(`Pages.Maps.day.${i}`)
-                span.StoreCard--Hours--List--Item--Time= dic.t(`Pages.Maps.closed`)
-      if store.hoursNote
-        span.StoreCard--Hours--Note= store.hoursNote
     .StoreCard--Content
       .StoreCard--Content--Name= store.name
       .StoreCard--Content--Address= store.address
@@ -21,6 +7,20 @@ mixin StoreCard(store, currentDay, openStatus, nextStatusMessage)
         .StoreCard--Content--OpenStatus--Status= dic.t(`Pages.Maps.openStatus.${openStatus.status}`)
         .StoreCard--Content--OpenStatus--NextStatus= nextStatusMessage
         .StoreCard--Content--OpenStatus--Description= dic.t(`Pages.Maps.openStatusDescription`)
+      .StoreCard--Content--Hours
+        ul.StoreCard--Content--Hours--List
+          each hours, i in store.hours
+            if hours.length
+              each hour in hours
+                li.StoreCard--Content--Hours--List--Item(class= (currentDay === i) ? 'StoreCard--Content--Hours--List--Item__Active' : '')
+                  span.StoreCard--Content--Hours--List--Item--Day= dic.t(`Pages.Maps.day.${i}`)
+                  span.StoreCard--Content--Hours--List--Item--Time= hour.join(' - ')
+            else
+              li.StoreCard--Content--Hours--List--Item(class= (currentDay === i) ? 'StoreCard--Content--Hours--List--Item__Active' : '')
+                span.StoreCard--Content--Hours--List--Item--Day= dic.t(`Pages.Maps.day.${i}`)
+                span.StoreCard--Content--Hours--List--Item--Time= dic.t(`Pages.Maps.closed`)
+        if store.hoursNote
+          span.StoreCard--Content--Hours--Note= store.hoursNote
       if store.tel
         a.StoreCard--Content--Tel(href=`tel:${store.tel}`)= store.tel
       if store.email

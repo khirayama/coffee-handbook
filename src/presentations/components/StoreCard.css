@@ -1,7 +1,8 @@
 .StoreCard {
   position: relative;
+  height: 100%;
 
-  .StoreCard--Hours {
+  .StoreCard--Content--Hours {
     position: absolute;
     top: 0;
     left: 0;
@@ -9,28 +10,28 @@
     width: 100%;
     border-bottom: $border;
     padding: 16px;
+    background: $color-white;
     transform: translateY(0);
     transition: transform 170ms ease-in-out;
-    background: $color-white;
 
-    &.StoreCard--Hours__Show {
+    &.StoreCard--Content--Hours__Show {
       transform: translateY(-100%);
     }
 
-    .StoreCard--Hours--List {
-      .StoreCard--Hours--List--Item {
+    .StoreCard--Content--Hours--List {
+      .StoreCard--Content--Hours--List--Item {
         display: flex;
         width: 100%;
 
-        &.StoreCard--Hours--List--Item__Active {
+        &.StoreCard--Content--Hours--List--Item__Active {
           font-weight: $font-bold;
         }
 
-        .StoreCard--Hours--List--Item--Day {
+        .StoreCard--Content--Hours--List--Item--Day {
           flex: 1;
         }
 
-        .StoreCard--Hours--List--Item--Time {
+        .StoreCard--Content--Hours--List--Item--Time {
           flex: 1;
           text-align: right;
         }
@@ -39,6 +40,7 @@
   }
 
   .StoreCard--Content {
+    height: 100%;
     padding: 16px;
     background: $color-white;
 
@@ -143,6 +145,29 @@
           color: $color;
           font-weight: $font-bold;
         }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: calc($width-map-modal * 2)) {
+  .StoreCard {
+    width: $width-map-modal;
+
+    .StoreCard--Content--Hours {
+      position: static;
+      border-bottom: 0;
+      padding: 0;
+      transform: none;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 170ms ease-in-out;
+
+      &.StoreCard--Content--Hours__Show {
+        display: inline-block;
+        transform: none;
+        padding: 0 0 16px;
+        max-height: 270px;
       }
     }
   }
