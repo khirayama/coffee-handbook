@@ -5,7 +5,7 @@ import { dictionary } from 'dictionary';
 import { Dictionary } from 'utils/Dictionary';
 
 export function setLang(req: express.Request, res: express.Response, next: express.NextFunction): void {
-  const langs: string[] = req.headers['accept-language']
+  const langs: string[] = (req.headers['accept-language'] || '')
     .split(';')
     .map(
       (local: string): string => {
