@@ -35,22 +35,11 @@ export const saredoCoffee: IRawStore = {
     instagramTag: 'https://www.instagram.com/explore/tags/saredocoffee/',
     googleMaps: 'https://goo.gl/maps/jfZhdSXprhn',
   },
-  payments: {
-    cash: true,
-    credit: {
-      visa: false,
-      masterCard: false,
-      unionPay: false,
-      amex: false,
-      jcb: false,
-      diners: false,
-      discover: false,
-    },
-  },
   services: {
     roaster: 1,
     speciality: 1,
     beans: 1,
+    credit: 0,
     power: 2,
     wifi: 1,
     barrierFree: 0,

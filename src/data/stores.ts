@@ -31,23 +31,12 @@ export interface IRawStore {
     instagramTag: string | null;
     googleMaps: string | null;
   };
-  payments: {
-    cash: boolean | null;
-    credit: {
-      visa: boolean | null;
-      masterCard: boolean | null;
-      unionPay: boolean | null;
-      amex: boolean | null;
-      jcb: boolean | null;
-      diners: boolean | null;
-      discover: boolean | null;
-    };
-  };
   services: {
     // 0: なし、1: あり、2: 部分的にあり
     roaster: number | null;
     speciality: number | null;
     beans: number | null;
+    credit: number | null;
     power: number | null;
     wifi: number | null;
     barrierFree: number | null;

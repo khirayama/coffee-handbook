@@ -72,6 +72,7 @@ export const dictionary: {
         roaster: IText;
         speciality: IText;
         beans: IText;
+        credit: IText;
         power: IText;
         wifi: IText;
         barrierFree: IText;
@@ -285,6 +286,10 @@ export const dictionary: {
         beans: {
           ja: '豆販売',
           en: 'Selling<br>Beans',
+        },
+        credit: {
+          ja: 'クレジットカード',
+          en: 'Credit Card',
         },
         power: {
           ja: '電源',
