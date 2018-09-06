@@ -24,11 +24,11 @@ declare global {
 
 class Modal extends View {
   public open(): void {
-    this.$el.addClass('Modal__Open');
+    this.$el.removeClass('Modal__Hidden');
   }
 
   public close(): void {
-    this.$el.removeClass('Modal__Open');
+    this.$el.addClass('Modal__Hidden');
   }
 }
 

@@ -1,5 +1,6 @@
 .StoreCard {
   position: relative;
+  width: 100%;
   height: 100%;
 
   .StoreCard--Content {
@@ -39,19 +40,19 @@
     }
 
     .StoreCard--Content--Hours {
-      position: absolute;
-      top: 0;
-      left: 0;
-      z-index: -1;
+      position: static;
       width: 100%;
-      border-bottom: $border;
-      padding: 16px;
-      background: $color-white;
-      transform: translateY(0);
-      transition: transform 170ms ease-in-out;
+      border-bottom: 0;
+      padding: 0;
+      transform: none;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 170ms ease-in-out;
 
       &.StoreCard--Content--Hours__Show {
-        transform: translateY(-100%);
+        display: inline-block;
+        padding: 0 0 16px;
+        max-height: 270px;
       }
 
       .StoreCard--Content--Hours--List {
@@ -195,22 +196,5 @@
 @media screen and (min-width: calc($width-map-modal * 2)) {
   .StoreCard {
     width: $width-map-modal;
-
-    .StoreCard--Content--Hours {
-      position: static;
-      border-bottom: 0;
-      padding: 0;
-      transform: none;
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 170ms ease-in-out;
-
-      &.StoreCard--Content--Hours__Show {
-        display: inline-block;
-        transform: none;
-        padding: 0 0 16px;
-        max-height: 270px;
-      }
-    }
   }
 }
