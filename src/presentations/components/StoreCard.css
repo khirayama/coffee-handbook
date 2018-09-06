@@ -120,30 +120,75 @@
 
         .StoreCard--Content--Services--Item--Content {
           $height: 28px;
+          position: relative;
           display: inline-block;
           width: 100%;
           height: $height;
-          line-height: $height;
           color: $color-text-hint;
           border: $border;
-          font-size: 0.75rem;
-          text-align: center;
-          border-radius: calc($height / 2);
+          border-width: 2px;
+          border-radius: calc($height / 2 + 2px);
           font-weight: $font-bold;
+
+          .StoreCard--Content--Services--Item--Content--Text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            font-size: 0.5rem;
+            text-align: center;
+            line-height: 1.1em;
+          }
         }
 
         &.StoreCard--Content--Services--Item__PartialSupport .StoreCard--Content--Services--Item--Content {
           $color: #fb8c00;
           border-color: $color;
           color: $color;
-          font-weight: $font-bold;
         }
 
         &.StoreCard--Content--Services--Item__Support .StoreCard--Content--Services--Item--Content {
           $color: #e53935;
           border-color: $color;
           color: $color;
-          font-weight: $font-bold;
+        }
+      }
+    }
+
+    .StoreCard--Content--ServicesDescription {
+      .StoreCard--Content--ServicesDescription--Label {
+        font-size: 0.75rem;
+        margin-right: 12px;
+      }
+
+      .StoreCard--Content--ServicesDescription--Text {
+        $height: 1.4rem;
+        display: inline-block;
+        height: $height;
+        line-height: $height;
+        color: $color-text-hint;
+        border: $border;
+        border-width: 2px;
+        border-radius: calc($height / 2 + 2px);
+        font-weight: $font-bold;
+        font-size: 0.625rem;
+        padding: 0 8px;
+
+        & + .StoreCard--Content--ServicesDescription--Text {
+          margin-left: 8px;
+        }
+
+        &.StoreCard--Content--ServicesDescription--Text.StoreCard--Content--ServicesDescription--Text__PartialSupport {
+          $color: #fb8c00;
+          border-color: $color;
+          color: $color;
+        }
+
+        &.StoreCard--Content--ServicesDescription--Text.StoreCard--Content--ServicesDescription--Text__Support {
+          $color: #e53935;
+          border-color: $color;
+          color: $color;
         }
       }
     }

@@ -37,10 +37,18 @@ mixin StoreCard(store, currentDay, openStatus, nextStatusMessage)
         each val, key in store.services
           if val === true || val === 1
             li.StoreCard--Content--Services--Item.StoreCard--Content--Services--Item__Support
-              .StoreCard--Content--Services--Item--Content= key
+              .StoreCard--Content--Services--Item--Content
+                .StoreCard--Content--Services--Item--Content--Text!= dic.t(`Pages.Maps.services.${key}`)
           else if val === 2
             li.StoreCard--Content--Services--Item.StoreCard--Content--Services--Item__PartialSupport
-              .StoreCard--Content--Services--Item--Content= key
+              .StoreCard--Content--Services--Item--Content
+                .StoreCard--Content--Services--Item--Content--Text!= dic.t(`Pages.Maps.services.${key}`)
           else
             li.StoreCard--Content--Services--Item
-              .StoreCard--Content--Services--Item--Content= key
+              .StoreCard--Content--Services--Item--Content
+                .StoreCard--Content--Services--Item--Content--Text!= dic.t(`Pages.Maps.services.${key}`)
+      .StoreCard--Content--ServicesDescription
+        span.StoreCard--Content--ServicesDescription--Label= dic.t('Pages.Maps.serviceDescription.notation')
+        span.StoreCard--Content--ServicesDescription--Text.StoreCard--Content--ServicesDescription--Text__Support= dic.t('Pages.Maps.serviceDescription.support')
+        span.StoreCard--Content--ServicesDescription--Text.StoreCard--Content--ServicesDescription--Text__PartialSupport= dic.t('Pages.Maps.serviceDescription.partialSupport')
+        span.StoreCard--Content--ServicesDescription--Text= dic.t('Pages.Maps.serviceDescription.noSupport')
