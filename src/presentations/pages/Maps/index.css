@@ -33,6 +33,7 @@ body {
   z-index: 4000;
   transform: translateY(0);
   transition: transform 170ms ease-in-out;
+  box-shadow: 0 0 2px 2px $color-shadow;
 
   &.Modal__Hidden {
     transform: translateY(100%);
