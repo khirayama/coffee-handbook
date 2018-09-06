@@ -68,6 +68,22 @@ export const dictionary: {
         2: IText;
         3: IText;
       };
+      services: {
+        roaster: IText;
+        speciality: IText;
+        beans: IText;
+        power: IText;
+        wifi: IText;
+        barrierFree: IText;
+        pet: IText;
+        smoking: IText;
+      };
+      serviceDescription: {
+        notation: IText;
+        support: IText;
+        partialSupport: IText;
+        noSupport: IText;
+      };
       openStatusDescription: IText;
       closed: IText;
       openAt(time: string): IText;
@@ -255,6 +271,58 @@ export const dictionary: {
         3: {
           ja: 'まもなく閉店',
           en: 'Close soon',
+        },
+      },
+      services: {
+        roaster: {
+          ja: '焙煎機',
+          en: 'Roster',
+        },
+        speciality: {
+          ja: 'スペシャリティ<br>コーヒー',
+          en: 'Speciality<br>Coffee',
+        },
+        beans: {
+          ja: '豆販売',
+          en: 'Selling<br>Beans',
+        },
+        power: {
+          ja: '電源',
+          en: 'Power',
+        },
+        wifi: {
+          ja: 'Wi-Fi',
+          en: 'Wi-Fi',
+        },
+        barrierFree: {
+          ja: 'バリアフリー',
+          en: 'Barrier Free',
+        },
+        pet: {
+          ja: 'ペット同伴',
+          en: 'Pets',
+        },
+        smoking: {
+          ja: '喫煙',
+          en: 'Smoking',
+        },
+      },
+      serviceDescription: {
+        notation: {
+          ja: '表記',
+          en: 'Notation',
+        },
+        support: {
+          ja: 'あり',
+          en: 'Support',
+        },
+        partialSupport: {
+          ja: '一部あり',
+          en: 'Partial Support',
+        },
+        noSupport: {
+          ja: 'なし',
+          en: 'No Support',
         },
       },
       openAt: (time: string): IText => {
