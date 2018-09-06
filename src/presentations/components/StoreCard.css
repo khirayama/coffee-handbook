@@ -2,43 +2,6 @@
   position: relative;
   height: 100%;
 
-  .StoreCard--Content--Hours {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: -1;
-    width: 100%;
-    border-bottom: $border;
-    padding: 16px;
-    background: $color-white;
-    transform: translateY(0);
-    transition: transform 170ms ease-in-out;
-
-    &.StoreCard--Content--Hours__Show {
-      transform: translateY(-100%);
-    }
-
-    .StoreCard--Content--Hours--List {
-      .StoreCard--Content--Hours--List--Item {
-        display: flex;
-        width: 100%;
-
-        &.StoreCard--Content--Hours--List--Item__Active {
-          font-weight: $font-bold;
-        }
-
-        .StoreCard--Content--Hours--List--Item--Day {
-          flex: 1;
-        }
-
-        .StoreCard--Content--Hours--List--Item--Time {
-          flex: 1;
-          text-align: right;
-        }
-      }
-    }
-  }
-
   .StoreCard--Content {
     height: 100%;
     padding: 16px;
@@ -72,6 +35,43 @@
       .StoreCard--Content--OpenStatus--Description {
         font-size: 0.5rem;
         color: $color-text-attention;
+      }
+    }
+
+    .StoreCard--Content--Hours {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      width: 100%;
+      border-bottom: $border;
+      padding: 16px;
+      background: $color-white;
+      transform: translateY(0);
+      transition: transform 170ms ease-in-out;
+
+      &.StoreCard--Content--Hours__Show {
+        transform: translateY(-100%);
+      }
+
+      .StoreCard--Content--Hours--List {
+        .StoreCard--Content--Hours--List--Item {
+          display: flex;
+          width: 100%;
+
+          &.StoreCard--Content--Hours--List--Item__Active {
+            font-weight: $font-bold;
+          }
+
+          .StoreCard--Content--Hours--List--Item--Day {
+            flex: 1;
+          }
+
+          .StoreCard--Content--Hours--List--Item--Time {
+            flex: 1;
+            text-align: right;
+          }
+        }
       }
     }
 
@@ -132,7 +132,7 @@
 
           .StoreCard--Content--Services--Item--Content--Text {
             position: absolute;
-            top: 50%;
+            top: 53%;
             left: 50%;
             transform: translate(-50%, -50%);
             width: 100%;
@@ -158,21 +158,18 @@
 
     .StoreCard--Content--ServicesDescription {
       .StoreCard--Content--ServicesDescription--Label {
-        font-size: 0.75rem;
-        margin-right: 12px;
+        font-size: 0.5rem;
+        margin-right: 8px;
       }
 
       .StoreCard--Content--ServicesDescription--Text {
-        $height: 1.4rem;
         display: inline-block;
-        height: $height;
-        line-height: $height;
         color: $color-text-hint;
         border: $border;
         border-width: 2px;
-        border-radius: calc($height / 2 + 2px);
+        border-radius: 1rem;
         font-weight: $font-bold;
-        font-size: 0.625rem;
+        font-size: 0.5rem;
         padding: 0 8px;
 
         & + .StoreCard--Content--ServicesDescription--Text {
