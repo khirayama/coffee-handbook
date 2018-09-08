@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="300px" height="300px" viewBox="0 0 300 300" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>icon_ec</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="ec" fill-rule="nonzero">
+            <rect id="Background" fill="#666666" x="0" y="0" width="300" height="300" rx="24"></rect>
+            <g transform="translate(60.000000, 55.000000)">
+                <polygon id="Rectangle" fill="#FFFFFF" points="20 65 160 65 180 211 0 211"></polygon>
+                <path d="M46,64.0418206 C46,21.3472735 60.5,0 89.5,0 C118.5,0 133,21.3472735 133,64.0418206" id="Line-3" stroke="#FFFFFF" stroke-width="16" stroke-linecap="square"></path>
+            </g>
+        </g>
+    </g>
+</svg>

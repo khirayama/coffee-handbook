@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="300px" height="300px" viewBox="0 0 300 300" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>icon_web</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="web" fill-rule="nonzero">
+            <rect id="Background" fill="#666666" x="0" y="0" width="300" height="300" rx="24"></rect>
+            <g transform="translate(40.000000, 40.000000)" stroke="#FFFFFF">
+                <circle id="Oval" stroke-width="16" cx="110" cy="110" r="110"></circle>
+                <path d="M110,10.132243 L110,211.993361" id="Line" stroke-width="12" stroke-linecap="square"></path>
+                <path d="M9.56521739,109.468599 L211.497585,109.468599" id="Line" stroke-width="12" stroke-linecap="square"></path>
+                <path d="M109.468599,0 C74.041868,35.3455967 56.3285024,71.8235391 56.3285024,109.433827 C56.3285024,147.044115 74.041868,183.899506 109.468599,220" id="Line" stroke-width="12" stroke-linecap="square"></path>
+                <path d="M162.608696,0 C127.181965,36.1004938 109.468599,72.9558848 109.468599,110.566173 C109.468599,148.176461 127.181965,184.654403 162.608696,220" id="Line" stroke-width="12" stroke-linecap="square" transform="translate(136.038647, 110.000000) rotate(-180.000000) translate(-136.038647, -110.000000) "></path>
+                <path d="M29.7584541,34.0096618 C58.5243779,55.2657005 85.6258272,65.8937198 111.062802,65.8937198 C136.499777,65.8937198 163.267893,55.2657005 191.36715,34.0096618" id="Line-2" stroke-width="12" stroke-linecap="square"></path>
+                <path d="M34.0096618,162.608696 C58.9206086,181.73913 84.0616906,191.304348 109.432908,191.304348 C134.804125,191.304348 160.323269,181.73913 185.990338,162.608696" id="Line-2" stroke-width="12" stroke-linecap="square" transform="translate(110.000000, 176.956522) rotate(180.000000) translate(-110.000000, -176.956522) "></path>
+            </g>
+        </g>
+    </g>
+</svg>
