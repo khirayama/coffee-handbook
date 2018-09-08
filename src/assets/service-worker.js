@@ -8,7 +8,7 @@ if (workbox) {
     }),
   );
   workbox.routing.registerRoute(
-    /.*\.(?:css|js)/,
+    /.*\.(?:css|js|woff2)/,
     workbox.strategies.staleWhileRevalidate({
       cacheName: 'assets-cache',
     }),

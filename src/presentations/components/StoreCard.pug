@@ -6,6 +6,7 @@ mixin StoreCard(store, currentDay, openStatus, nextStatusMessage)
       .StoreCard--Content--OpenStatus
         .StoreCard--Content--OpenStatus--Status= dic.t(`Pages.Maps.openStatus.${openStatus.status}`)
         .StoreCard--Content--OpenStatus--NextStatus= nextStatusMessage
+        i.Icon expand_more
         .StoreCard--Content--OpenStatus--Description= dic.t(`Pages.Maps.openStatusDescription`)
       .StoreCard--Content--Hours
         ul.StoreCard--Content--Hours--List
@@ -22,9 +23,13 @@ mixin StoreCard(store, currentDay, openStatus, nextStatusMessage)
         if store.hoursNote
           span.StoreCard--Content--Hours--Note= store.hoursNote
       if store.tel
-        a.StoreCard--Content--Tel(href=`tel:${store.tel}`)= store.tel
+        a.StoreCard--Content--Tel(href=`tel:${store.tel}`)
+          i.Icon call
+          = store.tel
       if store.email
-        a.StoreCard--Content--Email(href=`mailto:${store.email}`)= store.email
+        a.StoreCard--Content--Email(href=`mailto:${store.email}`)
+          i.Icon email
+          = store.email
       ul.StoreCard--Content--Media
         each val, key in store.media
           if val
