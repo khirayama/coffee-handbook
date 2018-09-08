@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="300px" height="300px" viewBox="0 0 300 300" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>icon_web</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="web" fill-rule="nonzero" stroke="#FFFFFF">
+            <g transform="translate(50.000000, 50.000000)">
+                <circle id="Oval" stroke-width="16" cx="100" cy="100" r="100"></circle>
+                <path d="M100,9.21113 L100,192.721237" id="Line" stroke-width="12" stroke-linecap="square"></path>
+                <path d="M8.69565217,99.5169082 L192.270531,99.5169082" id="Line" stroke-width="12" stroke-linecap="square"></path>
+                <path d="M99.5169082,0 C67.310789,32.1323606 51.2077295,65.2941264 51.2077295,99.4852974 C51.2077295,133.676468 67.310789,167.181369 99.5169082,200" id="Line" stroke-width="12" stroke-linecap="square"></path>
+                <path d="M147.826087,0 C115.619968,32.8186307 99.5169082,66.3235316 99.5169082,100.514703 C99.5169082,134.705874 115.619968,167.867639 147.826087,200" id="Line" stroke-width="12" stroke-linecap="square" transform="translate(123.671498, 100.000000) rotate(-180.000000) translate(-123.671498, -100.000000) "></path>
+                <path d="M27.0531401,30.9178744 C53.2039799,50.2415459 77.8416611,59.9033816 100.966184,59.9033816 C124.090706,59.9033816 148.425357,50.2415459 173.970136,30.9178744" id="Line-2" stroke-width="12" stroke-linecap="square"></path>
+                <path d="M30.9178744,147.826087 C53.5641896,165.217391 76.4197188,173.913043 99.4844617,173.913043 C122.549205,173.913043 145.748426,165.217391 169.082126,147.826087" id="Line-2" stroke-width="12" stroke-linecap="square" transform="translate(100.000000, 160.869565) rotate(180.000000) translate(-100.000000, -160.869565) "></path>
+            </g>
+        </g>
+    </g>
+</svg>

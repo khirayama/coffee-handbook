@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="300px" height="300px" viewBox="0 0 300 300" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>icon_facebook</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="facebook" fill="#FFFFFF">
+            <g transform="translate(130.000000, 68.000000)" id="Rectangle-2">
+                <path d="M50.4555381,98.2852688 L50.4555381,66.4217192 C50.4555381,64.3762112 51.9987754,62.6602806 54.0328295,62.4441172 L91.0280962,58.512548 L91.0280962,98.2852688 C109.748102,99.1680899 122.666343,98.2425516 129.782817,95.5086538 C136.899291,92.774756 139.228485,79.7272085 136.7704,56.3660111 L174.521407,56.3660111 C179.372855,99.364894 172.537093,125.172665 154.014122,133.789325 C135.491151,142.405985 114.495809,144.663892 91.0280962,140.563045 L91.0280962,176.917872 L50.4555381,176.917872 L50.4555381,140.563045 L-55.4799503,140.563045 L-55.4799503,98.2852688 L50.4555381,98.2852688 Z" transform="translate(60.275930, 116.641942) scale(-1, 1) rotate(-90.000000) translate(-60.275930, -116.641942) "></path>
+            </g>
+        </g>
+    </g>
+</svg>

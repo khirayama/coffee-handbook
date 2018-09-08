@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="300px" height="300px" viewBox="0 0 300 300" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>icon_googleMaps</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="googleMaps" fill="#FFFFFF">
+            <path d="M150.5,240 C134.40344,221.25 87,166.159932 87,127.5 C87,88.8400675 111.991675,60 150.5,60 C189.008325,60 214,88.8400675 214,127.5 C214,166.159932 166.59656,221.25 150.5,240 Z M150,146 C162.702549,146 173,135.702549 173,123 C173,110.297451 162.702549,100 150,100 C137.297451,100 127,110.297451 127,123 C127,135.702549 137.297451,146 150,146 Z" id="Combined-Shape"></path>
+        </g>
+    </g>
+</svg>
