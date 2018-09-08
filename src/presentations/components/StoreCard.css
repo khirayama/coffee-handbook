@@ -16,12 +16,12 @@
 
     .StoreCard--Content--Address {
       font-size: 0.875rem;
-      padding-bottom: 8px;
+      padding-bottom: 24px;
     }
 
     .StoreCard--Content--OpenStatus {
-      padding-bottom: 8px;
       cursor: pointer;
+      padding-bottom: 24px;
 
       .StoreCard--Content--OpenStatus--Status {
         display: inline-block;
@@ -31,6 +31,7 @@
       .StoreCard--Content--OpenStatus--NextStatus {
         display: inline-block;
         padding-left: 16px;
+        padding-right: 8px;
       }
 
       .StoreCard--Content--OpenStatus--Description {
@@ -40,7 +41,6 @@
     }
 
     .StoreCard--Content--Hours {
-      position: static;
       width: 100%;
       border-bottom: 0;
       padding: 0;
@@ -51,8 +51,8 @@
 
       &.StoreCard--Content--Hours__Show {
         display: inline-block;
-        padding: 0 0 16px;
         max-height: 270px;
+        padding-bottom: 28px;
       }
 
       .StoreCard--Content--Hours--List {
@@ -78,16 +78,27 @@
 
     .StoreCard--Content--Tel {
       display: inline-block;
-      padding-bottom: 8px;
+      width: 100%;
+      padding-bottom: 16px;
+
+      .Icon {
+        margin-right: 4px;
+      }
     }
 
     .StoreCard--Content--Email {
       display: inline-block;
-      padding-bottom: 8px;
+      width: 100%;
+      padding-bottom: 16px;
+
+      .Icon {
+        margin-right: 4px;
+      }
     }
 
     .StoreCard--Content--Media {
       display: flex;
+      max-width: 324px;
       justify-content: space-between;
       margin-bottom: 16px;
 
