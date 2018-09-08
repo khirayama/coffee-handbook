@@ -6,10 +6,9 @@
     <defs></defs>
     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <g id="ec" fill-rule="nonzero">
-            <rect id="Background" fill="#666666" x="0" y="0" width="300" height="300" rx="24"></rect>
-            <g transform="translate(60.000000, 55.000000)">
-                <polygon id="Rectangle" fill="#FFFFFF" points="20 65 160 65 180 211 0 211"></polygon>
-                <path d="M46,64.0418206 C46,21.3472735 60.5,0 89.5,0 C118.5,0 133,21.3472735 133,64.0418206" id="Line-3" stroke="#FFFFFF" stroke-width="16" stroke-linecap="square"></path>
+            <g transform="translate(70.000000, 56.000000)">
+                <polygon id="Rectangle" fill="#FFFFFF" points="17.7777778 57.7777778 142.222222 57.7777778 160 187.555556 0 187.555556"></polygon>
+                <path d="M40.8888889,56.9260628 C40.8888889,18.9753543 53.7777778,0 79.5555556,0 C105.333333,0 118.222222,18.9753543 118.222222,56.9260628" id="Line-3" stroke="#FFFFFF" stroke-width="16" stroke-linecap="square"></path>
             </g>
         </g>
     </g>
