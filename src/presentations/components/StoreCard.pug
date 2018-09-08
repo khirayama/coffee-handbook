@@ -34,10 +34,12 @@ mixin StoreCard(store, currentDay, openStatus, nextStatusMessage)
         each val, key in store.media
           if val
             li.StoreCard--Content--Media--Item.StoreCard--Content--Media--Item__Active
-              a(href=val target="_blank")= key[0]
+              a(href=val target="_blank")
+                img(src=`images/icon_${key}.svg`)
           else
             li.StoreCard--Content--Media--Item
-              span= key[0]
+              span
+                img(src=`images/icon_${key}.svg`)
       ul.StoreCard--Content--Services
         each val, key in store.services
           if val === true || val === 1

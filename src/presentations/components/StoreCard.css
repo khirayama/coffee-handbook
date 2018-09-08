@@ -103,18 +103,23 @@
       margin-bottom: 16px;
 
       .StoreCard--Content--Media--Item {
-        $size: 36px;
+        $size: 32px;
         display: inline-block;
         width: $size;
         height: $size;
         line-height: $size;
-        background: gray;
+        background: $color-text-shadow;
         color: white;
         text-align: center;
         margin: 0;
+        border-radius: $radius;
+
+        img {
+          width: 100%;
+        }
 
         &.StoreCard--Content--Media--Item__Active {
-          background: black;
+          background: $color-text;
         }
       }
     }
