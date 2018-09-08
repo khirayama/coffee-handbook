@@ -108,7 +108,7 @@
         width: $size;
         height: $size;
         line-height: $size;
-        background: $color-text-shadow;
+        background: $color-shadow;
         color: white;
         text-align: center;
         margin: 0;

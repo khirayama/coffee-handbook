@@ -1,7 +1,21 @@
 .StoreMarker {
-  background: red;
-  width: 16px !important;
-  height: 16px !important;
-  border-radius: 50%;
-  opacity: 0.88;
+  position: relative;
+
+  .StoreMarker--Icon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: inline-block;
+    background: blue;
+    width: 16px !important;
+    height: 16px !important;
+    border-radius: 50%;
+    opacity: 0.88;
+  }
+
+  .StoreMarker--Name {
+    position: absolute;
+    left: 20px;
+    display: inline-block;
+  }
 }
