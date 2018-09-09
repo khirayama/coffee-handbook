@@ -1,3 +1,4 @@
+// tslint:disable:no-http-string
 import { IRawStore } from 'data/stores';
 
 export const saredoCoffee: IRawStore = {
