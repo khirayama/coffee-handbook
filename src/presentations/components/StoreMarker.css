@@ -6,7 +6,7 @@
     top: 0;
     left: 0;
     display: inline-block;
-    background: blue;
+    background: $color-text-attention;
     width: 16px !important;
     height: 16px !important;
     border-radius: 50%;
@@ -17,5 +17,7 @@
     position: absolute;
     left: 20px;
     display: inline-block;
+    font-weight: $font-bold;
+    white-space: nowrap;
   }
 }

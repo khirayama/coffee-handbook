@@ -79,13 +79,25 @@ window.addEventListener('DOMContentLoaded', () => {
           animate: false,
         },
       );
-      const mapHeight: number = mapElement.clientHeight;
-      const modalHeight: number = modalElement.clientHeight;
-      const diff: number = (mapHeight - modalHeight) / 2 + modalHeight - mapHeight / 2;
-      map.panBy(0, diff, {
-        animate: false,
-        duration: 0,
-      });
+
+      const mapModalWidth: number = 344;
+      if (window.innerWidth > mapModalWidth * 2) {
+        const mapWidth: number = mapElement.clientWidth;
+        const modalWidth: number = modalElement.clientWidth;
+        const diff: number = mapWidth / 2 - (mapWidth - modalWidth) / 2 - modalWidth;
+        map.panBy(diff, 0, {
+          animate: false,
+          duration: 0,
+        });
+      } else {
+        const mapHeight: number = mapElement.clientHeight;
+        const modalHeight: number = modalElement.clientHeight;
+        const diff: number = (mapHeight - modalHeight) / 2 + modalHeight - mapHeight / 2;
+        map.panBy(0, diff, {
+          animate: false,
+          duration: 0,
+        });
+      }
     });
   }
 
