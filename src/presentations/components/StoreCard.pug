@@ -22,14 +22,14 @@ mixin StoreCard(store, currentDay, openStatus, nextStatusMessage)
                 span.StoreCard--Content--Hours--List--Item--Time= dic.t(`Pages.Maps.closed`)
         if store.hoursNote
           span.StoreCard--Content--Hours--Note= store.hoursNote
-      if store.tel
-        a.StoreCard--Content--Tel(href=`tel:${store.tel}`)
-          i.Icon call
-          = store.tel
       if store.email
         a.StoreCard--Content--Email(href=`mailto:${store.email}`)
           i.Icon email
           = store.email
+      if store.tel
+        a.StoreCard--Content--Tel(href=`tel:${store.tel}`)
+          i.Icon call
+          = store.tel
       ul.StoreCard--Content--Media
         each val, key in store.media
           if val
@@ -42,7 +42,7 @@ mixin StoreCard(store, currentDay, openStatus, nextStatusMessage)
                 img(src=`images/icon_${key}.svg`)
       ul.StoreCard--Content--Services
         each val, key in store.services
-          if val === true || val === 1
+          if val === 1
             li.StoreCard--Content--Services--Item.StoreCard--Content--Services--Item__Support
               .StoreCard--Content--Services--Item--Content
                 .StoreCard--Content--Services--Item--Content--Text!= dic.t(`Pages.Maps.services.${key}`)

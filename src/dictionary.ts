@@ -326,8 +326,8 @@ export const dictionary: {
           en: 'Partial Support',
         },
         noSupport: {
-          ja: 'なし',
-          en: 'No Support',
+          ja: 'なし/不明',
+          en: 'No Support/Unknown',
         },
       },
       openAt: (time: string): IText => {
