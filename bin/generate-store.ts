@@ -106,9 +106,7 @@ export const ${options.fileName}: IRawStore = {
     ja: '${options.jaAddress}',
     en: '${options.enAddress}',
   },
-  hours: [
-    ${JSON.stringify(options.hours)}
-  ],
+  hours: ${JSON.stringify(options.hours)},
   hoursNote: ${options.hoursNote},
   email: ${options.email},
   tel: '${options.tel}',
@@ -138,6 +136,13 @@ export const ${options.fileName}: IRawStore = {
 }
 
 co(function*(): any {
+  console.log('These site might help you.');
+  console.log('https://tabelog.com/');
+  console.log('https://r.gnavi.co.jp/');
+  console.log('https://retty.me/');
+  console.log('https://hitosara.com/');
+  console.log('https://goodcoffee.me/');
+
   const jaName: string = yield cp('Japanese Name: ');
   const enName: string = yield cp('English Name: ');
   const hyphenationEnglishName: string = transformHyphenationEnglishName(enName);
