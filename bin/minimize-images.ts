@@ -1,13 +1,15 @@
-const fs = require('fs');
-const imagemin = require('imagemin');
-const imageminJpegtran = require('imagemin-jpegtran');
-const imageminPngquant = require('imagemin-pngquant');
-const imageminWebp = require('imagemin-webp');
+// tslint:disable:no-console no-any
+import * as fs from 'fs';
 
-const ROOT_DIR = './materials';
-const DIST_DIR = './src/assets';
+import * as imagemin from 'imagemin';
+import * as imageminJpegtran from 'imagemin-jpegtran';
+import * as imageminPngquant from 'imagemin-pngquant';
+import * as imageminWebp from 'imagemin-webp';
 
-function isTarget(filePath) {
+const ROOT_DIR: string = './materials';
+const DIST_DIR: string = './src/assets';
+
+function isTarget(filePath: string): boolean {
   return (
     filePath.endsWith('.png') ||
     filePath.endsWith('.jpg') ||
@@ -17,11 +19,14 @@ function isTarget(filePath) {
   );
 }
 
-function compressImage(filePath) {
+function compressImage(filePath: string): void {
   console.log(`Compressing ${filePath}`);
-  const tmpDist = filePath.split('/');
+
+  const tmpDist: string[] = filePath.split('/');
   tmpDist.pop();
-  const dist = tmpDist.join('/').replace(ROOT_DIR, DIST_DIR);
+
+  const dist: string = tmpDist.join('/').replace(ROOT_DIR, DIST_DIR);
+
   imagemin([filePath], dist, {
     plugins: [
       imageminJpegtran({
@@ -47,15 +52,15 @@ function compressImage(filePath) {
   });
 }
 
-function compressImages(rootPath) {
-  fs.readdir(rootPath, (err, fileNames) => {
+function compressImages(rootPath: string): void {
+  fs.readdir(rootPath, (err: Error, fileNames: string[]) => {
     if (err) {
       return;
     }
-    for (let i = 0; i < fileNames.length; i++) {
-      const fileName = fileNames[i];
-      const filePath = rootPath + '/' + fileName;
-      const stats = fs.statSync(filePath);
+
+    for (const fileName of fileNames) {
+      const filePath: string = `${rootPath}/${fileName}`;
+      const stats: any = fs.statSync(filePath);
       if (stats.isDirectory()) {
         compressImages(filePath);
       } else if (isTarget(filePath)) {
