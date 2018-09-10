@@ -1,3 +1,4 @@
+import { redHorn } from 'data/stores/redHorn';
 import { saredoCoffee } from 'data/stores/saredoCoffee';
 import { tokadoCoffeeNakasukawabata } from 'data/stores/tokadoCoffeeNakasukawabata';
 
@@ -46,4 +47,4 @@ export interface IRawStore {
   };
 }
 
-export const stores: IRawStore[] = [saredoCoffee, tokadoCoffeeNakasukawabata];
+export const stores: IRawStore[] = [redHorn, saredoCoffee, tokadoCoffeeNakasukawabata];
