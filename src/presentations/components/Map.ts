@@ -52,7 +52,7 @@ export class Map extends View {
     return this.map.getCenter();
   }
 
-  private getZoom(): number {
+  public getZoom(): number {
     return this.map.getZoom();
   }
 

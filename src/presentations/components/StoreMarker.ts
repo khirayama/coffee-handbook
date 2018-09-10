@@ -43,11 +43,26 @@ export class StoreMarker extends View {
         }),
       })
       .addTo(this.props.map.map);
+
+    this.showDetail();
   }
 
   public setEventListeners(): void {
+    this.props.map.map.on('moveend', () => {
+      this.showDetail();
+    });
+
     if (this.props.onClick) {
       this.marker.on('click', this.props.onClick);
+    }
+  }
+
+  private showDetail(): void {
+    const zoom: number = this.props.map.getZoom();
+    if (zoom > 11) {
+      this.marker._icon.classList.remove('StoreMarker__Mark');
+    } else {
+      this.marker._icon.classList.add('StoreMarker__Mark');
     }
   }
 }

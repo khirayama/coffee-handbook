@@ -1,6 +1,12 @@
 .StoreMarker {
   position: relative;
 
+  &.StoreMarker__Mark {
+    .StoreMarker--Name {
+      display: none;
+    }
+  }
+
   .StoreMarker--Icon {
     position: absolute;
     top: 0;
@@ -10,7 +16,6 @@
     width: 16px !important;
     height: 16px !important;
     border-radius: 50%;
-    opacity: 0.88;
     box-shadow: 0 0 2px 2px $color-shadow;
   }
 

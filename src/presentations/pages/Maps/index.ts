@@ -22,6 +22,8 @@ declare global {
   }
 }
 
+const mapModalWidth: number = 384;
+
 class Modal extends View {
   public open(): void {
     this.$el.removeClass('Modal__Hidden');
@@ -80,7 +82,6 @@ window.addEventListener('DOMContentLoaded', () => {
         },
       );
 
-      const mapModalWidth: number = 344;
       if (window.innerWidth > mapModalWidth * 2) {
         const mapWidth: number = mapElement.clientWidth;
         const modalWidth: number = modalElement.clientWidth;
