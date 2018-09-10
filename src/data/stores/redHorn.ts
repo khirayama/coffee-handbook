@@ -33,8 +33,7 @@ export const redHorn: IRawStore = {
     facebook: 'https://www.facebook.com/redhornbrew',
     twitter: 'https://twitter.com/redhornbrew',
     instagram: 'https://www.instagram.com/redhornbrew/',
-    instagramTag:
-      'https://www.instagram.com/explore/tags/redhorn/',
+    instagramTag: 'https://www.instagram.com/explore/tags/redhorn/',
     googleMaps: 'https://goo.gl/maps/FmyzHdexZru',
   },
   services: {
