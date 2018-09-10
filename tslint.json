@@ -7,7 +7,11 @@
       "tslint-plugin-prettier"
     ],
     "rules": {
-      "_prettier": true,
+      "prettier": [true, {
+        "printWidth": 120,
+        "singleQuote": true,
+        "trailingComma": "all"
+      }],
       "missing-jsdoc": false,
       "no-backbone-get-set-outside-model": false,
       "no-implicit-dependencies": false,
