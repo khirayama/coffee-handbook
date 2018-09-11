@@ -11,6 +11,16 @@ export interface IOpenStatus {
   } | null;
 }
 
+function getDateTime24HoursAgo(datetime: string): string {
+  const hour: number = Number(datetime.split(':')[0]);
+  const min: number = Number(datetime.split(':')[1]);
+  if (hour >= 24) {
+    return `${hour - 24}:${min}`;
+  } else {
+    return `${hour}:${min}`;
+  }
+}
+
 export function getOpenStatus(now: Date, hours: string[][][]): IOpenStatus {
   // 15分前の場合、まもなく開店
   // 範囲内の場合、開店
@@ -19,8 +29,17 @@ export function getOpenStatus(now: Date, hours: string[][][]): IOpenStatus {
 
   if (todayOpenHours.length) {
     for (const openHour of todayOpenHours) {
-      const startTime: Date = new Date(`${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()} ${openHour[0]}`);
-      const endTime: Date = new Date(`${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()} ${openHour[1]}`);
+      const hour: number = Number(openHour[openHour.length - 1].split(':')[0]);
+
+      const startTimeString: string = `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()} ${openHour[0]}`;
+      const endTimeString: string =
+        hour >= 24
+          ? `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate() + 1} ${getDateTime24HoursAgo(openHour[1])}`
+          : `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()} ${openHour[1]}`;
+
+      const startTime: Date = new Date(startTimeString);
+      const endTime: Date = new Date(endTimeString);
+
       if (startTime.getTime() <= now.getTime() && now.getTime() < endTime.getTime()) {
         if (endTime.getTime() <= now.getTime() + 1000 * 60 * 15) {
           // 'まもなく閉店';
@@ -28,7 +47,7 @@ export function getOpenStatus(now: Date, hours: string[][][]): IOpenStatus {
             status: 3,
             openAt: null,
             closeAt: {
-              day: now.getDay(),
+              day: endTime.getDay(),
               time: openHour[1],
             },
           };
@@ -39,7 +58,7 @@ export function getOpenStatus(now: Date, hours: string[][][]): IOpenStatus {
           status: 2,
           openAt: null,
           closeAt: {
-            day: now.getDay(),
+            day: endTime.getDay(),
             time: openHour[1],
           },
         };
