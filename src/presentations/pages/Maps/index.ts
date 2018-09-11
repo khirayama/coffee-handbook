@@ -61,8 +61,9 @@ window.addEventListener('DOMContentLoaded', () => {
   const mapElement: HTMLElement = window.document.querySelector('.Map');
   const map: Map = new Map(mapElement, {
     onClick: (): void => {
-      // tslint:disable-line:no-suspicious-comment TODO: window.searchのkeyを消す
-      window.history.pushState(null, 'Maps', `${window.location.pathname}`);
+      const currentQuery: { key?: string } = queryString.parse(window.location.search);
+      delete currentQuery.key;
+      window.history.pushState(null, 'Maps', `${window.location.pathname}?${queryString.stringify(currentQuery)}`);
       if (storeCard) {
         storeCard.hideHours();
       }
@@ -113,8 +114,13 @@ window.addEventListener('DOMContentLoaded', () => {
       map,
       store,
       onClick: (): void => {
-        // tslint:disable-line:no-suspicious-comment TODO: window.searchのkeyを足す
-        window.history.pushState(null, store.name, `${window.location.pathname}?key=${store.key}`);
+        const currentQuery: { key?: string } = queryString.parse(window.location.search);
+        currentQuery.key = store.key;
+        window.history.pushState(
+          null,
+          store.name,
+          `${window.location.pathname}?${queryString.stringify(currentQuery)}`,
+        );
         storeService.find(store.key).then((res: IStoreResponse) => {
           modalElement.innerHTML = res.html;
           const storeCardElement: HTMLElement = modalElement.querySelector('.StoreCard');
