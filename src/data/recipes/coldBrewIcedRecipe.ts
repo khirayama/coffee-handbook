@@ -16,8 +16,8 @@ export const coldBrewIcedRecipe: IRawPost<IRawRecipe> = {
       en: 'COLD BREW',
     },
     description: {
-      ja: 'コールドブリュー desc',
-      en: 'COLD BREW desc',
+      ja: 'コールドブリューのレシピ。',
+      en: 'The recipe of cold brew.',
     },
     thumbnailUrl: {
       square: null,
@@ -38,12 +38,12 @@ export const coldBrewIcedRecipe: IRawPost<IRawRecipe> = {
           en: 'Coffee Beans',
         },
         quantity: {
-          ja: '20g',
-          en: '20g',
+          ja: '80g',
+          en: '80g',
         },
         note: {
           ja: '中細挽き',
-          en: 'Middle casdcadscasdcasdcas',
+          en: 'Medium Fine',
         },
       },
       {
@@ -52,42 +52,36 @@ export const coldBrewIcedRecipe: IRawPost<IRawRecipe> = {
           en: 'Water',
         },
         quantity: {
-          ja: '200ml',
-          en: '200ml',
-        },
-        note: {
-          ja: '94℃程度',
-          en: 'Around 94℃(201℉)',
+          ja: '1150ml',
+          en: '1150ml',
         },
       },
     ],
     steps: [
       {
         summary: {
-          ja: '水をあれあれ',
-          en: 'Water Water',
+          ja: '準備',
+          en: 'Prepares',
         },
         description: {
-          ja: 'いろいろ細かく',
-          en: 'Do something',
-        },
-        note: {
-          ja: 'ほげほげ',
-          en: 'hogehoge',
+          ja: 'ストレーナにコーヒー豆を入れる。',
+          en: 'Sets coffee beans to a strainer.',
         },
       },
       {
         summary: {
-          ja: '水をあれあれ',
-          en: 'Water Water',
+          ja: '抽出',
+          en: 'Brew',
         },
         description: {
-          ja: 'いろいろ細かく',
-          en: 'Do something',
+          ja: '水を全て注いで、8時間冷蔵庫で待つ。',
+          en: 'Pours water and place it in the refrigerator for over 8 hours.',
         },
-        note: {
-          ja: 'ほげほげ',
-          en: 'hogehoge',
+      },
+      {
+        summary: {
+          ja: '出来上がり！',
+          en: "It's ready to drink! ",
         },
       },
     ],
