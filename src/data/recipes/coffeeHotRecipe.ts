@@ -16,8 +16,8 @@ export const coffeeHotRecipe: IRawPost<IRawRecipe> = {
       en: 'COFFEE',
     },
     description: {
-      ja: 'コーヒー desc',
-      en: 'COFFEE desc',
+      ja: 'ペーパーフィルターを使用したホットコーヒーのレシピ。',
+      en: 'Recipe of hot coffee used paper filter.',
     },
     thumbnailUrl: {
       square: null,
@@ -52,8 +52,8 @@ export const coffeeHotRecipe: IRawPost<IRawRecipe> = {
           en: 'Water',
         },
         quantity: {
-          ja: '400ml',
-          en: '400ml',
+          ja: '425ml',
+          en: '425ml',
         },
         note: {
           ja: '94℃程度',
@@ -106,24 +106,6 @@ export const coffeeHotRecipe: IRawPost<IRawRecipe> = {
         summary: {
           ja: '出来上がり！',
           en: "It's ready to drink! ",
-        },
-        description: {
-          ja: `
-            お湯を75ml注ぎ、45秒蒸らす。その後、50mlずつに6回に分けながら注ぐ。合計375ml使用。<br>
-            最後のお湯が落ちきる前にドリッパーを取り上げる。
-          `,
-          en: `
-            First, pours 75ml water up to the dripper. After this, pours 50ml water 6 separate times. Use 375ml in all.<br>
-            Remove the dripper before last time dropping.
-          `,
-        },
-        note: {
-          ja: `
-            フィルターに直接お湯を注がないように注意する。コーヒー豆を通らないお湯が混ざってしまう。
-          `,
-          en: `
-            Be careful not to pour the water directly to the filter because hot water does not pass through coffee beans.
-          `,
         },
       },
     ],
