@@ -31,36 +31,7 @@ export const latteHotRecipe: IRawPost<IRawRecipe> = {
       ja: 'ラテ',
       en: 'LATTE',
     },
-    ingredients: [
-      {
-        name: {
-          ja: 'コーヒー豆',
-          en: 'Coffee Beans',
-        },
-        quantity: {
-          ja: '20g',
-          en: '20g',
-        },
-        note: {
-          ja: '中細挽き',
-          en: 'Middle casdcadscasdcasdcas',
-        },
-      },
-      {
-        name: {
-          ja: '水',
-          en: 'Water',
-        },
-        quantity: {
-          ja: '200ml',
-          en: '200ml',
-        },
-        note: {
-          ja: '94℃程度',
-          en: 'Around 94℃(201℉)',
-        },
-      },
-    ],
+    ingredients: null,
     steps: [
       {
         summary: {

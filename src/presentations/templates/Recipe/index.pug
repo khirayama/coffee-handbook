@@ -30,15 +30,16 @@ block body
           div
             .Recipe--Content--Title--Type(class= props.contentTitle.recipeType === dic.t('meta.recipe.recipeType.HOT') ? 'Recipe--Content--Title--Type__Hot' : 'Recipe--Content--Title--Type__Iced')= props.contentTitle.recipeType
 
-      .Recipe--Content--Ingredient
-        .Recipe--Content--Ingredient--Title= dic.t('Templates.Recipe.INGREDIENTS')
-        table.Recipe--Content--Ingredient--Table
-          tbody
-            for ingredientRow in props.ingredientTable
-              tr.Recipe--Content--Ingredient--Table--Row
-                td.Recipe--Content--Ingredient--Table--Row--NameCell= ingredientRow.name
-                td.Recipe--Content--Ingredient--Table--Row--NoteCell= ingredientRow.note
-                td.Recipe--Content--Ingredient--Table--Row--QuantityCell= ingredientRow.quantity
+      if props.ingredientTable
+        .Recipe--Content--Ingredient
+          .Recipe--Content--Ingredient--Title= dic.t('Templates.Recipe.INGREDIENTS')
+          table.Recipe--Content--Ingredient--Table
+            tbody
+              for ingredientRow in props.ingredientTable
+                tr.Recipe--Content--Ingredient--Table--Row
+                  td.Recipe--Content--Ingredient--Table--Row--NameCell= ingredientRow.name
+                  td.Recipe--Content--Ingredient--Table--Row--NoteCell= ingredientRow.note
+                  td.Recipe--Content--Ingredient--Table--Row--QuantityCell= ingredientRow.quantity
 
       .Recipe--Content--StepList
         for stepListItem in props.stepList.items

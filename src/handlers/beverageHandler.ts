@@ -39,15 +39,17 @@ export function beverageHandler(req: express.Request, res: express.Response): vo
       alt: recipe.data.name,
       lazy: true,
     },
-    ingredientTable: recipe.data.ingredients.map(
-      (ingredient: { name: string; note: string; quantity: string }): IIngredientTableRow => {
-        return {
-          name: ingredient.name,
-          note: ingredient.note,
-          quantity: ingredient.quantity,
-        };
-      },
-    ),
+    ingredientTable: recipe.data.ingredients
+      ? recipe.data.ingredients.map(
+          (ingredient: { name: string; note: string; quantity: string }): IIngredientTableRow => {
+            return {
+              name: ingredient.name,
+              note: ingredient.note,
+              quantity: ingredient.quantity,
+            };
+          },
+        )
+      : null,
     stepList: {
       recipeType: recipe.data.recipeType,
       items: recipe.data.steps.map(
