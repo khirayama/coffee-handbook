@@ -17,7 +17,7 @@ export const coffeeHotRecipe: IRawPost<IRawRecipe> = {
     },
     description: {
       ja: 'ペーパーフィルターを使用したホットコーヒーのレシピ。',
-      en: 'Recipe of hot coffee used paper filter.',
+      en: 'The recipe of hot coffee used paper filter.',
     },
     thumbnailUrl: {
       square: null,
