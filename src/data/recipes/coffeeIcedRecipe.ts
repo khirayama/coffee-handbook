@@ -16,8 +16,8 @@ export const coffeeIcedRecipe: IRawPost<IRawRecipe> = {
       en: 'COFFEE',
     },
     description: {
-      ja: 'コーヒー desc',
-      en: 'COFFEE desc',
+      ja: 'ペーパーフィルターを使用したアイスコーヒーのレシピ。',
+      en: 'Recipe of iced coffee used paper filter.',
     },
     thumbnailUrl: {
       square: null,
@@ -38,12 +38,12 @@ export const coffeeIcedRecipe: IRawPost<IRawRecipe> = {
           en: 'Coffee Beans',
         },
         quantity: {
-          ja: '20g',
-          en: '20g',
+          ja: '24g',
+          en: '24g',
         },
         note: {
           ja: '中細挽き',
-          en: 'Middle casdcadscasdcasdcas',
+          en: 'Medium Fine',
         },
       },
       {
@@ -52,42 +52,64 @@ export const coffeeIcedRecipe: IRawPost<IRawRecipe> = {
           en: 'Water',
         },
         quantity: {
-          ja: '200ml',
-          en: '200ml',
+          ja: '275ml',
+          en: '275ml',
         },
         note: {
           ja: '94℃程度',
           en: 'Around 94℃(201℉)',
         },
       },
+      {
+        name: {
+          ja: '氷',
+          en: 'Ice',
+        },
+        quantity: {
+          ja: '200g',
+          en: '200g',
+        },
+      },
     ],
     steps: [
       {
         summary: {
-          ja: '水をあれあれ',
-          en: 'Water Water',
+          ja: '準備',
+          en: 'Prepares',
         },
         description: {
-          ja: 'いろいろ細かく',
-          en: 'Do something',
-        },
-        note: {
-          ja: 'ほげほげ',
-          en: 'hogehoge',
+          ja: `
+            水200mlを94℃程度まで沸かし、抽出器具にセットしたペーパーフィルターに湯通しする。<br>
+            豆は中細挽きにして、湯通ししたペーパーフィルターにセットする。
+            コーヒーサーバには200g程度の氷を入れる。
+          `,
+          en: `
+            Boil water to 21℉ and parboil the paper filter.<br>
+            Graind the beans and set it to the filter parboilded.
+            Put 200g ices on coffee server.
+          `,
         },
       },
       {
         summary: {
-          ja: '水をあれあれ',
-          en: 'Water Water',
+          ja: '抽出',
+          en: 'Brew',
         },
         description: {
-          ja: 'いろいろ細かく',
-          en: 'Do something',
+          ja: `
+            お湯を75ml注ぎ、45秒蒸らす。その後、50mlずつに3回に分けながら注ぐ。合計225ml使用。<br>
+            最後のお湯が落ちきる前にドリッパーを取り上げる。
+          `,
+          en: `
+            First, pours 75ml water up to the dripper. After this, pours 50ml water 3 separate times. Use 225ml in all.<br>
+            Remove the dripper before last time dropping.
+          `,
         },
-        note: {
-          ja: 'ほげほげ',
-          en: 'hogehoge',
+      },
+      {
+        summary: {
+          ja: '出来上がり！',
+          en: "It's ready to drink! ",
         },
       },
     ],
