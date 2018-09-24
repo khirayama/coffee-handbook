@@ -16,8 +16,8 @@ export const latteHotRecipe: IRawPost<IRawRecipe> = {
       en: 'LATTE',
     },
     description: {
-      ja: 'ラテ desc',
-      en: 'LATTE desc',
+      ja: 'ラテのレシピ。',
+      en: 'The recipe of hot latte.',
     },
     thumbnailUrl: {
       square: null,
