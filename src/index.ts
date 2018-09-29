@@ -1,5 +1,6 @@
 import * as path from 'path';
 
+import * as basicAuth from 'basic-auth-connect';
 import * as compression from 'compression';
 import * as cookieParser from 'cookie-parser';
 import * as express from 'express';
@@ -65,6 +66,10 @@ app
   .use(cookieParser())
   .use(setLang)
   .use(setLayoutProps);
+
+if (process.env.USER && process.env.PASSWORD) {
+  app.use(basicAuth(process.env.USER, process.env.PASSWORD));
+}
 
 // Routing
 app
