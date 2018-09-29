@@ -98,4 +98,6 @@ const APP_SERVER_PORT: number = Number(process.env.PORT || '3030');
 app.listen(APP_SERVER_PORT, () => {
   // tslint:disable-next-line:no-console
   console.log(`Start app at ${new Date().toString()}.`);
+  // tslint:disable-next-line:no-console
+  console.log(`Open the site at http://localhost:${APP_SERVER_PORT}`);
 });
