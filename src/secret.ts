@@ -1,5 +1,5 @@
 export const secret: {
   gaCode: string;
 } = {
-  gaCode: 'YOUR_GOOGLE_ANALYTICS_CODE',
+  gaCode: process.env.GOOGLE_ANALYTICS_CODE,
 };
