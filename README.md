@@ -7,15 +7,8 @@
 
 ## Development
 
-- Create `src/secret.ts` file
 - [OPTIONAL] Set google analytics code
 - Install packages and run app
-
-### Create `src/secret.ts` file
-
-```sh
-$ mv src/secret.example.ts src/secret.ts
-```
 
 ### [OPTIONAL] Set google analytics code
 
