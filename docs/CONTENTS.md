@@ -1,3 +1,6 @@
+TODO: mapsの時間をclient側で
+TODO: storeのpopupのcloseボタンが出ない（直接アクセスだとでる）
+
 ## Posts
 
 - [ ] おすすめおうちコーヒーセット[Step 3] 電動ミル、メジャー、温度計
