@@ -107,7 +107,7 @@ export const ${options.fileName}: IRawStore = {
     en: '${options.enAddress}',
   },
   hours: ${JSON.stringify(options.hours)},
-  hoursNote: ${options.hoursNote},
+  hoursNote: "${options.hoursNote}",
   email: ${options.email},
   tel: '${options.tel}',
   permanentClosed: false,
