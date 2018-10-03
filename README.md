@@ -21,6 +21,13 @@ $ npm install
 $ npm run dev
 ```
 
+## Add store
+
+```
+$ npm run generate:store
+$ npm run precommit
+```
+
 ### Data Structure
 
 - Data: 多言語対応の生データ
