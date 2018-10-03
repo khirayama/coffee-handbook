@@ -107,19 +107,27 @@ export const ${options.fileName}: IRawStore = {
     en: '${options.enAddress}',
   },
   hours: ${JSON.stringify(options.hours)},
-  hoursNote: ${options.hoursNote},
-  email: ${options.email},
-  tel: '${options.tel}',
+  hoursNote: ${
+    options.jaHoursNote && options.enHoursNote
+      ? `{
+      ja: "${options.jaHoursNote}",
+      en: "${options.enHoursNote}"
+    }`
+      : null
+  },
+  email: ${options.email ? `"${options.email}"` : null},
+  tel: ${options.tel ? `"${options.tel}"` : null},
   permanentClosed: false,
   transforTo: null,
   media: {
-    web: '${options.web}',
-    ec: '${options.ec}',
-    facebook: '${options.facebook}',
-    twitter: '${options.twitter}',
-    instagram: '${options.instagram}',
+    web: ${options.web ? `"${options.web}"` : null},
+    ec: ${options.ec ? `"${options.ec}"` : null},
+    facebook: ${options.facebook ? `"${options.facebook}"` : null},
+    twitter: ${options.twitter ? `"${options.twitter}"` : null},
+    instagram: ${options.instagram ? `"${options.instagram}"` : null},
     instagramTag: '${options.instagramTag}',
-    googleMaps: '${options.googleMaps}',
+    instagramTag: ${options.instagramTag ? `"${options.instagramTag}"` : null},
+    googleMaps: ${options.googleMaps ? `"${options.googleMaps}"` : null},
   },
   services: {
     roaster: ${options.roaster},
@@ -165,10 +173,8 @@ co(function*(): any {
   }
   console.log('Please update directory if you need.');
 
-  let hoursNote: string | null = yield cp('Hours Note: ');
-  if (!hoursNote) {
-    hoursNote = null;
-  }
+  const jaHoursNote: string | null = yield cp('Hours Note in Japanese: ');
+  const enHoursNote: string | null = yield cp('Hours Note in English: ');
 
   // medias
   let email: string | null = yield cp('E-Mail: ');
@@ -183,7 +189,7 @@ co(function*(): any {
   if (!web) {
     web = null;
   }
-  let ec: string | null = yield cp('ec Site URL: ');
+  let ec: string | null = yield cp('EC Site URL: ');
   if (!ec) {
     ec = null;
   }
@@ -275,7 +281,8 @@ co(function*(): any {
     jaAddress,
     enAddress,
     hours,
-    hoursNote,
+    jaHoursNote,
+    enHoursNote,
     email,
     tel,
     web,
