@@ -4,7 +4,7 @@
   "description": "",
   "main": "dist/index.js",
   "scripts": {
-    "clean": "rm -rf src/public dist",
+    "clean": "rm -rf src/public dist log",
     "start": "npm run clean && npm run bundle:scripts && npm run build:styles && npm run compile:scripts && npm run copy:files && NODE_PATH=dist pm2 start dist/index.js",
     "dev": "npm run clean && concurrently 'npm run bundle:scripts:watch' 'npm run build:styles:watch' 'npm run compile:scripts:watch' 'npm run copy:files:watch' 'NODE_PATH=dist nodemon dist/index.js'",
     "compile:scripts": "tsc -p tsconfig.server.json",
@@ -38,9 +38,11 @@
     "express": "4.16.3",
     "fuse.js": "3.2.1",
     "leaflet": "1.3.4",
+    "morgan": "1.9.1",
     "pm2": "3.2.2",
     "pug": "2.0.3",
     "query-string": "6.1.0",
+    "rotating-file-stream": "1.3.9",
     "rss": "1.2.2"
   },
   "devDependencies": {
