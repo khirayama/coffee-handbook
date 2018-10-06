@@ -1,5 +1,6 @@
-TODO: mapsの時間をclient側で
-TODO: lang切り替え in map page
+TODO: mapsの時間をclientかリクエストから
+TODO: [MAP PAGE] lang切り替え
+TODO: [MAP PAGE] Homeに戻るナビゲーション
 
 ## Posts
 
