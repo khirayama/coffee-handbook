@@ -16,8 +16,8 @@ block body
     .Maps--Content
       +Map
       if props.store
-        +Modal
+        +Modal({open: true})
           +StoreCard(props.store, props.currentDay, props.openStatus, props.nextStatusMessage)
       else
-        +Modal
+        +Modal({open: false})
           .StoreCard
