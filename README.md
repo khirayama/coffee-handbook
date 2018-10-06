@@ -21,11 +21,13 @@ $ npm install
 $ npm run dev
 ```
 
-## Add store
+## Add a store
 
 ```
 $ npm run generate:store
 $ npm run precommit
+// If you need to update, please edit generated file directly.
+// After this, please make a PR.
 ```
 
 ### Data Structure
