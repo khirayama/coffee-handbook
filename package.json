@@ -4,6 +4,7 @@
   "description": "",
   "main": "dist/index.js",
   "scripts": {
+    "preinstall": "npm i -g pm2",
     "clean": "rm -rf src/public dist log",
     "start": "npm run clean && npm run compile:scripts && (npm run bundle:scripts & npm run build:styles & npm run copy:files) && NODE_PATH=dist pm2 start ecosystem.config.js --env production",
     "dev": "npm run clean && concurrently 'npm run bundle:scripts:watch' 'npm run build:styles:watch' 'npm run compile:scripts:watch' 'npm run copy:files:watch' 'NODE_PATH=dist nodemon dist/index.js'",
