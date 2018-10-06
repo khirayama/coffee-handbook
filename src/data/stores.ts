@@ -50,4 +50,11 @@ export interface IRawStore {
   };
 }
 
-export const stores: IRawStore[] = [redHorn, saredoCoffee, sarutahikoCoffee, theCoffeeBeanAndTeaLeaf, tokadoCoffee, tokadoCoffeeNakasukawabata];
+export const stores: IRawStore[] = [
+  redHorn,
+  saredoCoffee,
+  sarutahikoCoffee,
+  theCoffeeBeanAndTeaLeaf,
+  tokadoCoffee,
+  tokadoCoffeeNakasukawabata,
+];
