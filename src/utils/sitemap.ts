@@ -200,10 +200,10 @@ const coffeeHandbookPages: IPage[] = [
   },
   {
     name: {
-      en: 'ABOUT US',
-      ja: '私たちについて',
+      en: 'ABOUT COFFEE HANDBOOK',
+      ja: '珈琲手帖について',
     },
-    url: `${config.url}/about-us`,
+    url: `${config.url}/about`,
     freq: 'daily',
     priority: 0.3,
     pages: [],

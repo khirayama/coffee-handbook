@@ -1,13 +1,13 @@
 import * as express from 'express';
 
 import { config } from 'config';
-import { IAboutUsPage } from 'presentations/pages/AboutUs';
+import { IAboutPage } from 'presentations/pages/About';
 import { Dictionary } from 'utils/Dictionary';
 
-export function aboutUsHandler(req: express.Request, res: express.Response): void {
+export function aboutHandler(req: express.Request, res: express.Response): void {
   const dic: Dictionary = req.dic;
 
-  const props: IAboutUsPage = {
+  const props: IAboutPage = {
     ...req.layout,
     title: dic.t('name'),
     description: dic.t('Pages.Home.description'),
@@ -23,5 +23,5 @@ export function aboutUsHandler(req: express.Request, res: express.Response): voi
     },
   };
 
-  res.render('pages/AboutUs', { dic, props });
+  res.render('pages/About', { dic, props });
 }

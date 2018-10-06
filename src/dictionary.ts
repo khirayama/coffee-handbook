@@ -31,7 +31,7 @@ export const dictionary: {
       STORES: IText;
     };
     Footer: {
-      ABOUT_US: IText;
+      ABOUT: IText;
       SITEMAP: IText;
       PRIVACY: IText;
       copyright: IText;
@@ -174,9 +174,9 @@ export const dictionary: {
       },
     },
     Footer: {
-      ABOUT_US: {
-        ja: 'ABOUT US',
-        en: 'ABOUT US',
+      ABOUT: {
+        ja: 'ABOUT',
+        en: 'ABOUT',
       },
       SITEMAP: {
         ja: 'SITEMAP',
