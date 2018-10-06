@@ -251,7 +251,7 @@ export const dictionary: {
           </ul>
         `,
         en: `
-          This site writes down daily stuffs about coffee.<br>
+          This site has daily stuffs about coffee.<br>
           This site is made by individual. I'm looking forward to your support.<br>
           Please give me some feedbacks on GitHub PR or DM on SNS.<br>
           <a href="${config.githubUrl}">[GitHub]</a> <a href="${config.twitterAccount}">[Twitter]</a>
