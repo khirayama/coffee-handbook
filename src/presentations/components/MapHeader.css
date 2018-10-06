@@ -1,0 +1,61 @@
+.MapHeader {
+  position: relative;
+  z-index: 4000;
+
+  .MapHeader--Link {
+    $size: 44px;
+    display: inline-block;
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: $size;
+    height: $size;
+    opacity: 1;
+    transition: opacity 200ms ease-out;
+
+    .MapHeader--Link--Image {
+      width: 100%;
+      height: 100%;
+    }
+
+    &:hover {
+      opacity: 0.8;
+    }
+
+    &:active {
+      background-color: $color-active;
+    }
+  }
+
+  .MapHeader--LangList {
+    position: absolute;
+    top: 20px;
+    right: 64px;
+    height: 13px;
+    line-height: 13px;
+    vertical-align: top;
+    color: $color-text-secondary;
+
+    .MapHeader--LangList--Item {
+      display: inline-block;
+      font-size: 0.75rem;
+      line-height: 13px;
+      vertical-align: top;
+
+      & + .MapHeader--LangList--Item {
+        &::before {
+          font-weight: $font-regular;
+          display: inline-block;
+          content: '/';
+          padding: 0 2px;
+          color: $color-text-secondary;
+        }
+      }
+
+      &.MapHeader--LangList--Item__Active {
+        font-weight: $font-bold;
+        color: $color-text;
+      }
+    }
+  }
+}
