@@ -1,13 +1,13 @@
 // tslint:disable:no-http-string
 import { IRawStore } from 'data/stores';
 
-export const theCoffeeBean&TeaLeaf: IRawStore = {
+export const theCoffeeBeanAndTeaLeaf: IRawStore = {
   key: 'the-coffee-bean-&-tea-leaf',
   lat: 35.683004,
   lng: 139.773235,
   name: {
     ja: 'コーヒービーン＆ティーリーフ',
-    en: 'The Coffee Bean & Tea Leaf',
+    en: 'The Coffee Bean \& Tea Leaf',
   },
   address: {
     ja: '東京都中央区日本橋1丁目3番13号　東京建物日本橋ビル1F',
@@ -32,9 +32,9 @@ export const theCoffeeBean&TeaLeaf: IRawStore = {
   transforTo: null,
   media: {
     web: 'http://www.coffeebean.co.jp/index.html',
-    ec: 'null',
+    ec: null,
     facebook: 'https://www.facebook.com/thecoffeebean.japan',
-    twitter: 'null',
+    twitter: null,
     instagram: 'https://www.instagram.com/coffeebean_japan/',
     instagramTag: 'https://www.instagram.com/explore/tags/coffeebean_japan/',
     googleMaps: 'https://goo.gl/maps/9wvJR7ohZmB2',
