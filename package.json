@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "clean": "rm -rf src/public dist log",
-    "start": "npm run clean && npm run compile:scripts && (npm run bundle:scripts & npm run build:styles & npm run copy:files) && NODE_PATH=dist node dist/index.js",
+    "start": "npm run clean && npm run compile:scripts && npm run bundle:scripts && npm run build:styles && npm run copy:files && NODE_PATH=dist node dist/index.js",
     "dev": "npm run clean && concurrently 'npm run bundle:scripts:watch' 'npm run build:styles:watch' 'npm run compile:scripts:watch' 'npm run copy:files:watch' 'NODE_PATH=dist nodemon dist/index.js'",
     "compile:scripts": "tsc -p tsconfig.server.json",
     "compile:scripts:watch": "tsc -p tsconfig.server.json -w",
