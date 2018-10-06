@@ -22,7 +22,10 @@ export const theCoffeeBean&TeaLeaf: IRawStore = {
     [["7:00","22:00"]],
     [["7:00","22:00"]]
   ],
-  hoursNote: 祝日 8:00 - 21:00,
+  hoursNote: {
+    ja: "祝日 8:00 - 21:00",
+    en: "Holiday 8:00 - 21:00",
+  },
   email: null,
   tel: '0362621336',
   permanentClosed: false,
