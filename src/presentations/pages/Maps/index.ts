@@ -122,7 +122,7 @@ window.addEventListener('DOMContentLoaded', () => {
           `${window.location.pathname}?${queryString.stringify(currentQuery)}`,
         );
         storeService.find(store.key).then((res: IStoreResponse) => {
-          modalElement.innerHTML = res.html;
+          modalElement.querySelector('.StoreCard').innerHTML = res.html;
           const storeCardElement: HTMLElement = modalElement.querySelector('.StoreCard');
           storeCard = new StoreCard(storeCardElement);
           modal.open();

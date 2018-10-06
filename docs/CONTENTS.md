@@ -1,5 +1,5 @@
 TODO: mapsの時間をclient側で
-TODO: storeのpopupのcloseボタンが出ない（直接アクセスだとでる）
+TODO: lang切り替え in map page
 
 ## Posts
 
