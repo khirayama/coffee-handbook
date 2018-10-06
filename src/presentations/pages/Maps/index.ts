@@ -13,6 +13,7 @@ import { IStoreResponse, storeService } from 'services/storeService';
 
 // TODO: current position を geo location api で取得できるように
 // TODO: mapsの時間をclient sideで
+// TODO: store検索
 
 declare global {
   // tslint:disable-next-line:interface-name

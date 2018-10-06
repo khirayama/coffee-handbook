@@ -6,6 +6,8 @@ import { IPictureComponent, Picture } from 'presentations/components/Picture';
 import { IPictureGalleryComponent, PictureGallery } from 'presentations/components/PictureGallery';
 import { logger } from 'presentations/utils/logger';
 
+// TODO: グッズページを完成させる
+
 export interface ISpecRowComponent {
   name: string;
   value: string;
