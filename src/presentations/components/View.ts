@@ -47,7 +47,7 @@ export class ViewElement {
     return viewElements;
   }
 
-  public on(eventType: string, handler: () => void, options?: {}): void {
+  public on(eventType: string, handler: (event: any) => void, options?: {}): void {
     this.el.addEventListener(eventType, handler, options);
   }
 
