@@ -47,9 +47,11 @@ export interface IMapsPage extends ILayout {
   nextStatusMessage: string;
 }
 
+// tslint:disable:max-func-body-length
 window.addEventListener('DOMContentLoaded', () => {
   logger.log(`Start app at ${new Date().toString()}.`);
   let storeCard: StoreCard;
+  let query: { key?: string };
 
   const lang: string = window.options.lang;
 
@@ -71,7 +73,7 @@ window.addEventListener('DOMContentLoaded', () => {
     },
   });
 
-  const query: { key?: string } = queryString.parse(window.location.search);
+  query = queryString.parse(window.location.search);
   if (query.key) {
     storeService.find(query.key).then((res: IStoreResponse) => {
       const storeCardElement: HTMLElement = modalElement.querySelector('.StoreCard');
@@ -129,5 +131,22 @@ window.addEventListener('DOMContentLoaded', () => {
         });
       },
     });
+  });
+
+  window.addEventListener('popstate', () => {
+    query = queryString.parse(window.location.search);
+    if (query.key) {
+      storeService.find(query.key).then((res: IStoreResponse) => {
+        modalElement.querySelector('.StoreCard').innerHTML = res.html;
+        const storeCardElement: HTMLElement = modalElement.querySelector('.StoreCard');
+        storeCard = new StoreCard(storeCardElement);
+        modal.open();
+      });
+    } else {
+      if (storeCard) {
+        storeCard.hideHours();
+      }
+      modal.close();
+    }
   });
 });
