@@ -1,4 +1,5 @@
-TODO: mapsの時間をclientかリクエストから
+TODO: [APP] favicon
+TODO: [MAP PAGE] mapsの時間をclientかリクエストから
 TODO: [MAP PAGE] lang切り替え
 TODO: [MAP PAGE] Homeに戻るナビゲーション
 
