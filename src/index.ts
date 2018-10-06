@@ -1,9 +1,12 @@
+import * as fs from 'fs';
 import * as path from 'path';
 
 import * as basicAuth from 'basic-auth-connect';
 import * as compression from 'compression';
 import * as cookieParser from 'cookie-parser';
 import * as express from 'express';
+import * as logger from 'morgan';
+import rotatingFileStream from 'rotating-file-stream';
 
 // Middleware
 import { setLang } from 'middlewares/setLang';
@@ -53,23 +56,33 @@ function preHandler(req: express.Request, res: express.Response, next: express.N
 }
 
 const app: express = express();
+const logDirectory: string = path.join(__dirname, '..', './log');
+fs.existsSync(logDirectory) || fs.mkdirSync(logDirectory);
+// tslint:disable-next-line:no-any
+const accessLogStream: any = rotatingFileStream('access.log', {
+  interval: '1d',
+  path: logDirectory,
+});
 
 // Middleware
 const basedir: string = path.join(__dirname, 'presentations');
 app.locals.basedir = basedir;
+if (process.env.USER && process.env.PASSWORD) {
+  app.use(basicAuth(process.env.USER, process.env.PASSWORD));
+}
+if (process.env.NODE_ENV !== 'production') {
+  app.use(logger('combined'));
+}
 app
   .set('views', basedir)
   .set('view engine', 'pug')
+  .use(logger('combined', { stream: accessLogStream }))
   .use(compression({ level: 9 }))
   .use(express.static(path.join(__dirname, 'assets')))
   .use(express.static(path.join(__dirname, 'public')))
   .use(cookieParser())
   .use(setLang)
   .use(setLayoutProps);
-
-if (process.env.USER && process.env.PASSWORD) {
-  app.use(basicAuth(process.env.USER, process.env.PASSWORD));
-}
 
 // Routing
 app
