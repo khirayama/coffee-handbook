@@ -11,35 +11,35 @@
     margin: 0 auto;
     padding: 48px 16px;
 
-    .Privacy--Title {
+    .Privacy--Content--Title {
       font-weight: $font-bold;
       text-align: center;
       font-size: 1.5rem;
       padding-bottom: 44px;
     }
 
-    .Privacy--Date {
+    .Privacy--Content--Date {
       text-align: right;
       padding-bottom: 24px;
 
-      .Privacy--Date--Text {
+      .Privacy--Content--Date--Text {
         font-size: 0.875rem;
       }
     }
 
-    .Privacy--Description {
+    .Privacy--Content--Description {
       padding-bottom: 24px;
     }
 
-    .Privacy--List {
+    .Privacy--Content--List {
       padding-bottom: 24px;
 
-      .Privacy--List--Heading {
+      .Privacy--Content--List--Heading {
         font-weight: $font-bold;
         padding-bottom: 8px;
       }
 
-      .Privacy--List--Content {
+      .Privacy--Content--List--Content {
         a {
           color: $color-text-secondary;
           text-decoration: underline;
