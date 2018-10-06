@@ -11,6 +11,10 @@ import { logger } from 'presentations/utils/logger';
 import { IStore, Store } from 'resources/Store';
 import { IStoreResponse, storeService } from 'services/storeService';
 
+// TODO: current position を geo location api で取得できるように
+// TODO: mapsの時間をclient sideで
+// TODO: lang切り替え
+
 declare global {
   // tslint:disable-next-line:interface-name
   interface Window {

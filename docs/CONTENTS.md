@@ -1,8 +1,3 @@
-TODO: [APP] favicon
-TODO: [MAP PAGE] mapsの時間をclientかリクエストから
-TODO: [MAP PAGE] lang切り替え
-TODO: [MAP PAGE] Homeに戻るナビゲーション
-
 ## Posts
 
 - [ ] おすすめおうちコーヒーセット[Step 3] 電動ミル、メジャー、温度計

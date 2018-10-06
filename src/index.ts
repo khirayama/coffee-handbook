@@ -36,6 +36,8 @@ import { storeAPIHandler } from 'handlers/storeAPIHandler';
 import { experiments } from 'experiments';
 import { HypothesisTesting } from 'utils/HypothesisTesting';
 
+// TODO: faviconをセット
+
 const hypothesisTesting: HypothesisTesting = new HypothesisTesting(experiments);
 // const topPageSegment: string = req.hypothesisTesting.segment('top-page1', req.segId);
 
