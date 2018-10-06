@@ -12,6 +12,7 @@
   transform: translateY(0);
   transition: transform 170ms ease-in-out;
   box-shadow: 0 0 2px 2px $color-shadow;
+  padding-top: 24px;
 
   &.Modal__Hidden {
     transform: translateY(100%);
@@ -21,7 +22,7 @@
     position: absolute;
     top: 0;
     right: 0;
-    padding: 12px;
+    padding: 8px;
     z-index: 1;
   }
 }
