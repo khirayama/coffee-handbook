@@ -2,6 +2,8 @@ extends /application/Layout
 
 block import
   include /components/Map
+  include /components/MapHeader
+  include /components/Modal
   include /components/StoreCard
 
 block meta
@@ -10,15 +12,12 @@ block meta
 
 block body
   .Maps
+    +MapHeader(props.mapHeader)
     .Maps--Content
       +Map
       if props.store
-        .Modal
-          .Modal--CloseButton
-            .Icon close
+        +Modal
           +StoreCard(props.store, props.currentDay, props.openStatus, props.nextStatusMessage)
       else
-        .Modal.Modal__Hidden
-          .Modal--CloseButton
-            .Icon close
+        +Modal
           .StoreCard

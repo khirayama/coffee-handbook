@@ -31,6 +31,9 @@ export function mapsHandler(req: express.Request, res: express.Response): void {
     image: 'TODO',
     pageType: 'cafe',
 
+    mapHeader: {
+      lang: req.lang,
+    },
     store,
     currentDay,
     openStatus,

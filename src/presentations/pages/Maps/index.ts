@@ -2,6 +2,7 @@ import * as queryString from 'query-string';
 
 import { ILayout } from 'presentations/application/Layout';
 import { Map } from 'presentations/components/Map';
+import { Modal } from 'presentations/components/Modal';
 import { StoreCard } from 'presentations/components/StoreCard';
 import { StoreMarker } from 'presentations/components/StoreMarker';
 import { View } from 'presentations/components/View';
@@ -23,22 +24,6 @@ declare global {
 }
 
 const mapModalWidth: number = 384;
-
-class Modal extends View {
-  public setEventListeners(): void {
-    this.$el.find('.Modal--CloseButton').on('click', () => {
-      this.close();
-    });
-  }
-
-  public open(): void {
-    this.$el.removeClass('Modal__Hidden');
-  }
-
-  public close(): void {
-    this.$el.addClass('Modal__Hidden');
-  }
-}
 
 export interface IMapsPage extends ILayout {
   store: IStore;
