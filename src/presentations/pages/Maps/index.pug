@@ -16,6 +16,8 @@ block body
     +MapHeader(props.mapHeader)
     .Maps--Content
       +Map
+      .Maps--Content--CurrentPositionButton
+        i.Icon my_location
       if props.store
         +Modal({open: true})
           +StoreCard(props.store, props.currentDay, props.openStatus, props.nextStatusMessage)

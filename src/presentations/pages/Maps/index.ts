@@ -1,3 +1,5 @@
+// tslint:disable:no-any
+import * as leaflet from 'leaflet';
 import * as queryString from 'query-string';
 
 import { ILayout } from 'presentations/application/Layout';
@@ -27,13 +29,62 @@ declare global {
   }
 }
 
+interface IPosition {
+  lat: number;
+  lng: number;
+}
+
 const mapModalWidth: number = 384;
+let currentPostion: IPosition | null = null;
+const currentPostionMarker: leaflet.Marker = leaflet.marker(currentPostion, {
+  icon: leaflet.divIcon({
+    className: 'StoreMarker',
+    html: `
+      <span class="CurrentPostionMarker"></span>
+    `,
+  }),
+});
 
 export interface IMapsPage extends ILayout {
   store: IStore;
   currentDay: number;
   openStatus: IOpenStatus;
   nextStatusMessage: string;
+}
+
+function isPermittedGettingLocation(): Promise<boolean> {
+  return new Promise(
+    (resolve: any): void => {
+      (<any>window.navigator).permissions
+        .query({
+          name: 'geolocation',
+        })
+        .then((permission: any) => {
+          resolve(permission.state === 'granted');
+        });
+    },
+  );
+}
+
+function getPosition(): Promise<IPosition> {
+  return new Promise(
+    (resolve: any): void => {
+      window.navigator.geolocation.watchPosition(
+        (pos: any): void => {
+          resolve({
+            lat: pos.coords.latitude,
+            lng: pos.coords.longitude,
+          });
+        },
+        (err: any): void => {
+          // Noop
+        },
+        {
+          enableHighAccuracy: true,
+        },
+      );
+    },
+  );
 }
 
 // tslint:disable:max-func-body-length
@@ -63,6 +114,27 @@ window.addEventListener('DOMContentLoaded', () => {
       }
       modal.close();
     },
+  });
+
+  isPermittedGettingLocation().then((isPermitted: boolean) => {
+    if (isPermitted) {
+      getPosition().then((pos: IPosition) => {
+        currentPostion = pos;
+        currentPostionMarker.setLatLng(currentPostion).addTo(map.map);
+      });
+    }
+  });
+  window.document.querySelector('.Maps--Content--CurrentPositionButton').addEventListener('click', () => {
+    if (currentPostion === null) {
+      getPosition().then((pos: IPosition) => {
+        currentPostion = pos;
+        map.setView(currentPostion, map.getZoom());
+        currentPostionMarker.setLatLng(currentPostion).addTo(map.map);
+      });
+    } else {
+      map.setView(currentPostion, map.getZoom());
+      currentPostionMarker.setLatLng(currentPostion).addTo(map.map);
+    }
   });
 
   query = queryString.parse(window.location.search);
