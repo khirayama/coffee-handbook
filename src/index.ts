@@ -67,7 +67,7 @@ const accessLogStream: any = rotatingFileStream('access.log', {
 // Middleware
 const basedir: string = path.join(__dirname, 'presentations');
 app.locals.basedir = basedir;
-if (process.env.USER && process.env.PASSWORD) {
+if (process.env.AUTHUSER && process.env.PASSWORD) {
   app.use(basicAuth(process.env.USER, process.env.PASSWORD));
 }
 if (process.env.NODE_ENV !== 'production') {
