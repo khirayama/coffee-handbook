@@ -13,7 +13,7 @@ import { setLang } from 'middlewares/setLang';
 import { setLayoutProps } from 'middlewares/setLayoutProps';
 
 // Handlers
-import { aboutUsHandler } from 'handlers/aboutUsHandler';
+import { aboutHandler } from 'handlers/aboutHandler';
 import { beverageHandler } from 'handlers/beverageHandler';
 import { beveragesHandler } from 'handlers/beveragesHandler';
 import { foodHandler } from 'handlers/foodHandler';
@@ -35,8 +35,6 @@ import { storeAPIHandler } from 'handlers/storeAPIHandler';
 // For AB Testing
 import { experiments } from 'experiments';
 import { HypothesisTesting } from 'utils/HypothesisTesting';
-
-// TODO: faviconをセット
 
 const hypothesisTesting: HypothesisTesting = new HypothesisTesting(experiments);
 // const topPageSegment: string = req.hypothesisTesting.segment('top-page1', req.segId);
@@ -96,7 +94,7 @@ app
   .get('/foods/:foodKey', preHandler, foodHandler)
   .get('/goods', preHandler, goodsHandler)
   .get('/goods/:goodKey', preHandler, goodHandler)
-  .get('/about-us', preHandler, aboutUsHandler)
+  .get('/about', preHandler, aboutHandler)
   .get('/posts/:postKey', preHandler, postHandler)
   .get('/privacy', preHandler, privacyHandler)
   .get('/sitemap.xml', preHandler, sitemapXmlHandler)

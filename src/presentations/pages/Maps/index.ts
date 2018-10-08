@@ -2,10 +2,10 @@ import * as queryString from 'query-string';
 
 import { ILayout } from 'presentations/application/Layout';
 import { Map } from 'presentations/components/Map';
+import { MapHeader } from 'presentations/components/MapHeader';
 import { Modal } from 'presentations/components/Modal';
 import { StoreCard } from 'presentations/components/StoreCard';
 import { StoreMarker } from 'presentations/components/StoreMarker';
-import { View } from 'presentations/components/View';
 import { getOpenStatus, IOpenStatus } from 'presentations/utils/getOpenStatus';
 import { logger } from 'presentations/utils/logger';
 import { IStore, Store } from 'resources/Store';
@@ -13,7 +13,7 @@ import { IStoreResponse, storeService } from 'services/storeService';
 
 // TODO: current position を geo location api で取得できるように
 // TODO: mapsの時間をclient sideで
-// TODO: lang切り替え
+// TODO: store検索
 
 declare global {
   // tslint:disable-next-line:interface-name
@@ -45,6 +45,9 @@ window.addEventListener('DOMContentLoaded', () => {
   const lang: string = window.options.lang;
 
   const stores: IStore[] = Store(lang).find();
+
+  const mapHeaderElement: HTMLElement = window.document.querySelector('.MapHeader');
+  new MapHeader(mapHeaderElement);
 
   const modalElement: HTMLElement = window.document.querySelector('.Modal');
   const modal: Modal = new Modal(modalElement);

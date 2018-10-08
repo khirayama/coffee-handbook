@@ -11,13 +11,14 @@ block meta
   link(rel="stylesheet" href="/pages/Maps/index.css")
 
 block body
+  // TODO: Update title
   .Maps
     +MapHeader(props.mapHeader)
     .Maps--Content
       +Map
       if props.store
-        +Modal
+        +Modal({open: true})
           +StoreCard(props.store, props.currentDay, props.openStatus, props.nextStatusMessage)
       else
-        +Modal
+        +Modal({open: false})
           .StoreCard

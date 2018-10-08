@@ -1,0 +1,42 @@
+@import 'application/vars';
+@import 'components/Header';
+@import 'components/Footer';
+@import 'components/Navigation';
+
+.About {
+  background-color: $color-background;
+
+  .About--Content {
+    max-width: calc($width-content * 3 / 4);
+    margin: 0 auto;
+    padding: 48px 16px;
+
+    .About--Content--Title {
+      font-weight: $font-bold;
+      text-align: center;
+      font-size: 1.5rem;
+      padding-bottom: 44px;
+    }
+
+    .About--Content--Text {
+      padding-bottom: 24px;
+
+      a {
+        font-weight: $font-bold;
+      }
+
+      ul {
+        list-style: disc;
+        padding: 12px;
+
+        li {
+          margin-left: 1rem;
+        }
+      }
+    }
+  }
+}
+
+.Footer {
+  box-shadow: $shadow-inverse;
+}

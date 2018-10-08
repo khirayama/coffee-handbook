@@ -1,5 +1,5 @@
 mixin Modal(props)
-  .Modal
+  .Modal(class= !props.open ? 'Modal__Hidden' : '')
     .Modal--CloseButton
       .Icon close
     block

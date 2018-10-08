@@ -1,3 +1,5 @@
+import { config } from 'config';
+
 interface IText {
   ja: string;
   en: string;
@@ -31,7 +33,7 @@ export const dictionary: {
       STORES: IText;
     };
     Footer: {
-      ABOUT_US: IText;
+      ABOUT: IText;
       SITEMAP: IText;
       PRIVACY: IText;
       copyright: IText;
@@ -48,6 +50,11 @@ export const dictionary: {
     Goods: {
       description: IText;
       GOODS: IText;
+    };
+    About: {
+      description: IText;
+      ABOUT: IText;
+      text: IText;
     };
     Privacy: {
       description: IText;
@@ -174,9 +181,9 @@ export const dictionary: {
       },
     },
     Footer: {
-      ABOUT_US: {
-        ja: 'ABOUT US',
-        en: 'ABOUT US',
+      ABOUT: {
+        ja: 'ABOUT',
+        en: 'ABOUT',
       },
       SITEMAP: {
         ja: 'SITEMAP',
@@ -218,6 +225,44 @@ export const dictionary: {
       GOODS: {
         ja: 'グッズ',
         en: 'GOODS',
+      },
+    },
+    About: {
+      description: {
+        ja: '珈琲手帖について',
+        en: 'About COFFEE HANDBOOK',
+      },
+      ABOUT: {
+        ja: '珈琲手帖について',
+        en: 'About COFFEE HANDBOOK',
+      },
+      text: {
+        ja: `
+          日々の珈琲の出来事を書き留めます。<br>
+          個人で作っていて、皆さんの協力もお待ちしています。<br>
+          GitHubでのPRや、SNSでのDMでも情報・修正を受け付けています。<br>
+          <a href="${config.githubUrl}">[GitHub]</a> <a href="${config.twitterAccount}">[Twitter]</a>
+          <ul>
+            <li>お店の追加</li>
+            <li>英語翻訳</li>
+            <li>リファクタリング</li>
+            <li>ABテスト</li>
+            <li><a href="${config.patreonUrl}">Patreon - 支援</a></li>
+          </ul>
+        `,
+        en: `
+          This site has daily stuffs about coffee.<br>
+          This site is made by individual. I'm looking forward to your support.<br>
+          Please give me some feedbacks on GitHub PR or DM on SNS.<br>
+          <a href="${config.githubUrl}">[GitHub]</a> <a href="${config.twitterAccount}">[Twitter]</a>
+          <ul>
+            <li>Add a store</li>
+            <li>Translation to English or Japanese</li>
+            <li>Refactoring</li>
+            <li>AB testing</li>
+            <li><a href="${config.patreonUrl}">Patreon - Support</a></li>
+          </ul>
+        `,
       },
     },
     Privacy: {

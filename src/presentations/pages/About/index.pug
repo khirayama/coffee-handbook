@@ -6,11 +6,13 @@ block import
   include /components/Navigation
 
 block meta
-  link(rel="stylesheet" href="/pages/AboutUs/index.css")
+  link(rel="stylesheet" href="/pages/About/index.css")
 
 block body
-  .AboutUs
+  .About
     +Header(props.header)
     +Navigation(props.navigation)
-    h1= title
+    .About--Content
+      .About--Content--Title= dic.t('Pages.About.ABOUT')
+      .About--Content--Text!= dic.t('Pages.About.text')
     +Footer
