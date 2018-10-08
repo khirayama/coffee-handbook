@@ -1,3 +1,4 @@
+import { ariseCoffeeEntangle } from 'data/stores/ariseCoffeeEntangle';
 import { redHorn } from 'data/stores/redHorn';
 import { saredoCoffee } from 'data/stores/saredoCoffee';
 import { sarutahikoCoffee } from 'data/stores/sarutahikoCoffee';
@@ -51,6 +52,7 @@ export interface IRawStore {
 }
 
 export const stores: IRawStore[] = [
+  ariseCoffeeEntangle,
   redHorn,
   saredoCoffee,
   sarutahikoCoffee,
