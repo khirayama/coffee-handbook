@@ -34,13 +34,17 @@ body {
 }
 
 .CurrentPostionMarker {
-  position: absolute;
-  top: 0;
-  left: 0;
-  display: inline-block;
-  background: #2196f3;
-  width: 16px !important;
-  height: 16px !important;
-  border-radius: 50%;
-  box-shadow: 0 0 2px 2px $color-shadow;
+  position: relative;
+
+  .CurrentPostionMarker--Icon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: inline-block;
+    background: #2196f3;
+    width: 16px !important;
+    height: 16px !important;
+    border-radius: 50%;
+    box-shadow: 0 0 2px 2px $color-shadow;
+  }
 }

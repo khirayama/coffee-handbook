@@ -36,6 +36,8 @@ export class StoreMarker extends View {
       .marker([this.props.store.lat, this.props.store.lng], {
         icon: leaflet.divIcon({
           className: 'StoreMarker',
+          iconSize: [16, 16],
+          iconAnchor: [8, 16],
           html: `
             <span class="StoreMarker--Icon"></span>
             <span class="StoreMarker--Name">${this.props.store.name}</span>

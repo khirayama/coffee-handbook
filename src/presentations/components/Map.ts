@@ -22,9 +22,14 @@ export class Map extends View {
   public init(): void {
     const view: IView = this.loadView();
 
-    this.map = leaflet.map(this.el).setView(view.pos, view.zoom);
+    this.map = leaflet
+      .map(this.el, {
+        zoomControl: false,
+        minZoom: 3,
+        maxZoom: 18,
+      })
+      .setView(view.pos, view.zoom);
     const tiles: leaflet.TileLayer = leaflet.tileLayer('//{s}.tile.osm.org/{z}/{x}/{y}.png', {
-      maxZoom: 100,
       attribution: '&copy; <a href="//osm.org/copyright">OpenStreetMap</a> contributors',
     });
     this.map.addLayer(tiles);
