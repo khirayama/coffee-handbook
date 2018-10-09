@@ -57,7 +57,9 @@ function preHandler(req: express.Request, res: express.Response, next: express.N
 
 const app: express = express();
 const logDirectory: string = path.join(__dirname, '..', './log');
-fs.existsSync(logDirectory) || fs.mkdirSync(logDirectory);
+if (!fs.existsSync(logDirectory)) {
+  fs.mkdirSync(logDirectory);
+}
 // tslint:disable-next-line:no-any
 const accessLogStream: any = rotatingFileStream('access.log', {
   interval: '1d',
