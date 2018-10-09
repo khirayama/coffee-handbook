@@ -38,9 +38,11 @@ const mapModalWidth: number = 384;
 let currentPostion: IPosition | null = null;
 const currentPostionMarker: leaflet.Marker = leaflet.marker(currentPostion, {
   icon: leaflet.divIcon({
-    className: 'StoreMarker',
+    className: 'CurrentPostionMarker',
+    iconSize: [16, 16],
+    iconAnchor: [8, 16],
     html: `
-      <span class="CurrentPostionMarker"></span>
+      <span class="CurrentPostionMarker--Icon"></span>
     `,
   }),
 });
