@@ -57,4 +57,4 @@ export interface IRawGood {
   colors: string[];
 }
 
-export const goods: IRawGood[] = [harioV60, harioV60, harioV60, harioV60];
+export const goods: IRawGood[] = [harioV60];
