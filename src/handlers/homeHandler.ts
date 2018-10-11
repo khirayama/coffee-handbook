@@ -1,13 +1,13 @@
 import * as express from 'express';
 
 import { IHomePage, IStoryListItemComponent } from 'presentations/pages/Home';
-import { IArticle, IPost, Post } from 'resources/Post';
+import { IPost, Post } from 'resources/Post';
 import { Dictionary } from 'utils/Dictionary';
 
 export function homeHandler(req: express.Request, res: express.Response): void {
   const dic: Dictionary = req.dic;
-  const featuredPost: IPost<IArticle> = Post(req.lang).findOne();
-  const exceptedFeaturedPosts: IPost<IArticle>[] = Post(req.lang)
+  const featuredPost: IPost = Post(req.lang).findOne();
+  const exceptedFeaturedPosts: IPost[] = Post(req.lang)
     .where({
       excepted: {
         key: featuredPost.key,
@@ -30,23 +30,23 @@ export function homeHandler(req: express.Request, res: express.Response): void {
       path: req.originalUrl,
     },
     coverStory: {
-      alt: featuredPost.meta.title,
-      src: featuredPost.meta.thumbnailUrl.square,
+      alt: featuredPost.title,
+      src: featuredPost.thumbnailUrl.square,
       lazy: false,
       key: featuredPost.key,
-      title: featuredPost.meta.title,
-      squareImagePath: featuredPost.meta.thumbnailUrl.square,
-      rectangleImagePath: featuredPost.meta.thumbnailUrl.rectangle,
+      title: featuredPost.title,
+      squareImagePath: featuredPost.thumbnailUrl.square,
+      rectangleImagePath: featuredPost.thumbnailUrl.rectangle,
     },
     storyList: exceptedFeaturedPosts.map(
-      (post: IPost<IArticle>): IStoryListItemComponent => {
+      (post: IPost): IStoryListItemComponent => {
         return {
           key: post.key,
-          publishedAt: post.meta.publishedAt,
-          title: post.meta.title,
+          publishedAt: post.publishedAt,
+          title: post.title,
           picture: {
-            alt: post.meta.title,
-            src: post.meta.thumbnailUrl.rectangle,
+            alt: post.title,
+            src: post.thumbnailUrl.rectangle,
             lazy: true,
           },
         };

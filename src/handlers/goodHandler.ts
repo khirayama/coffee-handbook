@@ -4,12 +4,11 @@ import { config } from 'config';
 import { IPictureComponent } from 'presentations/components/Picture';
 import { IGoodTemplate, ISpecRowComponent } from 'presentations/templates/Good';
 import { Good, IGood } from 'resources/Good';
-import { IPost } from 'resources/Post';
 import { Dictionary } from 'utils/Dictionary';
 
 export function goodHandler(req: express.Request, res: express.Response): void {
   const dic: Dictionary = req.dic;
-  const good: IPost<IGood> = Good(req.lang)
+  const good: IGood = Good(req.lang)
     .where({
       key: req.params.goodKey,
     })
@@ -17,10 +16,10 @@ export function goodHandler(req: express.Request, res: express.Response): void {
 
   const props: IGoodTemplate = {
     ...req.layout,
-    title: `${good.meta.title} | ${dic.t('name')}`,
-    description: good.meta.description,
+    title: `${good.name} | ${dic.t('name')}`,
+    description: good.description,
     keywords: ['coffee', 'コーヒー', '珈琲', 'handbook', '手帖'],
-    image: good.meta.thumbnailUrl.rectangle,
+    image: good.thumbnailUrl.rectangle,
     pageType: 'product',
 
     header: {
@@ -30,7 +29,7 @@ export function goodHandler(req: express.Request, res: express.Response): void {
       path: req.originalUrl,
     },
     pictureGallery: {
-      pictures: good.data.pictures.map(
+      pictures: good.pictures.map(
         (picture: { url: string; caption: string }): IPictureComponent => {
           return {
             src: picture.url,
@@ -41,11 +40,11 @@ export function goodHandler(req: express.Request, res: express.Response): void {
       ),
     },
     good: {
-      name: good.data.name,
-      category: good.data.category,
-      summary: good.data.summary,
-      content: good.data.content,
-      specs: good.data.specs.map(
+      name: good.name,
+      category: good.category,
+      summary: good.summary,
+      content: good.content,
+      specs: good.specs.map(
         (spec: { name: string; value: string }): ISpecRowComponent => {
           return {
             name: spec.name,
@@ -56,24 +55,24 @@ export function goodHandler(req: express.Request, res: express.Response): void {
     },
     relatedGoods: [
       {
-        url: good.meta.url,
-        name: good.data.name,
-        category: good.data.category,
+        url: `/goods/${good.key}`,
+        name: good.name,
+        category: good.category,
         picture: {
-          src: good.meta.thumbnailUrl.square,
-          alt: good.data.name,
+          src: good.thumbnailUrl.square,
+          alt: good.name,
           lazy: true,
         },
       },
     ],
     relatedRecipes: [
       {
-        url: good.meta.url,
-        name: good.data.name,
-        category: good.data.category,
+        url: `/goods/${good.key}`,
+        name: good.name,
+        category: good.category,
         picture: {
-          src: good.meta.thumbnailUrl.square,
-          alt: good.data.name,
+          src: good.thumbnailUrl.square,
+          alt: good.name,
           lazy: true,
         },
       },

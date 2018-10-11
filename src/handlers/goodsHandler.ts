@@ -4,12 +4,11 @@ import { config } from 'config';
 import { IGoodCardComponent } from 'presentations/components/GoodCard';
 import { IGoodsPage } from 'presentations/pages/Goods';
 import { Good, IGood } from 'resources/Good';
-import { IPost } from 'resources/Post';
 import { Dictionary } from 'utils/Dictionary';
 
 export function goodsHandler(req: express.Request, res: express.Response): void {
   const dic: Dictionary = req.dic;
-  const goods: IPost<IGood>[] = Good(req.lang).find();
+  const goods: IGood[] = Good(req.lang).find();
 
   const props: IGoodsPage = {
     ...req.layout,
@@ -29,14 +28,14 @@ export function goodsHandler(req: express.Request, res: express.Response): void 
       heading: dic.t('Pages.Goods.GOODS'),
     },
     goodList: goods.map(
-      (good: IPost<IGood>): IGoodCardComponent => {
+      (good: IGood): IGoodCardComponent => {
         return {
-          url: good.meta.url,
-          name: good.data.name,
-          category: good.data.category,
+          url: `/goods/${good.key}`,
+          name: good.name,
+          category: good.category,
           picture: {
-            src: good.meta.thumbnailUrl.square,
-            alt: good.meta.title,
+            src: good.thumbnailUrl.square,
+            alt: good.name,
             lazy: true,
           },
         };
