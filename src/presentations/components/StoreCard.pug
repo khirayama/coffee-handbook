@@ -12,9 +12,9 @@ mixin StoreCard(store, currentDay, openStatus, nextStatusMessage)
         ul.StoreCard--Content--Hours--List
           each hours, i in store.hours
             if hours.length
-              each hour in hours
-                li.StoreCard--Content--Hours--List--Item(class= (currentDay === i) ? 'StoreCard--Content--Hours--List--Item__Active' : '')
-                  span.StoreCard--Content--Hours--List--Item--Day= dic.t(`Pages.Maps.day.${i}`)
+              li.StoreCard--Content--Hours--List--Item(class= (currentDay === i) ? 'StoreCard--Content--Hours--List--Item__Active' : '')
+                span.StoreCard--Content--Hours--List--Item--Day= dic.t(`Pages.Maps.day.${i}`)
+                each hour in hours
                   span.StoreCard--Content--Hours--List--Item--Time= hour.join(' - ')
             else
               li.StoreCard--Content--Hours--List--Item(class= (currentDay === i) ? 'StoreCard--Content--Hours--List--Item__Active' : '')
