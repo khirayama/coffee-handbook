@@ -3,4 +3,4 @@
 /node_modules
 /src/public
 /dist
-/log
+/log/*.log
