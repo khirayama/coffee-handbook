@@ -125,7 +125,6 @@ export const ${options.fileName}: IRawStore = {
     facebook: ${options.facebook ? `"${options.facebook}"` : null},
     twitter: ${options.twitter ? `"${options.twitter}"` : null},
     instagram: ${options.instagram ? `"${options.instagram}"` : null},
-    instagramTag: '${options.instagramTag}',
     instagramTag: ${options.instagramTag ? `"${options.instagramTag}"` : null},
     googleMaps: ${options.googleMaps ? `"${options.googleMaps}"` : null},
   },
