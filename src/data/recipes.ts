@@ -31,8 +31,6 @@ import { espressoHotRecipe } from 'data/recipes/espressoHotRecipe';
 // Foods - Madeleine
 import { madeleineRecipe } from 'data/recipes/madeleineRecipe';
 
-import { IRawPost } from 'data/posts';
-
 interface IRawRecipeStep {
   summary: {
     ja: string;
@@ -59,6 +57,9 @@ interface IRawRecipeStep {
 }
 
 export interface IRawRecipe {
+  key: string;
+  createdAt: string;
+  publishedAt: string;
   category: {
     ja: string;
     en: string;
@@ -68,6 +69,20 @@ export interface IRawRecipe {
     en: string;
   } | null;
   name: {
+    ja: string;
+    en: string;
+  };
+  thumbnailUrl: {
+    square: {
+      ja: string;
+      en: string;
+    };
+    rectangle: {
+      ja: string;
+      en: string;
+    };
+  };
+  description: {
     ja: string;
     en: string;
   };
@@ -88,7 +103,7 @@ export interface IRawRecipe {
   steps: IRawRecipeStep[];
 }
 
-export const recipes: IRawPost<IRawRecipe>[] = [
+export const recipes: IRawRecipe[] = [
   // Beverages
   coffeeHotRecipe,
   coffeeIcedRecipe,

@@ -1,13 +1,28 @@
 import { harioV60 } from 'data/goods/harioV60';
 
-import { IRawPost } from 'data/posts';
-
 export interface IRawGood {
+  key: string;
+  createdAt: string;
+  publishedAt: string;
   category: {
     ja: string;
     en: string;
   };
   name: {
+    ja: string;
+    en: string;
+  };
+  thumbnailUrl: {
+    square: {
+      ja: string;
+      en: string;
+    };
+    rectangle: {
+      ja: string;
+      en: string;
+    };
+  };
+  description: {
     ja: string;
     en: string;
   };
@@ -40,10 +55,6 @@ export interface IRawGood {
     en: string;
   };
   colors: string[];
-  links: {
-    site: string;
-    url: string;
-  }[];
 }
 
-export const goods: IRawPost<IRawGood>[] = [harioV60, harioV60, harioV60, harioV60];
+export const goods: IRawGood[] = [harioV60, harioV60, harioV60, harioV60];
