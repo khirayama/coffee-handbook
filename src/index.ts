@@ -91,7 +91,7 @@ app
   .get('/', preHandler, homeHandler)
   .get('/maps', preHandler, mapsHandler)
   .get('/beverages', preHandler, beveragesHandler)
-  .get('/beverages/:beverageKey/:recipeType', preHandler, beverageHandler)
+  .get('/beverages/:beverageKey', preHandler, beverageHandler)
   .get('/foods', preHandler, foodsHandler)
   .get('/foods/:foodKey', preHandler, foodHandler)
   .get('/goods', preHandler, goodsHandler)
