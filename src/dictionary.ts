@@ -30,6 +30,7 @@ export const dictionary: {
       BEVERAGES: IText;
       FOODS: IText;
       GOODS: IText;
+      ABOUT: IText;
       STORES: IText;
     };
     Footer: {
@@ -174,6 +175,10 @@ export const dictionary: {
       GOODS: {
         ja: 'GOODS',
         en: 'GOODS',
+      },
+      ABOUT: {
+        ja: 'ABOUT',
+        en: 'ABOUT',
       },
       STORES: {
         ja: 'STORES',
