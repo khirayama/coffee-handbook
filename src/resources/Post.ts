@@ -1,29 +1,26 @@
-import { IRawArticle, IRawPost, posts } from 'data/posts';
+import { IRawPost, posts } from 'data/posts';
 import { Resource, TResource } from 'utils/Resource';
 
-export interface IArticle {
-  content: string;
-}
-
-export interface IPost<T> {
+export interface IPost {
   key: string;
-  meta: {
-    createdAt: string;
-    publishedAt: string;
-    url: string;
-    title: string;
-    description: string;
-    thumbnailUrl: {
-      square: string;
-      rectangle: string;
-    };
+  createdAt: string;
+  publishedAt: string;
+  title: string;
+  thumbnailUrl: {
+    square: string;
+    rectangle: string;
   };
-  data: T;
+  description: {
+    ja: string;
+    en: string;
+  };
+  content: {
+    ja: string;
+    en: string;
+  };
 }
 
 // tslint:disable-next-line:variable-name
-export const Post: TResource<IRawPost<IRawArticle>, IPost<IArticle>> = (
-  lang: string,
-): Resource<IRawPost<IRawArticle>, IPost<IArticle>> => {
+export const Post: TResource<IRawPost, IPost> = (lang: string): Resource<IRawPost, IPost> => {
   return new Resource(posts, lang);
 };
