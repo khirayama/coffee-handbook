@@ -7,6 +7,7 @@ export const config: {
   facebookPageUrl: string;
   twitterCardType: string;
   twitterAccount: string;
+  instagramAccount: string;
 } = {
   url: process.env.NODE_ENV === 'production' ? 'https://coffee-handbook.com' : '//localhost:3030',
   languages: ['en', 'ja'],
@@ -17,4 +18,5 @@ export const config: {
   facebookPageUrl: 'facebook page url',
   twitterCardType: 'summary_large_image',
   twitterAccount: '@coffeehandbook_',
+  instagramAccount: 'coffeehandbook',
 };
