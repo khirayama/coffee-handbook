@@ -3,6 +3,8 @@
 
 export const logger: any = {
   log: (...args: any[]): void => {
-    console.log(...args);
+    if (process.env.NODE_ENV === 'production') {
+      console.log(...args);
+    }
   },
 };
