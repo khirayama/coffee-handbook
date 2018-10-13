@@ -1,0 +1,38 @@
+runtime: nodejs8
+threadsafe: true
+env: standard
+instance_class: F1
+handlers:
+  - url: '/.*'
+    script: auto
+    secure: always
+    redirect_http_response_code: '301'
+  - url: /images
+    static_dir: ./dist/assets/images
+automatic_scaling:
+  min_idle_instances: automatic
+  max_idle_instances: 1
+  min_pending_latency: 15000ms
+  max_pending_latency: automatic
+skip_files:
+  - ^(.*/)?app\.yaml
+  - ^README\..*
+  - \.git
+  - \.gitignore
+  - \.DS_Store
+  - ^node_modules/(.*/)?
+  - src
+  - materials
+  - bin
+  - test
+  - docs
+  - package-lock.json
+  - tsconfig.*
+  - tslint.json
+  - webpack.config.js
+  - \.envrc
+  - \.hintrc
+  - \.nvmrc
+  - \.postcssrc.js
+  - \.prettierrc
+  - \.prettierrc
