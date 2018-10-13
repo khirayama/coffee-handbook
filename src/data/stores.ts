@@ -1,4 +1,5 @@
 import { ariseCoffeeEntangle } from 'data/stores/ariseCoffeeEntangle';
+import { coffeeSanjikkenGinza } from 'data/stores/coffeeSanjikkenGinza';
 import { hagiCafe } from 'data/stores/hagiCafe';
 import { kayabaCoffee } from 'data/stores/kayabaCoffee';
 import { mightyStepsCoffeeStop } from 'data/stores/mightyStepsCoffeeStop';
@@ -57,6 +58,7 @@ export interface IRawStore {
 
 export const stores: IRawStore[] = [
   ariseCoffeeEntangle,
+  coffeeSanjikkenGinza,
   hagiCafe,
   kayabaCoffee,
   mightyStepsCoffeeStop,
