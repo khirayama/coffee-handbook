@@ -246,7 +246,9 @@ export const dictionary: {
           日々の珈琲の出来事を書き留めます。<br>
           個人で作っていて、皆さんの協力もお待ちしています。<br>
           GitHubでのPRや、SNSでのDMでも情報・修正を受け付けています。<br>
-          <a href="${config.githubUrl}">[GitHub]</a> <a href="${config.twitterAccount}">[Twitter]</a>
+          <a href="${config.githubUrl}">[GitHub]</a> <a href="https://twitter.com/${
+          config.twitterAccount
+        }">[Twitter]</a>
           <ul>
             <li>お店の追加</li>
             <li>英語翻訳</li>
@@ -259,7 +261,9 @@ export const dictionary: {
           This site has daily stuffs about coffee.<br>
           This site is made by individual. I'm looking forward to your support.<br>
           Please give me some feedbacks on GitHub PR or DM on SNS.<br>
-          <a href="${config.githubUrl}">[GitHub]</a> <a href="${config.twitterAccount}">[Twitter]</a>
+          <a href="${config.githubUrl}">[GitHub]</a> <a href="https://twitter.com/${
+          config.twitterAccount
+        }">[Twitter]</a>
           <ul>
             <li>Add a store</li>
             <li>Translation to English or Japanese</li>
