@@ -18,18 +18,19 @@ interface IManifest {
 }
 
 export function manifestHandler(req: express.Request, res: express.Response): void {
+  const lang: string = req.lang;
   const manifest: IManifest = {
     name: req.dic.t('name'),
     short_name: req.dic.t('name'),
     icons: [
       {
-        src: '/images/logo/icon_android.png',
+        src: `/images/icon_${lang}_android.png`,
         sizes: '192x192',
         type: 'image/png',
       },
     ],
     scope: '/',
-    start_url: `/?lang=${req.lang}`,
+    start_url: `/?lang=${lang}`,
     display: 'standalone',
     orientation: 'portrait',
     theme_color: '#fbfaf5',
