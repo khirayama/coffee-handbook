@@ -32,7 +32,7 @@ export const tokadoCoffeeNakasukawabata: IRawStore = {
     ec: 'http://tokado-coffee.shop-pro.jp/',
     facebook: 'https://www.facebook.com/tokadocoffee',
     twitter: 'https://twitter.com/tokadocoffee',
-    instagram: 'https://www.instagram.com/tokado_coffee/',
+    instagram: 'https://www.instagram.com/tokado_coffee_hakatariverain/',
     instagramTag:
       'https://www.instagram.com/explore/tags/%E8%B1%86%E9%A6%99%E6%B4%9E%E3%82%B3%E3%83%BC%E3%83%92%E3%83%BC/',
     googleMaps: 'https://goo.gl/maps/QuSdTYx9Eap',
