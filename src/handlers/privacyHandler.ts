@@ -1,5 +1,6 @@
 import * as express from 'express';
 
+import { config } from 'config';
 import { ILayout } from 'presentations/application/Layout';
 import { IHeaderComponent } from 'presentations/components/Header';
 import { INavigationComponent } from 'presentations/components/Navigation';
@@ -8,6 +9,7 @@ import { Dictionary } from 'utils/Dictionary';
 interface IPrivacyPage extends ILayout {
   header: IHeaderComponent;
   navigation: INavigationComponent;
+  twitterLink: string;
 }
 
 export function privacyHandler(req: express.Request, res: express.Response): void {
@@ -27,6 +29,7 @@ export function privacyHandler(req: express.Request, res: express.Response): voi
     navigation: {
       path: req.originalUrl,
     },
+    twitterLink: `https://twitter.com/${config.twitterAccount}`,
   };
 
   res.render('pages/Privacy', { dic, props });
