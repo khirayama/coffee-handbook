@@ -15,7 +15,7 @@ export const config: {
   // TODO: Get patreon https://www.patreon.com/
   patreonUrl: '',
   facebookAppId: 'test id',
-  facebookPageUrl: 'facebook page url',
+  facebookPageUrl: 'https://www.facebook.com/coffeehandbook/',
   twitterCardType: 'summary_large_image',
   twitterAccount: '@coffeehandbook_',
   instagramAccount: 'coffeehandbook',
