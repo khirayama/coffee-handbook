@@ -4,4 +4,45 @@
 @import 'components/Navigation';
 
 .Post {
+  background-color: $color-background;
+
+  .Post--Content {
+    max-width: calc($width-content * 3 / 4);
+    margin: 0 auto;
+    padding: 48px 16px;
+
+    .Post--Content--Title {
+      font-weight: $font-bold;
+      font-size: 1.5rem;
+      padding-bottom: 16px;
+    }
+
+    .Post--Content--Date {
+      text-align: right;
+      padding-bottom: 24px;
+      color: $color-text-secondary;
+      font-size: 0.875rem;
+    }
+
+    .Post--Content--Text {
+      padding-bottom: 24px;
+
+      a {
+        font-weight: $font-bold;
+      }
+
+      ul {
+        list-style: disc;
+        padding: 12px;
+
+        li {
+          margin-left: 1rem;
+        }
+      }
+    }
+  }
+}
+
+.Footer {
+  box-shadow: $shadow-inverse;
 }

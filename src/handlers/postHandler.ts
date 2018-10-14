@@ -28,6 +28,7 @@ export function postHandler(req: express.Request, res: express.Response): void {
     },
     post: {
       title: post.title,
+      publishedAt: post.publishedAt,
       content: post.content,
     },
   };

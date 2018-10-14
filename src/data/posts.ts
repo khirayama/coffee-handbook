@@ -1,5 +1,4 @@
 import { post1 } from 'data/posts/post1';
-import { post2 } from 'data/posts/post2';
 
 export interface IRawPost {
   key: string;
@@ -29,4 +28,4 @@ export interface IRawPost {
   };
 }
 
-export const posts: IRawPost[] = [post2, post1];
+export const posts: IRawPost[] = [post1];

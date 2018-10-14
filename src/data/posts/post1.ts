@@ -2,12 +2,14 @@ import * as path from 'path';
 
 import * as pug from 'pug';
 
+import { config } from 'config';
+
 import { IRawPost } from 'data/posts';
 
 export const post1: IRawPost = {
-  key: 'post1',
-  createdAt: '2018-05-26 12:00',
-  publishedAt: '2018-05-26 15:00',
+  key: 'here-comes-coffee-handbook',
+  createdAt: '2018-10-14 12:00',
+  publishedAt: '2018-10-14 12:00',
   thumbnailUrl: {
     square: {
       ja: '/images/image_1@square.jpg',
@@ -19,15 +21,15 @@ export const post1: IRawPost = {
     },
   },
   title: {
-    ja: '【特集】なぜ僕らがこの活動をはじめたのか。',
-    en: '[Feature] Why we start this activities.',
+    ja: '珈琲手帖、はじめました！',
+    en: 'Here comes COFFEE HANDBOOK!',
   },
   description: {
-    ja: '【特集】なぜ僕らがこの活動をはじめたのか。',
-    en: '[Feature] Why we start this activities.',
+    ja: '珈琲手帖、はじめました！',
+    en: 'Here comes COFFEE HANDBOOK!',
   },
   content: {
-    ja: pug.compileFile(path.join(__dirname, 'post1-content.ja.pug'))(),
-    en: pug.compileFile(path.join(__dirname, 'post1-content.en.pug'))(),
+    ja: pug.compileFile(path.join(__dirname, 'post1-content.ja.pug'))({ config }),
+    en: pug.compileFile(path.join(__dirname, 'post1-content.en.pug'))({ config }),
   },
 };

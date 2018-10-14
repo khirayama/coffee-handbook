@@ -12,6 +12,8 @@ block body
   .Post
     +Header(props.header)
     +Navigation(props.navigation)
-    h1= props.post.title
-    p!= props.post.content
+    .Post--Content
+      .Post--Content--Title= props.post.title
+      .Post--Content--Date= props.post.publishedAt
+      .Post--Content--Text!= props.post.content
     +Footer
