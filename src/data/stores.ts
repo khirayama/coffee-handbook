@@ -10,6 +10,7 @@ import { sarutahikoCoffee } from 'data/stores/sarutahikoCoffee';
 import { theCoffeeBeanAndTeaLeaf } from 'data/stores/theCoffeeBeanAndTeaLeaf';
 import { tokadoCoffee } from 'data/stores/tokadoCoffee';
 import { tokadoCoffeeNakasukawabata } from 'data/stores/tokadoCoffeeNakasukawabata';
+import { yourDailyCoffee } from 'data/stores/yourDailyCoffee';
 
 export interface IRawStore {
   key: string;
@@ -69,4 +70,5 @@ export const stores: IRawStore[] = [
   theCoffeeBeanAndTeaLeaf,
   tokadoCoffee,
   tokadoCoffeeNakasukawabata,
+  yourDailyCoffee,
 ];
