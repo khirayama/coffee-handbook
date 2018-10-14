@@ -10,6 +10,7 @@ import { StoreCard } from 'presentations/components/StoreCard';
 import { StoreMarker } from 'presentations/components/StoreMarker';
 import { getOpenStatus, IOpenStatus } from 'presentations/utils/getOpenStatus';
 import { logger } from 'presentations/utils/logger';
+import { tracker, Tracker } from 'presentations/utils/tracker';
 import { IStore, Store } from 'resources/Store';
 import { IStoreResponse, storeService } from 'services/storeService';
 
@@ -183,6 +184,9 @@ window.addEventListener('DOMContentLoaded', () => {
       onClick: (): void => {
         const currentQuery: { key?: string } = queryString.parse(window.location.search);
         currentQuery.key = store.key;
+        const route: string = `${window.location.pathname}?key=${currentQuery.key}`;
+        tracker.setPage(route);
+        tracker.sendPageView();
         window.history.pushState(
           null,
           store.name,

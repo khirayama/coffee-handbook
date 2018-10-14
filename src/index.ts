@@ -39,7 +39,12 @@ const hypothesisTesting: HypothesisTesting = new HypothesisTesting(experiments);
 
 function preHandler(req: express.Request, res: express.Response, next: express.NextFunction): void {
   // For GA
-  req.layout.route = req.route.path;
+  const key: string = req.query.key;
+  if (key) {
+    req.layout.route = `${req.route.path}?key=${key}`;
+  } else {
+    req.layout.route = req.route.path;
+  }
 
   // For AB Testing
   const segId: string = req.cookies._seg_id || hypothesisTesting.getSegId();
