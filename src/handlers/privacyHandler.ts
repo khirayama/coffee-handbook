@@ -29,6 +29,7 @@ export function privacyHandler(req: express.Request, res: express.Response): voi
     navigation: {
       path: req.originalUrl,
     },
+    url: config.url,
     twitterLink: `https://twitter.com/${config.twitterAccount}`,
   };
 
