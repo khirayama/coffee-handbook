@@ -3,6 +3,7 @@ import { coffeeSanjikkenGinza } from 'data/stores/coffeeSanjikkenGinza';
 import { hagiCafe } from 'data/stores/hagiCafe';
 import { kayabaCoffee } from 'data/stores/kayabaCoffee';
 import { mightyStepsCoffeeStop } from 'data/stores/mightyStepsCoffeeStop';
+import { monkeyCafeDky } from 'data/stores/monkeyCafeDky';
 import { monzCafe } from 'data/stores/monzCafe';
 import { redHorn } from 'data/stores/redHorn';
 import { saredoCoffee } from 'data/stores/saredoCoffee';
@@ -64,6 +65,7 @@ export const stores: IRawStore[] = [
   hagiCafe,
   kayabaCoffee,
   mightyStepsCoffeeStop,
+  monkeyCafeDky,
   monzCafe,
   redHorn,
   saredoCoffee,
