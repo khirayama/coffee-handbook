@@ -8,6 +8,7 @@ import { monzCafe } from 'data/stores/monzCafe';
 import { redHorn } from 'data/stores/redHorn';
 import { saredoCoffee } from 'data/stores/saredoCoffee';
 import { sarutahikoCoffee } from 'data/stores/sarutahikoCoffee';
+import { solsCoffeeRoastery } from 'data/stores/solsCoffeeRoastery';
 import { theCoffeeBeanAndTeaLeaf } from 'data/stores/theCoffeeBeanAndTeaLeaf';
 import { tokadoCoffee } from 'data/stores/tokadoCoffee';
 import { tokadoCoffeeNakasukawabata } from 'data/stores/tokadoCoffeeNakasukawabata';
@@ -70,6 +71,7 @@ export const stores: IRawStore[] = [
   redHorn,
   saredoCoffee,
   sarutahikoCoffee,
+  solsCoffeeRoastery,
   theCoffeeBeanAndTeaLeaf,
   tokadoCoffee,
   tokadoCoffeeNakasukawabata,
