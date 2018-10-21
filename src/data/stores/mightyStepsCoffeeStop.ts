@@ -33,7 +33,7 @@ export const mightyStepsCoffeeStop: IRawStore = {
     facebook: 'https://www.facebook.com/mightysteps.coffee.stop/',
     twitter: null,
     instagram: null,
-    instagramTag: null,
+    instagramTag: 'https://www.instagram.com/explore/tags/mightystepscoffeestop/',
     googleMaps: 'https://goo.gl/maps/yJQvWKCfC2B2',
   },
   services: {

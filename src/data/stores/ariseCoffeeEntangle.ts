@@ -33,7 +33,7 @@ export const ariseCoffeeEntangle: IRawStore = {
     facebook: null,
     twitter: 'https://twitter.com/arisecoffee',
     instagram: null,
-    instagramTag: null,
+    instagramTag: 'https://www.instagram.com/explore/tags/arisecoffeeentangle/',
     googleMaps: 'https://goo.gl/maps/VU1s1tPYaWT2',
   },
   services: {
