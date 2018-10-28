@@ -14,8 +14,6 @@ automatic_scaling:
   max_idle_instances: 1
   min_pending_latency: 15000ms
   max_pending_latency: automatic
-env_variables:
-  GOOGLE_ANALYTICS_CODE: UA-121194530-1
 skip_files:
   - ^(.*/)?app\.yaml
   - ^README\..*
@@ -38,3 +36,5 @@ skip_files:
   - \.postcssrc.js
   - \.prettierrc
   - \.prettierrc
+includes:
+- secret.yaml
