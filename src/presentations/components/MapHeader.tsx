@@ -20,7 +20,7 @@ export class MapHeader extends React.Component<IProps, {}> {
     return (
       <header className="MapHeader">
         <a className="MapHeader--Link" href="/about">
-          <img className="MapHeader--Link--Image" src="/images/icon_en_square.png" alt="COFFEE HANDBOOK" />
+          <img className="MapHeader--Link--Image" src={`/images/icon_${props.lang}_square.png`} alt="COFFEE HANDBOOK" />
         </a>
         <ul className="MapHeader--LangList">
           <li

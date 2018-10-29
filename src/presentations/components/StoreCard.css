@@ -11,18 +11,18 @@
     .StoreCard--Content--Name {
       font-weight: $font-bold;
       font-size: 1.5rem;
-      padding-bottom: 8px;
+      padding-bottom: 4px;
       text-align: left;
     }
 
     .StoreCard--Content--Address {
       font-size: 0.875rem;
-      padding-bottom: 24px;
+      padding-bottom: 16px;
     }
 
     .StoreCard--Content--OpenStatus {
       cursor: pointer;
-      padding-bottom: 24px;
+      padding-bottom: 16px;
 
       .StoreCard--Content--OpenStatus--Status {
         display: inline-block;
@@ -53,7 +53,7 @@
       &.StoreCard--Content--Hours__Show {
         display: inline-block;
         max-height: 270px;
-        padding-bottom: 28px;
+        padding-bottom: 20px;
       }
 
       .StoreCard--Content--Hours--List {
@@ -80,7 +80,7 @@
     .StoreCard--Content--Tel {
       display: inline-block;
       width: 100%;
-      padding: 12px 0;
+      margin: 8px 0 12px;
 
       .Icon {
         margin-right: 4px;
@@ -90,7 +90,7 @@
     .StoreCard--Content--Email {
       display: inline-block;
       width: 100%;
-      padding: 12px 0;
+      margin: 8px 0 12px;
 
       .Icon {
         margin-right: 4px;

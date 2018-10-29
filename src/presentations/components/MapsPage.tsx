@@ -189,7 +189,6 @@ export class MapsPage extends React.Component<IProps, IState> {
 
     this.mapRef.current.map.flyTo({
       center: [store.lng, store.lat],
-      zoom: 15,
       offset,
     });
   }
