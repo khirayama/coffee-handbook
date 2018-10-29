@@ -17,12 +17,12 @@
 
     .StoreCard--Content--Address {
       font-size: 0.875rem;
-      padding-bottom: 16px;
+      padding-bottom: 12px;
     }
 
     .StoreCard--Content--OpenStatus {
       cursor: pointer;
-      padding-bottom: 16px;
+      padding-bottom: 12px;
 
       .StoreCard--Content--OpenStatus--Status {
         display: inline-block;
@@ -80,7 +80,7 @@
     .StoreCard--Content--Tel {
       display: inline-block;
       width: 100%;
-      margin: 8px 0 12px;
+      margin: 4px 0 12px;
 
       .Icon {
         margin-right: 4px;
@@ -90,7 +90,7 @@
     .StoreCard--Content--Email {
       display: inline-block;
       width: 100%;
-      margin: 8px 0 12px;
+      margin: 4px 0 12px;
 
       .Icon {
         margin-right: 4px;
