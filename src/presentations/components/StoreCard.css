@@ -80,20 +80,22 @@
     .StoreCard--Content--Tel {
       display: inline-block;
       width: 100%;
-      margin: 4px 0 12px;
+      margin: 4px 0 8px;
 
       .Icon {
-        margin-right: 4px;
+        margin-right: 8px;
+        font-size: 1.375rem;
       }
     }
 
     .StoreCard--Content--Email {
       display: inline-block;
       width: 100%;
-      margin: 4px 0 12px;
+      margin: 4px 0 8px;
 
       .Icon {
-        margin-right: 4px;
+        margin-right: 8px;
+        font-size: 1.375rem;
       }
     }
 
