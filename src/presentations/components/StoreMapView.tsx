@@ -138,7 +138,7 @@ export class StoreMapView extends React.Component<IProps, {}> {
   }
 
   private addStores(): void {
-    this.props.stores.forEach((store: any) => {
+    this.props.stores.forEach((store: IStore) => {
       const storeMarker: StoreMarker = new StoreMarker(this.map, store, {
         onClick: (event: any): void => {
           this.props.onClickStore(event, this.map, store);

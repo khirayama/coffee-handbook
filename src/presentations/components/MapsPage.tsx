@@ -3,14 +3,16 @@ import * as classNames from 'classnames';
 import * as queryString from 'query-string';
 import * as React from 'react';
 
+import { IRawStore } from 'data/stores';
 import { dictionary } from 'dictionary';
 import { MapHeader } from 'presentations/components/MapHeader';
 import { StoreCard } from 'presentations/components/StoreCard';
 import { IPosition, StoreMapView } from 'presentations/components/StoreMapView';
 import { IAction, IDispatch, IState } from 'presentations/pages/Maps/reducer';
-import { tracker, Tracker } from 'presentations/utils/tracker';
-import { IStore, Store } from 'resources/Store';
+import { tracker } from 'presentations/utils/tracker';
+import { IStore } from 'resources/Store';
 import { Dictionary } from 'utils/Dictionary';
+import { Resource } from 'utils/Resource';
 import { Store as AppStore } from 'utils/Store';
 
 interface IProps {
@@ -26,12 +28,15 @@ export class MapsPage extends React.Component<IProps, IState> {
 
   private modalRef: React.RefObject<HTMLDivElement>;
 
+  private storeResource: Resource<IRawStore, IStore>;
+
   constructor(props: IProps) {
     super(props);
 
     this.state = this.props.store.getState();
 
     this.dic = new Dictionary(this.state.lang, dictionary);
+    this.storeResource = new Resource(this.state.stores, this.state.lang);
     this.mapRef = React.createRef();
     this.modalRef = React.createRef();
     this.dispatch = this.props.store.dispatch.bind(this.props.store);
@@ -47,7 +52,7 @@ export class MapsPage extends React.Component<IProps, IState> {
     });
 
     if (this.state.ui.selectedStoreKey) {
-      const store: IStore = Store(this.state.lang)
+      const store: IStore = this.storeResource
         .where({
           key: this.state.ui.selectedStoreKey,
         })
@@ -66,7 +71,7 @@ export class MapsPage extends React.Component<IProps, IState> {
         },
       });
       if (storeKey) {
-        const currentStore: IStore = Store(this.state.lang)
+        const currentStore: IStore = this.storeResource
           .where({
             key: storeKey,
           })
@@ -78,7 +83,7 @@ export class MapsPage extends React.Component<IProps, IState> {
 
   public render(): JSX.Element {
     const state: IState = this.props.store.getState();
-    const store: IStore = Store(state.lang)
+    const store: IStore = this.storeResource
       .where({
         key: state.ui.selectedStoreKey,
       })
@@ -92,7 +97,7 @@ export class MapsPage extends React.Component<IProps, IState> {
             ref={this.mapRef}
             lang={state.lang}
             currentPos={state.ui.currentPos}
-            stores={state.stores}
+            stores={this.storeResource.find()}
             center={state.ui.pos}
             zoom={state.ui.zoom}
             onClickMap={this.onClickMap}

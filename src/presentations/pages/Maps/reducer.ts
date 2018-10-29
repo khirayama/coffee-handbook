@@ -1,6 +1,6 @@
 // tslint:disable:no-any
+import { IRawStore } from 'data/stores';
 import { IPosition } from 'presentations/components/StoreMapView';
-import { IStore } from 'resources/Store';
 
 const SAVE_VIEW_KEY: string = '__UI_MAP_VIEW';
 
@@ -39,7 +39,7 @@ export function loadView(): { pos: IPosition; zoom: number; currentPos: IPositio
 
 export interface IState {
   lang: string;
-  stores: IStore[];
+  stores: IRawStore[];
   ui: {
     selectedStoreKey: string;
     currentPos: IPosition | null;

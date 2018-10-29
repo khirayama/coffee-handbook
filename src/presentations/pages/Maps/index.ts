@@ -1,17 +1,11 @@
 // tslint:disable:no-any
-import * as queryString from 'query-string';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
 import { MapsPage } from 'presentations/components/MapsPage';
-import { StoreCard } from 'presentations/components/StoreCard';
 import { IPosition } from 'presentations/components/StoreMapView';
-import { StoreMarker } from 'presentations/components/StoreMarker';
 import { IAction, IState, loadView, reducer } from 'presentations/pages/Maps/reducer';
-import { getOpenStatus, IOpenStatus } from 'presentations/utils/getOpenStatus';
 import { logger } from 'presentations/utils/logger';
-import { tracker, Tracker } from 'presentations/utils/tracker';
-import { IStore, Store } from 'resources/Store';
 import { Store as AppStore } from 'utils/Store';
 
 // TODO: store検索

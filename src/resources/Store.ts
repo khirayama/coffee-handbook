@@ -1,6 +1,3 @@
-import { IRawStore, stores } from 'data/stores';
-import { Resource, TResource } from 'utils/Resource';
-
 export interface IStore {
   key: string;
   lat: number;
@@ -36,8 +33,3 @@ export interface IStore {
     smoking: number | null;
   };
 }
-
-// tslint:disable-next-line:variable-name
-export const Store: TResource<IRawStore, IStore> = (lang: string): Resource<IRawStore, IStore> => {
-  return new Resource(stores, lang);
-};

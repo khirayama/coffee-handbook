@@ -6,11 +6,13 @@ import * as React from 'react';
 import { renderToString } from 'react-dom/server';
 
 import { config } from 'config';
+import { IRawStore, stores } from 'data/stores';
 import { MapsPage } from 'presentations/components/MapsPage';
 import { IAction, IState, reducer } from 'presentations/pages/Maps/reducer';
-import { IStore, Store } from 'resources/Store';
+import { IStore } from 'resources/Store';
 import { secret } from 'secret';
 import { Dictionary } from 'utils/Dictionary';
+import { Resource } from 'utils/Resource';
 import { Store as AppStore } from 'utils/Store';
 
 interface IProps {
@@ -48,7 +50,9 @@ export function mapsHandler(req: express.Request, res: express.Response): void {
   const lang: string = req.lang;
   const dic: Dictionary = req.dic;
   const storeKey: string = req.query.key;
-  const store: IStore = Store(lang)
+
+  const storeResource: Resource<IRawStore, IStore> = new Resource(stores, lang);
+  const store: IStore = storeResource
     .where({
       key: storeKey,
     })
@@ -57,7 +61,7 @@ export function mapsHandler(req: express.Request, res: express.Response): void {
   const appStore: AppStore<IState, IAction> = new AppStore(
     {
       lang,
-      stores: Store(lang).find(),
+      stores,
       ui: {
         currentPos: null,
         pos: {
