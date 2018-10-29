@@ -71,9 +71,9 @@ export function getOpenStatus(now: Date, hours: string[][][]): IOpenStatus {
     const openHours: string[][] = hours[index];
     for (const openHour of openHours) {
       const startTime: Date = new Date(
-        `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate() + i} ${openHour[0]}`,
+        `${now.getFullYear()}/${now.getMonth() + 1}/${now.getDate() + i} ${openHour[0]}`,
       );
-      const endTime: Date = new Date(`${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate() + i} ${openHour[1]}`);
+      const endTime: Date = new Date(`${now.getFullYear()}/${now.getMonth() + 1}/${now.getDate() + i} ${openHour[1]}`);
       if (now.getTime() < startTime.getTime()) {
         if (startTime.getTime() <= now.getTime() + 1000 * 60 * 15) {
           // まもなく開店
