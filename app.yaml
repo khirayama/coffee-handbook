@@ -1,5 +1,4 @@
 runtime: nodejs8
-threadsafe: true
 env: standard
 instance_class: F1
 handlers:
@@ -14,5 +13,7 @@ automatic_scaling:
   max_idle_instances: 1
   min_pending_latency: 15000ms
   max_pending_latency: automatic
-includes:
-  - secret.yaml
+env_variables:
+  NODE_PATH: $NODE_PATH:dist
+  includes:
+    - secret.yaml
