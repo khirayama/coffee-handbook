@@ -80,7 +80,7 @@
     .StoreCard--Content--Tel {
       display: inline-block;
       width: 100%;
-      padding-bottom: 16px;
+      padding: 12px 0;
 
       .Icon {
         margin-right: 4px;
@@ -90,7 +90,7 @@
     .StoreCard--Content--Email {
       display: inline-block;
       width: 100%;
-      padding-bottom: 16px;
+      padding: 12px 0;
 
       .Icon {
         margin-right: 4px;
@@ -134,7 +134,6 @@
         display: inline-block;
         min-width: 24%;
         max-width: 24%;
-        margin-bottom: 8px;
 
         .StoreCard--Content--Services--Item--Content {
           $height: 28px;

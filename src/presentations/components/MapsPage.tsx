@@ -39,7 +39,6 @@ export class MapsPage extends React.Component<IProps, IState> {
     this.onMoveEnd = this.onMoveEnd.bind(this);
     this.onClickStore = this.onClickStore.bind(this);
     this.onGetCurrentPosition = this.onGetCurrentPosition.bind(this);
-    this.onClickCloseModalButton = this.onClickCloseModalButton.bind(this);
   }
 
   public componentDidMount(): void {
@@ -102,9 +101,6 @@ export class MapsPage extends React.Component<IProps, IState> {
             onGetCurrentPosition={this.onGetCurrentPosition}
           />
           <div ref={this.modalRef} className={classNames('Modal', { Modal__Hidden: !store })}>
-            <div className="Modal--CloseButton" onClick={this.onClickCloseModalButton} role="button">
-              <i className="Icon">close</i>
-            </div>
             {store ? <StoreCard store={store} dic={this.dic} /> : null}
           </div>
         </div>
@@ -169,24 +165,6 @@ export class MapsPage extends React.Component<IProps, IState> {
       actionType: '__UPDATE_CURRENT_POSITION',
       payload: {
         currentPos,
-      },
-    });
-  }
-
-  private onClickCloseModalButton(event: React.MouseEvent<HTMLElement>): void {
-    const query: { [key: string]: string | string[] } = queryString.parse(window.location.search);
-    if (query.key) {
-      delete query.key;
-      const search: string = queryString.stringify(query);
-      const loc: string = `${window.location.pathname}${search ? `?${search}` : ''}`;
-      const title: string = `${this.dic.t('Pages.Maps.MAP')} | ${this.dic.t('name')}`;
-      window.document.title = title;
-      window.history.pushState(null, title, loc);
-    }
-    this.dispatch({
-      actionType: '__SELECT_STORE',
-      payload: {
-        storeKey: null,
       },
     });
   }
