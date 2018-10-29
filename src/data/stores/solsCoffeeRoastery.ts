@@ -7,7 +7,7 @@ export const solsCoffeeRoastery: IRawStore = {
   lng: 139.788348,
   name: {
     ja: 'ソルズコーヒー ロースタリー',
-    en: 'SOL\'S COFFEE ROASTERY',
+    en: "SOL'S COFFEE ROASTERY",
   },
   address: {
     ja: '東京都台東区浅草橋3-25-7',

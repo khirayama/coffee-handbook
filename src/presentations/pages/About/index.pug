@@ -3,7 +3,6 @@ extends /application/Layout
 block import
   include /components/Header
   include /components/Footer
-  include /components/Navigation
 
 block meta
   link(rel="stylesheet" href="/pages/About/index.css")
@@ -11,7 +10,6 @@ block meta
 block body
   .About
     +Header(props.header)
-    +Navigation(props.navigation)
     .About--Content
       .About--Content--Title= dic.t('Pages.About.ABOUT')
       .About--Content--Text!= dic.t('Pages.About.text')

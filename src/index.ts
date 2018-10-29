@@ -6,32 +6,18 @@ import * as cookieParser from 'cookie-parser';
 import * as express from 'express';
 import * as logger from 'morgan';
 
-// Middleware
-import { setLang } from 'middlewares/setLang';
-import { setLayoutProps } from 'middlewares/setLayoutProps';
+import * as React from 'react';
+import { renderToString } from 'react-dom/server';
 
-// Handlers
+import { experiments } from 'experiments';
 import { aboutHandler } from 'handlers/aboutHandler';
-import { beverageHandler } from 'handlers/beverageHandler';
-import { beveragesHandler } from 'handlers/beveragesHandler';
-import { foodHandler } from 'handlers/foodHandler';
-import { foodsHandler } from 'handlers/foodsHandler';
-import { goodHandler } from 'handlers/goodHandler';
-import { goodsHandler } from 'handlers/goodsHandler';
-import { homeHandler } from 'handlers/homeHandler';
 import { manifestHandler } from 'handlers/manifestHandler';
 import { mapsHandler } from 'handlers/mapsHandler';
-import { postHandler } from 'handlers/postHandler';
 import { privacyHandler } from 'handlers/privacyHandler';
 import { robotsHandler } from 'handlers/robotsHandler';
-import { rssHandler } from 'handlers/rssHandler';
 import { sitemapHandler, sitemapXmlHandler } from 'handlers/sitemapHandler';
-
-// API Handlers
-import { storeAPIHandler } from 'handlers/storeAPIHandler';
-
-// For AB Testing
-import { experiments } from 'experiments';
+import { setLang } from 'middlewares/setLang';
+import { setLayoutProps } from 'middlewares/setLayoutProps';
 import { HypothesisTesting } from 'utils/HypothesisTesting';
 
 const hypothesisTesting: HypothesisTesting = new HypothesisTesting(experiments);
@@ -59,10 +45,9 @@ function preHandler(req: express.Request, res: express.Response, next: express.N
 }
 
 const app: express = express();
-// Middleware
+
 const basedir: string = path.join(__dirname, 'presentations');
 app.locals.basedir = basedir;
-
 app
   .set('views', basedir)
   .set('view engine', 'pug')
@@ -74,27 +59,14 @@ app
   .use(setLang)
   .use(setLayoutProps);
 
-// Routing
 app
-  .get('/', preHandler, homeHandler)
-  .get('/maps', preHandler, mapsHandler)
-  .get('/beverages', preHandler, beveragesHandler)
-  .get('/beverages/:beverageKey', preHandler, beverageHandler)
-  .get('/foods', preHandler, foodsHandler)
-  .get('/foods/:foodKey', preHandler, foodHandler)
-  .get('/goods', preHandler, goodsHandler)
-  .get('/goods/:goodKey', preHandler, goodHandler)
+  .get('/', preHandler, mapsHandler)
   .get('/about', preHandler, aboutHandler)
-  .get('/posts/:postKey', preHandler, postHandler)
   .get('/privacy', preHandler, privacyHandler)
   .get('/sitemap.xml', preHandler, sitemapXmlHandler)
   .get('/sitemap', preHandler, sitemapHandler)
-  .get('/rss*', preHandler, rssHandler)
   .get('/robots.txt', preHandler, robotsHandler)
   .get('/manifest.json', preHandler, manifestHandler);
-
-// API Routing
-app.get('/api/v1/html/stores/:storeKey', preHandler, storeAPIHandler);
 
 // Server
 const APP_SERVER_PORT: number = Number(process.env.PORT || '3030');
