@@ -29,13 +29,18 @@ const geolocationUtils: {
   isPermittedGettingLocation: (): Promise<boolean> => {
     return new Promise(
       (resolve: any): void => {
-        (window.navigator as any).permissions
-          .query({
-            name: 'geolocation',
-          })
-          .then((permission: any) => {
-            resolve(permission.state === 'granted');
-          });
+        const nav: any = window.navigator;
+        if (nav.permissions) {
+          nav.permissions
+            .query({
+              name: 'geolocation',
+            })
+            .then((permission: any) => {
+              resolve(permission.state === 'granted');
+            });
+        } else {
+          resolve(false);
+        }
       },
     );
   },

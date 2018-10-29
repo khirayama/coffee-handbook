@@ -31,11 +31,11 @@ export function getOpenStatus(now: Date, hours: string[][][]): IOpenStatus {
     for (const openHour of todayOpenHours) {
       const hour: number = Number(openHour[openHour.length - 1].split(':')[0]);
 
-      const startTimeString: string = `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()} ${openHour[0]}`;
+      const startTimeString: string = `${now.getFullYear()}/${now.getMonth() + 1}/${now.getDate()} ${openHour[0]}`;
       const endTimeString: string =
         hour >= 24
-          ? `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate() + 1} ${getDateTime24HoursAgo(openHour[1])}`
-          : `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()} ${openHour[1]}`;
+          ? `${now.getFullYear()}/${now.getMonth() + 1}/${now.getDate() + 1} ${getDateTime24HoursAgo(openHour[1])}`
+          : `${now.getFullYear()}/${now.getMonth() + 1}/${now.getDate()} ${openHour[1]}`;
 
       const startTime: Date = new Date(startTimeString);
       const endTime: Date = new Date(endTimeString);
