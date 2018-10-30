@@ -33,7 +33,7 @@ export const coffeeSanjikkenGinza: IRawStore = {
     facebook: null,
     twitter: null,
     instagram: null,
-    instagramTag: null,
+    instagramTag: 'https://www.instagram.com/explore/tags/sanjikken/',
     googleMaps: 'https://goo.gl/maps/LdHKJbz7QUt',
   },
   services: {
