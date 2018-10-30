@@ -1,23 +1,15 @@
 import * as deepEqual from 'deep-equal';
 import * as React from 'react';
 
-import { IAction, IDispatch, IPosition, IState } from 'presentations/pages/Maps/interfaces';
+import { IDispatch, IState } from 'presentations/pages/Maps/interfaces';
 import { store, Store } from 'utils/Store';
 
-export interface IContainerProps {
-  params?: { [key: string]: string };
-  query?: { [key: string]: null | string | number | boolean };
-}
-
-export class Container<P, S> extends React.Component<P & IContainerProps, S & IState> {
+export class Container<P, S> extends React.Component<P, S & IState> {
   protected handleStateUpdate: () => void;
 
   protected dispatch: IDispatch;
 
-  // tslint:disable-next-line:no-any
-  protected actions: any = {};
-
-  constructor(props: P & IContainerProps) {
+  constructor(props: P) {
     super(props);
 
     this.state = {
@@ -32,7 +24,7 @@ export class Container<P, S> extends React.Component<P & IContainerProps, S & IS
     store.addChangeListener(this.handleStateUpdate);
   }
 
-  public shouldComponentUpdate(prevProps: IContainerProps, prevState: IState): boolean {
+  public shouldComponentUpdate(prevProps: P, prevState: IState): boolean {
     return !deepEqual(this.props, prevProps) || !deepEqual(this.state, prevState);
   }
 
