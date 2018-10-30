@@ -1,3 +1,4 @@
+import { actionTypes } from 'presentations/pages/Maps/actionTypes';
 import { IAction, IPosition, IState } from 'presentations/pages/Maps/interfaces';
 
 const SAVE_VIEW_KEY: string = '__UI_MAP_VIEW';
@@ -38,20 +39,30 @@ export function loadView(): { pos: IPosition; zoom: number; currentPos: IPositio
 export function reducer(state: IState, action: IAction): IState {
   const newState: IState = JSON.parse(JSON.stringify(state));
   // tslint:disable-next-line:no-any
-  const payload: any = action.payload;
+  const payload: {
+    pos?: IPosition;
+    zoom?: number;
+    lang?: string;
+    storeKey?: string;
+    currentPos?: IPosition;
+  } = action.payload;
 
   switch (action.actionType) {
-    case '__UPDATE_VIEW': {
+    case actionTypes.UPDATE_VIEW: {
       saveView(payload.pos, payload.zoom);
       newState.ui.pos = payload.pos;
       newState.ui.zoom = payload.zoom;
       break;
     }
-    case '__SELECT_STORE': {
+    case actionTypes.CHANGE_LANG: {
+      newState.lang = payload.lang;
+      break;
+    }
+    case actionTypes.SELECT_STORE: {
       newState.ui.selectedStoreKey = payload.storeKey;
       break;
     }
-    case '__UPDATE_CURRENT_POSITION': {
+    case actionTypes.UPDATE_CURRENT_POSITION: {
       newState.ui.currentPos = payload.currentPos;
       break;
     }
