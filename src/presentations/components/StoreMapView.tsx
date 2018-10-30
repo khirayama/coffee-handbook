@@ -2,13 +2,9 @@
 import * as React from 'react';
 
 import { StoreMarker } from 'presentations/components/StoreMarker';
+import { IPosition } from 'presentations/pages/Maps/interfaces';
 import { IStore } from 'resources/Store';
 import { secret } from 'secret';
-
-export interface IPosition {
-  lat: number;
-  lng: number;
-}
 
 interface IProps {
   lang: string;

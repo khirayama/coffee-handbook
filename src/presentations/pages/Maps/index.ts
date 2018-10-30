@@ -3,8 +3,8 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
 import { MapsPage } from 'presentations/components/MapsPage';
-import { IPosition } from 'presentations/components/StoreMapView';
-import { IAction, IState, loadView, reducer } from 'presentations/pages/Maps/reducer';
+import { IAction, IPosition, IState } from 'presentations/pages/Maps/interfaces';
+import { loadView, reducer } from 'presentations/pages/Maps/reducer';
 import { logger } from 'presentations/utils/logger';
 import { Store as AppStore } from 'utils/Store';
 

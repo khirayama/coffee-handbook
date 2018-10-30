@@ -1,6 +1,4 @@
-// tslint:disable:no-any
-import { IRawStore } from 'data/stores';
-import { IPosition } from 'presentations/components/StoreMapView';
+import { IAction, IPosition, IState } from 'presentations/pages/Maps/interfaces';
 
 const SAVE_VIEW_KEY: string = '__UI_MAP_VIEW';
 
@@ -37,28 +35,9 @@ export function loadView(): { pos: IPosition; zoom: number; currentPos: IPositio
   return defaultView;
 }
 
-export interface IState {
-  lang: string;
-  stores: IRawStore[];
-  ui: {
-    selectedStoreKey: string;
-    currentPos: IPosition | null;
-    pos: IPosition;
-    zoom: number;
-  };
-}
-
-export interface IAction {
-  actionType: string;
-  payload?: any;
-  meta?: any;
-  error?: any;
-}
-
-export type IDispatch = (action: IAction) => void;
-
 export function reducer(state: IState, action: IAction): IState {
   const newState: IState = JSON.parse(JSON.stringify(state));
+  // tslint:disable-next-line:no-any
   const payload: any = action.payload;
 
   switch (action.actionType) {
