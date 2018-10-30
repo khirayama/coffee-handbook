@@ -1,32 +1,56 @@
 import * as express from 'express';
 
-import { ILayout } from 'presentations/application/Layout';
-import { IHeaderComponent } from 'presentations/components/Header';
-import { INavigationComponent } from 'presentations/components/Navigation';
+import { config } from 'config';
+import { secret } from 'secret';
 import { Dictionary } from 'utils/Dictionary';
 import { buildHtmlSitemap, buildXmlSitemap } from 'utils/sitemap';
 
-interface ISitemapPage extends ILayout {
-  header: IHeaderComponent;
-  navigation: INavigationComponent;
+interface ISitemapPage {
+  env: string;
+  gaCode: string;
+  lang: string;
+  title: string;
+  description: string;
+  author: string;
+  baseUrl: string;
+  path: string;
+  name: string;
+  keywords: string[];
+  image: string;
+  facebookAppId: string;
+  facebookPageUrl: string;
+  twitterCardType: string;
+  twitterAccount: string;
+  pageType: string;
+  header: {
+    lang: string;
+  };
+  content: string;
 }
 
 export function sitemapHandler(req: express.Request, res: express.Response): void {
   const dic: Dictionary = req.dic;
 
   const props: ISitemapPage = {
-    ...req.layout,
-    title: 'TODO',
-    description: 'TODO',
+    env: process.env.NODE_ENV || 'development',
+    gaCode: secret.gaCode,
+    author: req.dic.t('author'),
+    name: req.dic.t('name'),
+    baseUrl: config.url,
+    facebookAppId: config.facebookAppId,
+    facebookPageUrl: config.facebookPageUrl,
+    twitterCardType: config.twitterCardType,
+    twitterAccount: config.twitterAccount,
+    lang: req.lang,
+    path: req.originalUrl,
+    title: `${dic.t('Pages.Sitemap.SITEMAP')} | ${dic.t('name')}`,
+    description: dic.t('Pages.Sitemap.description'),
     keywords: ['coffee', 'コーヒー', '珈琲', 'handbook', '手帖'],
     image: 'TODO',
     pageType: 'cafe',
 
     header: {
       lang: req.lang,
-    },
-    navigation: {
-      path: req.originalUrl,
     },
     content: buildHtmlSitemap(req.lang),
   };

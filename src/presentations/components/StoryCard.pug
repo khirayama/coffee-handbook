@@ -1,8 +1,0 @@
-include /components/Picture
-
-mixin StoryCard(props)
-  .StoryCard
-    .StoryCard--Thumbnail
-      +Picture(props.picture)
-    .StoryCard--Date= props.publishedAt
-    .StoryCard--Title= props.title

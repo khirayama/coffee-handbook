@@ -7,12 +7,18 @@
 
 ## Development
 
-- [OPTIONAL] Set google analytics code
+- Create .envrc
 - Install packages and run app
 
 ### [OPTIONAL] Set google analytics code
 
-Fill gaCode in `src/secret.ts` for your gaCode.
+```sh
+$ cp .envrc.sample .envrc
+```
+
+Then please fill `GOOGLE_ANALYTICS_CODE` and `MAPBOX_TOKEN`.
+Especilly `MAPBOX_TOKEN` is required.
+Please check here. https://www.mapbox.com/
 
 ### Install packages and run app
 
@@ -29,9 +35,3 @@ $ npm run precommit
 // If you need to update, please edit generated file directly.
 // After this, please make a PR.
 ```
-
-### Data Structure
-
-- Data: 多言語対応の生データ
-- Resouces: Dataを扱いやすいようにするwrapper。特に言語の解決。
-- Post: data/resourcesのベースになる通常のPost。他のリソースは、このdata部分にそれぞれ特有のデータを持つ。

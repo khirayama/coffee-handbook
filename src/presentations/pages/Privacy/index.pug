@@ -3,7 +3,6 @@ extends /application/Layout
 block import
   include /components/Header
   include /components/Footer
-  include /components/Navigation
 
 block meta
   link(rel="stylesheet" href="/pages/Privacy/index.css")
@@ -11,7 +10,6 @@ block meta
 block body
   .Privacy
     +Header(props.header)
-    +Navigation(props.navigation)
     .Privacy--Content
       .Privacy--Content--Title 利用規約・プライバシーポリシー
 

@@ -2,7 +2,6 @@ extends /application/Layout
 
 block import
   include /components/Header
-  include /components/Navigation
   include /components/Footer
 
 block meta
@@ -11,7 +10,6 @@ block meta
 block body
   .Sitemap
     +Header(props.header)
-    +Navigation(props.navigation)
     .Sitemap--Content
       !=props.content
     +Footer

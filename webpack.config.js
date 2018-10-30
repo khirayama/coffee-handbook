@@ -38,6 +38,8 @@ module.exports = (env, argv) => {
       new webpack.DefinePlugin({
         'process.env': JSON.stringify({
           NODE_ENV: process.env.NODE_ENV,
+          GOOGLE_ANALYTICS_CODE: process.env.GOOGLE_ANALYTICS_CODE,
+          MAPBOX_TOKEN: process.env.MAPBOX_TOKEN,
         }),
       }),
     ],
