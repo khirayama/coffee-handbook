@@ -3,8 +3,9 @@
 .Header {
   position: relative;
   text-align: center;
-  padding: 36px 0 16px;
+  padding: 36px 0;
   background-color: $color-white;
+  box-shadow: $shadow;
 
   .Header--LangList {
     position: absolute;

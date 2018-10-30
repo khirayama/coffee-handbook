@@ -1,7 +1,6 @@
 @import 'application/vars';
-@import 'components/Map';
 @import 'components/MapHeader';
-@import 'components/Modal';
+@import 'components/StoreMapView';
 @import 'components/StoreCard';
 @import 'components/StoreMarker';
 
@@ -10,17 +9,17 @@ body {
   height: 100%;
 }
 
-.Maps {
+.MapsPage {
   width: 100%;
   height: 100%;
   overflow: hidden;
 
-  .Maps--Content {
+  .MapsPage--Content {
     position: relative;
     width: 100%;
     height: 100%;
 
-    .Maps--Content--CurrentPositionButton {
+    .MapsPage--Content--CurrentPositionButton {
       position: absolute;
       right: 16px;
       bottom: 32px;
@@ -46,5 +45,43 @@ body {
     height: 16px !important;
     border-radius: 50%;
     box-shadow: 0 0 2px 2px $color-shadow;
+  }
+}
+
+.Modal {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: unset;
+  width: 100%;
+  height: auto;
+  max-height: 100%;
+  overflow: scroll;
+  background: $color-white;
+  z-index: 4000;
+  transform: translateY(0);
+  transition: transform 170ms ease-in-out;
+  box-shadow: 0 0 2px 2px $color-shadow;
+
+  &.Modal__Hidden {
+    transform: translateY(100%);
+  }
+}
+
+@media screen and (min-width: calc($width-map-modal * 2)) {
+  .Modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: auto;
+    height: 100%;
+    background: $color-white;
+    z-index: 4000;
+    transform: translateX(0);
+    transition: transform 170ms ease-in-out;
+
+    &.Modal__Hidden {
+      transform: translateX(-100%);
+    }
   }
 }

@@ -1,5 +1,6 @@
 .StoreMarker {
   position: relative;
+  cursor: pointer;
 
   &.StoreMarker__Mark {
     .StoreMarker--Name {

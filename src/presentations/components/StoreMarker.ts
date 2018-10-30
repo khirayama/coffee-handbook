@@ -1,70 +1,60 @@
-import * as leaflet from 'leaflet';
-
-import { dictionary } from 'dictionary';
-import { Map } from 'presentations/components/Map';
-import { View } from 'presentations/components/View';
-import { getOpenStatus, IOpenStatus } from 'presentations/utils/getOpenStatus';
-import { IStore } from 'resources/Store';
-import { Dictionary } from 'utils/Dictionary';
+// tslint:disable:no-any
+import { IStore } from 'presentations/pages/Maps/interfaces';
 
 declare global {
   // tslint:disable-next-line:interface-name
   interface Window {
-    options: {
-      env: string;
-      lang: string;
-      gaCode: string;
-      route: string;
-    };
+    mapboxgl: any;
   }
 }
 
-export class StoreMarker extends View {
-  public props: {
-    map: Map;
-    store: IStore;
-    onClick(): void;
-  };
+export class StoreMarker {
+  public el: HTMLElement;
 
-  private marker: leaflet.Marker;
+  public store: IStore;
 
-  private dic: Dictionary;
+  private map: any;
 
-  public init(): void {
-    this.dic = new Dictionary(window.options.lang, dictionary);
-    this.marker = leaflet
-      .marker([this.props.store.lat, this.props.store.lng], {
-        icon: leaflet.divIcon({
-          className: 'StoreMarker',
-          iconSize: [16, 16],
-          iconAnchor: [8, 16],
-          html: `
-            <span class="StoreMarker--Icon"></span>
-            <span class="StoreMarker--Name">${this.props.store.name}</span>
-          `,
-        }),
-      })
-      .addTo(this.props.map.map);
+  private marker: any;
+
+  private handlers: any;
+
+  constructor(map: any, store: IStore, handlers: any) {
+    this.map = map;
+    this.store = store;
+    this.handlers = handlers;
+
+    this.el = document.createElement('div');
+    this.el.className = 'StoreMarker';
+    this.el.innerHTML = `
+        <span class="StoreMarker--Icon"></span>
+        <span class="StoreMarker--Name">${this.store.name}</span>
+    `;
+    this.marker = new window.mapboxgl.Marker(this.el).setLngLat([this.store.lng, this.store.lat]).addTo(map);
 
     this.showDetail();
+    this.setEventListeners();
   }
 
   public setEventListeners(): void {
-    this.props.map.map.on('moveend', () => {
+    this.map.on('move', () => {
       this.showDetail();
     });
 
-    if (this.props.onClick) {
-      this.marker.on('click', this.props.onClick);
+    if (this.handlers.onClick) {
+      this.el.addEventListener('click', (event: any) => {
+        event.stopPropagation();
+        this.handlers.onClick(event, this);
+      });
     }
   }
 
   private showDetail(): void {
-    const zoom: number = this.props.map.getZoom();
+    const zoom: number = this.map.getZoom();
     if (zoom > 11) {
-      this.marker._icon.classList.remove('StoreMarker__Mark');
+      this.el.classList.remove('StoreMarker__Mark');
     } else {
-      this.marker._icon.classList.add('StoreMarker__Mark');
+      this.el.classList.add('StoreMarker__Mark');
     }
   }
 }

@@ -1,5 +1,5 @@
 // tslint:disable:no-http-string
-import { IRawStore } from 'data/stores';
+import { IRawStore } from 'presentations/pages/Maps/interfaces';
 
 export const kayabaCoffee: IRawStore = {
   key: 'kayaba-coffee',
@@ -33,7 +33,7 @@ export const kayabaCoffee: IRawStore = {
     facebook: null,
     twitter: 'https://twitter.com/kayaba_coffee',
     instagram: null,
-    instagramTag: null,
+    instagramTag: 'https://www.instagram.com/explore/tags/kayabacoffee/',
     googleMaps: 'https://goo.gl/maps/RnMkGnsvDNN2',
   },
   services: {

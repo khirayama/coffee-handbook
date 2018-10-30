@@ -34,6 +34,10 @@ export interface IExceptionOptions {
   exFatal: boolean;
 }
 
+function isBrowser(): boolean {
+  return typeof window === 'object';
+}
+
 export class Tracker {
   private options: IOptions;
 
@@ -44,12 +48,14 @@ export class Tracker {
   private loc: string;
 
   constructor(options: IOptions) {
-    this.options = options;
-    this.analytics = this.options.debug ? this.log : window.ga;
-    this.page = window.location.pathname;
-    this.loc = window.location.href;
+    if (isBrowser()) {
+      this.options = options;
+      this.analytics = this.options.debug ? this.log : window.ga;
+      this.page = window.location.pathname;
+      this.loc = window.location.href;
 
-    this.init(this.options.code);
+      this.init(this.options.code);
+    }
   }
 
   public setPage(page: string): void {
@@ -111,6 +117,6 @@ export class Tracker {
 }
 
 export const tracker: Tracker = new Tracker({
-  code: window.options.gaCode,
-  debug: window.options.env !== 'production',
+  code: isBrowser() ? window.options.gaCode : '',
+  debug: isBrowser() ? window.options.env !== 'production' : true,
 });

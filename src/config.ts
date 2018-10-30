@@ -14,7 +14,7 @@ export const config: {
   githubUrl: 'https://github.com/khirayama/coffee-handbook',
   // TODO: Get patreon https://www.patreon.com/
   patreonUrl: '',
-  facebookAppId: 'test id',
+  facebookAppId: '',
   facebookPageUrl: 'https://www.facebook.com/coffeehandbook/',
   twitterCardType: 'summary_large_image',
   twitterAccount: '@coffeehandbook_',

@@ -1,8 +1,0 @@
-include /components/Picture
-
-mixin GoodCard(props)
-  a.GoodCard(href=props.url)
-    .GoodCard--Picture
-      +Picture(props.picture)
-    .GoodCard--Name= props.name
-    .GoodCard--Category= props.category

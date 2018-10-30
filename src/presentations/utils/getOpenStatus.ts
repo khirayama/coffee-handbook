@@ -31,11 +31,11 @@ export function getOpenStatus(now: Date, hours: string[][][]): IOpenStatus {
     for (const openHour of todayOpenHours) {
       const hour: number = Number(openHour[openHour.length - 1].split(':')[0]);
 
-      const startTimeString: string = `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()} ${openHour[0]}`;
+      const startTimeString: string = `${now.getFullYear()}/${now.getMonth() + 1}/${now.getDate()} ${openHour[0]}`;
       const endTimeString: string =
         hour >= 24
-          ? `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate() + 1} ${getDateTime24HoursAgo(openHour[1])}`
-          : `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()} ${openHour[1]}`;
+          ? `${now.getFullYear()}/${now.getMonth() + 1}/${now.getDate() + 1} ${getDateTime24HoursAgo(openHour[1])}`
+          : `${now.getFullYear()}/${now.getMonth() + 1}/${now.getDate()} ${openHour[1]}`;
 
       const startTime: Date = new Date(startTimeString);
       const endTime: Date = new Date(endTimeString);
@@ -71,9 +71,9 @@ export function getOpenStatus(now: Date, hours: string[][][]): IOpenStatus {
     const openHours: string[][] = hours[index];
     for (const openHour of openHours) {
       const startTime: Date = new Date(
-        `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate() + i} ${openHour[0]}`,
+        `${now.getFullYear()}/${now.getMonth() + 1}/${now.getDate() + i} ${openHour[0]}`,
       );
-      const endTime: Date = new Date(`${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate() + i} ${openHour[1]}`);
+      const endTime: Date = new Date(`${now.getFullYear()}/${now.getMonth() + 1}/${now.getDate() + i} ${openHour[1]}`);
       if (now.getTime() < startTime.getTime()) {
         if (startTime.getTime() <= now.getTime() + 1000 * 60 * 15) {
           // まもなく開店
