@@ -6,11 +6,10 @@ import * as React from 'react';
 import { renderToString } from 'react-dom/server';
 
 import { config } from 'config';
-import { IRawStore, stores } from 'data/stores';
+import { stores } from 'data/stores';
 import { MapsPage } from 'presentations/components/MapsPage';
-import { IAction, IState } from 'presentations/pages/Maps/interfaces';
+import { IAction, IRawStore, IState, IStore } from 'presentations/pages/Maps/interfaces';
 import { reducer } from 'presentations/pages/Maps/reducer';
-import { IStore } from 'resources/Store';
 import { secret } from 'secret';
 import { Dictionary } from 'utils/Dictionary';
 import { Resource } from 'utils/Resource';

@@ -2,9 +2,9 @@
 import * as classNames from 'classnames';
 import * as React from 'react';
 
+import { IStore } from 'presentations/pages/Maps/interfaces';
 import { getNextStatusMessage } from 'presentations/utils/getNextStatusMessage';
 import { getOpenStatus, IOpenStatus } from 'presentations/utils/getOpenStatus';
-import { IStore } from 'resources/Store';
 import { Dictionary } from 'utils/Dictionary';
 
 interface IProps {

@@ -2,8 +2,7 @@
 import * as React from 'react';
 
 import { StoreMarker } from 'presentations/components/StoreMarker';
-import { IPosition } from 'presentations/pages/Maps/interfaces';
-import { IStore } from 'resources/Store';
+import { IPosition, IStore } from 'presentations/pages/Maps/interfaces';
 import { secret } from 'secret';
 
 interface IProps {

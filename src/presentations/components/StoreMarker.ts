@@ -1,5 +1,5 @@
 // tslint:disable:no-any
-import { IStore } from 'resources/Store';
+import { IStore } from 'presentations/pages/Maps/interfaces';
 
 declare global {
   // tslint:disable-next-line:interface-name

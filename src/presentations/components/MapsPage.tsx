@@ -3,14 +3,14 @@ import * as classNames from 'classnames';
 import * as queryString from 'query-string';
 import * as React from 'react';
 
-import { IRawStore } from 'data/stores';
 import { dictionary } from 'dictionary';
 import { MapHeader } from 'presentations/components/MapHeader';
 import { StoreCard } from 'presentations/components/StoreCard';
 import { StoreMapView } from 'presentations/components/StoreMapView';
-import { IAction, IDispatch, IPosition, IState } from 'presentations/pages/Maps/interfaces';
+import { Container } from 'presentations/containers/Container';
+import { changeLang, selectStore, updateCurrentPosition, updateView } from 'presentations/pages/Maps/actionCreators';
+import { IAction, IDispatch, IPosition, IRawStore, IState, IStore } from 'presentations/pages/Maps/interfaces';
 import { tracker } from 'presentations/utils/tracker';
-import { IStore } from 'resources/Store';
 import { Dictionary } from 'utils/Dictionary';
 import { Resource } from 'utils/Resource';
 import { Store as AppStore } from 'utils/Store';
@@ -19,27 +19,18 @@ interface IProps {
   store: AppStore<IState, IAction>;
 }
 
-export class MapsPage extends React.Component<IProps, IState> {
-  private dispatch: IDispatch;
-
-  private dic: Dictionary;
-
+export class MapsPage extends Container<IProps, IState> {
   private mapRef: React.RefObject<StoreMapView>;
 
   private modalRef: React.RefObject<HTMLDivElement>;
-
-  private storeResource: Resource<IRawStore, IStore>;
 
   constructor(props: IProps) {
     super(props);
 
     this.state = this.props.store.getState();
 
-    this.dic = new Dictionary(this.state.lang, dictionary);
-    this.storeResource = new Resource(this.state.stores, this.state.lang);
     this.mapRef = React.createRef();
     this.modalRef = React.createRef();
-    this.dispatch = this.props.store.dispatch.bind(this.props.store);
     this.onClickMap = this.onClickMap.bind(this);
     this.onMoveEnd = this.onMoveEnd.bind(this);
     this.onClickStore = this.onClickStore.bind(this);
@@ -52,7 +43,8 @@ export class MapsPage extends React.Component<IProps, IState> {
     });
 
     if (this.state.ui.selectedStoreKey) {
-      const store: IStore = this.storeResource
+      const storeResource: Resource<IRawStore, IStore> = new Resource(this.state.stores, this.state.lang);
+      const store: IStore = storeResource
         .where({
           key: this.state.ui.selectedStoreKey,
         })
@@ -61,17 +53,16 @@ export class MapsPage extends React.Component<IProps, IState> {
     }
 
     window.addEventListener('popstate', () => {
-      const query: { [key: string]: string | string[] } = queryString.parse(window.location.search);
+      const query: { key?: string; lang?: string } = queryString.parse(window.location.search);
       const storeKey: any = query.key || null;
 
-      this.dispatch({
-        actionType: '__SELECT_STORE',
-        payload: {
-          storeKey,
-        },
-      });
+      selectStore(this.dispatch, storeKey);
+      if (query.lang) {
+        changeLang(this.dispatch, query.lang || 'en');
+      }
       if (storeKey) {
-        const currentStore: IStore = this.storeResource
+        const storeResource: Resource<IRawStore, IStore> = new Resource(this.state.stores, this.state.lang);
+        const currentStore: IStore = storeResource
           .where({
             key: storeKey,
           })
@@ -82,8 +73,10 @@ export class MapsPage extends React.Component<IProps, IState> {
   }
 
   public render(): JSX.Element {
+    const dic: Dictionary = new Dictionary(this.state.lang, dictionary);
     const state: IState = this.props.store.getState();
-    const store: IStore = this.storeResource
+    const storeResource: Resource<IRawStore, IStore> = new Resource(this.state.stores, this.state.lang);
+    const store: IStore = storeResource
       .where({
         key: state.ui.selectedStoreKey,
       })
@@ -97,7 +90,7 @@ export class MapsPage extends React.Component<IProps, IState> {
             ref={this.mapRef}
             lang={state.lang}
             currentPos={state.ui.currentPos}
-            stores={this.storeResource.find()}
+            stores={storeResource.find()}
             center={state.ui.pos}
             zoom={state.ui.zoom}
             onClickMap={this.onClickMap}
@@ -106,7 +99,7 @@ export class MapsPage extends React.Component<IProps, IState> {
             onGetCurrentPosition={this.onGetCurrentPosition}
           />
           <div ref={this.modalRef} className={classNames('Modal', { Modal__Hidden: !store })}>
-            {store ? <StoreCard store={store} dic={this.dic} /> : null}
+            {store ? <StoreCard store={store} dic={dic} /> : null}
           </div>
         </div>
       </div>
@@ -117,37 +110,28 @@ export class MapsPage extends React.Component<IProps, IState> {
     const query: { [key: string]: string | string[] } = queryString.parse(window.location.search);
     if (query.key) {
       delete query.key;
+      const dic: Dictionary = new Dictionary(this.state.lang, dictionary);
       const search: string = queryString.stringify(query);
       const loc: string = `${window.location.pathname}${search ? `?${search}` : ''}`;
-      const title: string = `${this.dic.t('Pages.Maps.MAP')} | ${this.dic.t('name')}`;
+      const title: string = `${dic.t('Pages.Maps.MAP')} | ${dic.t('name')}`;
       window.document.title = title;
       window.history.pushState(null, title, loc);
     }
-    this.dispatch({
-      actionType: '__SELECT_STORE',
-      payload: {
-        storeKey: null,
-      },
-    });
+    selectStore(this.dispatch, null);
   }
 
   private onMoveEnd(event: any, map: any): void {
-    this.dispatch({
-      actionType: '__UPDATE_VIEW',
-      payload: {
-        pos: map.getCenter(),
-        zoom: map.getZoom(),
-      },
-    });
+    updateView(this.dispatch, map.getCenter(), map.getZoom());
   }
 
   private onClickStore(event: React.MouseEvent<HTMLElement>, map: any, store: IStore): void {
     const query: { [key: string]: string | string[] } = queryString.parse(window.location.search);
     if (query.key !== store.key) {
       query.key = store.key;
+      const dic: Dictionary = new Dictionary(this.state.lang, dictionary);
       const search: string = queryString.stringify(query);
       const loc: string = `${window.location.pathname}${search ? `?${search}` : ''}`;
-      const title: string = `${store.name} | ${this.dic.t('Pages.Maps.MAP')} | ${this.dic.t('name')}`;
+      const title: string = `${store.name} | ${dic.t('Pages.Maps.MAP')} | ${dic.t('name')}`;
       window.document.title = title;
       window.history.pushState(null, title, loc);
 
@@ -156,22 +140,12 @@ export class MapsPage extends React.Component<IProps, IState> {
       tracker.setLocation(loc);
       tracker.sendPageView();
     }
-    this.dispatch({
-      actionType: '__SELECT_STORE',
-      payload: {
-        storeKey: store.key,
-      },
-    });
+    selectStore(this.dispatch, store.key);
     this.centerStoreWithModal(store);
   }
 
   private onGetCurrentPosition(currentPos: IPosition): void {
-    this.dispatch({
-      actionType: '__UPDATE_CURRENT_POSITION',
-      payload: {
-        currentPos,
-      },
-    });
+    updateCurrentPosition(this.dispatch, currentPos);
   }
 
   private centerStoreWithModal(store: IStore): void {
