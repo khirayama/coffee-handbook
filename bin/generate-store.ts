@@ -92,7 +92,7 @@ async function transformEnglishAddress(jaAddress: string): Promise<string> {
 
 function template(options: any): string {
   return `// tslint:disable:no-http-string
-import { IRawStore } from 'data/stores';
+import { IRawStore } from 'presentations/pages/Maps/interfaces';
 
 export const ${options.fileName}: IRawStore = {
   key: '${options.key}',

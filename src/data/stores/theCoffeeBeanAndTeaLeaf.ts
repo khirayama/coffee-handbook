@@ -1,5 +1,5 @@
 // tslint:disable:no-http-string
-import { IRawStore } from 'data/stores';
+import { IRawStore } from 'presentations/pages/Maps/interfaces';
 
 export const theCoffeeBeanAndTeaLeaf: IRawStore = {
   key: 'the-coffee-bean-and-tea-leaf',
