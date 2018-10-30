@@ -13,9 +13,9 @@ const sampleHours: string[][][] = [
 ];
 
 describe('getOpenStatus', () => {
-  // 2018-8-28 Thu(2)
+  // 2018/8/28 Thu(2)
   it('run with closed(0)', () => {
-    assert.deepEqual(getOpenStatus(new Date('2018-8-28 10:44'), sampleHours), {
+    assert.deepEqual(getOpenStatus(new Date('2018/8/28 10:44'), sampleHours), {
       status: 0,
       openAt: {
         day: 2,
@@ -25,7 +25,7 @@ describe('getOpenStatus', () => {
     });
   });
   it('run with open soon(1)', () => {
-    assert.deepEqual(getOpenStatus(new Date('2018-8-28 10:45'), sampleHours), {
+    assert.deepEqual(getOpenStatus(new Date('2018/8/28 10:45'), sampleHours), {
       status: 1,
       openAt: {
         day: 2,
@@ -35,7 +35,7 @@ describe('getOpenStatus', () => {
     });
   });
   it('run with open(2)', () => {
-    assert.deepEqual(getOpenStatus(new Date('2018-8-28 11:00'), sampleHours), {
+    assert.deepEqual(getOpenStatus(new Date('2018/8/28 11:00'), sampleHours), {
       status: 2,
       openAt: null,
       closeAt: {
@@ -45,7 +45,7 @@ describe('getOpenStatus', () => {
     });
   });
   it('run with close soon(3)', () => {
-    assert.deepEqual(getOpenStatus(new Date('2018-8-28 15:59'), sampleHours), {
+    assert.deepEqual(getOpenStatus(new Date('2018/8/28 15:59'), sampleHours), {
       status: 3,
       openAt: null,
       closeAt: {
@@ -55,7 +55,7 @@ describe('getOpenStatus', () => {
     });
   });
   it('run with closed(0) in second term', () => {
-    assert.deepEqual(getOpenStatus(new Date('2018-8-28 16:00'), sampleHours), {
+    assert.deepEqual(getOpenStatus(new Date('2018/8/28 16:00'), sampleHours), {
       status: 0,
       openAt: {
         day: 2,
@@ -65,7 +65,7 @@ describe('getOpenStatus', () => {
     });
   });
   it('run with closed(0) in second term and get currect openAt', () => {
-    assert.deepEqual(getOpenStatus(new Date('2018-8-28 16:01'), sampleHours), {
+    assert.deepEqual(getOpenStatus(new Date('2018/8/28 16:01'), sampleHours), {
       status: 0,
       openAt: {
         day: 2,
@@ -75,7 +75,7 @@ describe('getOpenStatus', () => {
     });
   });
   it('run with open soon(1) in second term and get currect openAt', () => {
-    assert.deepEqual(getOpenStatus(new Date('2018-8-28 16:45'), sampleHours), {
+    assert.deepEqual(getOpenStatus(new Date('2018/8/28 16:45'), sampleHours), {
       status: 1,
       openAt: {
         day: 2,
@@ -85,7 +85,7 @@ describe('getOpenStatus', () => {
     });
   });
   it('run with open(2) in second term and get currect closeAt', () => {
-    assert.deepEqual(getOpenStatus(new Date('2018-8-28 17:00'), sampleHours), {
+    assert.deepEqual(getOpenStatus(new Date('2018/8/28 17:00'), sampleHours), {
       status: 2,
       openAt: null,
       closeAt: {
@@ -95,7 +95,7 @@ describe('getOpenStatus', () => {
     });
   });
   it('run with open(2) in second term and get currect closeAt', () => {
-    assert.deepEqual(getOpenStatus(new Date('2018-8-28 21:44'), sampleHours), {
+    assert.deepEqual(getOpenStatus(new Date('2018/8/28 21:44'), sampleHours), {
       status: 2,
       openAt: null,
       closeAt: {
@@ -105,7 +105,7 @@ describe('getOpenStatus', () => {
     });
   });
   it('run with close soon(3) in second term and get currect closeAt', () => {
-    assert.deepEqual(getOpenStatus(new Date('2018-8-28 21:45'), sampleHours), {
+    assert.deepEqual(getOpenStatus(new Date('2018/8/28 21:45'), sampleHours), {
       status: 3,
       openAt: null,
       closeAt: {
@@ -115,7 +115,7 @@ describe('getOpenStatus', () => {
     });
   });
   it('run with close(0) in second term and get currect openAt', () => {
-    assert.deepEqual(getOpenStatus(new Date('2018-8-28 22:00'), sampleHours), {
+    assert.deepEqual(getOpenStatus(new Date('2018/8/28 22:00'), sampleHours), {
       status: 0,
       openAt: {
         day: 4,
@@ -125,7 +125,7 @@ describe('getOpenStatus', () => {
     });
   });
   it('run with close(0) in second term and get currect openAt', () => {
-    assert.deepEqual(getOpenStatus(new Date('2018-8-28 22:01'), sampleHours), {
+    assert.deepEqual(getOpenStatus(new Date('2018/8/28 22:01'), sampleHours), {
       status: 0,
       openAt: {
         day: 4,
@@ -135,7 +135,7 @@ describe('getOpenStatus', () => {
     });
   });
   it('run with open(2) over midnight', () => {
-    assert.deepEqual(getOpenStatus(new Date('2018-8-30 10:30'), sampleHours), {
+    assert.deepEqual(getOpenStatus(new Date('2018/8/30 10:30'), sampleHours), {
       status: 2,
       openAt: null,
       closeAt: {

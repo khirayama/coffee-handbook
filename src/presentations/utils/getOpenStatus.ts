@@ -31,14 +31,16 @@ export function getOpenStatus(now: Date, hours: string[][][]): IOpenStatus {
     for (const openHour of todayOpenHours) {
       const hour: number = Number(openHour[openHour.length - 1].split(':')[0]);
 
-      const startTimeString: string = `${now.getFullYear()}/${now.getMonth() + 1}/${now.getDate()} ${openHour[0]}`;
-      const endTimeString: string =
-        hour >= 24
-          ? `${now.getFullYear()}/${now.getMonth() + 1}/${now.getDate() + 1} ${getDateTime24HoursAgo(openHour[1])}`
-          : `${now.getFullYear()}/${now.getMonth() + 1}/${now.getDate()} ${openHour[1]}`;
+      const startTime: Date = new Date(`${now.getFullYear()}/${now.getMonth() + 1}/${now.getDate()} ${openHour[0]}`);
+      const endTime: Date = new Date(`${now.getFullYear()}/${now.getMonth() + 1}/${now.getDate()} ${openHour[1]}`);
 
-      const startTime: Date = new Date(startTimeString);
-      const endTime: Date = new Date(endTimeString);
+      if (hour >= 24) {
+        const dateTime: string = getDateTime24HoursAgo(openHour[1]);
+        const dateTimeArray: string[] = dateTime.split(':');
+        endTime.setDate(endTime.getDate() + 1);
+        endTime.setHours(Number(dateTimeArray[0]));
+        endTime.setMinutes(Number(dateTimeArray[1]));
+      }
 
       if (startTime.getTime() <= now.getTime() && now.getTime() < endTime.getTime()) {
         if (endTime.getTime() <= now.getTime() + 1000 * 60 * 15) {
@@ -70,10 +72,10 @@ export function getOpenStatus(now: Date, hours: string[][][]): IOpenStatus {
     const index: number = (i + now.getDay()) % hours.length;
     const openHours: string[][] = hours[index];
     for (const openHour of openHours) {
-      const startTime: Date = new Date(
-        `${now.getFullYear()}/${now.getMonth() + 1}/${now.getDate() + i} ${openHour[0]}`,
-      );
-      const endTime: Date = new Date(`${now.getFullYear()}/${now.getMonth() + 1}/${now.getDate() + i} ${openHour[1]}`);
+      const startTime: Date = new Date(`${now.getFullYear()}/${now.getMonth() + 1}/${now.getDate()} ${openHour[0]}`);
+      startTime.setDate(startTime.getDate() + i);
+      const endTime: Date = new Date(`${now.getFullYear()}/${now.getMonth() + 1}/${now.getDate()} ${openHour[1]}`);
+      endTime.setDate(endTime.getDate() + i);
       if (now.getTime() < startTime.getTime()) {
         if (startTime.getTime() <= now.getTime() + 1000 * 60 * 15) {
           // まもなく開店
