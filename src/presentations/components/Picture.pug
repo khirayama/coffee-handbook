@@ -1,7 +1,0 @@
-mixin Picture(props)
-  picture.Picture(data-lazy=String(props.lazy))
-    block
-    if props.lazy
-      span.Picture--Image(src=props.src alt=props.alt)= props.alt
-    else
-      img.Picture--Image(src=props.src alt=props.alt)

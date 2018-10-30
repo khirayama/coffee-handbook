@@ -31,173 +31,6 @@ const coffeeHandbookPages: IPage[] = [
     freq: 'daily',
     priority: 1,
   },
-  // {
-  //   name: {
-  //     en: 'BEVERAGES',
-  //     ja: 'ビバレッジ',
-  //   },
-  //   url: `${config.url}/beverages`,
-  //   freq: 'daily',
-  //   priority: 0.8,
-  //   pages: [
-  //     {
-  //       name: {
-  //         en: 'COFFEE(HOT)',
-  //         ja: 'コーヒー(ホット)',
-  //       },
-  //       url: `${config.url}/beverages/coffee/hot`,
-  //       freq: 'daily',
-  //       priority: 0.5,
-  //     },
-  //     {
-  //       name: {
-  //         en: 'COFFEE(ICED)',
-  //         ja: 'コーヒー(アイス)',
-  //       },
-  //       url: `${config.url}/beverages/coffee/iced`,
-  //       freq: 'daily',
-  //       priority: 0.5,
-  //     },
-  //     {
-  //       name: {
-  //         en: 'COLD BREW',
-  //         ja: 'コールドブリュー',
-  //       },
-  //       url: `${config.url}/beverages/cold-brew/iced`,
-  //       freq: 'daily',
-  //       priority: 0.5,
-  //     },
-  //     {
-  //       name: {
-  //         en: 'LATTE(HOT)',
-  //         ja: 'ラテ(ホット)',
-  //       },
-  //       url: `${config.url}/beverages/latte/hot`,
-  //       freq: 'daily',
-  //       priority: 0.5,
-  //     },
-  //     {
-  //       name: {
-  //         en: 'LATTE(ICED)',
-  //         ja: 'ラテ(アイス)',
-  //       },
-  //       url: `${config.url}/beverages/latte/iced`,
-  //       freq: 'daily',
-  //       priority: 0.5,
-  //     },
-  //     {
-  //       name: {
-  //         en: 'AMERICANO(HOT)',
-  //         ja: 'アメリカーノ(ホット)',
-  //       },
-  //       url: `${config.url}/beverages/americano/hot`,
-  //       freq: 'daily',
-  //       priority: 0.5,
-  //     },
-  //     {
-  //       name: {
-  //         en: 'AMERICANO(ICED)',
-  //         ja: 'アメリカーノ(アイス)',
-  //       },
-  //       url: `${config.url}/beverages/americano/iced`,
-  //       freq: 'daily',
-  //       priority: 0.5,
-  //     },
-  //     {
-  //       name: {
-  //         en: 'MOCHA(HOT)',
-  //         ja: 'モカ(ホット)',
-  //       },
-  //       url: `${config.url}/beverages/mocha/hot`,
-  //       freq: 'daily',
-  //       priority: 0.5,
-  //     },
-  //     {
-  //       name: {
-  //         en: 'MOCHA(ICED)',
-  //         ja: 'モカ(アイス)',
-  //       },
-  //       url: `${config.url}/beverages/mocha/iced`,
-  //       freq: 'daily',
-  //       priority: 0.5,
-  //     },
-  //     {
-  //       name: {
-  //         en: 'VANILLA LATTE(HOT)',
-  //         ja: 'バニララテ(ホット)',
-  //       },
-  //       url: `${config.url}/beverages/vanilla-latte/hot`,
-  //       freq: 'daily',
-  //       priority: 0.5,
-  //     },
-  //     {
-  //       name: {
-  //         en: 'VANILLA LATTE(ICED)',
-  //         ja: 'バニララテ(アイス)',
-  //       },
-  //       url: `${config.url}/beverages/vanilla-latte/iced`,
-  //       freq: 'daily',
-  //       priority: 0.5,
-  //     },
-  //     {
-  //       name: {
-  //         en: 'COCOA(HOT)',
-  //         ja: 'ココア(ホット)',
-  //       },
-  //       url: `${config.url}/beverages/cocoa/hot`,
-  //       freq: 'daily',
-  //       priority: 0.5,
-  //     },
-  //     {
-  //       name: {
-  //         en: 'COCOA(ICED)',
-  //         ja: 'ココア(アイス)',
-  //       },
-  //       url: `${config.url}/beverages/cocoa/iced`,
-  //       freq: 'daily',
-  //       priority: 0.5,
-  //     },
-  //     {
-  //       name: {
-  //         en: 'ESPRESSO',
-  //         ja: 'エスプレッソ',
-  //       },
-  //       url: `${config.url}/beverages/espresso/hot`,
-  //       freq: 'daily',
-  //       priority: 0.5,
-  //     },
-  //   ],
-  // },
-  // {
-  //   name: {
-  //     en: 'FOODS',
-  //     ja: 'フード',
-  //   },
-  //   url: `${config.url}/foods`,
-  //   freq: 'daily',
-  //   priority: 0.8,
-  //   pages: [
-  //     {
-  //       name: {
-  //         en: 'MADELEINE',
-  //         ja: 'マドレーヌ',
-  //       },
-  //       url: `${config.url}/foods/madeleine`,
-  //       freq: 'daily',
-  //       priority: 0.5,
-  //     },
-  //   ],
-  // },
-  // {
-  //   name: {
-  //     en: 'GOODS',
-  //     ja: 'グッズ',
-  //   },
-  //   url: `${config.url}/goods`,
-  //   freq: 'daily',
-  //   priority: 0.8,
-  //   pages: [],
-  // },
   {
     name: {
       en: 'ABOUT COFFEE HANDBOOK',
@@ -210,10 +43,20 @@ const coffeeHandbookPages: IPage[] = [
   },
   {
     name: {
-      en: 'STORES MAP',
-      ja: 'ストアマップ',
+      en: 'PRIVACY',
+      ja: 'プライバシーポリシー',
     },
-    url: `${config.url}/maps`,
+    url: `${config.url}/privacy`,
+    freq: 'daily',
+    priority: 0.3,
+    pages: [],
+  },
+  {
+    name: {
+      en: 'SITEMAP',
+      ja: 'サイトマップ',
+    },
+    url: `${config.url}/sitemap`,
     freq: 'daily',
     priority: 0.3,
     pages: [],

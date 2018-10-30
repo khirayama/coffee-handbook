@@ -1,5 +1,4 @@
 runtime: nodejs8
-threadsafe: true
 env: standard
 instance_class: F1
 handlers:
@@ -15,26 +14,6 @@ automatic_scaling:
   min_pending_latency: 15000ms
   max_pending_latency: automatic
 env_variables:
-  GOOGLE_ANALYTICS_CODE: UA-121194530-1
-skip_files:
-  - ^(.*/)?app\.yaml
-  - ^README\..*
-  - \.git
-  - \.gitignore
-  - \.DS_Store
-  - ^node_modules/(.*/)?
-  - src
-  - materials
-  - bin
-  - test
-  - docs
-  - package-lock.json
-  - tsconfig.*
-  - tslint.json
-  - webpack.config.js
-  - \.envrc
-  - \.hintrc
-  - \.nvmrc
-  - \.postcssrc.js
-  - \.prettierrc
-  - \.prettierrc
+  NODE_PATH: $NODE_PATH:dist
+  includes:
+    - secret.yaml

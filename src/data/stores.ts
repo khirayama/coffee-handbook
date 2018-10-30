@@ -1,82 +1,17 @@
-import { ariseCoffeeEntangle } from 'data/stores/ariseCoffeeEntangle';
-import { coffeeSanjikkenGinza } from 'data/stores/coffeeSanjikkenGinza';
-import { cottea } from 'data/stores/cottea';
-import { hagiCafe } from 'data/stores/hagiCafe';
-import { kayabaCoffee } from 'data/stores/kayabaCoffee';
-import { mightyStepsCoffeeStop } from 'data/stores/mightyStepsCoffeeStop';
-import { monkeyCafeDky } from 'data/stores/monkeyCafeDky';
-import { monzCafe } from 'data/stores/monzCafe';
-import { redHorn } from 'data/stores/redHorn';
-import { saredoCoffee } from 'data/stores/saredoCoffee';
-import { sarutahikoCoffee } from 'data/stores/sarutahikoCoffee';
-import { solsCoffeeRoastery } from 'data/stores/solsCoffeeRoastery';
-import { theCoffeeBeanAndTeaLeaf } from 'data/stores/theCoffeeBeanAndTeaLeaf';
-import { tokadoCoffee } from 'data/stores/tokadoCoffee';
-import { tokadoCoffeeNakasukawabata } from 'data/stores/tokadoCoffeeNakasukawabata';
-import { torse } from 'data/stores/torse';
-import { yourDailyCoffee } from 'data/stores/yourDailyCoffee';
+import * as fs from 'fs';
+import * as path from 'path';
 
-export interface IRawStore {
-  key: string;
-  lat: number;
-  lng: number;
-  name: {
-    ja: string;
-    en: string;
-  };
-  address: {
-    ja: string;
-    en: string;
-  };
-  hours: string[][][];
-  hoursNote: {
-    ja: string;
-    en: string;
-  } | null;
-  email: string | null;
-  tel: string | null;
-  permanentClosed: boolean;
-  // 移転した場合のkey
-  transforTo: string;
-  media: {
-    web: string | null;
-    ec: string | null;
-    facebook: string | null;
-    twitter: string | null;
-    instagram: string | null;
-    instagramTag: string | null;
-    googleMaps: string | null;
-  };
-  services: {
-    // 0: なし、1: あり、2: 部分的にあり
-    roaster: number | null;
-    speciality: number | null;
-    beans: number | null;
-    credit: number | null;
-    power: number | null;
-    wifi: number | null;
-    barrierFree: number | null;
-    pet: number | null;
-    smoking: number | null;
-  };
+import { IRawStore } from 'presentations/pages/Maps/interfaces';
+
+export const stores: IRawStore[] = [];
+
+const rootPath: string = path.resolve('dist', 'data', 'stores');
+const fileNames: string[] = fs.readdirSync(rootPath);
+for (const fileName of fileNames) {
+  if (!fileName.endsWith('.map')) {
+    import(`${rootPath}/${fileName}`).then((store: IRawStore) => {
+      const key: string = Object.keys(store)[0];
+      stores.push(store[key]);
+    });
+  }
 }
-
-export const stores: IRawStore[] = [
-  ariseCoffeeEntangle,
-  coffeeSanjikkenGinza,
-  cottea,
-  hagiCafe,
-  kayabaCoffee,
-  mightyStepsCoffeeStop,
-  monkeyCafeDky,
-  monzCafe,
-  redHorn,
-  saredoCoffee,
-  sarutahikoCoffee,
-  solsCoffeeRoastery,
-  theCoffeeBeanAndTeaLeaf,
-  tokadoCoffee,
-  tokadoCoffeeNakasukawabata,
-  torse,
-  yourDailyCoffee,
-];

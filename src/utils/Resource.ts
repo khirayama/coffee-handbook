@@ -81,7 +81,7 @@ export class Resource<IRawResource, IResource> {
           : buildSearchKeys(this.resources[0]),
     };
 
-    const fuse: Fuse = new Fuse(this.resources, fuseOptions);
+    const fuse: Fuse<any> = new Fuse(this.resources, fuseOptions);
     const result: IRawResource[] = fuse.search(keyword);
 
     return this.build(result.map((res: any) => res.item), this.lang);
