@@ -28,6 +28,7 @@ export class StoreMarker {
     this.store = store;
     this.handlers = handlers;
 
+    // TODO: Change color to display open status
     this.el = document.createElement('div');
     this.el.className = 'StoreMarker';
     this.el.innerHTML = `
