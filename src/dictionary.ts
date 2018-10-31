@@ -125,7 +125,6 @@ export const dictionary: {
             <li>英語翻訳</li>
             <li>リファクタリング</li>
             <li>ABテスト</li>
-            <!-- <li><a href="${config.patreonUrl}">Patreon - 支援</a></li> -->
           </ul>
         `,
         en: `
@@ -140,7 +139,6 @@ export const dictionary: {
             <li>Translation to English or Japanese</li>
             <li>Refactoring</li>
             <li>AB testing</li>
-            <!-- <li><a href="${config.patreonUrl}">Patreon - Support</a></li> -->
           </ul>
         `,
       },

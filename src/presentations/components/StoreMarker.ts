@@ -1,11 +1,15 @@
-// tslint:disable:no-any
 import { IStore } from 'presentations/pages/Maps/interfaces';
 
 declare global {
   // tslint:disable-next-line:interface-name
   interface Window {
+    // tslint:disable-next-line:no-any
     mapboxgl: any;
   }
+}
+
+interface IHandlers {
+  onClick(event: MouseEvent, storeMarker: StoreMarker): void;
 }
 
 export class StoreMarker {
@@ -13,13 +17,13 @@ export class StoreMarker {
 
   public store: IStore;
 
-  private map: any;
+  private map: mapboxgl.Map;
 
-  private marker: any;
+  private marker: mapboxgl.Marker;
 
-  private handlers: any;
+  private handlers: IHandlers;
 
-  constructor(map: any, store: IStore, handlers: any) {
+  constructor(map: mapboxgl.Map, store: IStore, handlers: IHandlers) {
     this.map = map;
     this.store = store;
     this.handlers = handlers;
@@ -42,7 +46,7 @@ export class StoreMarker {
     });
 
     if (this.handlers.onClick) {
-      this.el.addEventListener('click', (event: any) => {
+      this.el.addEventListener('click', (event: MouseEvent) => {
         event.stopPropagation();
         this.handlers.onClick(event, this);
       });

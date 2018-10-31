@@ -22,11 +22,19 @@ interface IProps {
   author: string;
   keywords: string[];
   name: string;
-  image: string;
+  images: {
+    rectangle: {
+      en: string;
+      ja: string;
+    };
+    square: {
+      en: string;
+      ja: string;
+    };
+  };
   pageType: string;
   baseUrl: string;
   path: string;
-  facebookAppId: string;
   facebookPageUrl: string;
   twitterCardType: string;
   twitterAccount: string;
@@ -90,11 +98,23 @@ export function mapsHandler(req: express.Request, res: express.Response): void {
     author: req.dic.t('author'),
     keywords,
     name: req.dic.t('name'),
-    image: 'TODO',
+    images: {
+      // TODO: 3600 * 1890で画像作る
+      rectangle: {
+        en: 'TODO en',
+        ja: 'TODO ja',
+      },
+      // TODO: 1890 * 1890で画像作る
+      square: {
+        en: 'TODO en',
+        ja: 'TODO ja',
+      },
+    },
+    // FYI: http://fbdevwiki.com/wiki/Open_Graph_protocol#Types
+    // FYI: https://developers.facebook.com/docs/reference/opengraph/
     pageType: 'cafe',
     baseUrl: config.url,
     path: req.originalUrl,
-    facebookAppId: config.facebookAppId,
     facebookPageUrl: config.facebookPageUrl,
     twitterCardType: config.twitterCardType,
     twitterAccount: config.twitterAccount,

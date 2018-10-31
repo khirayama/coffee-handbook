@@ -64,7 +64,7 @@ const geolocationUtils: {
 export class StoreMapView extends React.Component<IProps, {}> {
   public map: mapboxgl.Map;
 
-  private ref: React.RefObject<HTMLDivElement>;
+  public ref: React.RefObject<HTMLDivElement>;
 
   private currentPositionMarker: any = null;
 
@@ -123,11 +123,11 @@ export class StoreMapView extends React.Component<IProps, {}> {
   }
 
   private setEventListeners(): void {
-    this.map.on('click', (event: any) => {
+    this.map.on('click', (event: MouseEvent) => {
       this.props.onClickMap(event, this.map);
     });
 
-    this.map.on('moveend', (event: any) => {
+    this.map.on('moveend', (event: mapboxgl.MapboxEvent) => {
       this.props.onMoveEnd(event, this.map);
     });
   }

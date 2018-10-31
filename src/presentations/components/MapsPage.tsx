@@ -1,4 +1,3 @@
-// tslint:disable:no-any
 import * as classNames from 'classnames';
 import * as queryString from 'query-string';
 import * as React from 'react';
@@ -54,7 +53,7 @@ export class MapsPage extends Container<IProps, IState> {
 
     window.addEventListener('popstate', () => {
       const query: { key?: string; lang?: string } = queryString.parse(window.location.search);
-      const storeKey: any = query.key || null;
+      const storeKey: string | null = query.key || null;
 
       selectStore(this.dispatch, storeKey);
       if (query.lang) {
@@ -106,7 +105,7 @@ export class MapsPage extends Container<IProps, IState> {
     );
   }
 
-  private onClickMap(event: any, map: any): void {
+  private onClickMap(event: MouseEvent, map: mapboxgl.Map): void {
     const query: { [key: string]: string | string[] } = queryString.parse(window.location.search);
     if (query.key) {
       delete query.key;
@@ -120,11 +119,11 @@ export class MapsPage extends Container<IProps, IState> {
     selectStore(this.dispatch, null);
   }
 
-  private onMoveEnd(event: any, map: any): void {
+  private onMoveEnd(event: mapboxgl.MapboxEvent, map: mapboxgl.Map): void {
     updateView(this.dispatch, map.getCenter(), map.getZoom());
   }
 
-  private onClickStore(event: React.MouseEvent<HTMLElement>, map: any, store: IStore): void {
+  private onClickStore(event: React.MouseEvent<HTMLElement>, map: mapboxgl.Map, store: IStore): void {
     const query: { [key: string]: string | string[] } = queryString.parse(window.location.search);
     if (query.key !== store.key) {
       query.key = store.key;
@@ -151,7 +150,7 @@ export class MapsPage extends Container<IProps, IState> {
   private centerStoreWithModal(store: IStore): void {
     const mapModalWidth: number = 384;
     const modalElement: HTMLElement = this.modalRef.current;
-    const mapElement: HTMLElement = (this.mapRef.current as any).ref.current;
+    const mapElement: HTMLElement = this.mapRef.current.ref.current;
 
     let offset: [number, number] = [0, 0];
     if (window.innerWidth > mapModalWidth * 2) {
