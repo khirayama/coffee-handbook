@@ -17,7 +17,6 @@ interface ISitemapPage {
   name: string;
   keywords: string[];
   image: string;
-  facebookAppId: string;
   facebookPageUrl: string;
   twitterCardType: string;
   twitterAccount: string;
@@ -37,7 +36,6 @@ export function sitemapHandler(req: express.Request, res: express.Response): voi
     author: req.dic.t('author'),
     name: req.dic.t('name'),
     baseUrl: config.url,
-    facebookAppId: config.facebookAppId,
     facebookPageUrl: config.facebookPageUrl,
     twitterCardType: config.twitterCardType,
     twitterAccount: config.twitterAccount,

@@ -11,7 +11,6 @@ export function setLayoutProps(req: express.Request, res: express.Response, next
     author: req.dic.t('author'),
     name: req.dic.t('name'),
     baseUrl: config.url,
-    facebookAppId: config.facebookAppId,
     facebookPageUrl: config.facebookPageUrl,
     twitterCardType: config.twitterCardType,
     twitterAccount: config.twitterAccount,

@@ -16,7 +16,6 @@ interface IAboutPage {
   name: string;
   keywords: string[];
   image: string;
-  facebookAppId: string;
   facebookPageUrl: string;
   twitterCardType: string;
   twitterAccount: string;
@@ -35,7 +34,6 @@ export function aboutHandler(req: express.Request, res: express.Response): void 
     author: req.dic.t('author'),
     name: req.dic.t('name'),
     baseUrl: config.url,
-    facebookAppId: config.facebookAppId,
     facebookPageUrl: config.facebookPageUrl,
     twitterCardType: config.twitterCardType,
     twitterAccount: config.twitterAccount,
