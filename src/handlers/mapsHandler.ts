@@ -120,7 +120,7 @@ export function mapsHandler(req: express.Request, res: express.Response): void {
     twitterAccount: config.twitterAccount,
     env: process.env.NODE_ENV || 'development',
     gaCode: secret.gaCode,
-    route: `${req.route.path}?key=${storeKey}`,
+    route: storeKey ? `${req.route.path}?key=${storeKey}` : req.route.path,
     entrypoint: '/pages/Maps/bundle.js',
     stylesheet: '/pages/Maps/index.css',
     state: appStore.getState(),
