@@ -7,8 +7,6 @@ type TListener<Action> = (action: Action) => void;
 // tslint:disable:no-any
 export let dispatch: (action: any) => void;
 
-export let store: Store<any, any>;
-
 export class Store<T, P> {
   private listeners: {
     [key: string]: {
@@ -47,8 +45,6 @@ export class Store<T, P> {
     this.reducer = reducer;
 
     this.subscribe();
-
-    store = this;
   }
 
   public getState(): T {

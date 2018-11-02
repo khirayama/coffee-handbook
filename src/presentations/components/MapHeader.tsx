@@ -4,17 +4,17 @@ import * as queryString from 'query-string';
 import * as React from 'react';
 
 import { dictionary } from 'dictionary';
-import { Container } from 'presentations/containers/Container';
+import { connect } from 'presentations/containers/Container';
 import { changeLang } from 'presentations/pages/Maps/actionCreators';
-import { IRawStore, IStore } from 'presentations/pages/Maps/interfaces';
+import { IDispatch, IRawStore, IState, IStore } from 'presentations/pages/Maps/interfaces';
 import { Dictionary } from 'utils/Dictionary';
 import { Resource } from 'utils/Resource';
 
-interface IProps {
-  lang: string;
+interface IProps extends IState {
+  dispatch: IDispatch;
 }
 
-export class MapHeader extends Container<IProps, {}> {
+export class MapHeader extends React.Component<IProps, {}> {
   constructor(props: IProps) {
     super(props);
 
@@ -26,7 +26,7 @@ export class MapHeader extends Container<IProps, {}> {
 
     return (
       <header className="MapHeader">
-        <a className="MapHeader--Link" href={`/about?lang=${this.state.lang}`}>
+        <a className="MapHeader--Link" href={`/about?lang=${this.props.lang}`}>
           <img className="MapHeader--Link--Image" src={`/images/icon_${props.lang}_square.png`} alt="COFFEE HANDBOOK" />
         </a>
         <ul className="MapHeader--LangList">
@@ -55,16 +55,16 @@ export class MapHeader extends Container<IProps, {}> {
 
   private onClick(event: React.MouseEvent<HTMLAnchorElement>): void {
     event.preventDefault();
-    const dic: Dictionary = new Dictionary(this.state.lang, dictionary);
+    const dic: Dictionary = new Dictionary(this.props.lang, dictionary);
     const search: string = event.currentTarget.search;
     const newQuery: { key?: string; lang?: string } = queryString.parse(search);
     const query: { key?: string; lang?: string } = queryString.parse(window.location.search);
 
     if (newQuery.lang !== query.lang) {
-      const storeResource: Resource<IRawStore, IStore> = new Resource(this.state.stores, this.state.lang);
+      const storeResource: Resource<IRawStore, IStore> = new Resource(this.props.stores, this.props.lang);
       const store: IStore = storeResource
         .where({
-          key: this.state.ui.selectedStoreKey,
+          key: this.props.ui.selectedStoreKey,
         })
         .findOne();
       const loc: string = `${window.location.pathname}?${queryString.stringify({ ...query, ...newQuery })}`;
@@ -74,7 +74,10 @@ export class MapHeader extends Container<IProps, {}> {
       window.document.title = title;
       window.history.pushState(null, title, loc);
 
-      changeLang(this.dispatch, newQuery.lang || 'en');
+      changeLang(this.props.dispatch, newQuery.lang || 'en');
     }
   }
 }
+
+// tslint:disable-next-line:variable-name
+export const MapHeaderContainer: React.ComponentClass = connect(MapHeader);

@@ -1,38 +1,64 @@
 import * as deepEqual from 'deep-equal';
 import * as React from 'react';
 
-import { IDispatch, IState } from 'presentations/pages/Maps/interfaces';
-import { store, Store } from 'utils/Store';
+import { IAction, IDispatch, IState } from 'presentations/pages/Maps/interfaces';
+import { Store } from 'utils/Store';
 
-export class Container<P, S> extends React.Component<P, S & IState> {
-  protected handleStateUpdate: () => void;
+interface IProps {
+  store: Store<IState, IAction>;
+}
 
-  protected dispatch: IDispatch;
+interface IContext {
+  store: Store<IState, IAction>;
+}
 
-  constructor(props: P) {
-    super(props);
+const context: React.Context<IContext | null> = React.createContext(null);
 
-    this.state = {
-      ...store.getState(),
+export class Provider extends React.Component<IProps, {}> {
+  public render(): JSX.Element {
+    const ctx: IContext = {
+      store: this.props.store,
     };
 
-    this.handleStateUpdate = (): void => {
-      this.setState(store.getState());
-    };
-    this.dispatch = store.dispatch.bind(store);
+    return <context.Provider value={ctx}>{this.props.children}</context.Provider>;
+  }
+}
 
-    store.addChangeListener(this.handleStateUpdate);
+export function connect(component: any): React.ComponentClass<{}, {}> {
+  class Container extends React.Component<{}, {}> {
+    public static contextType: React.Context<IContext> = context;
+
+    protected handleStateUpdate: () => void;
+
+    constructor(props: {}) {
+      super(props);
+
+      this.handleStateUpdate = (): void => {
+        this.setState(this.context.store.getState());
+      };
+    }
+
+    public componentDidMount(): void {
+      this.context.store.addChangeListener(this.handleStateUpdate);
+    }
+
+    public componentWillUnmount(): void {
+      this.context.store.removeChangeListener(this.handleStateUpdate);
+    }
+
+    public render(): JSX.Element {
+      const state: IState = this.context.store.getState();
+
+      return React.createElement(component, {
+        ...state,
+        dispatch: this.context.store.dispatch.bind(this.context.store),
+      });
+    }
+
+    protected getState(): IState {
+      return this.context.store.getState();
+    }
   }
 
-  public shouldComponentUpdate(prevProps: P, prevState: IState): boolean {
-    return !deepEqual(this.props, prevProps) || !deepEqual(this.state, prevState);
-  }
-
-  public componentWillUnmount(): void {
-    store.removeChangeListener(this.handleStateUpdate);
-  }
-
-  protected getState(): IState {
-    return store.getState();
-  }
+  return Container;
 }

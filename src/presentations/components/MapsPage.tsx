@@ -3,10 +3,10 @@ import * as queryString from 'query-string';
 import * as React from 'react';
 
 import { dictionary } from 'dictionary';
-import { MapHeader } from 'presentations/components/MapHeader';
+import { MapHeaderContainer } from 'presentations/components/MapHeader';
 import { StoreCard } from 'presentations/components/StoreCard';
 import { StoreMapView } from 'presentations/components/StoreMapView';
-import { Container } from 'presentations/containers/Container';
+import { connect } from 'presentations/containers/Container';
 import { changeLang, selectStore, updateCurrentPosition, updateView } from 'presentations/pages/Maps/actionCreators';
 import { IAction, IDispatch, IPosition, IRawStore, IState, IStore } from 'presentations/pages/Maps/interfaces';
 import { tracker } from 'presentations/utils/tracker';
@@ -14,19 +14,17 @@ import { Dictionary } from 'utils/Dictionary';
 import { Resource } from 'utils/Resource';
 import { Store as AppStore } from 'utils/Store';
 
-interface IProps {
-  store: AppStore<IState, IAction>;
+interface IProps extends IState {
+  dispatch: IDispatch;
 }
 
-export class MapsPage extends Container<IProps, IState> {
+export class MapsPage extends React.Component<IProps, {}> {
   private mapRef: React.RefObject<StoreMapView>;
 
   private modalRef: React.RefObject<HTMLDivElement>;
 
   constructor(props: IProps) {
     super(props);
-
-    this.state = this.props.store.getState();
 
     this.mapRef = React.createRef();
     this.modalRef = React.createRef();
@@ -37,15 +35,11 @@ export class MapsPage extends Container<IProps, IState> {
   }
 
   public componentDidMount(): void {
-    this.props.store.addChangeListener(() => {
-      this.setState(this.props.store.getState());
-    });
-
-    if (this.state.ui.selectedStoreKey) {
-      const storeResource: Resource<IRawStore, IStore> = new Resource(this.state.stores, this.state.lang);
+    if (this.props.ui.selectedStoreKey) {
+      const storeResource: Resource<IRawStore, IStore> = new Resource(this.props.stores, this.props.lang);
       const store: IStore = storeResource
         .where({
-          key: this.state.ui.selectedStoreKey,
+          key: this.props.ui.selectedStoreKey,
         })
         .findOne();
       this.centerStoreWithModal(store);
@@ -55,12 +49,12 @@ export class MapsPage extends Container<IProps, IState> {
       const query: { key?: string; lang?: string } = queryString.parse(window.location.search);
       const storeKey: string | null = query.key || null;
 
-      selectStore(this.dispatch, storeKey);
+      selectStore(this.props.dispatch, storeKey);
       if (query.lang) {
-        changeLang(this.dispatch, query.lang || 'en');
+        changeLang(this.props.dispatch, query.lang || 'en');
       }
       if (storeKey) {
-        const storeResource: Resource<IRawStore, IStore> = new Resource(this.state.stores, this.state.lang);
+        const storeResource: Resource<IRawStore, IStore> = new Resource(this.props.stores, this.props.lang);
         const currentStore: IStore = storeResource
           .where({
             key: storeKey,
@@ -72,26 +66,26 @@ export class MapsPage extends Container<IProps, IState> {
   }
 
   public render(): JSX.Element {
-    const dic: Dictionary = new Dictionary(this.state.lang, dictionary);
-    const state: IState = this.props.store.getState();
-    const storeResource: Resource<IRawStore, IStore> = new Resource(this.state.stores, this.state.lang);
+    const dic: Dictionary = new Dictionary(this.props.lang, dictionary);
+    const props: IState = this.props;
+    const storeResource: Resource<IRawStore, IStore> = new Resource(this.props.stores, this.props.lang);
     const store: IStore = storeResource
       .where({
-        key: state.ui.selectedStoreKey,
+        key: props.ui.selectedStoreKey,
       })
       .findOne();
 
     return (
       <div className="MapsPage">
-        <MapHeader lang={state.lang} />
+        <MapHeaderContainer />
         <div className="MapsPage--Content">
           <StoreMapView
             ref={this.mapRef}
-            lang={state.lang}
-            currentPos={state.ui.currentPos}
+            lang={props.lang}
+            currentPos={props.ui.currentPos}
             stores={storeResource.find()}
-            center={state.ui.pos}
-            zoom={state.ui.zoom}
+            center={props.ui.pos}
+            zoom={props.ui.zoom}
             onClickMap={this.onClickMap}
             onMoveEnd={this.onMoveEnd}
             onClickStore={this.onClickStore}
@@ -109,25 +103,25 @@ export class MapsPage extends Container<IProps, IState> {
     const query: { [key: string]: string | string[] } = queryString.parse(window.location.search);
     if (query.key) {
       delete query.key;
-      const dic: Dictionary = new Dictionary(this.state.lang, dictionary);
+      const dic: Dictionary = new Dictionary(this.props.lang, dictionary);
       const search: string = queryString.stringify(query);
       const loc: string = `${window.location.pathname}${search ? `?${search}` : ''}`;
       const title: string = `${dic.t('Pages.Maps.MAP')} | ${dic.t('name')}`;
       window.document.title = title;
       window.history.pushState(null, title, loc);
     }
-    selectStore(this.dispatch, null);
+    selectStore(this.props.dispatch, null);
   }
 
   private onMoveEnd(event: mapboxgl.MapboxEvent, map: mapboxgl.Map): void {
-    updateView(this.dispatch, map.getCenter(), map.getZoom());
+    updateView(this.props.dispatch, map.getCenter(), map.getZoom());
   }
 
   private onClickStore(event: React.MouseEvent<HTMLElement>, map: mapboxgl.Map, store: IStore): void {
     const query: { [key: string]: string | string[] } = queryString.parse(window.location.search);
     if (query.key !== store.key) {
       query.key = store.key;
-      const dic: Dictionary = new Dictionary(this.state.lang, dictionary);
+      const dic: Dictionary = new Dictionary(this.props.lang, dictionary);
       const search: string = queryString.stringify(query);
       const loc: string = `${window.location.pathname}${search ? `?${search}` : ''}`;
       const title: string = `${store.name} | ${dic.t('Pages.Maps.MAP')} | ${dic.t('name')}`;
@@ -139,12 +133,12 @@ export class MapsPage extends Container<IProps, IState> {
       tracker.setLocation(loc);
       tracker.sendPageView();
     }
-    selectStore(this.dispatch, store.key);
+    selectStore(this.props.dispatch, store.key);
     this.centerStoreWithModal(store);
   }
 
   private onGetCurrentPosition(currentPos: IPosition): void {
-    updateCurrentPosition(this.dispatch, currentPos);
+    updateCurrentPosition(this.props.dispatch, currentPos);
   }
 
   private centerStoreWithModal(store: IStore): void {
@@ -171,3 +165,6 @@ export class MapsPage extends Container<IProps, IState> {
     });
   }
 }
+
+// tslint:disable-next-line:variable-name
+export const MapsPageContainer: React.ComponentClass = connect(MapsPage);

@@ -7,7 +7,8 @@ import { renderToString } from 'react-dom/server';
 
 import { config } from 'config';
 import { stores } from 'data/stores';
-import { MapsPage } from 'presentations/components/MapsPage';
+import { MapsPageContainer } from 'presentations/components/MapsPage';
+import { Provider } from 'presentations/containers/Container';
 import { IAction, IRawStore, IState, IStore } from 'presentations/pages/Maps/interfaces';
 import { reducer } from 'presentations/pages/Maps/reducer';
 import { secret } from 'secret';
@@ -124,7 +125,7 @@ export function mapsHandler(req: express.Request, res: express.Response): void {
     entrypoint: '/pages/Maps/bundle.js',
     stylesheet: '/pages/Maps/index.css',
     state: appStore.getState(),
-    content: renderToString(React.createElement(MapsPage, { store: appStore })),
+    content: renderToString(React.createElement(Provider, { store: appStore }, React.createElement(MapsPageContainer))),
   };
 
   res.send(compiledFunction({ props }));
