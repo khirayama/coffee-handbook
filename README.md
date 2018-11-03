@@ -27,6 +27,16 @@ $ vim .envrc
 Please fill `MAPBOX_TOKEN`. `MAPBOX_TOKEN` is required.
 Please check here. https://www.mapbox.com/
 
+## Load `.envrc`
+
+Load `.envrc` like following command.
+
+```sh
+$ source .envrc
+```
+
+I recommend to use `direnv`. Please check [here about direnv](https://direnv.net/).
+
 ### Install packages and run app
 
 ```sh
