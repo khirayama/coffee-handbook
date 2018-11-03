@@ -83,7 +83,7 @@ export function mapsHandler(req: express.Request, res: express.Response): void {
     },
     reducer,
   );
-  const titleSafix: string = `${dic.t('Pages.Maps.MAP')} | ${dic.t('name')}`;
+  const titleSafix: string = `${dic.t('name')} | ${dic.t('siteDescription')}`;
   const title: string = store ? `${store.name} | ${titleSafix}` : titleSafix;
   const description: string = store ? `${store.name} | ${store.address} | ${titleSafix}` : titleSafix;
   const keywords: string[] = ['coffee', 'コーヒー', '珈琲', 'handbook', '手帖'];

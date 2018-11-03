@@ -8,6 +8,7 @@ interface IText {
 export const dictionary: {
   name: IText;
   author: IText;
+  siteDescription: IText;
   Components: {
     Footer: {
       ABOUT: IText;
@@ -27,7 +28,6 @@ export const dictionary: {
       PRIVACY: IText;
     };
     Maps: {
-      MAP: IText;
       day: {
         0: IText;
         1: IText;
@@ -79,6 +79,10 @@ export const dictionary: {
   author: {
     ja: 'COFFEE HANDBOOK',
     en: 'COFFEE HANDBOOK',
+  },
+  siteDescription: {
+    ja: '世界珈琲地図',
+    en: 'COFFEE MAP OF WORLD',
   },
   // Components
   Components: {
@@ -154,10 +158,6 @@ export const dictionary: {
       },
     },
     Maps: {
-      MAP: {
-        ja: 'マップ',
-        en: 'MAP',
-      },
       day: {
         0: {
           ja: '日曜日',
