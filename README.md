@@ -16,8 +16,15 @@
 $ cp .envrc.sample .envrc
 ```
 
-Then please fill `GOOGLE_ANALYTICS_CODE` and `MAPBOX_TOKEN`.
-Especilly `MAPBOX_TOKEN` is required.
+Then please fill `GOOGLE_ANALYTICS_CODE` if you want.
+
+### Set mapbox token
+
+```sh
+$ vim .envrc
+```
+
+Please fill `MAPBOX_TOKEN`. `MAPBOX_TOKEN` is required.
 Please check here. https://www.mapbox.com/
 
 ### Install packages and run app
