@@ -39,7 +39,7 @@ export function aboutHandler(req: express.Request, res: express.Response): void 
     twitterAccount: config.twitterAccount,
     lang: req.lang,
     path: req.originalUrl,
-    title: `${dic.t('Pages.About.ABOUT')} | ${dic.t('name')}`,
+    title: `${dic.t('Pages.About.ABOUT')} | ${dic.t('name')} | ${dic.t('siteDescription')}`,
     description: dic.t('Pages.About.description'),
     keywords: ['coffee', 'コーヒー', '珈琲', 'handbook', '手帖'],
     image: 'TODO',

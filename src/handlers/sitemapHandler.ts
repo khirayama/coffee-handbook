@@ -41,7 +41,7 @@ export function sitemapHandler(req: express.Request, res: express.Response): voi
     twitterAccount: config.twitterAccount,
     lang: req.lang,
     path: req.originalUrl,
-    title: `${dic.t('Pages.Sitemap.SITEMAP')} | ${dic.t('name')}`,
+    title: `${dic.t('Pages.Sitemap.SITEMAP')} | ${dic.t('name')} | ${dic.t('siteDescription')}`,
     description: dic.t('Pages.Sitemap.description'),
     keywords: ['coffee', 'コーヒー', '珈琲', 'handbook', '手帖'],
     image: 'TODO',
