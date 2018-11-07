@@ -1,3 +1,8 @@
+## Roadmap
+
+- [ ] Search stores
+- [ ] Alive Monitoring for stores
+
 ## Memo
 
 - Experience
