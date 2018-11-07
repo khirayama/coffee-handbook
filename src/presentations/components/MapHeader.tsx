@@ -17,11 +17,12 @@ export class MapHeader extends React.Component<IProps, {}> {
   public render(): JSX.Element {
     const props: IProps = this.props;
     const storeKey: string | null = props.ui.selectedStoreKey;
+    const dic: Dictionary = new Dictionary(props.lang, dictionary);
 
     return (
       <header className="MapHeader">
         <a className="MapHeader--Link" href="/about">
-          <img className="MapHeader--Link--Image" src={`/images/icon_${props.lang}_square.png`} alt="COFFEE HANDBOOK" />
+          <img className="MapHeader--Link--Image" src={`/images/icon_${props.lang}_square.png`} alt={dic.t('name')} />
         </a>
         <ul className="MapHeader--LangList">
           <li

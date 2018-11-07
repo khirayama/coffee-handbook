@@ -1,6 +1,8 @@
 import { config } from 'config';
+import { dictionary } from 'dictionary';
 import { stores } from 'data/stores';
 import { IRawStore } from 'presentations/pages/Maps/interfaces';
+import { Dictionary } from 'utils/Dictionary';
 
 interface ISitemapOptions {
   lastmod?: string;
@@ -27,12 +29,11 @@ interface IPage {
 }
 
 function createPages(): IPage[] {
+  const dic: Dictionary = new Dictionary(null, dictionary);
+
   return [
     {
-      name: {
-        en: 'COFFEE HANDBOOK',
-        ja: '珈琲手帖',
-      },
+      name: dic.v('name'),
       url: config.url,
       freq: 'daily',
       priority: 1,
@@ -54,10 +55,7 @@ function createPages(): IPage[] {
       ),
     },
     {
-      name: {
-        en: 'ABOUT COFFEE HANDBOOK',
-        ja: '珈琲手帖について',
-      },
+      name: dic.v('Pages.About.ABOUT'),
       url: {
         en: `${config.url.en}/about`,
         ja: `${config.url.ja}/about`,
@@ -67,10 +65,7 @@ function createPages(): IPage[] {
       pages: [],
     },
     {
-      name: {
-        en: 'PRIVACY',
-        ja: 'プライバシーポリシー',
-      },
+      name: dic.v('Pages.Privacy.PRIVACY'),
       url: {
         en: `${config.url.en}/privacy`,
         ja: `${config.url.ja}/privacy`,
@@ -80,10 +75,7 @@ function createPages(): IPage[] {
       pages: [],
     },
     {
-      name: {
-        en: 'SITEMAP',
-        ja: 'サイトマップ',
-      },
+      name: dic.v('Pages.Sitemap.SITEMAP'),
       url: {
         en: `${config.url.en}/sitemap`,
         ja: `${config.url.ja}/sitemap`,

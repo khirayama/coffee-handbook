@@ -5,6 +5,11 @@ interface IText {
   en: string;
 }
 
+const name: IText = {
+  ja: '珈琲手帖',
+  en: 'COFFEE HANDBOOK',
+};
+
 export const dictionary: {
   name: IText;
   author: IText;
@@ -72,13 +77,10 @@ export const dictionary: {
   };
 } = {
   // Common
-  name: {
-    ja: '珈琲手帖 - COFFEE HANDBOOK -',
-    en: 'COFFEE HANDBOOK - 珈琲手帖 -',
-  },
+  name,
   author: {
-    ja: 'COFFEE HANDBOOK',
-    en: 'COFFEE HANDBOOK',
+    ja: name.en,
+    en: name.en,
   },
   siteDescription: {
     ja: '世界珈琲地図',
@@ -109,12 +111,12 @@ export const dictionary: {
   Pages: {
     About: {
       ABOUT: {
-        ja: '珈琲手帖について',
-        en: 'ABOUT COFFEE HANDBOOK',
+        ja: `${name.ja}について`,
+        en: `ABOUT ${name.en}`,
       },
       description: {
-        ja: '珈琲手帖について',
-        en: 'ABOUT COFFEE HANDBOOK',
+        ja: `${name.ja}について`,
+        en: `ABOUT ${name.en}`,
       },
       text: {
         ja: `
@@ -289,8 +291,8 @@ export const dictionary: {
         en: 'SITEMAP',
       },
       description: {
-        ja: '珈琲手帖のサイトマップ',
-        en: 'SITEMAP OF COFFEE HANDBOOK',
+        ja: `${name.ja}のサイトマップ`,
+        en: `SITEMAP OF ${name.en}`,
       },
     },
   },
