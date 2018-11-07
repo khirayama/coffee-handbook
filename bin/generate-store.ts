@@ -55,16 +55,23 @@ async function getPosition(jaAddress: string): Promise<{ lat: number; lng: numbe
   const page: any = await browser.newPage();
   await page.goto(`https://www.geocoding.jp/?q=${jaAddress}`);
 
-  return page.evaluate(() => {
-    const latEl: HTMLElement = window.document.querySelector('body > span:nth-child(3) > b:nth-child(1)');
-    const lngEl: HTMLElement = window.document.querySelector('body > span:nth-child(3) > b:nth-child(2)');
-    if (latEl && lngEl) {
-      return {
-        lat: Number(latEl.innerText),
-        lng: Number(lngEl.innerText),
-      };
-    }
-  });
+  try {
+    return page.evaluate(() => {
+      const latEl: HTMLElement = window.document.querySelector('body > span:nth-child(3) > b:nth-child(1)');
+      const lngEl: HTMLElement = window.document.querySelector('body > span:nth-child(3) > b:nth-child(2)');
+      if (latEl && lngEl) {
+        return {
+          lat: Number(latEl.innerText),
+          lng: Number(lngEl.innerText),
+        };
+      }
+    });
+  } catch (err) {
+    return {
+      lat: 0,
+      lng: 0,
+    };
+  }
 }
 
 async function transformEnglishAddress(jaAddress: string): Promise<string> {
