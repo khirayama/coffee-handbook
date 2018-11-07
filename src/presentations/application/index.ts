@@ -15,10 +15,7 @@ declare global {
 
 // Tracker
 const route: string = window.options.route;
-const loc: string =
-  window.location.href.indexOf('lang=') === -1
-    ? `${window.location.href}?lang=${window.options.lang}`
-    : window.location.href;
+const loc: string = window.location.href;
 
 tracker.setPage(route);
 tracker.setLocation(loc);

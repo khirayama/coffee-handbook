@@ -9,6 +9,7 @@ import * as logger from 'morgan';
 import * as React from 'react';
 import { renderToString } from 'react-dom/server';
 
+import { config } from 'config';
 import { experiments } from 'experiments';
 import { aboutHandler } from 'handlers/aboutHandler';
 import { manifestHandler } from 'handlers/manifestHandler';
@@ -17,20 +18,20 @@ import { privacyHandler } from 'handlers/privacyHandler';
 import { robotsHandler } from 'handlers/robotsHandler';
 import { sitemapHandler, sitemapXmlHandler } from 'handlers/sitemapHandler';
 import { setLang } from 'middlewares/setLang';
-import { setLayoutProps } from 'middlewares/setLayoutProps';
 import { HypothesisTesting } from 'utils/HypothesisTesting';
 
 const hypothesisTesting: HypothesisTesting = new HypothesisTesting(experiments);
 // const topPageSegment: string = req.hypothesisTesting.segment('top-page1', req.segId);
 
 function preHandler(req: express.Request, res: express.Response, next: express.NextFunction): void {
-  // For GA
-  const key: string = req.query.key;
-  if (key) {
-    req.layout.route = `${req.route.path}?key=${key}`;
-  } else {
-    req.layout.route = req.route.path;
-  }
+  const linkHeader: string = Object.keys(config.url)
+    .map(
+      (key: string): string => {
+        return `<${config.url[key]}>; rel="alternate"; hreflang="${key}"`;
+      },
+    )
+    .join(',');
+  res.append('Link', linkHeader);
 
   // For AB Testing
   const segId: string = req.cookies._seg_id || hypothesisTesting.getSegId();
@@ -56,11 +57,12 @@ app
   .use(express.static(path.join(__dirname, 'assets')))
   .use(express.static(path.join(__dirname, 'public')))
   .use(cookieParser())
-  .use(setLang)
-  .use(setLayoutProps);
+  .use(setLang);
 
 app
   .get('/', preHandler, mapsHandler)
+  .get('/stores', preHandler, mapsHandler)
+  .get('/stores/:key', preHandler, mapsHandler)
   .get('/about', preHandler, aboutHandler)
   .get('/privacy', preHandler, privacyHandler)
   .get('/sitemap.xml', preHandler, sitemapXmlHandler)

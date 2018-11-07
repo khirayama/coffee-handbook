@@ -12,6 +12,10 @@ interface IPrivacyPage {
   description: string;
   author: string;
   baseUrl: string;
+  url: {
+    en: string;
+    ja: string;
+  };
   path: string;
   name: string;
   keywords: string[];
@@ -22,12 +26,17 @@ interface IPrivacyPage {
   pageType: string;
   header: {
     lang: string;
+    path: string;
+    url: {
+      en: string;
+      ja: string;
+    };
   };
-  url: string;
   twitterLink: string;
 }
 
 export function privacyHandler(req: express.Request, res: express.Response): void {
+  const lang: string = req.lang;
   const dic: Dictionary = req.dic;
 
   const props: IPrivacyPage = {
@@ -35,7 +44,8 @@ export function privacyHandler(req: express.Request, res: express.Response): voi
     gaCode: secret.gaCode,
     author: req.dic.t('author'),
     name: req.dic.t('name'),
-    baseUrl: config.url,
+    baseUrl: config.url[lang],
+    url: config.url,
     facebookPageUrl: config.facebookPageUrl,
     twitterCardType: config.twitterCardType,
     twitterAccount: config.twitterAccount,
@@ -49,8 +59,9 @@ export function privacyHandler(req: express.Request, res: express.Response): voi
 
     header: {
       lang: req.lang,
+      path: req.path,
+      url: config.url,
     },
-    url: config.url,
     twitterLink: `https://twitter.com/${config.twitterAccount}`,
   };
 

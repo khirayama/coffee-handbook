@@ -13,6 +13,10 @@ interface ISitemapPage {
   description: string;
   author: string;
   baseUrl: string;
+  url: {
+    en: string;
+    ja: string;
+  };
   path: string;
   name: string;
   keywords: string[];
@@ -23,11 +27,17 @@ interface ISitemapPage {
   pageType: string;
   header: {
     lang: string;
+    path: string;
+    url: {
+      en: string;
+      ja: string;
+    };
   };
   content: string;
 }
 
 export function sitemapHandler(req: express.Request, res: express.Response): void {
+  const lang: string = req.lang;
   const dic: Dictionary = req.dic;
 
   const props: ISitemapPage = {
@@ -35,7 +45,8 @@ export function sitemapHandler(req: express.Request, res: express.Response): voi
     gaCode: secret.gaCode,
     author: req.dic.t('author'),
     name: req.dic.t('name'),
-    baseUrl: config.url,
+    baseUrl: config.url[lang],
+    url: config.url,
     facebookPageUrl: config.facebookPageUrl,
     twitterCardType: config.twitterCardType,
     twitterAccount: config.twitterAccount,
@@ -49,6 +60,8 @@ export function sitemapHandler(req: express.Request, res: express.Response): voi
 
     header: {
       lang: req.lang,
+      path: req.path,
+      url: config.url,
     },
     content: buildHtmlSitemap(req.lang),
   };
@@ -57,5 +70,5 @@ export function sitemapHandler(req: express.Request, res: express.Response): voi
 }
 
 export function sitemapXmlHandler(req: express.Request, res: express.Response): void {
-  res.set('Content-Type', 'text/xml').send(buildXmlSitemap());
+  res.set('Content-Type', 'text/xml').send(buildXmlSitemap(req.lang));
 }

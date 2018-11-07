@@ -1,10 +1,8 @@
 export const actionTypes: {
-  CHANGE_LANG: Symbol;
   UPDATE_VIEW: Symbol;
   SELECT_STORE: Symbol;
   UPDATE_CURRENT_POSITION: Symbol;
 } = {
-  CHANGE_LANG: Symbol('CHANGE_LANG'),
   UPDATE_VIEW: Symbol('UPDATE_VIEW'),
   SELECT_STORE: Symbol('SELECT_STORE'),
   UPDATE_CURRENT_POSITION: Symbol('UPDATE_CURRENT_POSITION'),

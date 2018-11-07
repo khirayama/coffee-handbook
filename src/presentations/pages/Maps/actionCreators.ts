@@ -1,15 +1,6 @@
 import { actionTypes } from 'presentations/pages/Maps/actionTypes';
 import { IDispatch, IPosition } from 'presentations/pages/Maps/interfaces';
 
-export function changeLang(dispatch: IDispatch, lang: string): void {
-  dispatch({
-    actionType: actionTypes.CHANGE_LANG,
-    payload: {
-      lang: lang || 'en',
-    },
-  });
-}
-
 export function updateView(dispatch: IDispatch, pos: IPosition, zoom: number): void {
   dispatch({
     actionType: actionTypes.UPDATE_VIEW,

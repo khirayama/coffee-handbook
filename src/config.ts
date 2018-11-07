@@ -1,5 +1,8 @@
 export const config: {
-  url: string;
+  url: {
+    en: string;
+    ja: string;
+  };
   languages: string[];
   githubUrl: string;
   facebookPageUrl: string;
@@ -7,7 +10,10 @@ export const config: {
   twitterAccount: string;
   instagramAccount: string;
 } = {
-  url: process.env.NODE_ENV === 'production' ? 'https://coffee-handbook.com' : '//localhost:3030',
+  url: {
+    en: process.env.NODE_ENV === 'production' ? 'https://coffee-handbook.com' : '//example.com:3030',
+    ja: process.env.NODE_ENV === 'production' ? 'https://ja.coffee-handbook.com' : '//ja.example.com:3030',
+  },
   languages: ['en', 'ja'],
   githubUrl: 'https://github.com/khirayama/coffee-handbook',
   facebookPageUrl: 'https://www.facebook.com/coffeehandbook/',

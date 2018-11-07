@@ -15,5 +15,5 @@ automatic_scaling:
   max_pending_latency: automatic
 env_variables:
   NODE_PATH: $NODE_PATH:dist
-  includes:
-    - secret.yaml
+includes:
+  - secret.yaml

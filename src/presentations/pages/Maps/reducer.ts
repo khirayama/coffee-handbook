@@ -42,7 +42,6 @@ export function reducer(state: IState, action: IAction): IState {
   const payload: {
     pos?: IPosition;
     zoom?: number;
-    lang?: string;
     storeKey?: string;
     currentPos?: IPosition;
   } = action.payload;
@@ -52,10 +51,6 @@ export function reducer(state: IState, action: IAction): IState {
       saveView(payload.pos, payload.zoom);
       newState.ui.pos = payload.pos;
       newState.ui.zoom = payload.zoom;
-      break;
-    }
-    case actionTypes.CHANGE_LANG: {
-      newState.lang = payload.lang;
       break;
     }
     case actionTypes.SELECT_STORE: {

@@ -10,8 +10,6 @@ import { Store as AppStore } from 'utils/Store';
 
 // TODO: store検索
 // TODO: モーダル閉じる時のanimatin
-// TODO: Provider componentを作って、contextを共有。Containerはcontextでdispatchを受け取る
-// TODO: render rootでProviderを必須にする感じか。Providerはstoreを必ず受け取る
 declare global {
   // tslint:disable-next-line:interface-name
   interface Window {

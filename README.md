@@ -7,8 +7,10 @@
 
 ## Development
 
-- Create .envrc
+- [OPTIONAL] Set google analytics code
+- Set mapbox token
 - Install packages and run app
+- [OPTIONAL] Set virtual host
 
 ### [OPTIONAL] Set google analytics code
 
@@ -42,6 +44,17 @@ I recommend to use `direnv`. Please check [here about direnv](https://direnv.net
 ```sh
 $ npm install
 $ npm run dev
+```
+
+### [OPTIONAL] Set virtual host
+
+```sh
+$ sudo vim /etc/hosts
+// Add '127.0.0.1 example.com'
+// Add '127.0.0.1 ja.example.com'
+$ sudo killall -HUP mDNSResponder // It depends on OS, please change this line for your OS.
+$ sudo apachectl restart
+// You can get access to example.com and ja.example.com.
 ```
 
 ## Add a store

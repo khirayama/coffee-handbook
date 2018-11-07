@@ -2,9 +2,9 @@ mixin Header(props)
   header.Header
     ul.Header--LangList
       li.Header--LangList--Item(class= props.lang === 'en' ? 'Header--LangList--Item__Active' : '')
-        a(href="?lang=en") ENGLISH
+        a(href=`${props.url.en}${props.path}`) ENGLISH
       li.Header--LangList--Item(class= props.lang === 'ja' ? 'Header--LangList--Item__Active' : '')
-        a(href="?lang=ja") 日本語
+        a(href=`${props.url.ja}${props.path}`) 日本語
     a.Header--Link(href="/")
       if props.lang === 'en'
         img.Header--Link--Image(srcset="/images/icon_en_square.png 1x, /images/icon_en_square@2x.png 2x, /images/icon_en_square@3x.png 3x")

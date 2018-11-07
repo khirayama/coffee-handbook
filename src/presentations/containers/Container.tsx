@@ -24,6 +24,7 @@ export class Provider extends React.Component<IProps, {}> {
   }
 }
 
+// tslint:disable-next-line:no-any
 export function connect(component: any): React.ComponentClass<{}, {}> {
   class Container extends React.Component<{}, {}> {
     public static contextType: React.Context<IContext> = context;

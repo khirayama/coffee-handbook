@@ -4,16 +4,17 @@
 
 ## TODO
 
-- [ ] coffee-handbook.com, ja.coffee-handbook.comに分ける[1]
-- [ ] rel="alternate" の追加[2]
-- [ ] http headerに情報を追加[2]
-- [ ] sitemapに他言語情報を追加[2]
-- [ ] それぞれの言語でsearch consoleへ
-- [ ] sitemapに店舗一覧を乗せる
-- [ ] title, description見直し
-- [ ] storeのurlを/stores/:keyに変更
+- [ ] title, description, keyword見直し
 - [ ] 内部リンクの見直し
 - [ ] 外部リンクの見直し
+- [x] それぞれの言語でsearch consoleへ
+- [x] sitemapに他言語情報を追加[2]
+- [x] rel="alternate" の追加[2]
+- [x] http headerに情報を追加[2]
+- [x] coffee-handbook.com, ja.coffee-handbook.comに分ける[1]
+- [x] coffee-handbook.com, ja.coffee-handbook.comの本番対応
+- [x] storeのurlを/stores/:keyに変更
+- [x] sitemapに店舗一覧を乗せる
 - [-] パンくず設置
 
 [ ] やる [-] やらない [x] やった

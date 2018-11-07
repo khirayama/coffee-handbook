@@ -113,7 +113,7 @@ export class StoreCard extends React.Component<IProps, { isShownHours: boolean }
                 return (
                   <li key={key} className="StoreCard--Content--Media--Item StoreCard--Content--Media--Item__Active">
                     <a href={val} target="_blank">
-                      <img src={`images/icon_${key}.svg`} alt={key} />
+                      <img src={`/images/icon_${key}.svg`} alt={key} />
                     </a>
                   </li>
                 );
@@ -122,7 +122,7 @@ export class StoreCard extends React.Component<IProps, { isShownHours: boolean }
               return (
                 <li key={key} className="StoreCard--Content--Media--Item">
                   <span>
-                    <img src={`images/icon_${key}.svg`} alt={key} />
+                    <img src={`/images/icon_${key}.svg`} alt={key} />
                   </span>
                 </li>
               );

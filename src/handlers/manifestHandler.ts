@@ -1,5 +1,7 @@
 import * as express from 'express';
 
+import { config } from 'config';
+
 interface IManifest {
   name: string;
   short_name: string;
@@ -19,6 +21,7 @@ interface IManifest {
 
 export function manifestHandler(req: express.Request, res: express.Response): void {
   const lang: string = req.lang;
+
   const manifest: IManifest = {
     name: req.dic.t('name'),
     short_name: req.dic.t('name'),
@@ -30,7 +33,7 @@ export function manifestHandler(req: express.Request, res: express.Response): vo
       },
     ],
     scope: '/',
-    start_url: `/?lang=${lang}`,
+    start_url: config.url[lang],
     display: 'standalone',
     orientation: 'portrait',
     theme_color: '#fbfaf5',

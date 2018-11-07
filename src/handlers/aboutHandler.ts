@@ -12,6 +12,10 @@ interface IAboutPage {
   description: string;
   author: string;
   baseUrl: string;
+  url: {
+    en: string;
+    ja: string;
+  };
   path: string;
   name: string;
   keywords: string[];
@@ -22,10 +26,16 @@ interface IAboutPage {
   pageType: string;
   header: {
     lang: string;
+    path: string;
+    url: {
+      en: string;
+      ja: string;
+    };
   };
 }
 
 export function aboutHandler(req: express.Request, res: express.Response): void {
+  const lang: string = req.lang;
   const dic: Dictionary = req.dic;
 
   const props: IAboutPage = {
@@ -33,7 +43,8 @@ export function aboutHandler(req: express.Request, res: express.Response): void 
     gaCode: secret.gaCode,
     author: req.dic.t('author'),
     name: req.dic.t('name'),
-    baseUrl: config.url,
+    baseUrl: config.url[lang],
+    url: config.url,
     facebookPageUrl: config.facebookPageUrl,
     twitterCardType: config.twitterCardType,
     twitterAccount: config.twitterAccount,
@@ -47,6 +58,8 @@ export function aboutHandler(req: express.Request, res: express.Response): void 
 
     header: {
       lang: req.lang,
+      path: req.path,
+      url: config.url,
     },
   };
 

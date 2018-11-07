@@ -5,8 +5,12 @@ html(lang=props.lang)
     meta(charset="utf-8")
     meta(http-equiv="X-UA-Compatible" content="IE=edge")
     meta(name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=5, minimum-scale=1, user-scalable=yes, viewport-fit=cover")
-    link(rel="manifest" href=`/manifest.json?lang=${props.lang}`)
+    link(rel="manifest" href='/manifest.json')
     link(rel="stylesheet" href="/application/index.css")
+
+    link(rel="alternate" hreflang="en" href=props.url.en)
+    link(rel="alternate" hreflang="ja" href=props.url.ja)
+    link(rel="alternate" hreflang="x-default" href=props.url.en)
 
     title= props.title
     meta(name="description" content=props.description)
@@ -24,7 +28,7 @@ html(lang=props.lang)
     meta(property="og:description" content=props.description)
     meta(property="og:image" content=props.images.rectangle[props.lang])
     meta(property="og:type" content=props.pageType)
-    meta(property="og:url" content=`${props.baseUrl}${props.path}?lang=${props.lang}`)
+    meta(property="og:url" content=`${props.baseUrl}${props.path}`)
     //- Facebook
     meta(property="fb:app_id" content=props.facebookAppId)
     meta(property="article:publisher" content=props.facebookPageUrl)
@@ -34,7 +38,7 @@ html(lang=props.lang)
     meta(property="twitter:image" content=props.images.square[props.lang])
     meta(property="twitter:card" content=props.twitterCardType)
     meta(property="twitter:site" content=props.twitterAccount)
-    meta(property="twitter:url" content=`${props.baseUrl}${props.path}?lang={props.lang}`)
+    meta(property="twitter:url" content=`${props.baseUrl}${props.path}`)
 
     script.
       window.options = {

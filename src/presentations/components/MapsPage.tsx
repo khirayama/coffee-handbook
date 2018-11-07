@@ -1,5 +1,4 @@
 import * as classNames from 'classnames';
-import * as queryString from 'query-string';
 import * as React from 'react';
 
 import { dictionary } from 'dictionary';
@@ -7,7 +6,7 @@ import { MapHeaderContainer } from 'presentations/components/MapHeader';
 import { StoreCard } from 'presentations/components/StoreCard';
 import { StoreMapView } from 'presentations/components/StoreMapView';
 import { connect } from 'presentations/containers/Container';
-import { changeLang, selectStore, updateCurrentPosition, updateView } from 'presentations/pages/Maps/actionCreators';
+import { selectStore, updateCurrentPosition, updateView } from 'presentations/pages/Maps/actionCreators';
 import { IAction, IDispatch, IPosition, IRawStore, IState, IStore } from 'presentations/pages/Maps/interfaces';
 import { tracker } from 'presentations/utils/tracker';
 import { Dictionary } from 'utils/Dictionary';
@@ -46,13 +45,9 @@ export class MapsPage extends React.Component<IProps, {}> {
     }
 
     window.addEventListener('popstate', () => {
-      const query: { key?: string; lang?: string } = queryString.parse(window.location.search);
-      const storeKey: string | null = query.key || null;
+      const storeKey: string = window.location.pathname.replace('/stores/', '');
 
       selectStore(this.props.dispatch, storeKey);
-      if (query.lang) {
-        changeLang(this.props.dispatch, query.lang || 'en');
-      }
       if (storeKey) {
         const storeResource: Resource<IRawStore, IStore> = new Resource(this.props.stores, this.props.lang);
         const currentStore: IStore = storeResource
@@ -100,12 +95,10 @@ export class MapsPage extends React.Component<IProps, {}> {
   }
 
   private onClickMap(event: MouseEvent, map: mapboxgl.Map): void {
-    const query: { [key: string]: string | string[] } = queryString.parse(window.location.search);
-    if (query.key) {
-      delete query.key;
+    const storeKey: string = window.location.pathname.replace('/stores/', '');
+    if (storeKey) {
       const dic: Dictionary = new Dictionary(this.props.lang, dictionary);
-      const search: string = queryString.stringify(query);
-      const loc: string = `${window.location.pathname}${search ? `?${search}` : ''}`;
+      const loc: string = '/';
       const title: string = `${dic.t('name')} | ${dic.t('siteDescription')}`;
       window.document.title = title;
       window.history.pushState(null, title, loc);
@@ -118,12 +111,10 @@ export class MapsPage extends React.Component<IProps, {}> {
   }
 
   private onClickStore(event: React.MouseEvent<HTMLElement>, map: mapboxgl.Map, store: IStore): void {
-    const query: { [key: string]: string | string[] } = queryString.parse(window.location.search);
-    if (query.key !== store.key) {
-      query.key = store.key;
+    const storeKey: string = window.location.pathname.replace('/stores/', '');
+    if (storeKey !== store.key) {
       const dic: Dictionary = new Dictionary(this.props.lang, dictionary);
-      const search: string = queryString.stringify(query);
-      const loc: string = `${window.location.pathname}${search ? `?${search}` : ''}`;
+      const loc: string = `/stores/${store.key}`;
       const title: string = `${store.name} | ${store.address} | ${dic.t('name')} | ${dic.t('siteDescription')}`;
       window.document.title = title;
       window.history.pushState(null, title, loc);

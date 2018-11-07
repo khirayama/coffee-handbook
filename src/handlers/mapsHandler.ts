@@ -35,6 +35,10 @@ interface IProps {
   };
   pageType: string;
   baseUrl: string;
+  url: {
+    en: string;
+    ja: string;
+  };
   path: string;
   facebookPageUrl: string;
   twitterCardType: string;
@@ -58,7 +62,7 @@ const compiledFunction: (options: { props: IProps }) => void = pug.compileFile(
 export function mapsHandler(req: express.Request, res: express.Response): void {
   const lang: string = req.lang;
   const dic: Dictionary = req.dic;
-  const storeKey: string = req.query.key;
+  const storeKey: string = req.params.key;
 
   const storeResource: Resource<IRawStore, IStore> = new Resource(stores, lang);
   const store: IStore = storeResource
@@ -114,14 +118,15 @@ export function mapsHandler(req: express.Request, res: express.Response): void {
     // FYI: http://fbdevwiki.com/wiki/Open_Graph_protocol#Types
     // FYI: https://developers.facebook.com/docs/reference/opengraph/
     pageType: 'cafe',
-    baseUrl: config.url,
+    baseUrl: config.url[lang],
+    url: config.url,
     path: req.originalUrl,
     facebookPageUrl: config.facebookPageUrl,
     twitterCardType: config.twitterCardType,
     twitterAccount: config.twitterAccount,
     env: process.env.NODE_ENV || 'development',
     gaCode: secret.gaCode,
-    route: storeKey ? `${req.route.path}?key=${storeKey}` : req.route.path,
+    route: req.path,
     entrypoint: '/pages/Maps/bundle.js',
     stylesheet: '/pages/Maps/index.css',
     state: appStore.getState(),
