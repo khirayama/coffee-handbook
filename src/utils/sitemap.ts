@@ -1,6 +1,6 @@
 import { config } from 'config';
-import { dictionary } from 'dictionary';
 import { stores } from 'data/stores';
+import { dictionary } from 'dictionary';
 import { IRawStore } from 'presentations/pages/Maps/interfaces';
 import { Dictionary } from 'utils/Dictionary';
 
