@@ -106,7 +106,7 @@ export class MapsPage extends React.Component<IProps, {}> {
       const dic: Dictionary = new Dictionary(this.props.lang, dictionary);
       const search: string = queryString.stringify(query);
       const loc: string = `${window.location.pathname}${search ? `?${search}` : ''}`;
-      const title: string = `${dic.t('Pages.Maps.MAP')} | ${dic.t('name')}`;
+      const title: string = `${dic.t('name')} | ${dic.t('siteDescription')}`;
       window.document.title = title;
       window.history.pushState(null, title, loc);
     }
@@ -124,7 +124,7 @@ export class MapsPage extends React.Component<IProps, {}> {
       const dic: Dictionary = new Dictionary(this.props.lang, dictionary);
       const search: string = queryString.stringify(query);
       const loc: string = `${window.location.pathname}${search ? `?${search}` : ''}`;
-      const title: string = `${store.name} | ${dic.t('Pages.Maps.MAP')} | ${dic.t('name')}`;
+      const title: string = `${store.name} | ${store.address} | ${dic.t('name')} | ${dic.t('siteDescription')}`;
       window.document.title = title;
       window.history.pushState(null, title, loc);
 

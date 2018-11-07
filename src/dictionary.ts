@@ -82,7 +82,7 @@ export const dictionary: {
   },
   siteDescription: {
     ja: '世界珈琲地図',
-    en: 'COFFEE MAP OF WORLD',
+    en: 'COFFEE AND CAFE MAP OF WORLD',
   },
   // Components
   Components: {
