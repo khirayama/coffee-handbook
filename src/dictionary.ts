@@ -73,8 +73,8 @@ export const dictionary: {
 } = {
   // Common
   name: {
-    ja: '珈琲手帖',
-    en: 'COFFEE HANDBOOK',
+    ja: '珈琲手帖 - COFFEE HANDBOOK -',
+    en: 'COFFEE HANDBOOK - 珈琲手帖 -',
   },
   author: {
     ja: 'COFFEE HANDBOOK',
