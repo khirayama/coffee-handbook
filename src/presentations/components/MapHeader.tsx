@@ -1,6 +1,5 @@
 // tslint:disable:react-a11y-anchors
 import * as classNames from 'classnames';
-import * as queryString from 'query-string';
 import * as React from 'react';
 
 import { config } from 'config';
