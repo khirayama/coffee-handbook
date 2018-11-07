@@ -53,6 +53,8 @@ function transformFileName(key: string): string {
 async function getPosition(jaAddress: string): Promise<{ lat: number; lng: number }> {
   const browser: any = await puppeteer.launch();
   const page: any = await browser.newPage();
+  // FYI: It might help you if you want to translate Chinese.
+  // http://fanyi.youdao.com/
   await page.goto(`https://www.geocoding.jp/?q=${jaAddress}`);
 
   try {
