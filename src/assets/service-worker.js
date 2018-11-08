@@ -2,19 +2,19 @@ importScripts('https://storage.googleapis.com/workbox-cdn/releases/3.2.0/workbox
 
 if (workbox) {
   workbox.routing.registerRoute(
-    /.*/,
+    /\/.*\.(?:html)/,
     workbox.strategies.networkFirst({
       cacheName: 'all-cache',
     }),
   );
   workbox.routing.registerRoute(
-    /.*\.(?:css|js|woff2)/,
+    /\/.*\.(?:css|js|woff2)/,
     workbox.strategies.staleWhileRevalidate({
       cacheName: 'assets-cache',
     }),
   );
   workbox.routing.registerRoute(
-    /images\/*\.(?:webp|png|jpg|jpeg|svg|gif)/,
+    /\/images\/*\.(?:webp|png|jpg|jpeg|svg|gif)/,
     workbox.strategies.cacheFirst({
       cacheName: 'image-cache',
       plugins: [
