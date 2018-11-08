@@ -1,34 +1,9 @@
 // tslint:disable:no-any
-import * as Fuse from 'fuse.js';
-
 export type TResource<IRawResource, IResource> = (lang: string) => Resource<IRawResource, IResource>;
 
 /* Usecase
 find, findOne, where, page, order
 */
-
-function buildSearchKeys(obj: any): string[] {
-  const keys: string[] = Object.keys(obj);
-  const res: string[] = [];
-
-  for (const key of keys) {
-    if (Array.isArray(obj[key])) {
-      const childRes: string[] = buildSearchKeys(obj[key][0]);
-      for (const childKey of childRes) {
-        res.push(`${key}.${childKey}`);
-      }
-    } else if (typeof obj[key] === 'object') {
-      const childRes: string[] = buildSearchKeys(obj[key]);
-      for (const childKey of childRes) {
-        res.push(`${key}.${childKey}`);
-      }
-    } else {
-      res.push(key);
-    }
-  }
-
-  return res;
-}
 
 export class Resource<IRawResource, IResource> {
   private resources: IRawResource[];
@@ -65,26 +40,6 @@ export class Resource<IRawResource, IResource> {
     }
 
     return this;
-  }
-
-  public search(keyword: string, options?: { root?: string }): IResource[] {
-    const fuseOptions: any = {
-      shouldSort: true,
-      includeScore: true,
-      tokenize: true,
-      threshold: 0.5,
-      location: 0,
-      distance: 100,
-      keys:
-        options && options.root
-          ? buildSearchKeys(this.resources[0][options.root]).map((searchKey: string) => `${options.root}.${searchKey}`)
-          : buildSearchKeys(this.resources[0]),
-    };
-
-    const fuse: Fuse<any> = new Fuse(this.resources, fuseOptions);
-    const result: IRawResource[] = fuse.search(keyword);
-
-    return this.build(result.map((res: any) => res.item), this.lang);
   }
 
   private build(value: IRawResource[], lang: string): IResource[] {
