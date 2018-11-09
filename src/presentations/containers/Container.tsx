@@ -29,6 +29,10 @@ export function connect(component: any): React.ComponentClass<{}, {}> {
   class Container extends React.Component<{}, {}> {
     public static contextType: React.Context<IContext> = context;
 
+    public context: {
+      store: Store<IState, IAction>;
+    };
+
     protected handleStateUpdate: () => void;
 
     constructor(props: {}) {

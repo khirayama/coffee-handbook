@@ -65,11 +65,13 @@ export class HypothesisTesting {
   private valid(experiments: IExperiment[]): void {
     experiments.forEach(
       (experiment: IExperiment): void => {
-        const total: number = experiment.cases.map((experimentCase: ICase) => experimentCase.weight).reduce(
-          (weight: number, totalWeight: number): number => {
-            return weight + totalWeight;
-          },
-        );
+        const total: number = experiment.cases
+          .map((experimentCase: ICase) => experimentCase.weight)
+          .reduce(
+            (weight: number, totalWeight: number): number => {
+              return weight + totalWeight;
+            },
+          );
         if (total !== 1) {
           throw new Error('Please adjust weights to be 1.');
         }
