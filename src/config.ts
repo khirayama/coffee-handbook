@@ -1,3 +1,4 @@
+// tslint:disable:no-http-string
 export const config: {
   url: {
     en: string;
@@ -11,8 +12,8 @@ export const config: {
   instagramAccount: string;
 } = {
   url: {
-    en: process.env.NODE_ENV === 'production' ? 'https://coffee-handbook.com' : '//example.com:3030',
-    ja: process.env.NODE_ENV === 'production' ? 'https://ja.coffee-handbook.com' : '//ja.example.com:3030',
+    en: process.env.NODE_ENV === 'production' ? 'https://coffee-handbook.com' : 'http://example.com:3030',
+    ja: process.env.NODE_ENV === 'production' ? 'https://ja.coffee-handbook.com' : 'https://ja.example.com:3030',
   },
   languages: ['en', 'ja'],
   githubUrl: 'https://github.com/khirayama/coffee-handbook',

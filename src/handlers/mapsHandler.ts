@@ -1,3 +1,4 @@
+// tslint:disable:no-http-string
 import * as path from 'path';
 
 import * as express from 'express';
@@ -48,6 +49,7 @@ interface IProps {
   route: string;
   entrypoint: string;
   stylesheet: string;
+  jsonLD: {};
   state: IState;
   content: string;
 }
@@ -59,6 +61,7 @@ const compiledFunction: (options: { props: IProps }) => void = pug.compileFile(
   },
 );
 
+// tslint:disable-next-line:max-func-body-length
 export function mapsHandler(req: express.Request, res: express.Response): void {
   const lang: string = req.lang;
   const dic: Dictionary = req.dic;
@@ -96,6 +99,74 @@ export function mapsHandler(req: express.Request, res: express.Response): void {
     keywords.push(store.address);
   }
 
+  // FYI: https://schema.org/CafeOrCoffeeShop
+  // FYI: https://developers.google.com/search/docs/data-types/breadcrumb
+  // TODO: https://developers.google.com/search/docs/data-types/sitelinks-searchbox
+  const jsonLD: {}[] = [];
+  // tslint:disable-next-line:no-any
+  const breadcrumbList: any = {
+    '@context': 'http://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: dic.t('name'),
+        item: config.url[lang],
+      },
+    ],
+  };
+  jsonLD.push(breadcrumbList);
+  if (store) {
+    breadcrumbList.itemListElement.push({
+      '@type': 'ListItem',
+      position: 2,
+      name: store.name,
+      item: `${config.url[lang]}${req.path}`,
+    });
+
+    // FYI: https://developers.google.com/search/docs/data-types/social-profile
+    // tslint:disable-next-line:no-any
+    const socialProfile: any = {
+      '@context': 'http://schema.org',
+      '@type': 'Organization',
+      name: store.name,
+      url: store.media.web || '',
+      sameAs: Object.keys(store.media)
+        .map((key: string) => {
+          if (key === 'web' || key === 'ec' || key === 'instagramTag' || key === 'googleMaps') {
+            return null;
+          }
+
+          return store.media[key];
+        })
+        .filter((v: string | undefined) => !!v),
+    };
+    jsonLD.push(socialProfile);
+
+    // FYI: https://developers.google.com/search/docs/data-types/local-business
+    // tslint:disable-next-line:no-any
+    const cafeOrCoffeeShop: any = {
+      '@context': 'http://schema.org',
+      '@type': 'CafeOrCoffeeShop',
+      '@id': `${config.url[lang]}${req.path}`,
+      address: store.address,
+      name: store.name,
+      geo: {
+        '@type': 'GeoCoordinates',
+        latitude: store.lat,
+        longitude: store.lng,
+      },
+      priceRange: lang === 'en' ? '&dollar;12' : '&yen;1,200',
+      telephone: store.tel,
+      email: store.email,
+      url: store.media.web || '',
+      image: `${config.url[lang]}/images/icon_${lang}_square.png`,
+      servesCuisine: 'coffee',
+    };
+    jsonLD.push(cafeOrCoffeeShop);
+  }
+
   const props: IProps = {
     lang,
     title,
@@ -129,6 +200,7 @@ export function mapsHandler(req: express.Request, res: express.Response): void {
     route: req.path,
     entrypoint: '/pages/Maps/bundle.js',
     stylesheet: '/pages/Maps/index.css',
+    jsonLD,
     state: appStore.getState(),
     content: renderToString(React.createElement(Provider, { store: appStore }, React.createElement(MapsPageContainer))),
   };

@@ -40,6 +40,8 @@ html(lang=props.lang)
     meta(property="twitter:site" content=props.twitterAccount)
     meta(property="twitter:url" content=`${props.baseUrl}${props.path}`)
 
+    script(type="application/ld+json").
+      !{JSON.stringify(props.jsonLD)}
     script.
       window.options = {
         env: '#{props.env}',
