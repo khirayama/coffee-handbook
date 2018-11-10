@@ -1,4 +1,4 @@
-// tslint:disable:max-func-body-length no-any
+// tslint:disable:max-func-body-length no-any no-console
 import * as Fuse from 'fuse.js';
 
 import { stores } from 'data/stores';
