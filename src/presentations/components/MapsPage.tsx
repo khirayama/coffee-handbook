@@ -87,7 +87,7 @@ export class MapsPage extends React.Component<IProps, {}> {
             onGetCurrentPosition={this.onGetCurrentPosition}
           />
           <div ref={this.modalRef} className={classNames('Modal', { Modal__Hidden: !store })}>
-            {store ? <StoreCard store={store} dic={dic} /> : null}
+            <StoreCard store={store} dic={dic} />
           </div>
         </div>
       </div>

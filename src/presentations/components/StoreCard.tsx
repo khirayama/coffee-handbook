@@ -23,10 +23,23 @@ export class StoreCard extends React.Component<IProps, { isShownHours: boolean }
     this.onClickOpenStatus = this.onClickOpenStatus.bind(this);
   }
 
+  public shouldComponentUpdate(nextProps: IProps): boolean {
+    // FYI: For animation of modal.
+    if (nextProps.store) {
+      return true;
+    }
+
+    return false;
+  }
+
   // tslint:disable:max-func-body-length
   public render(): JSX.Element {
     const store: IStore = this.props.store;
     const dic: Dictionary = this.props.dic;
+
+    if (!store) {
+      return null;
+    }
 
     const now: Date = new Date();
     const currentDay: number = now.getDay();
