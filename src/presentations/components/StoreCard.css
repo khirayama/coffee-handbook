@@ -5,24 +5,24 @@
 
   .StoreCard--Content {
     height: 100%;
-    padding: 16px;
+    padding: 12px 12px 8px;
     background: $color-white;
+    font-size: 0.875rem;
 
     .StoreCard--Content--Name {
       font-weight: $font-bold;
-      font-size: 1.5rem;
+      font-size: 1.25rem;
       padding-bottom: 4px;
       text-align: left;
     }
 
     .StoreCard--Content--Address {
-      font-size: 0.875rem;
       padding-bottom: 12px;
     }
 
     .StoreCard--Content--OpenStatus {
       cursor: pointer;
-      padding-bottom: 12px;
+      padding-bottom: 8px;
 
       .StoreCard--Content--OpenStatus--Status {
         display: inline-block;
@@ -80,22 +80,20 @@
     .StoreCard--Content--Tel {
       display: inline-block;
       width: 100%;
-      margin: 4px 0 8px;
+      margin: 4px 0 12px;
 
       .Icon {
-        margin-right: 8px;
-        font-size: 1.375rem;
+        font-size: 1.25rem;
       }
     }
 
     .StoreCard--Content--Email {
       display: inline-block;
       width: 100%;
-      margin: 4px 0 8px;
+      margin: 4px 0 12px;
 
       .Icon {
-        margin-right: 8px;
-        font-size: 1.375rem;
+        font-size: 1.25rem;
       }
     }
 
