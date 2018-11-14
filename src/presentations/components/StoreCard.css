@@ -8,12 +8,12 @@
     padding: 12px 12px 8px;
     background: $color-white;
     font-size: 0.875rem;
+    text-align: left;
 
     .StoreCard--Content--Name {
       font-weight: $font-bold;
       font-size: 1.25rem;
       padding-bottom: 4px;
-      text-align: left;
     }
 
     .StoreCard--Content--Address {
@@ -80,7 +80,7 @@
     .StoreCard--Content--Tel {
       display: inline-block;
       width: 100%;
-      margin: 4px 0 12px;
+      margin: 4px 0 8px;
 
       .Icon {
         font-size: 1.25rem;
@@ -90,7 +90,7 @@
     .StoreCard--Content--Email {
       display: inline-block;
       width: 100%;
-      margin: 4px 0 12px;
+      margin: 4px 0 8px;
 
       .Icon {
         font-size: 1.25rem;
