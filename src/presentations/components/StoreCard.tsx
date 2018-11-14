@@ -114,7 +114,7 @@ export class StoreCard extends React.Component<IProps, { isShownHours: boolean }
             </a>
           ) : null}
           {store.tel ? (
-            <a className="StoreCard--Content--Tel" href={`mailto:${store.tel}`}>
+            <a className="StoreCard--Content--Tel" href={`tel:${store.tel}`}>
               <i className="Icon">call</i>
               {store.tel}
             </a>
