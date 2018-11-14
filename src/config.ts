@@ -13,7 +13,7 @@ export const config: {
 } = {
   url: {
     en: process.env.NODE_ENV === 'production' ? 'https://coffee-handbook.com' : 'http://example.com:3030',
-    ja: process.env.NODE_ENV === 'production' ? 'https://ja.coffee-handbook.com' : 'https://ja.example.com:3030',
+    ja: process.env.NODE_ENV === 'production' ? 'https://ja.coffee-handbook.com' : 'http://ja.example.com:3030',
   },
   languages: ['en', 'ja'],
   githubUrl: 'https://github.com/khirayama/coffee-handbook',
