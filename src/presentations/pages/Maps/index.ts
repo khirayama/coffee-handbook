@@ -9,6 +9,7 @@ import { loadView, reducer } from 'presentations/pages/Maps/reducer';
 import { Store as AppStore } from 'utils/Store';
 
 // TODO: store検索
+// TODO: storeをshopに変更
 declare global {
   // tslint:disable-next-line:interface-name
   interface Window {
