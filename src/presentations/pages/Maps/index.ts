@@ -10,6 +10,7 @@ import { Store as AppStore } from 'utils/Store';
 
 // TODO: store検索
 // TODO: storeをshopに変更
+// TODO: ActorModelでの実装を検討。特に検索 & レコメンドの処理が重い可能性高く、worker thread感がる必要あるかも
 declare global {
   // tslint:disable-next-line:interface-name
   interface Window {
