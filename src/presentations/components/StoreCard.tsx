@@ -125,7 +125,7 @@ export class StoreCard extends React.Component<IProps, { isShownHours: boolean }
               if (val) {
                 return (
                   <li key={key} className="StoreCard--Content--Media--Item StoreCard--Content--Media--Item__Active">
-                    <a href={val} target="_blank">
+                    <a href={val} target="_blank" rel="noopener noreferrer">
                       <img src={`/images/icon_${key}.svg`} alt={key} />
                     </a>
                   </li>
