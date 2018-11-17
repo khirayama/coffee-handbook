@@ -78,6 +78,8 @@ export class StoreMapView extends React.Component<IProps, {}> {
   public componentDidMount(): void {
     const el: HTMLElement = this.ref.current;
     window.mapboxgl.accessToken = secret.mapboxToken;
+    // FYI: https://www.mapbox.com/ios-sdk/maps/overview/interacting-with-the-map/
+    // I want to do implement One-Finger zoom. But it is not supported now in JS. That document is for iOS.
     this.map = new window.mapboxgl.Map({
       // FYI: https://www.mapbox.com/mapbox-gl-js/api/
       container: el,
