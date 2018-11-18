@@ -63,6 +63,17 @@
         - 場所の名前で検索する（「サンフランシスコ」とか）
       - 条件ベース
         - 電源がある。とか
+- UI
+  - Mobile
+    - Sheet
+      - selectedStoreIdがない & recommentStoreIdsがない
+        - おすすめフィルター
+      - selectedStoreIdがない & recommentStoreIdsがある
+        - Storeリスト
+        - 横スワイプでみれる
+      - selectedStoreIdがある & recommentStoreIdsがある
+        - Storeページ
+  - Desktop
 
 ## PR
 
