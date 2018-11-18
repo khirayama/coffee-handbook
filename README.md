@@ -65,3 +65,7 @@ $ npm run precommit
 // If you need to update, please edit generated file directly.
 // After this, please make a PR.
 ```
+
+## Performance
+
+https://khirayama.github.io/speedtracker/

@@ -25,7 +25,8 @@
     "lint": "tslint --format verbose -c tslint.json 'src/**/*.{ts,tsx}' 'test/**/*.{ts,tsx}' 'bin/**/*.{ts,tsx}'",
     "lint:fix": "tslint --fix --format verbose -c tslint.json 'src/**/*.{ts,tsx}' 'test/**/*.{ts,tsx}' 'bin/**/*.{ts,tsx}'",
     "format": "prettier --ignore-path .gitignore --config .prettierrc --write 'src/**/!(*.json|*.jpg|*.pug|*.html|*.png|*.webp|*.svg)' 'test/**/!(*.json|*.jpg|*.pug|*.html|*.png|*.webp|*.svg)' 'bin/**/!(*.json|*.jpg|*.pug|*.html|*.png|*.webp|*.svg)' webpack.config.js .eslintrc.js .postcssrc.js",
-    "precommit": "npm run lint:fix && npm run format",
+    "run:speedtest": "sh run_speedtracker_test.sh",
+    "precommit": "npm run run:speedtest && npm run lint:fix && npm run format",
     "metcis": "npx hint localhost:3030",
     "check": "npx npm-check-updates"
   },
