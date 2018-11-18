@@ -1,5 +1,5 @@
 @import 'application/vars';
-@import 'components/MapHeader';
+@import 'containers/MapHeader';
 @import 'components/StoreMapView';
 @import 'components/StoreCard';
 @import 'components/StoreMarker';

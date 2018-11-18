@@ -2,8 +2,8 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
-import { MapsPageContainer } from 'presentations/components/MapsPage';
 import { Provider } from 'presentations/containers/Container';
+import { MapsPageContainer } from 'presentations/containers/MapsPage';
 import { IAction, IPosition, IState } from 'presentations/pages/Maps/interfaces';
 import { loadView, reducer } from 'presentations/pages/Maps/reducer';
 import { Store as AppStore } from 'utils/Store';

@@ -2,10 +2,10 @@ import * as classNames from 'classnames';
 import * as React from 'react';
 
 import { dictionary } from 'dictionary';
-import { MapHeaderContainer } from 'presentations/components/MapHeader';
 import { StoreCard } from 'presentations/components/StoreCard';
 import { StoreMapView } from 'presentations/components/StoreMapView';
 import { connect } from 'presentations/containers/Container';
+import { MapHeaderContainer } from 'presentations/containers/MapHeader';
 import { selectStore, updateCurrentPosition, updateView } from 'presentations/pages/Maps/actionCreators';
 import { IAction, IDispatch, IPosition, IRawStore, IState, IStore } from 'presentations/pages/Maps/interfaces';
 import { tracker } from 'presentations/utils/tracker';

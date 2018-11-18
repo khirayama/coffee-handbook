@@ -40,6 +40,7 @@
     "cookie-parser": "1.4.3",
     "deep-equal": "1.0.1",
     "express": "4.16.4",
+    "express-useragent": "1.0.12",
     "fuse.js": "3.3.0",
     "morgan": "1.9.1",
     "pug": "2.0.3",

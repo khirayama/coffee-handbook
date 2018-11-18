@@ -8,8 +8,8 @@ import { renderToString } from 'react-dom/server';
 
 import { config } from 'config';
 import { stores } from 'data/stores';
-import { MapsPageContainer } from 'presentations/components/MapsPage';
 import { Provider } from 'presentations/containers/Container';
+import { MapsPageContainer } from 'presentations/containers/MapsPage';
 import { IAction, IRawStore, IState, IStore } from 'presentations/pages/Maps/interfaces';
 import { reducer } from 'presentations/pages/Maps/reducer';
 import { secret } from 'secret';
@@ -202,8 +202,18 @@ export function mapsHandler(req: express.Request, res: express.Response): void {
     stylesheet: '/pages/Maps/index.css',
     jsonLD,
     state: appStore.getState(),
-    content: renderToString(React.createElement(Provider, { store: appStore }, React.createElement(MapsPageContainer))),
+    content: '',
   };
 
-  res.send(compiledFunction({ props }));
+  if (req.useragent.isMobile) {
+    props.content = renderToString(
+      React.createElement(Provider, { store: appStore }, React.createElement(MapsPageContainer)),
+    );
+    res.send(compiledFunction({ props }));
+  } else {
+    props.content = renderToString(
+      React.createElement(Provider, { store: appStore }, React.createElement(MapsPageContainer)),
+    );
+    res.send(compiledFunction({ props }));
+  }
 }

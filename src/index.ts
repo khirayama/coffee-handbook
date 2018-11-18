@@ -4,6 +4,7 @@ import * as path from 'path';
 import * as compression from 'compression';
 import * as cookieParser from 'cookie-parser';
 import * as express from 'express';
+import * as useragent from 'express-useragent';
 import * as logger from 'morgan';
 
 import * as React from 'react';
@@ -53,6 +54,7 @@ app
   .set('views', basedir)
   .set('view engine', 'pug')
   .use(logger('combined'))
+  .use(useragent.express())
   .use(compression({ level: 9 }))
   .use(express.static(path.join(__dirname, 'assets')))
   .use(express.static(path.join(__dirname, 'public')))
