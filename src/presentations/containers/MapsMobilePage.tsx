@@ -72,7 +72,6 @@ export class MapsPage extends React.Component<IProps, {}> {
 
     return (
       <div className="MapsPage">
-        <MapHeaderContainer />
         <div className="MapsPage--Content">
           <StoreMapView
             ref={this.mapRef}

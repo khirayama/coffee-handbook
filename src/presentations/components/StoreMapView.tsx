@@ -80,16 +80,12 @@ export class StoreMapView extends React.Component<IProps, {}> {
 
   public render(): JSX.Element {
     return (
-      <>
-        <div className="StoreMapView" ref={this.ref} />
-        <div
-          className="MapsPage--Content--CurrentPositionButton"
-          onClick={this.onClickCurrentPositionButton}
-          role="button"
-        >
+      <div className="StoreMapView">
+        <div className="StoreMapView--Map" ref={this.ref} />
+        <div className="StoreMapView--CurrentPositionButton" onClick={this.onClickCurrentPositionButton} role="button">
           <i className="Icon">my_location</i>
         </div>
-      </>
+      </div>
     );
   }
 
