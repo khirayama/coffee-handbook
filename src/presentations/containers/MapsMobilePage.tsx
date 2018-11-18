@@ -160,4 +160,4 @@ export class MapsPage extends React.Component<IProps, {}> {
 }
 
 // tslint:disable-next-line:variable-name
-export const MapsPageContainer: React.ComponentClass = connect(MapsPage);
+export const MapsMobilePageContainer: React.ComponentClass = connect(MapsPage);

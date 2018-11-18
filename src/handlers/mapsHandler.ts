@@ -9,7 +9,8 @@ import { renderToString } from 'react-dom/server';
 import { config } from 'config';
 import { stores } from 'data/stores';
 import { Provider } from 'presentations/containers/Container';
-import { MapsPageContainer } from 'presentations/containers/MapsPage';
+import { MapsDesktopPageContainer } from 'presentations/containers/MapsDesktopPage';
+import { MapsMobilePageContainer } from 'presentations/containers/MapsMobilePage';
 import { IAction, IRawStore, IState, IStore } from 'presentations/pages/Maps/interfaces';
 import { reducer } from 'presentations/pages/Maps/reducer';
 import { secret } from 'secret';
@@ -198,21 +199,25 @@ export function mapsHandler(req: express.Request, res: express.Response): void {
     env: process.env.NODE_ENV || 'development',
     gaCode: secret.gaCode,
     route: req.path,
-    entrypoint: '/pages/Maps/bundle.js',
-    stylesheet: '/pages/Maps/index.css',
+    entrypoint: '',
+    stylesheet: '',
     jsonLD,
     state: appStore.getState(),
     content: '',
   };
 
   if (req.useragent.isMobile) {
+    props.entrypoint = '/pages/Maps/mobile/bundle.js';
+    props.stylesheet = '/pages/Maps/mobile/index.css';
     props.content = renderToString(
-      React.createElement(Provider, { store: appStore }, React.createElement(MapsPageContainer)),
+      React.createElement(Provider, { store: appStore }, React.createElement(MapsMobilePageContainer)),
     );
     res.send(compiledFunction({ props }));
   } else {
+    props.entrypoint = '/pages/Maps/desktop/bundle.js';
+    props.stylesheet = '/pages/Maps/desktop/index.css';
     props.content = renderToString(
-      React.createElement(Provider, { store: appStore }, React.createElement(MapsPageContainer)),
+      React.createElement(Provider, { store: appStore }, React.createElement(MapsDesktopPageContainer)),
     );
     res.send(compiledFunction({ props }));
   }

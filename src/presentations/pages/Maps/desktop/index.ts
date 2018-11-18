@@ -3,7 +3,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
 import { Provider } from 'presentations/containers/Container';
-import { MapsPageContainer } from 'presentations/containers/MapsPage';
+import { MapsDesktopPageContainer } from 'presentations/containers/MapsDesktopPage';
 import { IAction, IPosition, IState } from 'presentations/pages/Maps/interfaces';
 import { loadView, reducer } from 'presentations/pages/Maps/reducer';
 import { Store as AppStore } from 'utils/Store';
@@ -37,5 +37,8 @@ const appStore: AppStore<IState | null, IAction> = new AppStore(initialState, re
 
 window.addEventListener('DOMContentLoaded', () => {
   const el: HTMLElement = window.document.querySelector('.application');
-  ReactDOM.render(React.createElement(Provider, { store: appStore }, React.createElement(MapsPageContainer)), el);
+  ReactDOM.render(
+    React.createElement(Provider, { store: appStore }, React.createElement(MapsDesktopPageContainer)),
+    el,
+  );
 });
