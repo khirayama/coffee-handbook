@@ -18,27 +18,8 @@ interface IProps {
 }
 
 const geolocationUtils: {
-  isPermittedGettingLocation(): Promise<boolean>;
   getCurrentPosition(): Promise<IPosition>;
 } = {
-  isPermittedGettingLocation: (): Promise<boolean> => {
-    return new Promise(
-      (resolve: any): void => {
-        const nav: any = window.navigator;
-        if (nav.permissions) {
-          nav.permissions
-            .query({
-              name: 'geolocation',
-            })
-            .then((permission: any) => {
-              resolve(permission.state === 'granted');
-            });
-        } else {
-          resolve(false);
-        }
-      },
-    );
-  },
   getCurrentPosition: (): Promise<IPosition> => {
     return new Promise(
       (resolve: any): void => {
@@ -88,18 +69,6 @@ export class StoreMapView extends React.Component<IProps, {}> {
       style: 'mapbox://styles/mapbox/light-v9',
       center: this.props.center,
       zoom: this.props.zoom,
-    });
-
-    geolocationUtils.isPermittedGettingLocation().then((isPermitted: boolean) => {
-      if (isPermitted) {
-        geolocationUtils.getCurrentPosition().then((currentPos: IPosition) => {
-          this.props.onGetCurrentPosition(currentPos);
-          if (this.props.currentPos && this.currentPositionMarker === null) {
-            // TODO: Update marker according to current position
-            this.addCurrentPosition();
-          }
-        });
-      }
     });
 
     if (this.props.currentPos && this.currentPositionMarker === null) {
