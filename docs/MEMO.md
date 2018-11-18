@@ -65,6 +65,7 @@
         - 電源がある。とか
 - UI
   - Mobile
+    - 片手で操作を前提に
     - Sheet
       - selectedStoreIdがない & recommentStoreIdsがない
         - おすすめフィルター
