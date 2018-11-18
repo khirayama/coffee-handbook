@@ -68,4 +68,16 @@ $ npm run precommit
 
 ## Performance
 
-https://khirayama.github.io/speedtracker/
+### SpeedTracker
+
+https://speedtracker.org/
+
+Dashboard: https://khirayama.github.io/speedtracker/
+Run test: `npm run speedtracker`
+
+### webhint
+
+https://webhint.io/
+
+Dashboard: Nothing
+Run test: `npm run hint` with running local server at port 3030
