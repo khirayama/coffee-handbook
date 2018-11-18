@@ -133,8 +133,9 @@ export class StoreMapView extends React.Component<IProps, {}> {
     geolocationUtils.getCurrentPosition().then((currentPos: IPosition) => {
       this.props.onGetCurrentPosition(currentPos, this.map);
       if (this.props.currentPos && this.currentPositionMarker === null) {
-        // TODO: Update marker according to current position
         this.addCurrentPosition();
+      } else if (this.currentPositionMarker) {
+        this.currentPositionMarker.setLngLat(currentPos);
       }
     });
   }
