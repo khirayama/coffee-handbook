@@ -9,6 +9,7 @@ export interface IState {
     currentPos: IPosition | null;
     pos: IPosition;
     zoom: number;
+    offset: [number, number];
   };
 }
 

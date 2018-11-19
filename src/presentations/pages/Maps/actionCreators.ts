@@ -1,12 +1,13 @@
 import { actionTypes } from 'presentations/pages/Maps/actionTypes';
 import { IDispatch, IPosition } from 'presentations/pages/Maps/interfaces';
 
-export function updateView(dispatch: IDispatch, pos: IPosition, zoom: number): void {
+export function updateView(dispatch: IDispatch, pos: IPosition, zoom: number, offset: [number, number]): void {
   dispatch({
     actionType: actionTypes.UPDATE_VIEW,
     payload: {
       pos,
       zoom,
+      offset,
     },
   });
 }

@@ -11,36 +11,11 @@ interface IProps {
   currentPos: IPosition | null;
   center: IPosition;
   zoom: number;
+  offset: [number, number];
   onClickMap: any;
   onMoveEnd: any;
   onClickStore: any;
-  onGetCurrentPosition: any;
 }
-
-const geolocationUtils: {
-  getCurrentPosition(): Promise<IPosition>;
-} = {
-  getCurrentPosition: (): Promise<IPosition> => {
-    return new Promise(
-      (resolve: any): void => {
-        window.navigator.geolocation.watchPosition(
-          (pos: any): void => {
-            resolve({
-              lat: pos.coords.latitude,
-              lng: pos.coords.longitude,
-            });
-          },
-          (err: any): void => {
-            // Noop
-          },
-          {
-            enableHighAccuracy: true,
-          },
-        );
-      },
-    );
-  },
-};
 
 export class StoreMapView extends React.Component<IProps, {}> {
   public map: mapboxgl.Map;
@@ -53,7 +28,6 @@ export class StoreMapView extends React.Component<IProps, {}> {
     super(props);
 
     this.ref = React.createRef();
-    this.onClickCurrentPositionButton = this.onClickCurrentPositionButton.bind(this);
   }
 
   public componentDidMount(): void {
@@ -78,20 +52,37 @@ export class StoreMapView extends React.Component<IProps, {}> {
     this.setEventListeners();
   }
 
+  public componentDidUpdate(): void {
+    if (this.props.currentPos && this.currentPositionMarker === null) {
+      this.addCurrentPosition();
+    } else if (this.currentPositionMarker !== null) {
+      this.currentPositionMarker.setLngLat(this.props.currentPos);
+    }
+
+    const center: IPosition = this.map.getCenter();
+    if (this.props.center.lat !== center.lat || this.props.center.lng !== center.lng) {
+      if (this.props.offset[0] !== 0 || this.props.offset[1] !== 0) {
+        this.map.flyTo({
+          center: this.props.center,
+          offset: this.props.offset,
+        });
+      } else {
+        this.map.panTo(this.props.center);
+      }
+    }
+  }
+
   public render(): JSX.Element {
     return (
       <div className="StoreMapView">
         <div className="StoreMapView--Map" ref={this.ref} />
-        <div className="StoreMapView--CurrentPositionButton" onClick={this.onClickCurrentPositionButton} role="button">
-          <i className="Icon">my_location</i>
-        </div>
       </div>
     );
   }
 
   private setEventListeners(): void {
     this.map.on('click', (event: MouseEvent) => {
-      this.props.onClickMap(event, this.map);
+      this.props.onClickMap(event);
     });
 
     this.map.on('moveend', (event: mapboxgl.MapboxEvent) => {
@@ -103,7 +94,7 @@ export class StoreMapView extends React.Component<IProps, {}> {
     this.props.stores.forEach((store: IStore) => {
       const storeMarker: StoreMarker = new StoreMarker(this.map, store, {
         onClick: (event: any): void => {
-          this.props.onClickStore(event, this.map, store);
+          this.props.onClickStore(event, store);
         },
       });
     });
@@ -119,20 +110,5 @@ export class StoreMapView extends React.Component<IProps, {}> {
         .setLngLat([currentPos.lng, currentPos.lat])
         .addTo(this.map);
     }
-  }
-
-  private onClickCurrentPositionButton(event: React.MouseEvent<HTMLElement>): void {
-    if (this.props.currentPos) {
-      this.map.panTo(this.props.currentPos);
-    }
-
-    geolocationUtils.getCurrentPosition().then((currentPos: IPosition) => {
-      this.props.onGetCurrentPosition(currentPos, this.map);
-      if (this.props.currentPos && this.currentPositionMarker === null) {
-        this.addCurrentPosition();
-      } else if (this.currentPositionMarker) {
-        this.currentPositionMarker.setLngLat(currentPos);
-      }
-    });
   }
 }

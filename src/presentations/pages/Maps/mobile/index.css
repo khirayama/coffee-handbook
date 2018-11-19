@@ -1,5 +1,6 @@
 @import 'application/vars';
 @import 'containers/MapHeader';
+@import 'containers/CurrentPositionButton';
 @import 'components/StoreMapView';
 @import 'components/StoreCard';
 @import 'components/StoreMarker';
@@ -9,12 +10,13 @@ body {
   height: 100%;
 }
 
-.MapsPage {
+.MapsMobilePage {
   width: 100%;
   height: 100%;
   overflow: hidden;
 
-  .MapsPage--Content {
+  .MapsMobilePage--Content {
+    position: relative;
     width: 100%;
     height: 100%;
   }

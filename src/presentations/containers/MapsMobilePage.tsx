@@ -5,7 +5,7 @@ import { dictionary } from 'dictionary';
 import { StoreCard } from 'presentations/components/StoreCard';
 import { StoreMapView } from 'presentations/components/StoreMapView';
 import { connect } from 'presentations/containers/Container';
-import { MapHeaderContainer } from 'presentations/containers/MapHeader';
+import { CurrentPositionButtonContainer } from 'presentations/containers/CurrentPositionButton';
 import { selectStore, updateCurrentPosition, updateView } from 'presentations/pages/Maps/actionCreators';
 import { IAction, IDispatch, IPosition, IRawStore, IState, IStore } from 'presentations/pages/Maps/interfaces';
 import { tracker } from 'presentations/utils/tracker';
@@ -17,7 +17,7 @@ interface IProps extends IState {
   dispatch: IDispatch;
 }
 
-export class MapsPage extends React.Component<IProps, {}> {
+export class MapsMobilePage extends React.Component<IProps, {}> {
   private mapRef: React.RefObject<StoreMapView>;
 
   private modalRef: React.RefObject<HTMLDivElement>;
@@ -30,7 +30,6 @@ export class MapsPage extends React.Component<IProps, {}> {
     this.onClickMap = this.onClickMap.bind(this);
     this.onMoveEnd = this.onMoveEnd.bind(this);
     this.onClickStore = this.onClickStore.bind(this);
-    this.onGetCurrentPosition = this.onGetCurrentPosition.bind(this);
   }
 
   public componentDidMount(): void {
@@ -71,8 +70,9 @@ export class MapsPage extends React.Component<IProps, {}> {
       .findOne();
 
     return (
-      <div className="MapsPage">
-        <div className="MapsPage--Content">
+      <div className="MapsMobilePage">
+        <div className="MapsMobilePage--Content">
+          <CurrentPositionButtonContainer />
           <StoreMapView
             ref={this.mapRef}
             lang={props.lang}
@@ -80,10 +80,10 @@ export class MapsPage extends React.Component<IProps, {}> {
             stores={storeResource.find()}
             center={props.ui.pos}
             zoom={props.ui.zoom}
+            offset={props.ui.offset}
             onClickMap={this.onClickMap}
             onMoveEnd={this.onMoveEnd}
             onClickStore={this.onClickStore}
-            onGetCurrentPosition={this.onGetCurrentPosition}
           />
           <div ref={this.modalRef} className={classNames('Modal', { Modal__Hidden: !store })}>
             <main>
@@ -95,7 +95,7 @@ export class MapsPage extends React.Component<IProps, {}> {
     );
   }
 
-  private onClickMap(event: MouseEvent, map: mapboxgl.Map): void {
+  private onClickMap(event: MouseEvent): void {
     const storeKey: string = window.location.pathname.replace('/stores/', '');
     if (storeKey) {
       const dic: Dictionary = new Dictionary(this.props.lang, dictionary);
@@ -108,10 +108,10 @@ export class MapsPage extends React.Component<IProps, {}> {
   }
 
   private onMoveEnd(event: mapboxgl.MapboxEvent, map: mapboxgl.Map): void {
-    updateView(this.props.dispatch, map.getCenter(), map.getZoom());
+    updateView(this.props.dispatch, map.getCenter(), map.getZoom(), [0, 0]);
   }
 
-  private onClickStore(event: React.MouseEvent<HTMLElement>, map: mapboxgl.Map, store: IStore): void {
+  private onClickStore(event: React.MouseEvent<HTMLElement>, store: IStore): void {
     const storeKey: string = window.location.pathname.replace('/stores/', '');
     if (storeKey !== store.key) {
       const dic: Dictionary = new Dictionary(this.props.lang, dictionary);
@@ -129,34 +129,27 @@ export class MapsPage extends React.Component<IProps, {}> {
     this.centerStoreWithModal(store);
   }
 
-  private onGetCurrentPosition(currentPos: IPosition): void {
-    updateCurrentPosition(this.props.dispatch, currentPos);
-  }
-
   private centerStoreWithModal(store: IStore): void {
     const mapModalWidth: number = 384;
     const modalElement: HTMLElement = this.modalRef.current;
     const mapElement: HTMLElement = this.mapRef.current.ref.current;
 
-    let offset: [number, number] = [0, 0];
-    if (window.innerWidth > mapModalWidth * 2) {
-      const mapWidth: number = mapElement.clientWidth;
-      const modalWidth: number = modalElement.clientWidth;
-      const diff: number = mapWidth / 2 - (mapWidth - modalWidth) / 2 - modalWidth;
-      offset = [diff * -1, 0];
-    } else {
-      const mapHeight: number = mapElement.clientHeight;
-      const modalHeight: number = modalElement.clientHeight;
-      const diff: number = (mapHeight - modalHeight) / 2 + modalHeight - mapHeight / 2;
-      offset = [0, diff * -1];
-    }
+    const mapHeight: number = mapElement.clientHeight;
+    const modalHeight: number = modalElement.clientHeight;
+    const diff: number = (mapHeight - modalHeight) / 2 + modalHeight - mapHeight / 2;
+    const offset: [number, number] = [0, diff * -1];
 
-    this.mapRef.current.map.flyTo({
-      center: [store.lng, store.lat],
+    updateView(
+      this.props.dispatch,
+      {
+        lng: store.lng,
+        lat: store.lat,
+      },
+      this.props.ui.zoom,
       offset,
-    });
+    );
   }
 }
 
 // tslint:disable-next-line:variable-name
-export const MapsMobilePageContainer: React.ComponentClass = connect(MapsPage);
+export const MapsMobilePageContainer: React.ComponentClass = connect(MapsMobilePage);

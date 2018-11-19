@@ -42,6 +42,7 @@ export function reducer(state: IState, action: IAction): IState {
   const payload: {
     pos?: IPosition;
     zoom?: number;
+    offset?: [number, number];
     storeKey?: string;
     currentPos?: IPosition;
   } = action.payload;
@@ -51,6 +52,7 @@ export function reducer(state: IState, action: IAction): IState {
       saveView(payload.pos, payload.zoom);
       newState.ui.pos = payload.pos;
       newState.ui.zoom = payload.zoom;
+      newState.ui.offset = payload.offset;
       break;
     }
     case actionTypes.SELECT_STORE: {

@@ -87,6 +87,7 @@ export function mapsHandler(req: express.Request, res: express.Response): void {
         },
         selectedStoreKey: storeKey,
         zoom: 8,
+        offset: <[number, number]>[0, 0],
       },
     },
     reducer,
