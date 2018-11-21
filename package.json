@@ -4,7 +4,7 @@
   "description": "",
   "main": "dist/index.js",
   "scripts": {
-    "deploy": "NODE_ENV=productio npm run build && gcloud app deploy --stop-previous-version",
+    "deploy": "NODE_ENV=production npm run build && gcloud app deploy --stop-previous-version",
     "clean": "rm -rf src/public dist log/*.log",
     "build": "npm run clean && npm run compile:scripts && npm run bundle:scripts && npm run build:styles && npm run copy:files",
     "start": "node dist/index.js",
