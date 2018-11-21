@@ -42,6 +42,7 @@
     "express": "4.16.4",
     "express-useragent": "1.0.12",
     "fuse.js": "3.3.0",
+    "mapbox-gl": "0.51.0",
     "morgan": "1.9.1",
     "pug": "2.0.3",
     "react": "16.6.3",

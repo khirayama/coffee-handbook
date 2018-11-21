@@ -5,8 +5,6 @@ import { StoreMarker } from 'presentations/components/StoreMarker';
 import { IPosition, IStore } from 'presentations/pages/Maps/interfaces';
 import { secret } from 'secret';
 
-// TODO: Use mapbox from npm package
-
 interface IProps {
   lang: string;
   stores: IStore[];
@@ -32,12 +30,13 @@ export class StoreMapView extends React.Component<IProps, {}> {
     this.ref = React.createRef();
   }
 
-  public componentDidMount(): void {
+  public async componentDidMount(): Promise<void> {
     const el: HTMLElement = this.ref.current;
-    window.mapboxgl.accessToken = secret.mapboxToken;
+    const mapboxgl: any = await import('mapbox-gl');
+    mapboxgl.accessToken = secret.mapboxToken;
     // FYI: https://www.mapbox.com/ios-sdk/maps/overview/interacting-with-the-map/
     // I want to do implement One-Finger zoom. But it is not supported now in JS. That document is for iOS.
-    this.map = new window.mapboxgl.Map({
+    this.map = new mapboxgl.Map({
       // FYI: https://www.mapbox.com/mapbox-gl-js/api/
       container: el,
       minZoom: 1, // どこまで引けるか
@@ -102,15 +101,14 @@ export class StoreMapView extends React.Component<IProps, {}> {
     });
   }
 
-  private addCurrentPosition(): void {
+  private async addCurrentPosition(): Promise<void> {
     const currentPos: IPosition | null = this.props.currentPos;
     if (currentPos) {
       const el: HTMLDivElement = document.createElement('div');
       el.className = 'CurrentPostionMarker';
       el.innerHTML = '<span class="CurrentPostionMarker--Icon"></span>';
-      this.currentPositionMarker = new window.mapboxgl.Marker(el)
-        .setLngLat([currentPos.lng, currentPos.lat])
-        .addTo(this.map);
+      const mapboxgl: any = await import('mapbox-gl');
+      this.currentPositionMarker = new mapboxgl.Marker(el).setLngLat([currentPos.lng, currentPos.lat]).addTo(this.map);
     }
   }
 }

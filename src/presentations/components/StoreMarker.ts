@@ -1,7 +1,5 @@
 import { IStore } from 'presentations/pages/Maps/interfaces';
 
-// TODO: Use mapbox from npm package
-
 declare global {
   // tslint:disable-next-line:interface-name
   interface Window {
@@ -37,7 +35,10 @@ export class StoreMarker {
         <span class="StoreMarker--Icon"></span>
         <span class="StoreMarker--Name">${this.store.name}</span>
     `;
-    this.marker = new window.mapboxgl.Marker(this.el).setLngLat([this.store.lng, this.store.lat]).addTo(map);
+    // tslint:disable-next-line:no-any
+    import('mapbox-gl').then((mapboxgl: any) => {
+      this.marker = new mapboxgl.Marker(this.el).setLngLat([this.store.lng, this.store.lat]).addTo(map);
+    });
 
     this.showDetail();
     this.setEventListeners();
