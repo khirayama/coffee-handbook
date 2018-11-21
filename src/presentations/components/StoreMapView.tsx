@@ -5,6 +5,8 @@ import { StoreMarker } from 'presentations/components/StoreMarker';
 import { IPosition, IStore } from 'presentations/pages/Maps/interfaces';
 import { secret } from 'secret';
 
+// TODO: Use mapbox from npm package
+
 interface IProps {
   lang: string;
   stores: IStore[];

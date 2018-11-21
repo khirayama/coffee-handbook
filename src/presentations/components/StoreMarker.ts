@@ -1,5 +1,7 @@
 import { IStore } from 'presentations/pages/Maps/interfaces';
 
+// TODO: Use mapbox from npm package
+
 declare global {
   // tslint:disable-next-line:interface-name
   interface Window {
