@@ -6,7 +6,6 @@ html(lang=props.lang)
     meta(http-equiv="X-UA-Compatible" content="IE=edge")
     meta(name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=5, minimum-scale=1, user-scalable=yes, viewport-fit=cover")
     link(rel="manifest" href='/manifest.json')
-    link(rel="stylesheet" href="/application/index.css"  media="screen")
 
     link(rel="alternate" hreflang="en" href=props.url.en)
     link(rel="alternate" hreflang="ja" href=props.url.ja)
@@ -17,7 +16,6 @@ html(lang=props.lang)
     meta(name="author" content=props.author)
     meta(name="keywords" content=props.keywords.join(','))
     link(rel="contents" href="/sitemap.xml")
-    link(href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet")
     link(rel="icon" href=`/images/icon_${props.lang}_circle.png` type="image/png")
     link(rel="preconnect" href="//www.mapbox.com" crossorigin)
     link(rel="preconnect" href="//www.openstreetmap.com" crossorigin)
@@ -62,10 +60,12 @@ html(lang=props.lang)
     script(src="/commons/vendors.js" defer)
     script(src="/commons/index.js" defer)
     script(src=props.entrypoint defer)
-    link(rel="stylesheet" href=props.stylesheet media="screen")
-    link(href="https://api.mapbox.com/mapbox-gl-js/v0.50.0/mapbox-gl.css" rel="stylesheet" media="screen")
+    style
+      include ../../public/application/index.css
+      include ../../public/pages/Maps/mobile/index.css
     script
       include ../../public/application/bundle.js
+    link(href="https://api.mapbox.com/mapbox-gl-js/v0.50.0/mapbox-gl.css" rel="stylesheet" media="screen")
   body
     .application
       != props.content
