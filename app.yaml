@@ -4,6 +4,8 @@ instance_class: F1
 handlers:
   - url: /images
     static_dir: dist/assets/images
+  - url: /commons
+    static_dir: dist/public/commons
   - url: /application
     static_dir: dist/public/application
   - url: /pages
