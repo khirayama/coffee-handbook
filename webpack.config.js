@@ -46,12 +46,12 @@ module.exports = (env, argv) => {
     optimization: {
       minimize: argv.mode === 'production',
       splitChunks: {
-        name: 'dist/public/commons',
+        name: 'dist/public/commons/index',
         chunks: 'initial',
         cacheGroups: {
           vendors: {
             test: /node_modules/,
-            name: 'dist/public/vendors',
+            name: 'dist/public/commons/vendors',
             chunks: 'initial'
           },
         },
