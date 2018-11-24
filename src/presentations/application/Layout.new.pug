@@ -7,9 +7,9 @@ html(lang=props.lang)
     meta(name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=5, minimum-scale=1, user-scalable=yes, viewport-fit=cover")
     link(rel="manifest" href='/manifest.json')
 
-    link(rel="alternate" hreflang="en" href=props.url.en)
-    link(rel="alternate" hreflang="ja" href=props.url.ja)
-    link(rel="alternate" hreflang="x-default" href=props.url.en)
+    link(rel="alternate" hreflang="en" href=`${props.url.en}${props.path}`)
+    link(rel="alternate" hreflang="ja" href=`${props.url.ja}${props.path}`)
+    link(rel="alternate" hreflang="x-default" href=`${props.url.en}${props.path}`)
 
     title= props.title
     meta(name="description" content=props.description)
