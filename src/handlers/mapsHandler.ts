@@ -150,7 +150,7 @@ export function mapsHandler(req: express.Request, res: express.Response): void {
     // tslint:disable-next-line:no-any
     const cafeOrCoffeeShop: any = {
       '@context': 'http://schema.org',
-      '@type': 'CafeOrCoffeeShop',
+      '@type': 'LocalBusiness',
       '@id': `${config.url[lang]}${req.path}`,
       address: store.address,
       name: store.name,
@@ -164,7 +164,9 @@ export function mapsHandler(req: express.Request, res: express.Response): void {
       email: store.email,
       url: store.media.web || '',
       image: `${config.url[lang]}/images/icon_${lang}_square.png`,
-      servesCuisine: 'coffee',
+      // FYI: If google supports following type, please use it.
+      // '@type': 'CafeOrCoffeeShop',
+      // servesCuisine: 'coffee',
     };
     jsonLD.push(cafeOrCoffeeShop);
   }
