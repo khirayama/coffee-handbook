@@ -103,8 +103,17 @@ export function mapsHandler(req: express.Request, res: express.Response): void {
 
   // FYI: https://schema.org/CafeOrCoffeeShop
   // FYI: https://developers.google.com/search/docs/data-types/breadcrumb
+  // FYI: https://qiita.com/narumana/items/b66969b80cce848b2ddf
   // TODO: https://developers.google.com/search/docs/data-types/sitelinks-searchbox
   const jsonLD: {}[] = [];
+  // tslint:disable-next-line:no-any
+  const site: any = {
+    '@context': 'http://schema.org',
+    '@type': 'WebSite',
+    name: dic.t('name'),
+    url: config.url[lang],
+  };
+  jsonLD.push(site);
   // tslint:disable-next-line:no-any
   const breadcrumbList: any = {
     '@context': 'http://schema.org',
@@ -113,8 +122,10 @@ export function mapsHandler(req: express.Request, res: express.Response): void {
       {
         '@type': 'ListItem',
         position: 1,
-        name: dic.t('name'),
-        item: config.url[lang],
+        item: {
+          '@id': config.url[lang],
+          name: dic.t('name'),
+        },
       },
     ],
   };
@@ -123,8 +134,10 @@ export function mapsHandler(req: express.Request, res: express.Response): void {
     breadcrumbList.itemListElement.push({
       '@type': 'ListItem',
       position: 2,
-      name: store.name,
-      item: `${config.url[lang]}${req.path}`,
+      item: {
+        '@id': `${config.url[lang]}${req.path}`,
+        name: store.name,
+      },
     });
 
     // FYI: https://developers.google.com/search/docs/data-types/social-profile
@@ -150,7 +163,7 @@ export function mapsHandler(req: express.Request, res: express.Response): void {
     // tslint:disable-next-line:no-any
     const cafeOrCoffeeShop: any = {
       '@context': 'http://schema.org',
-      '@type': 'LocalBusiness',
+      '@type': 'Restaurant',
       '@id': `${config.url[lang]}${req.path}`,
       address: store.address,
       name: store.name,
@@ -164,9 +177,9 @@ export function mapsHandler(req: express.Request, res: express.Response): void {
       email: store.email,
       url: store.media.web || '',
       image: `${config.url[lang]}/images/icon_${lang}_square.png`,
+      servesCuisine: 'coffee',
       // FYI: If google supports following type, please use it.
-      // '@type': 'CafeOrCoffeeShop',
-      // servesCuisine: 'coffee',
+      // '@type': 'CafeOrCoffeeShop', 'LocalBusiness' or 'Restaurant'
     };
     jsonLD.push(cafeOrCoffeeShop);
   }
