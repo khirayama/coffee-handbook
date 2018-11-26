@@ -48,7 +48,7 @@
       transform: none;
       max-height: 0;
       overflow: hidden;
-      transition: max-height 170ms ease-in-out;
+      transition: max-height $short ease-in-out;
 
       &.StoreCard--Content--Hours__Show {
         display: inline-block;
