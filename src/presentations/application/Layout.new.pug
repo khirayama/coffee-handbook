@@ -61,8 +61,6 @@ html(lang=props.lang)
 
     script.
       window.state = !{JSON.stringify(props.state)};
-    script(src="/commons/vendors.js" defer)
-    script(src="/commons/index.js" defer)
     script(src=props.entrypoint defer)
     script(type="application/ld+json").
       !{JSON.stringify(props.jsonLD)}
