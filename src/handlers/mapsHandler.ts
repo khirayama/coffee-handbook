@@ -80,10 +80,14 @@ export function mapsHandler(req: express.Request, res: express.Response): void {
       lang,
       stores,
       ui: {
+        sheetMode: store ? <'none'>'none' : <'default'>'default',
+        // TODO: server side rendering for search
+        targetStoreKeys: [],
+        searchQuery: '',
         currentPos: null,
         pos: {
-          lat: 35.664035,
-          lng: 139.698212,
+          lat: store ? store.lat : 35.664035,
+          lng: store ? store.lng : 139.698212,
         },
         selectedStoreKey: storeKey,
         zoom: 8,

@@ -29,9 +29,13 @@ const view: { pos: IPosition; zoom: number; currentPos: IPosition | null } = loa
 const initialState: IState = {
   ...window.state,
 };
+if (initialState.ui.selectedStoreKey) {
+  initialState.ui.zoom = 12;
+} else {
+  initialState.ui.pos = view.pos;
+  initialState.ui.zoom = view.zoom;
+}
 initialState.ui.currentPos = view.currentPos || null;
-initialState.ui.pos = view.pos;
-initialState.ui.zoom = view.zoom;
 
 const appStore: AppStore<IState | null, IAction> = new AppStore(initialState, reducer);
 
