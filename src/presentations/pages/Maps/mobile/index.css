@@ -34,28 +34,11 @@ body {
   background: $color-white;
   z-index: 4000;
   transform: translateY(0);
-  transition: transform 170ms ease-in-out;
   box-shadow: 0 0 2px 2px $color-shadow;
+  overscroll-behavior-y: contain;
+  transition: transform $short ease-in-out;
 
   &.Modal__Hidden {
     transform: translateY(100%);
-  }
-}
-
-@media screen and (min-width: calc($width-map-modal * 2)) {
-  .Modal {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: auto;
-    height: 100%;
-    background: $color-white;
-    z-index: 4000;
-    transform: translateX(0);
-    transition: transform 170ms ease-in-out;
-
-    &.Modal__Hidden {
-      transform: translateX(-100%);
-    }
   }
 }

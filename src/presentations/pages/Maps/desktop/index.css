@@ -40,38 +40,20 @@ body {
 
 .Modal {
   position: absolute;
-  bottom: 0;
+  top: 0;
   left: 0;
   right: unset;
-  width: 100%;
-  height: auto;
+  width: auto;
+  height: 100%;
   max-height: 100%;
   overflow: scroll;
   background: $color-white;
   z-index: 4000;
-  transform: translateY(0);
-  transition: transform 170ms ease-in-out;
+  transform: translateX(0);
+  transition: transform $short ease-in-out;
   box-shadow: 0 0 2px 2px $color-shadow;
 
   &.Modal__Hidden {
-    transform: translateY(100%);
-  }
-}
-
-@media screen and (min-width: calc($width-map-modal * 2)) {
-  .Modal {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: auto;
-    height: 100%;
-    background: $color-white;
-    z-index: 4000;
-    transform: translateX(0);
-    transition: transform 170ms ease-in-out;
-
-    &.Modal__Hidden {
-      transform: translateX(-100%);
-    }
+    transform: translateX(-100%);
   }
 }

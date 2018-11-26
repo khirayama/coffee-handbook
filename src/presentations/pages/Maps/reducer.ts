@@ -1,5 +1,5 @@
 import { actionTypes } from 'presentations/pages/Maps/actionTypes';
-import { IAction, IPosition, IState } from 'presentations/pages/Maps/interfaces';
+import { IAction, IPosition, ISheetModes, IState } from 'presentations/pages/Maps/interfaces';
 
 const SAVE_VIEW_KEY: string = '__UI_MAP_VIEW';
 
@@ -38,13 +38,15 @@ export function loadView(): { pos: IPosition; zoom: number; currentPos: IPositio
 
 export function reducer(state: IState, action: IAction): IState {
   const newState: IState = JSON.parse(JSON.stringify(state));
-  // tslint:disable-next-line:no-any
   const payload: {
     pos?: IPosition;
     zoom?: number;
     offset?: [number, number];
     storeKey?: string;
     currentPos?: IPosition;
+    searchQuery?: string;
+    targetStoreKeys?: string[];
+    mode?: ISheetModes;
   } = action.payload;
 
   switch (action.actionType) {
@@ -61,6 +63,16 @@ export function reducer(state: IState, action: IAction): IState {
     }
     case actionTypes.UPDATE_CURRENT_POSITION: {
       newState.ui.currentPos = payload.currentPos;
+      break;
+    }
+    case actionTypes.UPDATE_SHEET_MODE: {
+      newState.ui.sheetMode = payload.mode;
+      break;
+    }
+    case actionTypes.SEARCH_STORE: {
+      newState.ui.sheetMode = <'closed'>'closed';
+      newState.ui.searchQuery = payload.searchQuery;
+      newState.ui.targetStoreKeys = payload.targetStoreKeys;
       break;
     }
     default:
