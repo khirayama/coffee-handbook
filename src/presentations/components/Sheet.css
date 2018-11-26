@@ -1,0 +1,42 @@
+.Sheet {
+  position: absolute;
+  z-index: 12000;
+  background: $color-white;
+  width: 100%;
+  max-height: 100%;
+  border-radius: 16px;
+  box-shadow: $shadow-inverse;
+  overscroll-behavior-y: contain;
+  transition: top $short ease-in-out, transform $short ease-in-out, border-radius $short ease-in-out;
+
+  &.Sheet__Opened {
+    top: 0;
+    border-radius: 0;
+    overflow: scroll;
+  }
+
+  &.Sheet__Closed {
+    top: calc(100% - 25px);
+  }
+
+  &.Sheet__None {
+    top: 100%;
+  }
+
+  .Sheet--Mark {
+    text-align: center;
+
+    &:after {
+      content: '';
+      display: inline-block;
+      width: 48px;
+      height: 8px;
+      background: $color-divider;
+      border-radius: 4px;
+    }
+  }
+
+  .Sheet--Content {
+    height: 1800px; /* TODO: TMP */
+  }
+}
