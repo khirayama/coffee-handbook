@@ -7,6 +7,7 @@ import { secret } from 'secret';
 
 interface IProps {
   lang: string;
+  selectedStoreKey: string | null;
   stores: IStore[];
   currentPos: IPosition | null;
   center: IPosition;
@@ -23,6 +24,10 @@ export class StoreMapView extends React.Component<IProps, {}> {
   public ref: React.RefObject<HTMLDivElement>;
 
   private currentPositionMarker: any = null;
+
+  private storeMarkers: { [key: string]: StoreMarker } = {};
+
+  private currentStoreMarker: StoreMarker | null;
 
   constructor(props: IProps) {
     super(props);
@@ -50,6 +55,7 @@ export class StoreMapView extends React.Component<IProps, {}> {
       this.addCurrentPosition();
     }
     this.addStores();
+    this.centering();
     this.setEventListeners();
   }
 
@@ -60,15 +66,22 @@ export class StoreMapView extends React.Component<IProps, {}> {
       this.currentPositionMarker.setLngLat(this.props.currentPos);
     }
 
-    const center: IPosition = this.map.getCenter();
-    if (this.props.center.lat !== center.lat || this.props.center.lng !== center.lng) {
-      if (this.props.offset[0] !== 0 || this.props.offset[1] !== 0) {
-        this.map.flyTo({
-          center: this.props.center,
-          offset: this.props.offset,
-        });
-      } else {
-        this.map.panTo(this.props.center);
+    this.centering();
+
+    const selectedStoreKey: string | null = this.props.selectedStoreKey;
+    if (selectedStoreKey) {
+      if (this.currentStoreMarker) {
+        this.currentStoreMarker.inactive();
+      }
+
+      this.currentStoreMarker = this.storeMarkers[selectedStoreKey];
+      if (this.currentStoreMarker) {
+        this.currentStoreMarker.active();
+      }
+    } else {
+      if (this.currentStoreMarker) {
+        this.currentStoreMarker.inactive();
+        this.currentStoreMarker = null;
       }
     }
   }
@@ -98,6 +111,7 @@ export class StoreMapView extends React.Component<IProps, {}> {
           this.props.onClickStore(event, store);
         },
       });
+      this.storeMarkers[store.key] = storeMarker;
     });
   }
 
@@ -109,6 +123,23 @@ export class StoreMapView extends React.Component<IProps, {}> {
       el.innerHTML = '<span class="CurrentPostionMarker--Icon"></span>';
       const mapboxgl: any = await import('mapbox-gl');
       this.currentPositionMarker = new mapboxgl.Marker(el).setLngLat([currentPos.lng, currentPos.lat]).addTo(this.map);
+    }
+  }
+
+  private centering(): void {
+    const center: IPosition = this.map.getCenter();
+    if (
+      this.props.center.lat !== center.lat ||
+      this.props.center.lng !== center.lng ||
+      this.props.offset[0] !== 0 ||
+      this.props.offset[1] !== 0
+    ) {
+      this.map.flyTo({
+        center: this.props.center,
+        offset: this.props.offset,
+      });
+    } else if (this.props.center.lat !== center.lat || this.props.center.lng !== center.lng) {
+      this.map.panTo(this.props.center);
     }
   }
 }
