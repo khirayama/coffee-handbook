@@ -1,6 +1,5 @@
 const EVENT_CHANGE: string = '__CHANGE_STORE';
 const ACTION_DISPATCH: string = '__ACTION_DISPATCH';
-const STORE_SESSION_KEY: string = '__STORE_SESSION_KEY';
 
 type TListener<Action> = (action: Action) => void;
 
@@ -20,28 +19,16 @@ export class Store<T, P> {
 
   private options: {
     debounce: number | null;
-    session: boolean;
   };
 
   private timerId: number | null = null;
 
-  constructor(
-    state: T,
-    reducer: (state: T, action: P) => T,
-    options: { debounce?: number | null; session?: boolean } = {},
-  ) {
+  constructor(state: T, reducer: (state: T, action: P) => T, options: { debounce?: number | null } = {}) {
     this.options = {
       debounce: options.debounce || null,
-      session: options.session || false,
     };
 
     this.state = state;
-    if (state && this.options.session) {
-      this.state = JSON.parse(window.sessionStorage.getItem(STORE_SESSION_KEY) || JSON.stringify(state));
-    } else if (state && !this.options.session) {
-      this.state = state;
-    }
-
     this.reducer = reducer;
 
     this.subscribe();
@@ -117,10 +104,6 @@ export class Store<T, P> {
           console.log('%cAction:', 'color: #76b6c8; font-weight: bold;', action);
           console.log('%cState:', 'color: #2e4551; font-weight: bold;', this.state);
           /* tslint:enable:no-console */
-        }
-
-        if (typeof window === 'object' && this.options.session) {
-          window.sessionStorage.setItem(STORE_SESSION_KEY, JSON.stringify(this.state));
         }
 
         this.dispatchChange();
