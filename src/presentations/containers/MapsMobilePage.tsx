@@ -2,12 +2,20 @@ import * as classNames from 'classnames';
 import * as React from 'react';
 
 import { dictionary } from 'dictionary';
+import { Sheet } from 'presentations/components/Sheet';
 import { StoreCard } from 'presentations/components/StoreCard';
 import { StoreMapView } from 'presentations/components/StoreMapView';
 import { connect } from 'presentations/containers/Container';
 import { CurrentPositionButtonContainer } from 'presentations/containers/CurrentPositionButton';
-import { selectStore, updateCurrentPosition, updateView } from 'presentations/pages/Maps/actionCreators';
+import { SearchFormContainer } from 'presentations/containers/SearchForm';
+import {
+  selectStore,
+  updateCurrentPosition,
+  updateSheetMode,
+  updateView,
+} from 'presentations/pages/Maps/actionCreators';
 import { IAction, IDispatch, IPosition, IRawStore, IState, IStore } from 'presentations/pages/Maps/interfaces';
+import { waitShortAnimationEnd } from 'presentations/utils/helpers';
 import { tracker } from 'presentations/utils/tracker';
 import { Dictionary } from 'utils/Dictionary';
 import { Resource } from 'utils/Resource';
@@ -29,6 +37,8 @@ export class MapsMobilePage extends React.Component<IProps, {}> {
     this.modalRef = React.createRef();
     this.onClickMap = this.onClickMap.bind(this);
     this.onMoveEnd = this.onMoveEnd.bind(this);
+    this.onMoveUpSheet = this.onMoveUpSheet.bind(this);
+    this.onMoveDownSheet = this.onMoveDownSheet.bind(this);
     this.onClickStore = this.onClickStore.bind(this);
   }
 
@@ -44,7 +54,11 @@ export class MapsMobilePage extends React.Component<IProps, {}> {
     }
 
     window.addEventListener('popstate', () => {
-      const storeKey: string = window.location.pathname.replace('/stores/', '');
+      // TODO: Support searchQuery
+      let storeKey: string = window.location.pathname.replace('/stores/', '');
+      if (storeKey === '/') {
+        storeKey = null;
+      }
 
       selectStore(this.props.dispatch, storeKey);
       if (storeKey) {
@@ -73,10 +87,24 @@ export class MapsMobilePage extends React.Component<IProps, {}> {
       <div className="MapsMobilePage">
         <div className="MapsMobilePage--Content">
           <CurrentPositionButtonContainer />
+          <Sheet
+            mode={this.props.ui.sheetMode}
+            defaultHeight={220}
+            onMoveUp={this.onMoveUpSheet}
+            onMoveDown={this.onMoveDownSheet}
+          >
+            <SearchFormContainer />
+          </Sheet>
+          <div ref={this.modalRef} className={classNames('Modal', { Modal__Hidden: !store })}>
+            <main>
+              <StoreCard store={store} dic={dic} />
+            </main>
+          </div>
           <StoreMapView
             ref={this.mapRef}
             lang={props.lang}
             currentPos={props.ui.currentPos}
+            selectedStoreKey={props.ui.selectedStoreKey}
             stores={storeResource.find()}
             center={props.ui.pos}
             zoom={props.ui.zoom}
@@ -85,14 +113,13 @@ export class MapsMobilePage extends React.Component<IProps, {}> {
             onMoveEnd={this.onMoveEnd}
             onClickStore={this.onClickStore}
           />
-          <div ref={this.modalRef} className={classNames('Modal', { Modal__Hidden: !store })}>
-            <main>
-              <StoreCard store={store} dic={dic} />
-            </main>
-          </div>
         </div>
       </div>
     );
+  }
+
+  private onMoveEnd(event: mapboxgl.MapboxEvent, map: mapboxgl.Map): void {
+    updateView(this.props.dispatch, map.getCenter(), map.getZoom(), [0, 0]);
   }
 
   private onClickMap(event: MouseEvent): void {
@@ -105,10 +132,14 @@ export class MapsMobilePage extends React.Component<IProps, {}> {
       window.history.pushState(null, title, loc);
     }
     selectStore(this.props.dispatch, null);
-  }
-
-  private onMoveEnd(event: mapboxgl.MapboxEvent, map: mapboxgl.Map): void {
-    updateView(this.props.dispatch, map.getCenter(), map.getZoom(), [0, 0]);
+    waitShortAnimationEnd().then(() => {
+      const mode: string = this.props.ui.sheetMode;
+      if (mode === 'default') {
+        updateSheetMode(this.props.dispatch, 'closed');
+      } else {
+        updateSheetMode(this.props.dispatch, 'default');
+      }
+    });
   }
 
   private onClickStore(event: React.MouseEvent<HTMLElement>, store: IStore): void {
@@ -125,29 +156,51 @@ export class MapsMobilePage extends React.Component<IProps, {}> {
       tracker.setLocation(loc);
       tracker.sendPageView();
     }
-    selectStore(this.props.dispatch, store.key);
-    this.centerStoreWithModal(store);
+    updateSheetMode(this.props.dispatch, 'none');
+    waitShortAnimationEnd().then(() => {
+      selectStore(this.props.dispatch, store.key);
+      this.centerStoreWithModal(store);
+    });
+  }
+
+  private onMoveUpSheet(): void {
+    const mode: string = this.props.ui.sheetMode;
+    if (mode === 'default') {
+      updateSheetMode(this.props.dispatch, 'opened');
+    } else if (mode === 'closed') {
+      updateSheetMode(this.props.dispatch, 'opened');
+    }
+  }
+
+  private onMoveDownSheet(): void {
+    const mode: string = this.props.ui.sheetMode;
+    if (mode === 'opened') {
+      updateSheetMode(this.props.dispatch, 'default');
+    } else if (mode === 'default') {
+      updateSheetMode(this.props.dispatch, 'closed');
+    }
   }
 
   private centerStoreWithModal(store: IStore): void {
-    const mapModalWidth: number = 384;
-    const modalElement: HTMLElement = this.modalRef.current;
-    const mapElement: HTMLElement = this.mapRef.current.ref.current;
+    setTimeout(() => {
+      const modalElement: HTMLElement = this.modalRef.current;
+      const mapElement: HTMLElement = this.mapRef.current.ref.current;
 
-    const mapHeight: number = mapElement.clientHeight;
-    const modalHeight: number = modalElement.clientHeight;
-    const diff: number = (mapHeight - modalHeight) / 2 + modalHeight - mapHeight / 2;
-    const offset: [number, number] = [0, diff * -1];
+      const mapHeight: number = mapElement.clientHeight;
+      const modalHeight: number = modalElement.clientHeight;
+      const diff: number = (mapHeight - modalHeight) / 2 + modalHeight - mapHeight / 2;
+      const offset: [number, number] = [0, diff * -1];
 
-    updateView(
-      this.props.dispatch,
-      {
-        lng: store.lng,
-        lat: store.lat,
-      },
-      this.props.ui.zoom,
-      offset,
-    );
+      updateView(
+        this.props.dispatch,
+        {
+          lng: store.lng,
+          lat: store.lat,
+        },
+        this.props.ui.zoom,
+        offset,
+      );
+    }, 0);
   }
 }
 
