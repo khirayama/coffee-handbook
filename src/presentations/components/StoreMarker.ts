@@ -29,7 +29,7 @@ export class StoreMarker {
     this.handlers = handlers;
 
     // TODO: Change color to display open status
-    this.el = document.createElement('div');
+    this.el = window.document.createElement('div');
     this.el.className = 'StoreMarker';
     this.el.innerHTML = `
         <span class="StoreMarker--Icon"></span>
@@ -55,6 +55,14 @@ export class StoreMarker {
         this.handlers.onClick(event, this);
       });
     }
+  }
+
+  public active(): void {
+    this.el.classList.add('StoreMarker__Active');
+  }
+
+  public inactive(): void {
+    this.el.classList.remove('StoreMarker__Active');
   }
 
   private showDetail(): void {
