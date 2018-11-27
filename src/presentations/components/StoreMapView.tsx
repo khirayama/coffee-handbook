@@ -120,7 +120,9 @@ export class StoreMapView extends React.Component<IProps, {}> {
   private removeStores(): void {
     Object.keys(this.storeMarkers).forEach((storeKey: string) => {
       const storeMarker: StoreMarker = this.storeMarkers[storeKey];
-      storeMarker.remove();
+      if (storeMarker) {
+        storeMarker.remove();
+      }
     });
   }
 
