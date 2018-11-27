@@ -67,6 +67,8 @@ export class StoreMapView extends React.Component<IProps, {}> {
     }
 
     this.centering();
+    this.removeStores();
+    this.addStores();
 
     const selectedStoreKey: string | null = this.props.selectedStoreKey;
     if (selectedStoreKey) {
@@ -112,6 +114,13 @@ export class StoreMapView extends React.Component<IProps, {}> {
         },
       });
       this.storeMarkers[store.key] = storeMarker;
+    });
+  }
+
+  private removeStores(): void {
+    Object.keys(this.storeMarkers).forEach((storeKey: string) => {
+      const storeMarker: StoreMarker = this.storeMarkers[storeKey];
+      storeMarker.remove();
     });
   }
 

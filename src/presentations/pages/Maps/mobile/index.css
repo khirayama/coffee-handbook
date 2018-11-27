@@ -39,6 +39,7 @@ body {
   box-shadow: 0 0 2px 2px $color-shadow;
   overscroll-behavior-y: contain;
   transition: transform $short ease-in-out;
+  will-change: transform;
 
   &.Modal__Hidden {
     transform: translateY(100%);

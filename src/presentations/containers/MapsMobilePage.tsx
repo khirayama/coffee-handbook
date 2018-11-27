@@ -76,25 +76,34 @@ export class MapsMobilePage extends React.Component<IProps, {}> {
   public render(): JSX.Element {
     const dic: Dictionary = new Dictionary(this.props.lang, dictionary);
     const props: IState = this.props;
-    const storeResource: Resource<IRawStore, IStore> = new Resource(this.props.stores, this.props.lang);
+    const targetRawStores: IRawStore[] = props.ui.targetStoreKeys.length
+      ? props.stores.filter((candidateStore: IRawStore) => {
+          return props.ui.targetStoreKeys.indexOf(candidateStore.key) !== -1;
+        })
+      : props.stores;
+    const targetStoreResource: Resource<IRawStore, IStore> = new Resource(targetRawStores, props.lang);
+    const storeResource: Resource<IRawStore, IStore> = new Resource(props.stores, props.lang);
     const store: IStore = storeResource
       .where({
         key: props.ui.selectedStoreKey,
       })
       .findOne();
+    const targetStores: IStore[] = targetStoreResource.find();
 
     return (
       <div className="MapsMobilePage">
         <div className="MapsMobilePage--Content">
           <CurrentPositionButtonContainer />
-          <Sheet
-            mode={this.props.ui.sheetMode}
-            defaultHeight={220}
-            onMoveUp={this.onMoveUpSheet}
-            onMoveDown={this.onMoveDownSheet}
-          >
+          <Sheet mode={this.props.ui.sheetMode} onMoveUp={this.onMoveUpSheet} onMoveDown={this.onMoveDownSheet}>
             <SearchFormContainer />
           </Sheet>
+          {props.ui.targetStoreKeys.length && !props.ui.selectedStoreKey ? (
+            <ul className="StoreCardList">
+              {targetStores.map((targetStore: IStore) => {
+                return <li key={targetStore.key}>{targetStore.name}</li>;
+              })}
+            </ul>
+          ) : null}
           <div ref={this.modalRef} className={classNames('Modal', { Modal__Hidden: !store })}>
             <main>
               <StoreCard store={store} dic={dic} />
@@ -105,7 +114,7 @@ export class MapsMobilePage extends React.Component<IProps, {}> {
             lang={props.lang}
             currentPos={props.ui.currentPos}
             selectedStoreKey={props.ui.selectedStoreKey}
-            stores={storeResource.find()}
+            stores={targetStores}
             center={props.ui.pos}
             zoom={props.ui.zoom}
             offset={props.ui.offset}
