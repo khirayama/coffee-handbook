@@ -59,6 +59,9 @@ export function reducer(state: IState, action: IAction): IState {
     }
     case actionTypes.SELECT_STORE: {
       newState.ui.selectedStoreKey = payload.storeKey;
+      if (payload.storeKey === null) {
+        newState.ui.targetStoreKeys = [];
+      }
       break;
     }
     case actionTypes.UPDATE_CURRENT_POSITION: {
