@@ -55,6 +55,7 @@ export class SearchForm extends React.Component<IProps, ISearchFormState> {
       const title: string = `${dic.t('name')} | ${dic.t('siteDescription')}`;
       window.document.title = title;
       window.history.pushState(null, title, loc);
+      (window.document.activeElement as HTMLInputElement).blur();
       // TODO: send pageview or send event
     });
   }
