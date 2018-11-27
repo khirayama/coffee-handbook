@@ -15,7 +15,6 @@ import {
 import { shortAnimationTime } from 'vars';
 
 interface IProps {
-  defaultHeight: number;
   mode: ISheetModes;
   onMoveUp?: any;
   onMoveDown?: any;
@@ -40,7 +39,6 @@ export class Sheet extends React.Component<IProps, {}> {
   public render(): JSX.Element {
     return (
       <div
-        style={{ top: this.props.mode === 'default' ? `calc(100% - ${this.props.defaultHeight}px)` : '' }}
         ref={this.ref}
         onTouchStart={this.onTouchStart}
         onTouchMove={this.onTouchMove}

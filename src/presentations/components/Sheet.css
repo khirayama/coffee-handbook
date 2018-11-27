@@ -1,5 +1,6 @@
 .Sheet {
   position: absolute;
+  top: calc(100% - 220px);
   z-index: 12000;
   background: $color-white;
   width: 100%;
@@ -8,6 +9,7 @@
   box-shadow: $shadow-inverse;
   overscroll-behavior-y: contain;
   transition: top $short ease-in-out, transform $short ease-in-out, border-radius $short ease-in-out;
+  will-change: top, transform, border-radius;
 
   &.Sheet__Opened {
     top: 0;
