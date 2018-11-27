@@ -65,6 +65,10 @@ export class StoreMarker {
     this.el.classList.remove('StoreMarker__Active');
   }
 
+  public remove(): void {
+    this.marker.remove();
+  }
+
   private showDetail(): void {
     const zoom: number = this.map.getZoom();
     if (zoom > 11) {

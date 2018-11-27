@@ -10,6 +10,15 @@
     .StoreMarker--Name {
       display: none;
     }
+
+    &.StoreMarker__Active {
+      .StoreMarker--Icon:after {
+        top: -1px;
+        left: -1px;
+        width: 10px !important;
+        height: 10px !important;
+      }
+    }
   }
 
   .StoreMarker--Icon {
