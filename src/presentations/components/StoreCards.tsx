@@ -116,7 +116,7 @@ export class StoreCards extends React.Component<IProps, {}> {
           const storeKey: string = targetElement ? targetElement.dataset.storekey || null : null;
           this.props.onSnap(storeKey);
         }
-      }, 50);
+      }, 20);
     }
   }
 }

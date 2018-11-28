@@ -150,12 +150,20 @@ export class StoreMapView extends React.Component<IProps, {}> {
       this.props.offset[0] !== 0 ||
       this.props.offset[1] !== 0
     ) {
-      this.map.flyTo({
-        center: this.props.center,
-        offset: this.props.offset,
-      });
+      this.map.flyTo(
+        {
+          center: this.props.center,
+          offset: this.props.offset,
+        },
+        {
+          speed: 2,
+          maxDuration: 600,
+        },
+      );
     } else if (this.props.center.lat !== center.lat || this.props.center.lng !== center.lng) {
-      this.map.panTo(this.props.center);
+      this.map.panTo(this.props.center, {
+        duration: 200,
+      });
     }
   }
 }
