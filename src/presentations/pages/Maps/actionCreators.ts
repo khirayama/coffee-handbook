@@ -115,17 +115,23 @@ export function searchStore(dispatch: IDispatch, query: string, pos: IPosition):
   return new Promise(
     (resolve: any): void => {
       const result: ISearchResult = storeSearchEngine.search(query, pos);
+      const firstResult: { score: number; key: string; store: IRawStore } = result.results[0];
+      const newPos: IPosition = firstResult
+        ? {
+            lat: firstResult.store.lat,
+            lng: firstResult.store.lng,
+          }
+        : pos;
 
       const action: IAction = {
         actionType: actionTypes.SEARCH_STORE,
         payload: {
           searchQuery: result.searchQuery,
-          targetStoreKeys: result.results.map((tmp: any): string => tmp.key),
+          targetStoreKeys: result.results.map(
+            (tmp: { store: IRawStore; score: number; key: string }): string => tmp.key,
+          ),
           zoom: 12,
-          pos: {
-            lat: result.results[0].store.lat,
-            lng: result.results[0].store.lng,
-          },
+          pos: newPos,
         },
       };
 

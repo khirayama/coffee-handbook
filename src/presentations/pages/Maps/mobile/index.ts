@@ -30,7 +30,7 @@ const view: { pos: IPosition; zoom: number; currentPos: IPosition | null } = loa
 const initialState: IState = {
   ...window.state,
 };
-if (initialState.ui.selectedStoreKey) {
+if (initialState.ui.selectedStoreKey || initialState.ui.targetStoreKeys.length) {
   initialState.ui.zoom = 12;
 } else {
   initialState.ui.pos = view.pos;

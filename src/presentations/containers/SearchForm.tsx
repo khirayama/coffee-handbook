@@ -1,4 +1,5 @@
 import * as React from 'react';
+import * as queryString from 'query-string';
 
 import { dictionary } from 'dictionary';
 import { connect } from 'presentations/containers/Container';
@@ -95,7 +96,7 @@ export class SearchForm extends React.Component<IProps, ISearchFormState> {
     event.preventDefault();
     searchStore(this.props.dispatch, this.state.value, this.props.ui.pos).then((action: IAction) => {
       const dic: Dictionary = new Dictionary(this.props.lang, dictionary);
-      const loc: string = `/?q=${action.payload.searchQuery}`;
+      const loc: string = `/?${queryString.stringify(action.payload.searchQuery)}`;
       const title: string = `${dic.t('name')} | ${dic.t('siteDescription')}`;
       window.document.title = title;
       window.history.pushState(null, title, loc);

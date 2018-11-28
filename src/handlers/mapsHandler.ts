@@ -11,9 +11,10 @@ import { stores } from 'data/stores';
 import { Provider } from 'presentations/containers/Container';
 import { MapsDesktopPageContainer } from 'presentations/containers/MapsDesktopPage';
 import { MapsMobilePageContainer } from 'presentations/containers/MapsMobilePage';
-import { IAction, IRawStore, IState, IStore } from 'presentations/pages/Maps/interfaces';
+import { IAction, IPosition, IRawStore, IState, IStore } from 'presentations/pages/Maps/interfaces';
 import { reducer } from 'presentations/pages/Maps/reducer';
 import { secret } from 'secret';
+import { ISearchResult, storeSearchEngine } from 'StoreSearchEngine';
 import { Dictionary } from 'utils/Dictionary';
 import { Resource } from 'utils/Resource';
 import { Store as AppStore } from 'utils/Store';
@@ -62,11 +63,21 @@ const compiledFunction: (options: { props: IProps }) => void = pug.compileFile(
   },
 );
 
-// tslint:disable-next-line:max-func-body-length
+// FIXME: data/stores loads data async.
+setTimeout(() => {
+  storeSearchEngine.buildIndex(stores);
+}, 10);
+
+// tslint:disable-next-line:max-func-body-length cyclomatic-complexity
 export function mapsHandler(req: express.Request, res: express.Response): void {
   const lang: string = req.lang;
   const dic: Dictionary = req.dic;
   const storeKey: string = req.params.key;
+  const searchKeyword: string = req.query.q ? storeSearchEngine.decode(req.query.q) : '';
+  const searchPos: IPosition = {
+    lat: req.query.pos ? req.query.pos.split(',')[0] : null,
+    lng: req.query.pos ? req.query.pos.split(',')[1] : null,
+  };
 
   const storeResource: Resource<IRawStore, IStore> = new Resource(stores, lang);
   const store: IStore = storeResource
@@ -74,22 +85,32 @@ export function mapsHandler(req: express.Request, res: express.Response): void {
       key: storeKey,
     })
     .findOne();
+  const pos: IPosition = {
+    lat: store ? store.lat : 35.664035,
+    lng: store ? store.lng : 139.698212,
+  };
+  let targetStoreKeys: string[] = [];
+  if (searchKeyword) {
+    const result: ISearchResult = storeSearchEngine.search(searchKeyword, searchPos);
+    targetStoreKeys = result.results.map((tmp: { store: IRawStore; score: number; key: string }): string => tmp.key);
+    const firstResult: { score: number; key: string; store: IRawStore } = result.results[0];
+    if (firstResult) {
+      pos.lat = firstResult ? firstResult.store.lat : pos.lat;
+      pos.lng = firstResult ? firstResult.store.lng : pos.lng;
+    }
+  }
 
   const appStore: AppStore<IState, IAction> = new AppStore(
     {
       lang,
       stores,
       ui: {
-        sheetMode: store ? <'none'>'none' : <'default'>'default',
-        targetStoreKey: null,
-        // TODO: server side rendering for search
-        targetStoreKeys: [],
+        sheetMode: store || targetStoreKeys.length ? <'none'>'none' : <'default'>'default',
+        targetStoreKey: targetStoreKeys[0] || null,
+        targetStoreKeys,
         searchQuery: '',
         currentPos: null,
-        pos: {
-          lat: store ? store.lat : 35.664035,
-          lng: store ? store.lng : 139.698212,
-        },
+        pos,
         selectedStoreKey: storeKey,
         zoom: 8,
         offset: <[number, number]>[0, 0],

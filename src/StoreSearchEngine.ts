@@ -4,7 +4,7 @@ import { IAction, IDispatch, IPosition, IRawStore } from 'presentations/pages/Ma
 import { Dictionary } from 'utils/Dictionary';
 
 export interface ISearchResult {
-  searchQuery: string;
+  searchQuery: { [key: string]: string };
   results: {
     key: string;
     score: number;
@@ -65,6 +65,14 @@ export class StoreSearchEngine {
   private storeIndex: any = {};
 
   private dic: Dictionary = new Dictionary(null, dictionary);
+
+  public encode(keyword: string): string {
+    return encodeURIComponent(keyword);
+  }
+
+  public decode(keyword: string): string {
+    return decodeURIComponent(keyword);
+  }
 
   public buildIndex(rawStores: IRawStore[]): void {
     this.rawStores = rawStores;
@@ -128,7 +136,10 @@ export class StoreSearchEngine {
       });
 
     return {
-      searchQuery: '',
+      searchQuery: {
+        q: this.encode(keyword),
+        pos: `${pos.lat},${pos.lng}`,
+      },
       results,
     };
   }
