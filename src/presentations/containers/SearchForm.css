@@ -8,4 +8,25 @@
     padding: 8px;
     box-shadow: $shadow;
   }
+
+  .SearchForm--CandidateList {
+    .SearchForm--CandidateList--Item {
+      padding: 12px 0;
+
+      .SearchForm--CandidateList--Item--Name {
+        font-weight: $font-bold;
+      }
+
+      .SearchForm--CandidateList--Item--Address {
+        color: $color-text-secondary;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+
+      & + .SearchForm--CandidateList--Item {
+        border-top: $border;
+      }
+    }
+  }
 }
