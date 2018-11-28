@@ -1,0 +1,82 @@
+.StoreCards {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  z-index: 1;
+  overscroll-behavior-y: contain;
+
+  .StoreCards--List {
+    display: flex;
+    padding: 0 0 calc(25px + 12px);
+    scroll-snap-type: x mandatory;
+    overflow: scroll;
+
+    .StoreCards--List--Item {
+      $width: calc(100% - 12px);
+      flex: 1;
+      width: $width;
+      min-width: $width;
+      max-width: $width;
+      scroll-snap-align: center;
+
+      .StoreCards--List--Item--Content {
+        background: $color-white;
+        padding: 12px;
+        border-radius: 12px;
+        margin: 0 6px;
+        text-align: left;
+        box-shadow: $shadow;
+
+        .StoreCards--List--Item--Content--Name {
+          font-weight: $font-bold;
+          font-size: 1.25rem;
+          padding-bottom: 4px;
+        }
+
+        .StoreCards--List--Item--Content--Address {
+          padding-bottom: 12px;
+        }
+
+        .StoreCards--List--Item--Content--Media {
+          display: flex;
+          max-width: 324px;
+          justify-content: space-between;
+          margin-bottom: 16px;
+
+          .StoreCards--List--Item--Content--Media--Item {
+            $size: 32px;
+            display: inline-block;
+            width: $size;
+            height: $size;
+            line-height: $size;
+            background: $color-shadow;
+            color: white;
+            text-align: center;
+            margin: 0;
+            border-radius: $radius;
+
+            img {
+              width: 100%;
+            }
+
+            &.StoreCards--List--Item--Content--Media--Item__Active {
+              background: $color-text;
+            }
+          }
+        }
+      }
+
+      &:first-of-type {
+        .StoreCards--List--Item--Content {
+          margin: 0 0 0 12px;
+        }
+      }
+
+      &:last-of-type {
+        .StoreCards--List--Item--Content {
+          margin: 0 12px 0 0;
+        }
+      }
+    }
+  }
+}

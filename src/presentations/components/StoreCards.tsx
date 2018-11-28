@@ -19,6 +19,7 @@ export class StoreCardListItem extends React.Component<IListItemProps, {}> {
     super(props);
 
     this.onClick = this.onClick.bind(this);
+    this.onClickMedia = this.onClickMedia.bind(this);
   }
 
   public render(): JSX.Element {
@@ -27,7 +28,33 @@ export class StoreCardListItem extends React.Component<IListItemProps, {}> {
     return (
       <li className="StoreCards--List--Item">
         <div role="button" className="StoreCards--List--Item--Content" onClick={this.onClick} data-storekey={store.key}>
-          {store.name}
+          <div className="StoreCards--List--Item--Content--Name">{store.name}</div>
+          <div className="StoreCards--List--Item--Content--Address">{store.address}</div>
+          <ul className="StoreCards--List--Item--Content--Media">
+            {Object.keys(store.media).map((key: string) => {
+              const val: string | null = store.media[key];
+              if (val) {
+                return (
+                  <li
+                    key={key}
+                    className="StoreCards--List--Item--Content--Media--Item StoreCards--List--Item--Content--Media--Item__Active"
+                  >
+                    <a href={val} target="_blank" rel="noopener noreferrer" onClick={this.onClickMedia}>
+                      <img src={`/images/icon_${key}.svg`} alt={key} />
+                    </a>
+                  </li>
+                );
+              }
+
+              return (
+                <li key={key} className="StoreCards--List--Item--Content--Media--Item">
+                  <span>
+                    <img src={`/images/icon_${key}.svg`} alt={key} />
+                  </span>
+                </li>
+              );
+            })}
+          </ul>
         </div>
       </li>
     );
@@ -37,6 +64,10 @@ export class StoreCardListItem extends React.Component<IListItemProps, {}> {
     if (this.props.onClickItem) {
       this.props.onClickItem(event, this.props.store);
     }
+  }
+
+  private onClickMedia(event: React.MouseEvent<HTMLElement>): void {
+    event.stopPropagation();
   }
 }
 
@@ -85,7 +116,7 @@ export class StoreCards extends React.Component<IProps, {}> {
           const storeKey: string = targetElement ? targetElement.dataset.storekey || null : null;
           this.props.onSnap(storeKey);
         }
-      }, 120);
+      }, 50);
     }
   }
 }
