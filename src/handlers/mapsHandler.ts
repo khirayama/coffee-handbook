@@ -81,6 +81,7 @@ export function mapsHandler(req: express.Request, res: express.Response): void {
       stores,
       ui: {
         sheetMode: store ? <'none'>'none' : <'default'>'default',
+        targetStoreKey: null,
         // TODO: server side rendering for search
         targetStoreKeys: [],
         searchQuery: '',

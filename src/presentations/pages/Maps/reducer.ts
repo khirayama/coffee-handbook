@@ -64,6 +64,10 @@ export function reducer(state: IState, action: IAction): IState {
       }
       break;
     }
+    case actionTypes.SELECT_TARGET_STORE: {
+      newState.ui.targetStoreKey = payload.storeKey;
+      break;
+    }
     case actionTypes.UPDATE_CURRENT_POSITION: {
       newState.ui.currentPos = payload.currentPos;
       break;

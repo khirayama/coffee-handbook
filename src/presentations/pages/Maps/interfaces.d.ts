@@ -8,7 +8,8 @@ export interface IState {
   stores: IRawStore[];
   ui: {
     sheetMode: ISheetModes;
-    selectedStoreKey: string;
+    selectedStoreKey: string | null;
+    targetStoreKey: string | null;
     targetStoreKeys: string[];
     searchQuery: string;
     currentPos: IPosition | null;

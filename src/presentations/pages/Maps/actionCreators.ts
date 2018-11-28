@@ -68,6 +68,21 @@ export function selectStore(dispatch: IDispatch, storeKey: string | null): Promi
   );
 }
 
+export function selectTargetStore(dispatch: IDispatch, storeKey: string | null): Promise<IAction> {
+  return new Promise(
+    (resolve: any): void => {
+      const action: IAction = {
+        actionType: actionTypes.SELECT_TARGET_STORE,
+        payload: {
+          storeKey,
+        },
+      };
+      dispatch(action);
+      resolve(action);
+    },
+  );
+}
+
 export function updateCurrentPosition(dispatch: IDispatch, currentPos: IPosition): Promise<IAction> {
   return new Promise(
     (resolve: any): void => {
