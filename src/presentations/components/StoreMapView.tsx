@@ -1,4 +1,5 @@
 // tslint:disable:no-any
+import * as deepEqual from 'deep-equal';
 import * as React from 'react';
 
 import { StoreMarker } from 'presentations/components/StoreMarker';
@@ -54,12 +55,13 @@ export class StoreMapView extends React.Component<IProps, {}> {
     if (this.props.currentPos && this.currentPositionMarker === null) {
       this.addCurrentPosition();
     }
+    this.removeStores();
     this.addStores();
     this.centering();
     this.setEventListeners();
   }
 
-  public componentDidUpdate(): void {
+  public componentDidUpdate(prevProps: IProps): void {
     if (this.props.currentPos && this.currentPositionMarker === null) {
       this.addCurrentPosition();
     } else if (this.currentPositionMarker !== null) {
@@ -67,8 +69,10 @@ export class StoreMapView extends React.Component<IProps, {}> {
     }
 
     this.centering();
-    this.removeStores();
-    this.addStores();
+    if (!deepEqual(prevProps.stores, this.props.stores)) {
+      this.removeStores();
+      this.addStores();
+    }
 
     const selectedStoreKey: string | null = this.props.selectedStoreKey;
     if (selectedStoreKey) {
@@ -122,6 +126,7 @@ export class StoreMapView extends React.Component<IProps, {}> {
       const storeMarker: StoreMarker = this.storeMarkers[storeKey];
       if (storeMarker) {
         storeMarker.remove();
+        this.storeMarkers[storeKey] = null;
       }
     });
   }
