@@ -1,35 +1,31 @@
 // tslint:disable:no-any
 import { actionTypes } from 'presentations/pages/Maps/actionTypes';
 import { IAction, IDispatch, IPosition, IRawStore } from 'presentations/pages/Maps/interfaces';
+import { ISearchResult, storeSearchEngine } from 'StoreSearchEngine';
 
 ///********** START *********///
 import { redHorn } from 'data/stores/redHorn';
 import { saredoCoffee } from 'data/stores/saredoCoffee';
 import { tokadoCoffee } from 'data/stores/tokadoCoffee';
 
-interface ISearchResult {
-  searchQuery: string;
-  result: IRawStore[];
-}
-
 // parseSearchQuery
 // buildSearchQuery
-function searchStoreMock(query: string, pos: IPosition): ISearchResult {
-  // TODO: Make url safe
-  const normalizedQuery: string[] = query
-    .replace(/,/g, ' ')
-    .replace(/、/g, ' ')
-    .replace(/　/, ' ')
-    .split(' ')
-    .map((key: string) => key.trim())
-    .filter((key: string) => !!key);
-  const searchQuery: string = `${normalizedQuery.join('+')}&pos=${pos.lat},${pos.lng}`;
-
-  return {
-    searchQuery: searchQuery,
-    result: [saredoCoffee, tokadoCoffee, redHorn],
-  };
-}
+// function searchStoreMock(query: string, pos: IPosition): ISearchResult {
+//   // TODO: Make url safe
+//   const normalizedQuery: string[] = query
+//     .replace(/,/g, ' ')
+//     .replace(/、/g, ' ')
+//     .replace(/　/, ' ')
+//     .split(' ')
+//     .map((key: string) => key.trim())
+//     .filter((key: string) => !!key);
+//   const searchQuery: string = `${normalizedQuery.join('+')}&pos=${pos.lat},${pos.lng}`;
+//
+//   return {
+//     searchQuery: searchQuery,
+//     result: [saredoCoffee, tokadoCoffee, redHorn],
+//   };
+// }
 ///********** END *********///
 
 export function updateView(
