@@ -1,4 +1,3 @@
-import * as deepEqual from 'deep-equal';
 import * as React from 'react';
 
 import { IAction, IDispatch, IState } from 'presentations/pages/Maps/interfaces';
