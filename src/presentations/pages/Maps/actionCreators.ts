@@ -5,6 +5,7 @@ import { IAction, IDispatch, IPosition, IRawStore } from 'presentations/pages/Ma
 ///********** START *********///
 import { redHorn } from 'data/stores/redHorn';
 import { saredoCoffee } from 'data/stores/saredoCoffee';
+import { tokadoCoffee } from 'data/stores/tokadoCoffee';
 
 interface ISearchResult {
   searchQuery: string;
@@ -26,7 +27,7 @@ function searchStoreMock(query: string, pos: IPosition): ISearchResult {
 
   return {
     searchQuery: searchQuery,
-    result: [saredoCoffee, redHorn],
+    result: [saredoCoffee, tokadoCoffee, redHorn],
   };
 }
 ///********** END *********///
