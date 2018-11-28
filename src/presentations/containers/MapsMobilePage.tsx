@@ -4,16 +4,12 @@ import * as React from 'react';
 import { dictionary } from 'dictionary';
 import { Sheet } from 'presentations/components/Sheet';
 import { StoreCard } from 'presentations/components/StoreCard';
+import { StoreCards } from 'presentations/components/StoreCards';
 import { StoreMapView } from 'presentations/components/StoreMapView';
 import { connect } from 'presentations/containers/Container';
 import { CurrentPositionButtonContainer } from 'presentations/containers/CurrentPositionButton';
 import { SearchFormContainer } from 'presentations/containers/SearchForm';
-import {
-  selectStore,
-  updateCurrentPosition,
-  updateSheetMode,
-  updateView,
-} from 'presentations/pages/Maps/actionCreators';
+import { selectStore, selectTargetStore, updateSheetMode, updateView } from 'presentations/pages/Maps/actionCreators';
 import { IAction, IDispatch, IPosition, IRawStore, IState, IStore } from 'presentations/pages/Maps/interfaces';
 import { waitShortAnimationEnd } from 'presentations/utils/helpers';
 import { tracker } from 'presentations/utils/tracker';
@@ -37,6 +33,7 @@ export class MapsMobilePage extends React.Component<IProps, {}> {
     this.modalRef = React.createRef();
     this.onClickMap = this.onClickMap.bind(this);
     this.onMoveEnd = this.onMoveEnd.bind(this);
+    this.onSnap = this.onSnap.bind(this);
     this.onMoveUpSheet = this.onMoveUpSheet.bind(this);
     this.onMoveDownSheet = this.onMoveDownSheet.bind(this);
     this.onClickStore = this.onClickStore.bind(this);
@@ -76,19 +73,21 @@ export class MapsMobilePage extends React.Component<IProps, {}> {
   public render(): JSX.Element {
     const dic: Dictionary = new Dictionary(this.props.lang, dictionary);
     const props: IState = this.props;
-    const targetRawStores: IRawStore[] = props.ui.targetStoreKeys.length
-      ? props.stores.filter((candidateStore: IRawStore) => {
-          return props.ui.targetStoreKeys.indexOf(candidateStore.key) !== -1;
-        })
-      : props.stores;
-    const targetStoreResource: Resource<IRawStore, IStore> = new Resource(targetRawStores, props.lang);
+    const targetStoreKeys: string[] = props.ui.targetStoreKeys;
     const storeResource: Resource<IRawStore, IStore> = new Resource(props.stores, props.lang);
     const store: IStore = storeResource
       .where({
         key: props.ui.selectedStoreKey,
       })
       .findOne();
-    const targetStores: IStore[] = targetStoreResource.find();
+    const stores: IStore[] = storeResource.find();
+    // FIXME: Inefficiency. But I want to keep an order of targetStoreKeys.
+    const targetStores: IStore[] = targetStoreKeys.length
+      ? targetStoreKeys.map((targetStoreKey: string) => {
+          return stores.filter((candidateStore: IStore) => candidateStore.key === targetStoreKey)[0];
+        })
+      : stores;
+    // TODO: selectedStoreKeyをmapに渡すのをやめてcenterを計算して渡すように
 
     return (
       <div className="MapsMobilePage">
@@ -97,12 +96,8 @@ export class MapsMobilePage extends React.Component<IProps, {}> {
           <Sheet mode={this.props.ui.sheetMode} onMoveUp={this.onMoveUpSheet} onMoveDown={this.onMoveDownSheet}>
             <SearchFormContainer />
           </Sheet>
-          {props.ui.targetStoreKeys.length && !props.ui.selectedStoreKey ? (
-            <ul className="StoreCardList">
-              {targetStores.map((targetStore: IStore) => {
-                return <li key={targetStore.key}>{targetStore.name}</li>;
-              })}
-            </ul>
+          {targetStoreKeys.length && !props.ui.selectedStoreKey ? (
+            <StoreCards stores={targetStores} onClickItem={this.onClickStore} onSnap={this.onSnap} />
           ) : null}
           <div ref={this.modalRef} className={classNames('Modal', { Modal__Hidden: !store })}>
             <main>
@@ -129,6 +124,10 @@ export class MapsMobilePage extends React.Component<IProps, {}> {
 
   private onMoveEnd(event: mapboxgl.MapboxEvent, map: mapboxgl.Map): void {
     updateView(this.props.dispatch, map.getCenter(), map.getZoom(), [0, 0]);
+  }
+
+  private onSnap(storeKey: string): void {
+    selectTargetStore(this.props.dispatch, storeKey);
   }
 
   private onClickMap(event: MouseEvent): void {
