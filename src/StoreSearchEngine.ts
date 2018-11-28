@@ -78,7 +78,9 @@ export class StoreSearchEngine {
   }
 
   public search(keyword: string, pos: IPosition): ISearchResult {
-    // TODO: posも使うように
+    // TODO: posも使うように。
+    // アイデアとしては、placeIndexにマッチしなかった場合に使う。
+    // 近いものには加点。という感じか。
     const score: any = {};
     for (let n: number = 2; n <= 4; n += 1) {
       const searchWords: string[] = this.splitNGram(keyword, n);
