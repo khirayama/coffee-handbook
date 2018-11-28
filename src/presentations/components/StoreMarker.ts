@@ -66,7 +66,9 @@ export class StoreMarker {
   }
 
   public remove(): void {
-    this.marker.remove();
+    if (this.marker) {
+      this.marker.remove();
+    }
   }
 
   private showDetail(): void {
