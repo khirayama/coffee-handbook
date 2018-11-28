@@ -87,12 +87,11 @@ export class MapsMobilePage extends React.Component<IProps, {}> {
           return stores.filter((candidateStore: IStore) => candidateStore.key === targetStoreKey)[0];
         })
       : stores;
-    // TODO: selectedStoreKeyをmapに渡すのをやめてcenterを計算して渡すように
 
     return (
       <div className="MapsMobilePage">
         <div className="MapsMobilePage--Content">
-          <CurrentPositionButtonContainer />
+          {!targetStoreKeys.length ? <CurrentPositionButtonContainer /> : null}
           <Sheet mode={this.props.ui.sheetMode} onMoveUp={this.onMoveUpSheet} onMoveDown={this.onMoveDownSheet}>
             <SearchFormContainer />
           </Sheet>
@@ -127,7 +126,22 @@ export class MapsMobilePage extends React.Component<IProps, {}> {
   }
 
   private onSnap(storeKey: string): void {
+    const storeResource: Resource<IRawStore, IStore> = new Resource(this.props.stores, this.props.lang);
+    const store: IStore = storeResource
+      .where({
+        key: storeKey,
+      })
+      .findOne();
     selectTargetStore(this.props.dispatch, storeKey);
+    updateView(
+      this.props.dispatch,
+      {
+        lng: store.lng,
+        lat: store.lat,
+      },
+      this.props.ui.zoom,
+      [0, 0],
+    );
   }
 
   private onClickMap(event: MouseEvent): void {

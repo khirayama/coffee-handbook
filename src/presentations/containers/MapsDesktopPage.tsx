@@ -77,6 +77,7 @@ export class MapsDesktopPage extends React.Component<IProps, {}> {
             ref={this.mapRef}
             lang={props.lang}
             currentPos={props.ui.currentPos}
+            selectedStoreKey={props.ui.selectedStoreKey}
             stores={storeResource.find()}
             center={props.ui.pos}
             zoom={props.ui.zoom}
