@@ -59,8 +59,8 @@ export function reducer(state: IState, action: IAction): IState {
     }
     case actionTypes.SELECT_STORE: {
       newState.ui.selectedStoreKey = payload.storeKey;
-      if (payload.storeKey === null) {
-        newState.ui.targetStoreKeys = [];
+      if (payload.storeKey) {
+        newState.ui.sheetMode = 'none';
       }
       break;
     }
@@ -80,6 +80,8 @@ export function reducer(state: IState, action: IAction): IState {
       newState.ui.sheetMode = <'closed'>'closed';
       newState.ui.searchQuery = payload.searchQuery;
       newState.ui.targetStoreKeys = payload.targetStoreKeys;
+      newState.ui.pos = payload.pos;
+      newState.ui.zoom = payload.zoom;
       break;
     }
     default:

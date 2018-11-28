@@ -6,6 +6,7 @@ import { Provider } from 'presentations/containers/Container';
 import { MapsMobilePageContainer } from 'presentations/containers/MapsMobilePage';
 import { IAction, IPosition, IState } from 'presentations/pages/Maps/interfaces';
 import { loadView, reducer } from 'presentations/pages/Maps/reducer';
+import { storeSearchEngine } from 'StoreSearchEngine';
 import { Store as AppStore } from 'utils/Store';
 
 // TODO: store検索
@@ -38,6 +39,8 @@ if (initialState.ui.selectedStoreKey) {
 initialState.ui.currentPos = view.currentPos || null;
 
 const appStore: AppStore<IState | null, IAction> = new AppStore(initialState, reducer);
+
+storeSearchEngine.buildIndex(initialState.stores);
 
 window.addEventListener('DOMContentLoaded', () => {
   const el: HTMLElement = window.document.querySelector('.application');

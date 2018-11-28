@@ -114,14 +114,18 @@ export function updateSheetMode(dispatch: IDispatch, mode: string): Promise<IAct
 export function searchStore(dispatch: IDispatch, query: string, pos: IPosition): Promise<IAction> {
   return new Promise(
     (resolve: any): void => {
-      // TODO: Use search engine
-      const result: ISearchResult = searchStoreMock(query, pos);
+      const result: ISearchResult = storeSearchEngine.search(query, pos);
 
       const action: IAction = {
         actionType: actionTypes.SEARCH_STORE,
         payload: {
           searchQuery: result.searchQuery,
-          targetStoreKeys: result.result.map((rawStore: IRawStore): string => rawStore.key),
+          targetStoreKeys: result.results.map((tmp: any): string => tmp.key),
+          zoom: 12,
+          pos: {
+            lat: result.results[0].store.lat,
+            lng: result.results[0].store.lng,
+          },
         },
       };
 
