@@ -3,6 +3,20 @@
 - [ ] Search stores
 - [ ] Alive Monitoring for stores
 
+## E2E
+
+- パターン1
+  - `/`にアクセス
+  - Sheetにfocus
+  - 検索
+  - List表示
+  - ListItemタップ
+  - mapタップ
+- パターン2
+  - `/`にアクセス
+  - Storeタップ
+  - mapタップ
+
 ## Memo
 
 - Experience
