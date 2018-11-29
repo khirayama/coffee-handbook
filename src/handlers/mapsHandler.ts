@@ -79,45 +79,61 @@ export function mapsHandler(req: express.Request, res: express.Response): void {
     lng: req.query.pos ? req.query.pos.split(',')[1] : null,
   };
 
+  // Build initial state
+  const initialState: IState = {
+    lang,
+    stores,
+    ui: {
+      sheetMode: 'default',
+      isShownModal: false,
+      isShownStoreCards: false,
+      isShownCurrentPositionButton: false,
+      targetStoreKey: null,
+      targetStoreKeys: [],
+      selectedStoreKey: null,
+      currentPos: null,
+      pos: {
+        lat: 35.664035,
+        lng: 139.698212,
+      },
+      zoom: 8,
+      offset: <[number, number]>[0, 0],
+    },
+  };
   const storeResource: Resource<IRawStore, IStore> = new Resource(stores, lang);
   const store: IStore = storeResource
     .where({
       key: storeKey,
     })
     .findOne();
-  const pos: IPosition = {
-    lat: store ? store.lat : 35.664035,
-    lng: store ? store.lng : 139.698212,
-  };
-  let targetStoreKeys: string[] = [];
   if (searchKeyword) {
     const result: ISearchResult = storeSearchEngine.search(searchKeyword, searchPos);
-    targetStoreKeys = result.results.map((tmp: { store: IRawStore; score: number; key: string }): string => tmp.key);
     const firstResult: { score: number; key: string; store: IRawStore } = result.results[0];
+
     if (firstResult) {
-      pos.lat = firstResult ? firstResult.store.lat : pos.lat;
-      pos.lng = firstResult ? firstResult.store.lng : pos.lng;
+      initialState.ui.sheetMode = 'none';
+      initialState.ui.isShownModal = false;
+      initialState.ui.isShownStoreCards = true;
+      initialState.ui.isShownCurrentPositionButton = false;
+      initialState.ui.targetStoreKeys = result.results.map(
+        (tmp: { store: IRawStore; score: number; key: string }): string => tmp.key,
+      );
+      initialState.ui.targetStoreKey = initialState.ui.targetStoreKeys[0];
+      initialState.ui.pos.lat = firstResult.store.lat;
+      initialState.ui.pos.lng = firstResult.store.lng;
     }
   }
+  if (store) {
+    initialState.ui.sheetMode = 'none';
+    initialState.ui.isShownModal = true;
+    initialState.ui.isShownStoreCards = false;
+    initialState.ui.isShownCurrentPositionButton = false;
+    initialState.ui.pos.lat = store.lat;
+    initialState.ui.pos.lng = store.lng;
+  }
+  const appStore: AppStore<IState, IAction> = new AppStore(initialState, reducer);
 
-  const appStore: AppStore<IState, IAction> = new AppStore(
-    {
-      lang,
-      stores,
-      ui: {
-        sheetMode: store || targetStoreKeys.length ? <'none'>'none' : <'default'>'default',
-        targetStoreKey: targetStoreKeys[0] || null,
-        targetStoreKeys,
-        searchQuery: '',
-        currentPos: null,
-        pos,
-        selectedStoreKey: storeKey,
-        zoom: 8,
-        offset: <[number, number]>[0, 0],
-      },
-    },
-    reducer,
-  );
+  // For SEO
   const titleSafix: string = `${dic.t('name')} | ${dic.t('siteDescription')}`;
   const title: string = store ? `${store.name} | ${titleSafix}` : titleSafix;
   const description: string = store ? `${store.name} | ${store.address} | ${titleSafix}` : titleSafix;
@@ -126,7 +142,6 @@ export function mapsHandler(req: express.Request, res: express.Response): void {
     keywords.push(store.name);
     keywords.push(store.address);
   }
-
   // FYI: https://schema.org/CafeOrCoffeeShop
   // FYI: https://developers.google.com/search/docs/data-types/breadcrumb
   // FYI: https://qiita.com/narumana/items/b66969b80cce848b2ddf
@@ -165,7 +180,6 @@ export function mapsHandler(req: express.Request, res: express.Response): void {
         name: store.name,
       },
     });
-
     // FYI: https://developers.google.com/search/docs/data-types/social-profile
     // tslint:disable-next-line:no-any
     const socialProfile: any = {
@@ -184,7 +198,6 @@ export function mapsHandler(req: express.Request, res: express.Response): void {
         .filter((v: string | undefined) => !!v),
     };
     jsonLD.push(socialProfile);
-
     // FYI: https://developers.google.com/search/docs/data-types/local-business
     // tslint:disable-next-line:no-any
     const cafeOrCoffeeShop: any = {
