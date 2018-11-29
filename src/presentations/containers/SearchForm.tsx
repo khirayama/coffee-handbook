@@ -1,9 +1,9 @@
-import * as React from 'react';
 import * as queryString from 'query-string';
+import * as React from 'react';
 
 import { dictionary } from 'dictionary';
 import { connect } from 'presentations/containers/Container';
-import { searchStore, selectStore, updateView } from 'presentations/pages/Maps/actionCreators';
+import { searchStore, selectStore, updateSheetMode, updateView } from 'presentations/pages/Maps/actionCreators';
 import { IAction, IDispatch, IPosition, IRawStore, IState, IStore } from 'presentations/pages/Maps/interfaces';
 import { ISearchResult, storeSearchEngine } from 'StoreSearchEngine';
 import { Dictionary } from 'utils/Dictionary';
@@ -57,6 +57,7 @@ export class SearchForm extends React.Component<IProps, ISearchFormState> {
 
     this.onSubmit = this.onSubmit.bind(this);
     this.onChange = this.onChange.bind(this);
+    this.onFocus = this.onFocus.bind(this);
     this.onClickCandidateItem = this.onClickCandidateItem.bind(this);
   }
 
@@ -81,6 +82,7 @@ export class SearchForm extends React.Component<IProps, ISearchFormState> {
           type="text"
           placeholder={placeholder}
           onChange={this.onChange}
+          onFocus={this.onFocus}
           value={this.state.value}
         />
         <ul className="SearchForm--CandidateList">
@@ -107,6 +109,10 @@ export class SearchForm extends React.Component<IProps, ISearchFormState> {
       });
       // TODO: send pageview or send event
     });
+  }
+
+  private onFocus(event: React.FormEvent<HTMLElement>): void {
+    updateSheetMode(this.props.dispatch, 'opened');
   }
 
   private onChange(event: React.FormEvent<HTMLInputElement>): void {

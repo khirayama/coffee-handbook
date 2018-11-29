@@ -1,4 +1,5 @@
 // tslint:disable:no-any
+import * as classNames from 'classnames';
 import * as React from 'react';
 
 import { IAction, IDispatch, IPosition, IRawStore, IState, IStore } from 'presentations/pages/Maps/interfaces';
@@ -7,6 +8,7 @@ interface IProps {
   onClickItem: any;
   onSnap: any;
   stores: IStore[];
+  isShown: boolean;
 }
 
 interface IListItemProps {
@@ -88,7 +90,7 @@ export class StoreCards extends React.Component<IProps, {}> {
     const stores: IStore[] = this.props.stores;
 
     return (
-      <div className="StoreCards">
+      <div className={classNames('StoreCards', { StoreCards__Hidden: !this.props.isShown })}>
         <ul className="StoreCards--List" ref={this.ref} onScroll={this.onScroll}>
           {stores.map((store: IStore) => {
             return <StoreCardListItem key={store.key} onClickItem={this.props.onClickItem} store={store} />;

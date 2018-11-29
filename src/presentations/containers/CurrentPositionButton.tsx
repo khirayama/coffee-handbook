@@ -1,4 +1,5 @@
 // tslint:disable:no-any
+import * as classNames from 'classnames';
 import * as React from 'react';
 
 import { connect } from 'presentations/containers/Container';
@@ -43,7 +44,13 @@ export class CurrentPositionButton extends React.Component<IProps, {}> {
 
   public render(): JSX.Element {
     return (
-      <div className="CurrentPositionButton" onClick={this.onClick} role="button">
+      <div
+        className={classNames('CurrentPositionButton', {
+          CurrentPositionButton__Hidden: !this.props.ui.isShownCurrentPositionButton,
+        })}
+        onClick={this.onClick}
+        role="button"
+      >
         <i className="Icon">my_location</i>
       </div>
     );

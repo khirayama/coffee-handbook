@@ -2,12 +2,18 @@
   position: absolute;
   bottom: 0;
   width: 100%;
-  z-index: 1;
+  z-index: 4000;
+  transform: translateY(0);
   overscroll-behavior-y: contain;
+  transition: transform $short ease-in-out;
+
+  &.StoreCards__Hidden {
+    transform: translateY(100%);
+  }
 
   .StoreCards--List {
     display: flex;
-    padding: 0 0 calc(25px + 12px);
+    padding: 0 0 12px;
     scroll-snap-type: x mandatory;
     overflow: scroll;
 

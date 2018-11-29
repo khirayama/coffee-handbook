@@ -91,17 +91,18 @@ export class MapsMobilePage extends React.Component<IProps, {}> {
     return (
       <div className="MapsMobilePage">
         <div className="MapsMobilePage--Content">
-          {!targetStoreKeys.length ? <CurrentPositionButtonContainer /> : null}
-          <Sheet mode={this.props.ui.sheetMode} onMoveUp={this.onMoveUpSheet} onMoveDown={this.onMoveDownSheet}>
+          <CurrentPositionButtonContainer />
+          <Sheet mode={props.ui.sheetMode} onMoveUp={this.onMoveUpSheet} onMoveDown={this.onMoveDownSheet}>
             <SearchFormContainer />
           </Sheet>
-          {targetStoreKeys.length && !props.ui.selectedStoreKey ? (
-            <StoreCards stores={targetStores} onClickItem={this.onClickStore} onSnap={this.onSnap} />
-          ) : null}
-          <div ref={this.modalRef} className={classNames('Modal', { Modal__Hidden: !store })}>
-            <main>
-              <StoreCard store={store} dic={dic} />
-            </main>
+          <StoreCards
+            isShown={props.ui.isShownStoreCards}
+            stores={targetStores}
+            onClickItem={this.onClickStore}
+            onSnap={this.onSnap}
+          />
+          <div ref={this.modalRef} className={classNames('Modal', { Modal__Hidden: !props.ui.isShownModal })}>
+            <StoreCard store={store} dic={dic} />
           </div>
           <StoreMapView
             ref={this.mapRef}
@@ -154,14 +155,6 @@ export class MapsMobilePage extends React.Component<IProps, {}> {
       window.history.pushState(null, title, loc);
     }
     selectStore(this.props.dispatch, null);
-    waitShortAnimationEnd().then(() => {
-      const mode: string = this.props.ui.sheetMode;
-      if (mode === 'default') {
-        updateSheetMode(this.props.dispatch, 'closed');
-      } else {
-        updateSheetMode(this.props.dispatch, 'default');
-      }
-    });
   }
 
   private onClickStore(event: React.MouseEvent<HTMLElement>, store: IStore): void {
@@ -178,7 +171,6 @@ export class MapsMobilePage extends React.Component<IProps, {}> {
       tracker.setLocation(loc);
       tracker.sendPageView();
     }
-    updateSheetMode(this.props.dispatch, 'none');
     waitShortAnimationEnd().then(() => {
       selectStore(this.props.dispatch, store.key);
       this.centerStoreWithModal(store);
