@@ -6,7 +6,7 @@ import { StoreCard } from 'presentations/components/StoreCard';
 import { StoreMapView } from 'presentations/components/StoreMapView';
 import { connect } from 'presentations/containers/Container';
 import { CurrentPositionButtonContainer } from 'presentations/containers/CurrentPositionButton';
-import { selectStore, updateCurrentPosition, updateView } from 'presentations/pages/Maps/actionCreators';
+import { selectStore, unselectStore, updateCurrentPosition, updateView } from 'presentations/pages/Maps/actionCreators';
 import { IAction, IDispatch, IPosition, IRawStore, IState, IStore } from 'presentations/pages/Maps/interfaces';
 import { tracker } from 'presentations/utils/tracker';
 import { Dictionary } from 'utils/Dictionary';
@@ -105,7 +105,7 @@ export class MapsDesktopPage extends React.Component<IProps, {}> {
       window.document.title = title;
       window.history.pushState(null, title, loc);
     }
-    selectStore(this.props.dispatch, null);
+    unselectStore(this.props.dispatch);
   }
 
   private onMoveEnd(event: mapboxgl.MapboxEvent, map: mapboxgl.Map): void {

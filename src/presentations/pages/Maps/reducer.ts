@@ -58,32 +58,31 @@ export function reducer(state: IState, action: IAction): IState {
     }
     case actionTypes.SELECT_STORE: {
       newState.ui.selectedStoreKey = payload.storeKey;
-      if (payload.storeKey) {
-        newState.ui.sheetMode = 'none';
-        newState.ui.isShownModal = true;
-        newState.ui.isShownStoreCards = false;
-        newState.ui.isShownCurrentPositionButton = false;
-      } else if (payload.storeKey === null && state.ui.isShownStoreCards) {
+      newState.ui.sheetMode = 'none';
+      newState.ui.isShownModal = true;
+      newState.ui.isShownStoreCards = false;
+      newState.ui.isShownCurrentPositionButton = false;
+      break;
+    }
+    case actionTypes.UNSELECT_STORE: {
+      newState.ui.selectedStoreKey = null;
+      if (state.ui.isShownStoreCards) {
         newState.ui.sheetMode = 'default';
         newState.ui.isShownModal = false;
         newState.ui.isShownStoreCards = false;
         newState.ui.isShownCurrentPositionButton = false;
         newState.ui.targetStoreKeys = [];
-      } else if (payload.storeKey === null && newState.ui.targetStoreKeys.length) {
+      } else if (newState.ui.targetStoreKeys.length) {
         newState.ui.sheetMode = 'none';
         newState.ui.isShownModal = false;
         newState.ui.isShownStoreCards = true;
         newState.ui.isShownCurrentPositionButton = false;
-      } else if (
-        payload.storeKey === null &&
-        !newState.ui.targetStoreKeys.length &&
-        newState.ui.sheetMode === 'default'
-      ) {
+      } else if (!newState.ui.targetStoreKeys.length && newState.ui.sheetMode === 'default') {
         newState.ui.sheetMode = 'closed';
         newState.ui.isShownModal = false;
         newState.ui.isShownStoreCards = false;
         newState.ui.isShownCurrentPositionButton = true;
-      } else if (payload.storeKey === null && !newState.ui.targetStoreKeys.length) {
+      } else if (!newState.ui.targetStoreKeys.length) {
         newState.ui.sheetMode = 'default';
         newState.ui.isShownModal = false;
         newState.ui.isShownStoreCards = false;

@@ -25,7 +25,7 @@ export function updateView(
   );
 }
 
-export function selectStore(dispatch: IDispatch, storeKey: string | null): Promise<IAction> {
+export function selectStore(dispatch: IDispatch, storeKey: string): Promise<IAction> {
   return new Promise(
     (resolve: any): void => {
       const action: IAction = {
@@ -33,6 +33,18 @@ export function selectStore(dispatch: IDispatch, storeKey: string | null): Promi
         payload: {
           storeKey,
         },
+      };
+      dispatch(action);
+      resolve(action);
+    },
+  );
+}
+
+export function unselectStore(dispatch: IDispatch): Promise<IAction> {
+  return new Promise(
+    (resolve: any): void => {
+      const action: IAction = {
+        actionType: actionTypes.UNSELECT_STORE,
       };
       dispatch(action);
       resolve(action);

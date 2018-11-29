@@ -9,7 +9,13 @@ import { StoreMapView } from 'presentations/components/StoreMapView';
 import { connect } from 'presentations/containers/Container';
 import { CurrentPositionButtonContainer } from 'presentations/containers/CurrentPositionButton';
 import { SearchFormContainer } from 'presentations/containers/SearchForm';
-import { selectStore, selectTargetStore, updateSheetMode, updateView } from 'presentations/pages/Maps/actionCreators';
+import {
+  selectStore,
+  selectTargetStore,
+  unselectStore,
+  updateSheetMode,
+  updateView,
+} from 'presentations/pages/Maps/actionCreators';
 import { IAction, IDispatch, IPosition, IRawStore, IState, IStore } from 'presentations/pages/Maps/interfaces';
 import { waitShortAnimationEnd } from 'presentations/utils/helpers';
 import { tracker } from 'presentations/utils/tracker';
@@ -154,7 +160,7 @@ export class MapsMobilePage extends React.Component<IProps, {}> {
       window.document.title = title;
       window.history.pushState(null, title, loc);
     }
-    selectStore(this.props.dispatch, null);
+    unselectStore(this.props.dispatch);
   }
 
   private onClickStore(event: React.MouseEvent<HTMLElement>, store: IStore): void {
