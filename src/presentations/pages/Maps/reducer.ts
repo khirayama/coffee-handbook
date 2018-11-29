@@ -44,7 +44,6 @@ export function reducer(state: IState, action: IAction): IState {
     offset?: [number, number];
     storeKey?: string;
     currentPos?: IPosition;
-    searchQuery?: string;
     targetStoreKeys?: string[];
     mode?: ISheetModes;
   } = action.payload;
@@ -61,6 +60,34 @@ export function reducer(state: IState, action: IAction): IState {
       newState.ui.selectedStoreKey = payload.storeKey;
       if (payload.storeKey) {
         newState.ui.sheetMode = 'none';
+        newState.ui.isShownModal = true;
+        newState.ui.isShownStoreCards = false;
+        newState.ui.isShownCurrentPositionButton = false;
+      } else if (payload.storeKey === null && state.ui.isShownStoreCards) {
+        newState.ui.sheetMode = 'default';
+        newState.ui.isShownModal = false;
+        newState.ui.isShownStoreCards = false;
+        newState.ui.isShownCurrentPositionButton = false;
+        newState.ui.targetStoreKeys = [];
+      } else if (payload.storeKey === null && newState.ui.targetStoreKeys.length) {
+        newState.ui.sheetMode = 'none';
+        newState.ui.isShownModal = false;
+        newState.ui.isShownStoreCards = true;
+        newState.ui.isShownCurrentPositionButton = false;
+      } else if (
+        payload.storeKey === null &&
+        !newState.ui.targetStoreKeys.length &&
+        newState.ui.sheetMode === 'default'
+      ) {
+        newState.ui.sheetMode = 'closed';
+        newState.ui.isShownModal = false;
+        newState.ui.isShownStoreCards = false;
+        newState.ui.isShownCurrentPositionButton = true;
+      } else if (payload.storeKey === null && !newState.ui.targetStoreKeys.length) {
+        newState.ui.sheetMode = 'default';
+        newState.ui.isShownModal = false;
+        newState.ui.isShownStoreCards = false;
+        newState.ui.isShownCurrentPositionButton = false;
       }
       break;
     }
@@ -77,8 +104,10 @@ export function reducer(state: IState, action: IAction): IState {
       break;
     }
     case actionTypes.SEARCH_STORE: {
-      newState.ui.sheetMode = <'closed'>'closed';
-      newState.ui.searchQuery = payload.searchQuery;
+      newState.ui.sheetMode = 'none';
+      newState.ui.isShownStoreCards = true;
+      newState.ui.isShownModal = false;
+      newState.ui.isShownCurrentPositionButton = false;
       newState.ui.targetStoreKeys = payload.targetStoreKeys;
       newState.ui.pos = payload.pos;
       newState.ui.zoom = payload.zoom;

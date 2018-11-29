@@ -8,10 +8,12 @@ export interface IState {
   stores: IRawStore[];
   ui: {
     sheetMode: ISheetModes;
+    isShownModal: boolean;
+    isShownStoreCards: boolean;
+    isShownCurrentPositionButton: boolean;
     selectedStoreKey: string | null;
     targetStoreKey: string | null;
     targetStoreKeys: string[];
-    searchQuery: string;
     currentPos: IPosition | null;
     pos: IPosition;
     zoom: number;
