@@ -15,7 +15,10 @@
     display: flex;
     padding: 0 0 12px;
     scroll-snap-type: x mandatory;
-    overflow: scroll;
+    width: 100%;
+    overflow-x: scroll;
+    overflow-y: none;
+    -webkit-overflow-scrolling: auto;
 
     .StoreCards--List--Item {
       $width: calc(100% - 12px);

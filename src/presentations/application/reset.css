@@ -41,6 +41,7 @@ i {
   font-style: normal;
   font-family: inherit;
   vertical-align: baseline;
+  -webkit-appearance: none;
 }
 
 article,
