@@ -14,19 +14,16 @@
   .StoreCards--List {
     display: flex;
     padding: 0 0 12px;
-    scroll-snap-type: x mandatory;
     width: 100%;
-    overflow-x: scroll;
-    overflow-y: none;
+    overflow: visible;
     -webkit-overflow-scrolling: auto;
 
     .StoreCards--List--Item {
-      $width: calc(100% - 12px);
+      $width: 100%;
       flex: 1;
       width: $width;
       min-width: $width;
       max-width: $width;
-      scroll-snap-align: center;
 
       .StoreCards--List--Item--Content {
         background: $color-white;
@@ -72,18 +69,6 @@
               background: $color-text;
             }
           }
-        }
-      }
-
-      &:first-of-type {
-        .StoreCards--List--Item--Content {
-          margin: 0 0 0 12px;
-        }
-      }
-
-      &:last-of-type {
-        .StoreCards--List--Item--Content {
-          margin: 0 12px 0 0;
         }
       }
     }

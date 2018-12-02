@@ -2,8 +2,6 @@
 import * as classNames from 'classnames';
 import * as React from 'react';
 
-import { shortAnimationTime } from 'vars';
-
 interface IProps {
   isShown: boolean;
   onMoveUp?: any;
