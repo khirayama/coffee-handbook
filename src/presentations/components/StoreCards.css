@@ -6,6 +6,7 @@
   transform: translateY(0);
   overscroll-behavior-y: contain;
   transition: transform $short ease-in-out;
+  will-change: transform;
 
   &.StoreCards__Hidden {
     transform: translateY(100%);
@@ -17,6 +18,7 @@
     width: 100%;
     overflow: visible;
     -webkit-overflow-scrolling: auto;
+    will-change: transform;
 
     .StoreCards--List--Item {
       $width: 100%;
