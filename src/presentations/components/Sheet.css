@@ -19,5 +19,6 @@
     background: $color-white;
     height: 100%;
     overflow: scroll;
+    -webkit-overflow-scrolling: touch
   }
 }
