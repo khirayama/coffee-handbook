@@ -89,6 +89,7 @@ export class SearchForm extends React.Component<IProps, ISearchFormState> {
   }
 
   private onChange(event: React.FormEvent<HTMLInputElement>): void {
+    // TODO: valueもstore.stateに
     const value: string = event.currentTarget.value;
 
     filterStore(this.props.dispatch, value, this.props.ui.pos);
