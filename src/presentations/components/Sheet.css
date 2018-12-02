@@ -1,44 +1,23 @@
 .Sheet {
   position: absolute;
-  top: calc(100% - 220px);
+  top: 0;
   z-index: 12000;
-  background: $color-white;
   width: 100%;
+  height: 100%;
   max-height: 100%;
-  border-radius: 12px;
-  box-shadow: $shadow-inverse;
+  overflow: hidden;
+  transform: translateY(0);
   overscroll-behavior-y: contain;
-  transition: top $short ease-in-out, transform $short ease-in-out, border-radius $short ease-in-out;
-  will-change: top, transform, border-radius;
+  transition: transform $short ease-in-out;
+  will-change: transform;
 
-  &.Sheet__Opened {
-    top: 0;
-    border-radius: 0;
-    overflow: scroll;
-  }
-
-  &.Sheet__Closed {
-    top: calc(100% - 25px);
-  }
-
-  &.Sheet__None {
-    top: 100%;
-  }
-
-  .Sheet--Mark {
-    text-align: center;
-
-    &:after {
-      content: '';
-      display: inline-block;
-      width: 48px;
-      height: 8px;
-      background: $color-divider;
-      border-radius: 4px;
-    }
+  &.Sheet__Hidden {
+    transform: translateY(100%);
   }
 
   .Sheet--Content {
-    height: 1800px; /* TODO: TMP */
+    background: $color-white;
+    height: 100%;
+    overflow: scroll;
   }
 }

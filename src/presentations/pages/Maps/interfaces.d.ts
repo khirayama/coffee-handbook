@@ -1,15 +1,13 @@
 // tslint:disable:no-any
 export type IDispatch = (action: IAction) => void;
 
-export type ISheetModes = 'opened' | 'closed' | 'default' | 'none';
-
 export interface IState {
   lang: string;
   stores: IRawStore[];
   ui: {
-    sheetMode: ISheetModes;
     isShownModal: boolean;
     isShownStoreCards: boolean;
+    isShownSheet: boolean;
     isShownCurrentPositionButton: boolean;
     selectedStoreKey: string | null;
     targetStoreKey: string | null;

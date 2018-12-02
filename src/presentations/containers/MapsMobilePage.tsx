@@ -9,13 +9,7 @@ import { StoreMapView } from 'presentations/components/StoreMapView';
 import { connect } from 'presentations/containers/Container';
 import { CurrentPositionButtonContainer } from 'presentations/containers/CurrentPositionButton';
 import { SearchFormContainer } from 'presentations/containers/SearchForm';
-import {
-  selectStore,
-  selectTargetStore,
-  unselectStore,
-  updateSheetMode,
-  updateView,
-} from 'presentations/pages/Maps/actionCreators';
+import { selectStore, selectTargetStore, unselectStore, updateView } from 'presentations/pages/Maps/actionCreators';
 import { IAction, IDispatch, IPosition, IRawStore, IState, IStore } from 'presentations/pages/Maps/interfaces';
 import { waitShortAnimationEnd } from 'presentations/utils/helpers';
 import { tracker } from 'presentations/utils/tracker';
@@ -40,8 +34,6 @@ export class MapsMobilePage extends React.Component<IProps, {}> {
     this.onClickMap = this.onClickMap.bind(this);
     this.onMoveEnd = this.onMoveEnd.bind(this);
     this.onSnap = this.onSnap.bind(this);
-    this.onMoveUpSheet = this.onMoveUpSheet.bind(this);
-    this.onMoveDownSheet = this.onMoveDownSheet.bind(this);
     this.onClickStore = this.onClickStore.bind(this);
   }
 
@@ -97,10 +89,9 @@ export class MapsMobilePage extends React.Component<IProps, {}> {
     return (
       <div className="MapsMobilePage">
         <div className="MapsMobilePage--Content">
+          <SearchFormContainer />
           <CurrentPositionButtonContainer />
-          <Sheet mode={props.ui.sheetMode} onMoveUp={this.onMoveUpSheet} onMoveDown={this.onMoveDownSheet}>
-            <SearchFormContainer />
-          </Sheet>
+          <Sheet isShown={props.ui.isShownSheet} />
           <StoreCards
             isShown={props.ui.isShownStoreCards}
             stores={targetStores}
@@ -181,24 +172,6 @@ export class MapsMobilePage extends React.Component<IProps, {}> {
       selectStore(this.props.dispatch, store.key);
       this.centerStoreWithModal(store);
     });
-  }
-
-  private onMoveUpSheet(): void {
-    const mode: string = this.props.ui.sheetMode;
-    if (mode === 'default') {
-      updateSheetMode(this.props.dispatch, 'opened');
-    } else if (mode === 'closed') {
-      updateSheetMode(this.props.dispatch, 'opened');
-    }
-  }
-
-  private onMoveDownSheet(): void {
-    const mode: string = this.props.ui.sheetMode;
-    if (mode === 'opened') {
-      updateSheetMode(this.props.dispatch, 'default');
-    } else if (mode === 'default') {
-      updateSheetMode(this.props.dispatch, 'closed');
-    }
   }
 
   private centerStoreWithModal(store: IStore): void {

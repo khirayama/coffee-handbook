@@ -84,9 +84,9 @@ export function mapsHandler(req: express.Request, res: express.Response): void {
     lang,
     stores,
     ui: {
-      sheetMode: 'default',
       isShownModal: false,
       isShownStoreCards: false,
+      isShownSheet: false,
       isShownCurrentPositionButton: false,
       targetStoreKey: null,
       targetStoreKeys: [],
@@ -111,7 +111,6 @@ export function mapsHandler(req: express.Request, res: express.Response): void {
     const firstResult: { score: number; key: string; store: IRawStore } = result.results[0];
 
     if (firstResult) {
-      initialState.ui.sheetMode = 'none';
       initialState.ui.isShownModal = false;
       initialState.ui.isShownStoreCards = true;
       initialState.ui.isShownCurrentPositionButton = false;
@@ -124,7 +123,6 @@ export function mapsHandler(req: express.Request, res: express.Response): void {
     }
   }
   if (store) {
-    initialState.ui.sheetMode = 'none';
     initialState.ui.isShownModal = true;
     initialState.ui.isShownStoreCards = false;
     initialState.ui.isShownCurrentPositionButton = false;

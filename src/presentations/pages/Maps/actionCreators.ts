@@ -83,13 +83,13 @@ export function updateCurrentPosition(dispatch: IDispatch, currentPos: IPosition
   );
 }
 
-export function updateSheetMode(dispatch: IDispatch, mode: string): Promise<IAction> {
+export function changeSheetShown(dispatch: IDispatch, isShown: boolean): Promise<IAction> {
   return new Promise(
     (resolve: any): void => {
       const action: IAction = {
         actionType: actionTypes.UPDATE_SHEET_MODE,
         payload: {
-          mode,
+          isShown,
         },
       };
       dispatch(action);

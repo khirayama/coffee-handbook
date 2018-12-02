@@ -1,11 +1,14 @@
 .SearchForm {
-  padding: 0 12px 12px;
+  position: absolute;
+  z-index: 13000;
+  width: 100%;
+  padding: 24px 12px 12px;
 
   .SearchForm--Input {
     width: 100%;
     border: $border;
-    border-radius: $radius;
-    padding: 8px;
+    border-radius: 12px;
+    padding: 12px;
     box-shadow: $shadow;
   }
 

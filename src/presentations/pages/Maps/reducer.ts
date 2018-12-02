@@ -1,5 +1,5 @@
 import { actionTypes } from 'presentations/pages/Maps/actionTypes';
-import { IAction, IPosition, ISheetModes, IState } from 'presentations/pages/Maps/interfaces';
+import { IAction, IPosition, IState } from 'presentations/pages/Maps/interfaces';
 
 const SAVE_VIEW_KEY: string = '__UI_MAP_VIEW';
 
@@ -45,7 +45,7 @@ export function reducer(state: IState, action: IAction): IState {
     storeKey?: string;
     currentPos?: IPosition;
     targetStoreKeys?: string[];
-    mode?: ISheetModes;
+    isShown?: boolean;
   } = action.payload;
 
   switch (action.actionType) {
@@ -58,7 +58,7 @@ export function reducer(state: IState, action: IAction): IState {
     }
     case actionTypes.SELECT_STORE: {
       newState.ui.selectedStoreKey = payload.storeKey;
-      newState.ui.sheetMode = 'none';
+      newState.ui.isShownSheet = false;
       newState.ui.isShownModal = true;
       newState.ui.isShownStoreCards = false;
       newState.ui.isShownCurrentPositionButton = false;
@@ -67,23 +67,23 @@ export function reducer(state: IState, action: IAction): IState {
     case actionTypes.UNSELECT_STORE: {
       newState.ui.selectedStoreKey = null;
       if (state.ui.isShownStoreCards) {
-        newState.ui.sheetMode = 'default';
+        newState.ui.isShownSheet = false;
         newState.ui.isShownModal = false;
         newState.ui.isShownStoreCards = false;
         newState.ui.isShownCurrentPositionButton = false;
         newState.ui.targetStoreKeys = [];
       } else if (newState.ui.targetStoreKeys.length) {
-        newState.ui.sheetMode = 'none';
+        newState.ui.isShownSheet = false;
         newState.ui.isShownModal = false;
         newState.ui.isShownStoreCards = true;
         newState.ui.isShownCurrentPositionButton = false;
-      } else if (!newState.ui.targetStoreKeys.length && newState.ui.sheetMode === 'default') {
-        newState.ui.sheetMode = 'closed';
+      } else if (!newState.ui.targetStoreKeys.length && !newState.ui.isShownSheet) {
+        newState.ui.isShownSheet = false;
         newState.ui.isShownModal = false;
         newState.ui.isShownStoreCards = false;
         newState.ui.isShownCurrentPositionButton = true;
       } else if (!newState.ui.targetStoreKeys.length) {
-        newState.ui.sheetMode = 'default';
+        newState.ui.isShownSheet = false;
         newState.ui.isShownModal = false;
         newState.ui.isShownStoreCards = false;
         newState.ui.isShownCurrentPositionButton = false;
@@ -99,11 +99,11 @@ export function reducer(state: IState, action: IAction): IState {
       break;
     }
     case actionTypes.UPDATE_SHEET_MODE: {
-      newState.ui.sheetMode = payload.mode;
+      newState.ui.isShownSheet = payload.isShown;
       break;
     }
     case actionTypes.SEARCH_STORE: {
-      newState.ui.sheetMode = 'none';
+      newState.ui.isShownSheet = false;
       newState.ui.isShownStoreCards = true;
       newState.ui.isShownModal = false;
       newState.ui.isShownCurrentPositionButton = false;
