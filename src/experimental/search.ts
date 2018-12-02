@@ -1,9 +1,9 @@
 // tslint:disable:max-func-body-length no-any no-console
 import * as Fuse from 'fuse.js';
 
-import { stores } from 'data/stores';
+import { shops } from 'data/shops';
 import { dictionary } from 'dictionary';
-import { IDispatch, IRawStore, IState, IStore } from 'presentations/pages/Maps/interfaces';
+import { IDispatch, IRawShop, IShop, IState } from 'presentations/pages/Maps/interfaces';
 import { Dictionary } from 'utils/Dictionary';
 
 // Google Mapsの挙動
@@ -19,7 +19,7 @@ import { Dictionary } from 'utils/Dictionary';
 //  - if matchの角度が低ければ
 //    - placesとしてplot
 
-interface IIndexedStore {
+interface IIndexedShop {
   name: {
     en: string;
     ja: string;
@@ -66,28 +66,28 @@ interface IIndexedStore {
   };
 }
 
-function createIndex(rawStores: IRawStore[], dic: Dictionary): IIndexedStore[] {
-  return rawStores.map(
-    (store: IRawStore): IIndexedStore => {
+function createIndex(rawShops: IRawShop[], dic: Dictionary): IIndexedShop[] {
+  return rawShops.map(
+    (shop: IRawShop): IIndexedShop => {
       function isSupported(status: number): boolean {
         return status === 1 || status === 2;
       }
 
       const result: any = {
-        key: store.key,
+        key: shop.key,
         name: {
-          en: store.name.en.toLowerCase(),
-          ja: store.name.ja.toLowerCase(),
+          en: shop.name.en.toLowerCase(),
+          ja: shop.name.ja.toLowerCase(),
         },
         address: {
-          en: store.address.en.toLowerCase(),
-          ja: store.address.ja.toLowerCase(),
+          en: shop.address.en.toLowerCase(),
+          ja: shop.address.ja.toLowerCase(),
         },
       };
-      Object.keys(store.services).forEach(
+      Object.keys(shop.services).forEach(
         (key: string): void => {
-          const value: any = store.services[key];
-          result[key] = isSupported(store.services[key])
+          const value: any = shop.services[key];
+          result[key] = isSupported(shop.services[key])
             ? {
                 en: (dic.v(`Pages.Maps.services.${key}`).en || ' ').replace('<br>', '').toLowerCase(),
                 ja: (dic.v(`Pages.Maps.services.${key}`).ja || ' ').replace('<br>', '').toLowerCase(),
@@ -96,13 +96,13 @@ function createIndex(rawStores: IRawStore[], dic: Dictionary): IIndexedStore[] {
         },
       );
 
-      return <IIndexedStore>result;
+      return <IIndexedShop>result;
     },
   );
 }
 
 setTimeout((): void => {
-  const index: any[] = createIndex(stores, new Dictionary(null, dictionary));
+  const index: any[] = createIndex(shops, new Dictionary(null, dictionary));
 
   const searchKeys: string[] = [
     '福岡',

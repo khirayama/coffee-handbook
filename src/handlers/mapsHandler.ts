@@ -7,17 +7,17 @@ import * as React from 'react';
 import { renderToString } from 'react-dom/server';
 
 import { config } from 'config';
-import { stores } from 'data/stores';
+import { shops } from 'data/shops';
 import { Provider } from 'presentations/containers/Container';
 import { MapsDesktopPageContainer } from 'presentations/containers/MapsDesktopPage';
 import { MapsMobilePageContainer } from 'presentations/containers/MapsMobilePage';
-import { IAction, IPosition, IRawStore, IState, IStore } from 'presentations/pages/Maps/interfaces';
+import { IAction, IPosition, IRawShop, IShop, IState } from 'presentations/pages/Maps/interfaces';
 import { reducer } from 'presentations/pages/Maps/reducer';
 import { secret } from 'secret';
-import { ISearchResult, storeSearchEngine } from 'StoreSearchEngine';
+import { ISearchResult, shopSearchEngine } from 'ShopSearchEngine';
 import { Dictionary } from 'utils/Dictionary';
 import { Resource } from 'utils/Resource';
-import { Store as AppStore } from 'utils/Store';
+import { Store } from 'utils/Store';
 
 interface IProps {
   lang: string;
@@ -63,17 +63,17 @@ const compiledFunction: (options: { props: IProps }) => void = pug.compileFile(
   },
 );
 
-// FIXME: data/stores loads data async.
+// FIXME: data/shops loads data async.
 setTimeout(() => {
-  storeSearchEngine.buildIndex(stores);
+  shopSearchEngine.buildIndex(shops);
 }, 10);
 
 // tslint:disable-next-line:max-func-body-length cyclomatic-complexity
 export function mapsHandler(req: express.Request, res: express.Response): void {
   const lang: string = req.lang;
   const dic: Dictionary = req.dic;
-  const storeKey: string = req.params.key;
-  const searchKeyword: string = req.query.q ? storeSearchEngine.decode(req.query.q) : '';
+  const shopKey: string = req.params.key;
+  const searchKeyword: string = req.query.q ? shopSearchEngine.decode(req.query.q) : '';
   const searchPos: IPosition = {
     lat: req.query.pos ? req.query.pos.split(',')[0] : null,
     lng: req.query.pos ? req.query.pos.split(',')[1] : null,
@@ -82,15 +82,15 @@ export function mapsHandler(req: express.Request, res: express.Response): void {
   // Build initial state
   const initialState: IState = {
     lang,
-    stores,
+    shops,
     ui: {
       isShownModal: false,
-      isShownStoreCards: false,
+      isShownShopCards: false,
       isShownSheet: false,
       isShownCurrentPositionButton: false,
-      targetStoreKey: null,
-      targetStoreKeys: [],
-      selectedStoreKey: null,
+      targetShopKey: null,
+      targetShopKeys: [],
+      selectedShopKey: null,
       currentPos: null,
       pos: {
         lat: 35.664035,
@@ -100,45 +100,45 @@ export function mapsHandler(req: express.Request, res: express.Response): void {
       offset: <[number, number]>[0, 0],
     },
   };
-  const storeResource: Resource<IRawStore, IStore> = new Resource(stores, lang);
-  const store: IStore = storeResource
+  const shopResource: Resource<IRawShop, IShop> = new Resource(shops, lang);
+  const shop: IShop = shopResource
     .where({
-      key: storeKey,
+      key: shopKey,
     })
     .findOne();
   if (searchKeyword) {
-    const result: ISearchResult = storeSearchEngine.search(searchKeyword, searchPos);
-    const firstResult: { score: number; key: string; store: IRawStore } = result.results[0];
+    const result: ISearchResult = shopSearchEngine.search(searchKeyword, searchPos);
+    const firstResult: { score: number; key: string; shop: IRawShop } = result.results[0];
 
     if (firstResult) {
       initialState.ui.isShownModal = false;
-      initialState.ui.isShownStoreCards = true;
+      initialState.ui.isShownShopCards = true;
       initialState.ui.isShownCurrentPositionButton = false;
-      initialState.ui.targetStoreKeys = result.results.map(
-        (tmp: { store: IRawStore; score: number; key: string }): string => tmp.key,
+      initialState.ui.targetShopKeys = result.results.map(
+        (tmp: { shop: IRawShop; score: number; key: string }): string => tmp.key,
       );
-      initialState.ui.targetStoreKey = initialState.ui.targetStoreKeys[0];
-      initialState.ui.pos.lat = firstResult.store.lat;
-      initialState.ui.pos.lng = firstResult.store.lng;
+      initialState.ui.targetShopKey = initialState.ui.targetShopKeys[0];
+      initialState.ui.pos.lat = firstResult.shop.lat;
+      initialState.ui.pos.lng = firstResult.shop.lng;
     }
   }
-  if (store) {
+  if (shop) {
     initialState.ui.isShownModal = true;
-    initialState.ui.isShownStoreCards = false;
+    initialState.ui.isShownShopCards = false;
     initialState.ui.isShownCurrentPositionButton = false;
-    initialState.ui.pos.lat = store.lat;
-    initialState.ui.pos.lng = store.lng;
+    initialState.ui.pos.lat = shop.lat;
+    initialState.ui.pos.lng = shop.lng;
   }
-  const appStore: AppStore<IState, IAction> = new AppStore(initialState, reducer);
+  const store: Store<IState, IAction> = new Store(initialState, reducer);
 
   // For SEO
   const titleSafix: string = `${dic.t('name')} | ${dic.t('siteDescription')}`;
-  const title: string = store ? `${store.name} | ${titleSafix}` : titleSafix;
-  const description: string = store ? `${store.name} | ${store.address} | ${titleSafix}` : titleSafix;
+  const title: string = shop ? `${shop.name} | ${titleSafix}` : titleSafix;
+  const description: string = shop ? `${shop.name} | ${shop.address} | ${titleSafix}` : titleSafix;
   const keywords: string[] = ['coffee', 'コーヒー', '珈琲', 'handbook', '手帖'];
-  if (store) {
-    keywords.push(store.name);
-    keywords.push(store.address);
+  if (shop) {
+    keywords.push(shop.name);
+    keywords.push(shop.address);
   }
   // FYI: https://schema.org/CafeOrCoffeeShop
   // FYI: https://developers.google.com/search/docs/data-types/breadcrumb
@@ -169,13 +169,13 @@ export function mapsHandler(req: express.Request, res: express.Response): void {
     ],
   };
   jsonLD.push(breadcrumbList);
-  if (store) {
+  if (shop) {
     breadcrumbList.itemListElement.push({
       '@type': 'ListItem',
       position: 2,
       item: {
         '@id': `${config.url[lang]}${req.path}`,
-        name: store.name,
+        name: shop.name,
       },
     });
     // FYI: https://developers.google.com/search/docs/data-types/social-profile
@@ -183,15 +183,15 @@ export function mapsHandler(req: express.Request, res: express.Response): void {
     const socialProfile: any = {
       '@context': 'http://schema.org',
       '@type': 'Organization',
-      name: store.name,
-      url: store.media.web || '',
-      sameAs: Object.keys(store.media)
+      name: shop.name,
+      url: shop.media.web || '',
+      sameAs: Object.keys(shop.media)
         .map((key: string) => {
           if (key === 'web' || key === 'ec' || key === 'instagramTag' || key === 'googleMaps') {
             return null;
           }
 
-          return store.media[key];
+          return shop.media[key];
         })
         .filter((v: string | undefined) => !!v),
     };
@@ -202,17 +202,17 @@ export function mapsHandler(req: express.Request, res: express.Response): void {
       '@context': 'http://schema.org',
       '@type': 'Restaurant',
       '@id': `${config.url[lang]}${req.path}`,
-      address: store.address,
-      name: store.name,
+      address: shop.address,
+      name: shop.name,
       geo: {
         '@type': 'GeoCoordinates',
-        latitude: store.lat,
-        longitude: store.lng,
+        latitude: shop.lat,
+        longitude: shop.lng,
       },
       priceRange: lang === 'en' ? '&dollar;12' : '&yen;1,200',
-      telephone: store.tel,
-      email: store.email,
-      url: store.media.web || '',
+      telephone: shop.tel,
+      email: shop.email,
+      url: shop.media.web || '',
       image: `${config.url[lang]}/images/icon_${lang}_square.png`,
       servesCuisine: 'coffee',
       // FYI: If google supports following type, please use it.
@@ -255,7 +255,7 @@ export function mapsHandler(req: express.Request, res: express.Response): void {
     entrypoint: '',
     stylesheet: '',
     jsonLD,
-    state: appStore.getState(),
+    state: store.getState(),
     content: '',
   };
 
@@ -263,14 +263,14 @@ export function mapsHandler(req: express.Request, res: express.Response): void {
     props.entrypoint = '/pages/Maps/mobile/bundle.js';
     props.stylesheet = '/pages/Maps/mobile/index.css';
     props.content = renderToString(
-      React.createElement(Provider, { store: appStore }, React.createElement(MapsMobilePageContainer)),
+      React.createElement(Provider, { store }, React.createElement(MapsMobilePageContainer)),
     );
     res.send(compiledFunction({ props }));
   } else {
     props.entrypoint = '/pages/Maps/desktop/bundle.js';
     props.stylesheet = '/pages/Maps/desktop/index.css';
     props.content = renderToString(
-      React.createElement(Provider, { store: appStore }, React.createElement(MapsDesktopPageContainer)),
+      React.createElement(Provider, { store }, React.createElement(MapsDesktopPageContainer)),
     );
     res.send(compiledFunction({ props }));
   }

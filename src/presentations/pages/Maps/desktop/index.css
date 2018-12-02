@@ -1,9 +1,8 @@
 @import 'application/vars';
-@import 'containers/MapHeader';
 @import 'containers/CurrentPositionButton';
-@import 'components/StoreMapView';
-@import 'components/StoreCard';
-@import 'components/StoreMarker';
+@import 'components/ShopMapView';
+@import 'components/ShopCard';
+@import 'components/ShopMarker';
 
 html,
 body {

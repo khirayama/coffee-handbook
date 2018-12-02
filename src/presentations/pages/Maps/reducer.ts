@@ -42,9 +42,9 @@ export function reducer(state: IState, action: IAction): IState {
     pos?: IPosition;
     zoom?: number;
     offset?: [number, number];
-    storeKey?: string;
+    shopKey?: string;
     currentPos?: IPosition;
-    targetStoreKeys?: string[];
+    targetShopKeys?: string[];
     isShown?: boolean;
   } = action.payload;
 
@@ -56,30 +56,30 @@ export function reducer(state: IState, action: IAction): IState {
       newState.ui.offset = payload.offset;
       break;
     }
-    case actionTypes.SELECT_STORE: {
-      newState.ui.selectedStoreKey = payload.storeKey;
+    case actionTypes.SELECT_SHOP: {
+      newState.ui.selectedShopKey = payload.shopKey;
       newState.ui.isShownSheet = false;
       newState.ui.isShownModal = true;
-      newState.ui.isShownStoreCards = false;
+      newState.ui.isShownShopCards = false;
       newState.ui.isShownCurrentPositionButton = false;
       break;
     }
-    case actionTypes.UNSELECT_STORE: {
-      newState.ui.selectedStoreKey = null;
+    case actionTypes.UNSELECT_SHOP: {
+      newState.ui.selectedShopKey = null;
       newState.ui.isShownModal = false;
       newState.ui.isShownSheet = false;
-      if (newState.ui.targetStoreKeys.length && !newState.ui.isShownStoreCards) {
-        newState.ui.isShownStoreCards = true;
+      if (newState.ui.targetShopKeys.length && !newState.ui.isShownShopCards) {
+        newState.ui.isShownShopCards = true;
         newState.ui.isShownCurrentPositionButton = false;
-      } else if (newState.ui.targetStoreKeys.length && newState.ui.isShownStoreCards) {
-        newState.ui.isShownStoreCards = false;
+      } else if (newState.ui.targetShopKeys.length && newState.ui.isShownShopCards) {
+        newState.ui.isShownShopCards = false;
         newState.ui.isShownCurrentPositionButton = true;
-        newState.ui.targetStoreKeys = [];
+        newState.ui.targetShopKeys = [];
       }
       break;
     }
-    case actionTypes.SELECT_TARGET_STORE: {
-      newState.ui.targetStoreKey = payload.storeKey;
+    case actionTypes.SELECT_TARGET_SHOP: {
+      newState.ui.targetShopKey = payload.shopKey;
       break;
     }
     case actionTypes.UPDATE_CURRENT_POSITION: {
@@ -90,22 +90,22 @@ export function reducer(state: IState, action: IAction): IState {
       newState.ui.isShownSheet = payload.isShown;
       break;
     }
-    case actionTypes.SEARCH_STORE: {
+    case actionTypes.SEARCH_SHOP: {
       newState.ui.isShownSheet = false;
-      newState.ui.isShownStoreCards = true;
+      newState.ui.isShownShopCards = true;
       newState.ui.isShownModal = false;
       newState.ui.isShownCurrentPositionButton = false;
-      newState.ui.targetStoreKeys = payload.targetStoreKeys;
+      newState.ui.targetShopKeys = payload.targetShopKeys;
       newState.ui.pos = payload.pos;
       newState.ui.zoom = payload.zoom;
       break;
     }
-    case actionTypes.FILTER_STORE: {
+    case actionTypes.FILTER_SHOP: {
       newState.ui.isShownSheet = true;
-      newState.ui.isShownStoreCards = false;
+      newState.ui.isShownShopCards = false;
       newState.ui.isShownModal = false;
       newState.ui.isShownCurrentPositionButton = false;
-      newState.ui.targetStoreKeys = payload.targetStoreKeys;
+      newState.ui.targetShopKeys = payload.targetShopKeys;
       break;
     }
     default:

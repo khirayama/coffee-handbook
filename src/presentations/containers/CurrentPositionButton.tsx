@@ -4,7 +4,7 @@ import * as React from 'react';
 
 import { connect } from 'presentations/containers/Container';
 import { updateCurrentPosition, updateView } from 'presentations/pages/Maps/actionCreators';
-import { IDispatch, IPosition, IState, IStore } from 'presentations/pages/Maps/interfaces';
+import { IDispatch, IPosition, IShop, IState } from 'presentations/pages/Maps/interfaces';
 
 interface IProps extends IState {
   dispatch: IDispatch;

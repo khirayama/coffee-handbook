@@ -141,7 +141,7 @@ export const dictionary: {
           config.twitterAccount
         }">[Twitter]</a>
           <ul>
-            <li>Add a store</li>
+            <li>Add a shop</li>
             <li>Translation to English or Japanese</li>
             <li>Refactoring</li>
             <li>AB testing</li>

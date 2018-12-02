@@ -3,15 +3,15 @@ export type IDispatch = (action: IAction) => void;
 
 export interface IState {
   lang: string;
-  stores: IRawStore[];
+  shops: IRawShop[];
   ui: {
     isShownModal: boolean;
-    isShownStoreCards: boolean;
+    isShownShopCards: boolean;
     isShownSheet: boolean;
     isShownCurrentPositionButton: boolean;
-    selectedStoreKey: string | null;
-    targetStoreKey: string | null;
-    targetStoreKeys: string[];
+    selectedShopKey: string | null;
+    targetShopKey: string | null;
+    targetShopKeys: string[];
     currentPos: IPosition | null;
     pos: IPosition;
     zoom: number;
@@ -31,7 +31,7 @@ export interface IPosition {
   lng: number;
 }
 
-export interface IStore {
+export interface IShop {
   key: string;
   lat: number;
   lng: number;
@@ -67,7 +67,7 @@ export interface IStore {
   };
 }
 
-export interface IRawStore {
+export interface IRawShop {
   key: string;
   lat: number;
   lng: number;

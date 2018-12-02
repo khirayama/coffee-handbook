@@ -1,0 +1,78 @@
+.ShopCards {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  z-index: 4000;
+  transform: translateY(0);
+  overscroll-behavior-y: contain;
+  transition: transform $short ease-in-out;
+  will-change: transform;
+
+  &.ShopCards__Hidden {
+    transform: translateY(100%);
+  }
+
+  .ShopCards--List {
+    display: flex;
+    padding: 0 0 12px;
+    width: 100%;
+    overflow: visible;
+    -webkit-overflow-scrolling: auto;
+    will-change: transform;
+
+    .ShopCards--List--Item {
+      $width: 100%;
+      flex: 1;
+      width: $width;
+      min-width: $width;
+      max-width: $width;
+
+      .ShopCards--List--Item--Content {
+        background: $color-white;
+        padding: 12px;
+        border-radius: 12px;
+        margin: 0 6px;
+        text-align: left;
+        box-shadow: $shadow;
+
+        .ShopCards--List--Item--Content--Name {
+          font-weight: $font-bold;
+          font-size: 1.25rem;
+          padding-bottom: 4px;
+        }
+
+        .ShopCards--List--Item--Content--Address {
+          padding-bottom: 12px;
+        }
+
+        .ShopCards--List--Item--Content--Media {
+          display: flex;
+          max-width: 324px;
+          justify-content: space-between;
+          margin-bottom: 16px;
+
+          .ShopCards--List--Item--Content--Media--Item {
+            $size: 32px;
+            display: inline-block;
+            width: $size;
+            height: $size;
+            line-height: $size;
+            background: $color-shadow;
+            color: white;
+            text-align: center;
+            margin: 0;
+            border-radius: $radius;
+
+            img {
+              width: 100%;
+            }
+
+            &.ShopCards--List--Item--Content--Media--Item__Active {
+              background: $color-text;
+            }
+          }
+        }
+      }
+    }
+  }
+}

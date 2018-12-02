@@ -1,7 +1,7 @@
 import { config } from 'config';
-import { stores } from 'data/stores';
+import { shops } from 'data/shops';
 import { dictionary } from 'dictionary';
-import { IRawStore } from 'presentations/pages/Maps/interfaces';
+import { IRawShop } from 'presentations/pages/Maps/interfaces';
 import { Dictionary } from 'utils/Dictionary';
 
 interface ISitemapOptions {
@@ -37,16 +37,16 @@ function createPages(): IPage[] {
       url: config.url,
       freq: 'daily',
       priority: 1,
-      pages: stores.map(
-        (store: IRawStore): IPage => {
+      pages: shops.map(
+        (shop: IRawShop): IPage => {
           return {
             name: {
-              en: `${store.name.en} | ${store.address.en}`,
-              ja: `${store.name.ja} | ${store.address.ja}`,
+              en: `${shop.name.en} | ${shop.address.en}`,
+              ja: `${shop.name.ja} | ${shop.address.ja}`,
             },
             url: {
-              en: `${config.url.en}/stores/${store.key}`,
-              ja: `${config.url.ja}/stores/${store.key}`,
+              en: `${config.url.en}/shops/${shop.key}`,
+              ja: `${config.url.ja}/shops/${shop.key}`,
             },
             freq: 'daily',
             priority: 0.5,

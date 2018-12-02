@@ -63,8 +63,8 @@ app
 
 app
   .get('/', preHandler, mapsHandler)
-  .get('/stores', preHandler, mapsHandler)
-  .get('/stores/:key', preHandler, mapsHandler)
+  .get('/shops', preHandler, mapsHandler)
+  .get('/shops/:key', preHandler, mapsHandler)
   .get('/about', preHandler, aboutHandler)
   .get('/privacy', preHandler, privacyHandler)
   .get('/sitemap.xml', preHandler, sitemapXmlHandler)

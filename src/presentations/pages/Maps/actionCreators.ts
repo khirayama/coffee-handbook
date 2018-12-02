@@ -1,7 +1,7 @@
 // tslint:disable:no-any
 import { actionTypes } from 'presentations/pages/Maps/actionTypes';
-import { IAction, IDispatch, IPosition, IRawStore } from 'presentations/pages/Maps/interfaces';
-import { ISearchResult, storeSearchEngine } from 'StoreSearchEngine';
+import { IAction, IDispatch, IPosition, IRawShop } from 'presentations/pages/Maps/interfaces';
+import { ISearchResult, shopSearchEngine } from 'ShopSearchEngine';
 
 export function updateView(
   dispatch: IDispatch,
@@ -25,13 +25,13 @@ export function updateView(
   );
 }
 
-export function selectStore(dispatch: IDispatch, storeKey: string): Promise<IAction> {
+export function selectShop(dispatch: IDispatch, shopKey: string): Promise<IAction> {
   return new Promise(
     (resolve: any): void => {
       const action: IAction = {
-        actionType: actionTypes.SELECT_STORE,
+        actionType: actionTypes.SELECT_SHOP,
         payload: {
-          storeKey,
+          shopKey,
         },
       };
       dispatch(action);
@@ -40,11 +40,11 @@ export function selectStore(dispatch: IDispatch, storeKey: string): Promise<IAct
   );
 }
 
-export function unselectStore(dispatch: IDispatch): Promise<IAction> {
+export function unselectShop(dispatch: IDispatch): Promise<IAction> {
   return new Promise(
     (resolve: any): void => {
       const action: IAction = {
-        actionType: actionTypes.UNSELECT_STORE,
+        actionType: actionTypes.UNSELECT_SHOP,
       };
       dispatch(action);
       resolve(action);
@@ -52,13 +52,13 @@ export function unselectStore(dispatch: IDispatch): Promise<IAction> {
   );
 }
 
-export function selectTargetStore(dispatch: IDispatch, storeKey: string | null): Promise<IAction> {
+export function selectTargetShop(dispatch: IDispatch, shopKey: string | null): Promise<IAction> {
   return new Promise(
     (resolve: any): void => {
       const action: IAction = {
-        actionType: actionTypes.SELECT_TARGET_STORE,
+        actionType: actionTypes.SELECT_TARGET_SHOP,
         payload: {
-          storeKey,
+          shopKey,
         },
       };
       dispatch(action);
@@ -98,25 +98,23 @@ export function changeSheetShown(dispatch: IDispatch, isShown: boolean): Promise
   );
 }
 
-export function searchStore(dispatch: IDispatch, query: string, pos: IPosition): Promise<IAction> {
+export function searchShop(dispatch: IDispatch, query: string, pos: IPosition): Promise<IAction> {
   return new Promise(
     (resolve: any): void => {
-      const result: ISearchResult = storeSearchEngine.search(query, pos);
-      const firstResult: { score: number; key: string; store: IRawStore } = result.results[0];
+      const result: ISearchResult = shopSearchEngine.search(query, pos);
+      const firstResult: { score: number; key: string; shop: IRawShop } = result.results[0];
       const newPos: IPosition = firstResult
         ? {
-            lat: firstResult.store.lat,
-            lng: firstResult.store.lng,
+            lat: firstResult.shop.lat,
+            lng: firstResult.shop.lng,
           }
         : pos;
 
       const action: IAction = {
-        actionType: actionTypes.SEARCH_STORE,
+        actionType: actionTypes.SEARCH_SHOP,
         payload: {
           searchQuery: result.searchQuery,
-          targetStoreKeys: result.results.map(
-            (tmp: { store: IRawStore; score: number; key: string }): string => tmp.key,
-          ),
+          targetShopKeys: result.results.map((tmp: { shop: IRawShop; score: number; key: string }): string => tmp.key),
           zoom: 12,
           pos: newPos,
         },
@@ -128,18 +126,18 @@ export function searchStore(dispatch: IDispatch, query: string, pos: IPosition):
   );
 }
 
-export function filterStore(dispatch: IDispatch, query: string, pos: IPosition): Promise<IAction> {
+export function filterShop(dispatch: IDispatch, query: string, pos: IPosition): Promise<IAction> {
   return new Promise(
     (resolve: any): void => {
-      const result: ISearchResult = storeSearchEngine.search(query, pos);
-      const candidateStoreKeys: string[] = result.results.map(
-        (res: { key: string; score: number; store: IRawStore }) => res.store.key,
+      const result: ISearchResult = shopSearchEngine.search(query, pos);
+      const candidateShopKeys: string[] = result.results.map(
+        (res: { key: string; score: number; shop: IRawShop }) => res.shop.key,
       );
       const action: IAction = {
-        actionType: actionTypes.FILTER_STORE,
+        actionType: actionTypes.FILTER_SHOP,
         payload: {
           searchQuery: result.searchQuery,
-          targetStoreKeys: candidateStoreKeys,
+          targetShopKeys: candidateShopKeys,
         },
       };
 

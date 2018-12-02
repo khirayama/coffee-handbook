@@ -2,23 +2,22 @@ import * as classNames from 'classnames';
 import * as React from 'react';
 
 import { dictionary } from 'dictionary';
-import { StoreCard } from 'presentations/components/StoreCard';
-import { StoreMapView } from 'presentations/components/StoreMapView';
+import { ShopCard } from 'presentations/components/ShopCard';
+import { ShopMapView } from 'presentations/components/ShopMapView';
 import { connect } from 'presentations/containers/Container';
 import { CurrentPositionButtonContainer } from 'presentations/containers/CurrentPositionButton';
-import { selectStore, unselectStore, updateCurrentPosition, updateView } from 'presentations/pages/Maps/actionCreators';
-import { IAction, IDispatch, IPosition, IRawStore, IState, IStore } from 'presentations/pages/Maps/interfaces';
+import { selectShop, unselectShop, updateCurrentPosition, updateView } from 'presentations/pages/Maps/actionCreators';
+import { IAction, IDispatch, IPosition, IRawShop, IState, IShop } from 'presentations/pages/Maps/interfaces';
 import { tracker } from 'presentations/utils/tracker';
 import { Dictionary } from 'utils/Dictionary';
 import { Resource } from 'utils/Resource';
-import { Store as AppStore } from 'utils/Store';
 
 interface IProps extends IState {
   dispatch: IDispatch;
 }
 
 export class MapsDesktopPage extends React.Component<IProps, {}> {
-  private mapRef: React.RefObject<StoreMapView>;
+  private mapRef: React.RefObject<ShopMapView>;
 
   private modalRef: React.RefObject<HTMLDivElement>;
 
@@ -29,32 +28,32 @@ export class MapsDesktopPage extends React.Component<IProps, {}> {
     this.modalRef = React.createRef();
     this.onClickMap = this.onClickMap.bind(this);
     this.onMoveEnd = this.onMoveEnd.bind(this);
-    this.onClickStore = this.onClickStore.bind(this);
+    this.onClickShop = this.onClickShop.bind(this);
   }
 
   public componentDidMount(): void {
-    if (this.props.ui.selectedStoreKey) {
-      const storeResource: Resource<IRawStore, IStore> = new Resource(this.props.stores, this.props.lang);
-      const store: IStore = storeResource
+    if (this.props.ui.selectedShopKey) {
+      const shopResource: Resource<IRawShop, IShop> = new Resource(this.props.shops, this.props.lang);
+      const shop: IShop = shopResource
         .where({
-          key: this.props.ui.selectedStoreKey,
+          key: this.props.ui.selectedShopKey,
         })
         .findOne();
-      this.centerStoreWithModal(store);
+      this.centerShopWithModal(shop);
     }
 
     window.addEventListener('popstate', () => {
-      const storeKey: string = window.location.pathname.replace('/stores/', '');
+      const shopKey: string = window.location.pathname.replace('/shops/', '');
 
-      selectStore(this.props.dispatch, storeKey);
-      if (storeKey) {
-        const storeResource: Resource<IRawStore, IStore> = new Resource(this.props.stores, this.props.lang);
-        const currentStore: IStore = storeResource
+      selectShop(this.props.dispatch, shopKey);
+      if (shopKey) {
+        const shopResource: Resource<IRawShop, IShop> = new Resource(this.props.shops, this.props.lang);
+        const currentShop: IShop = shopResource
           .where({
-            key: storeKey,
+            key: shopKey,
           })
           .findOne();
-        this.centerStoreWithModal(currentStore);
+        this.centerShopWithModal(currentShop);
       }
     });
   }
@@ -62,10 +61,10 @@ export class MapsDesktopPage extends React.Component<IProps, {}> {
   public render(): JSX.Element {
     const dic: Dictionary = new Dictionary(this.props.lang, dictionary);
     const props: IState = this.props;
-    const storeResource: Resource<IRawStore, IStore> = new Resource(this.props.stores, this.props.lang);
-    const store: IStore = storeResource
+    const shopResource: Resource<IRawShop, IShop> = new Resource(this.props.shops, this.props.lang);
+    const shop: IShop = shopResource
       .where({
-        key: props.ui.selectedStoreKey,
+        key: props.ui.selectedShopKey,
       })
       .findOne();
 
@@ -73,22 +72,22 @@ export class MapsDesktopPage extends React.Component<IProps, {}> {
       <div className="MapsDesktopPage">
         <div className="MapsDesktopPage--Content">
           <CurrentPositionButtonContainer />
-          <StoreMapView
+          <ShopMapView
             ref={this.mapRef}
             lang={props.lang}
             currentPos={props.ui.currentPos}
-            selectedStoreKey={props.ui.selectedStoreKey}
-            stores={storeResource.find()}
+            selectedShopKey={props.ui.selectedShopKey}
+            shops={shopResource.find()}
             center={props.ui.pos}
             zoom={props.ui.zoom}
             offset={props.ui.offset}
             onClickMap={this.onClickMap}
             onMoveEnd={this.onMoveEnd}
-            onClickStore={this.onClickStore}
+            onClickShop={this.onClickShop}
           />
-          <div ref={this.modalRef} className={classNames('Modal', { Modal__Hidden: !store })}>
+          <div ref={this.modalRef} className={classNames('Modal', { Modal__Hidden: !shop })}>
             <main>
-              <StoreCard store={store} dic={dic} />
+              <ShopCard shop={shop} dic={dic} />
             </main>
           </div>
         </div>
@@ -97,27 +96,27 @@ export class MapsDesktopPage extends React.Component<IProps, {}> {
   }
 
   private onClickMap(event: MouseEvent): void {
-    const storeKey: string = window.location.pathname.replace('/stores/', '');
-    if (storeKey) {
+    const shopKey: string = window.location.pathname.replace('/shops/', '');
+    if (shopKey) {
       const dic: Dictionary = new Dictionary(this.props.lang, dictionary);
       const loc: string = '/';
       const title: string = `${dic.t('name')} | ${dic.t('siteDescription')}`;
       window.document.title = title;
       window.history.pushState(null, title, loc);
     }
-    unselectStore(this.props.dispatch);
+    unselectShop(this.props.dispatch);
   }
 
   private onMoveEnd(event: mapboxgl.MapboxEvent, map: mapboxgl.Map): void {
     updateView(this.props.dispatch, map.getCenter(), map.getZoom(), [0, 0]);
   }
 
-  private onClickStore(event: React.MouseEvent<HTMLElement>, store: IStore): void {
-    const storeKey: string = window.location.pathname.replace('/stores/', '');
-    if (storeKey !== store.key) {
+  private onClickShop(event: React.MouseEvent<HTMLElement>, shop: IShop): void {
+    const shopKey: string = window.location.pathname.replace('/shops/', '');
+    if (shopKey !== shop.key) {
       const dic: Dictionary = new Dictionary(this.props.lang, dictionary);
-      const loc: string = `/stores/${store.key}`;
-      const title: string = `${store.name} | ${store.address} | ${dic.t('name')} | ${dic.t('siteDescription')}`;
+      const loc: string = `/shops/${shop.key}`;
+      const title: string = `${shop.name} | ${shop.address} | ${dic.t('name')} | ${dic.t('siteDescription')}`;
       window.document.title = title;
       window.history.pushState(null, title, loc);
 
@@ -126,11 +125,11 @@ export class MapsDesktopPage extends React.Component<IProps, {}> {
       tracker.setLocation(loc);
       tracker.sendPageView();
     }
-    selectStore(this.props.dispatch, store.key);
-    this.centerStoreWithModal(store);
+    selectShop(this.props.dispatch, shop.key);
+    this.centerShopWithModal(shop);
   }
 
-  private centerStoreWithModal(store: IStore): void {
+  private centerShopWithModal(shop: IShop): void {
     const mapModalWidth: number = 384;
     const modalElement: HTMLElement = this.modalRef.current;
     const mapElement: HTMLElement = this.mapRef.current.ref.current;
@@ -143,8 +142,8 @@ export class MapsDesktopPage extends React.Component<IProps, {}> {
     updateView(
       this.props.dispatch,
       {
-        lng: store.lng,
-        lat: store.lat,
+        lng: shop.lng,
+        lat: shop.lat,
       },
       this.props.ui.zoom,
       offset,

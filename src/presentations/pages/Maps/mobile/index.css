@@ -3,10 +3,10 @@
 @import 'containers/SearchForm';
 @import 'components/CandidateListItem';
 @import 'components/Sheet';
-@import 'components/StoreMapView';
-@import 'components/StoreCard';
-@import 'components/StoreCards';
-@import 'components/StoreMarker';
+@import 'components/ShopMapView';
+@import 'components/ShopCard';
+@import 'components/ShopCards';
+@import 'components/ShopMarker';
 
 html,
 body {

@@ -5,13 +5,13 @@ import { dictionary } from 'dictionary';
 import { connect } from 'presentations/containers/Container';
 import {
   changeSheetShown,
-  filterStore,
-  searchStore,
-  selectStore,
+  filterShop,
+  searchShop,
+  selectShop,
   updateView,
 } from 'presentations/pages/Maps/actionCreators';
-import { IAction, IDispatch, IPosition, IRawStore, IState, IStore } from 'presentations/pages/Maps/interfaces';
-import { ISearchResult, storeSearchEngine } from 'StoreSearchEngine';
+import { IAction, IDispatch, IPosition, IRawShop, IShop, IState } from 'presentations/pages/Maps/interfaces';
+import { ISearchResult, shopSearchEngine } from 'ShopSearchEngine';
 import { Dictionary } from 'utils/Dictionary';
 import { Resource } from 'utils/Resource';
 
@@ -70,7 +70,7 @@ export class SearchForm extends React.Component<IProps, ISearchFormState> {
 
   private onSubmit(event: React.FormEvent<HTMLFormElement>): void {
     event.preventDefault();
-    searchStore(this.props.dispatch, this.state.value, this.props.ui.pos).then((action: IAction) => {
+    searchShop(this.props.dispatch, this.state.value, this.props.ui.pos).then((action: IAction) => {
       const dic: Dictionary = new Dictionary(this.props.lang, dictionary);
       const loc: string = `/?${queryString.stringify(action.payload.searchQuery)}`;
       const title: string = `${dic.t('name')} | ${dic.t('siteDescription')}`;
@@ -89,10 +89,10 @@ export class SearchForm extends React.Component<IProps, ISearchFormState> {
   }
 
   private onChange(event: React.FormEvent<HTMLInputElement>): void {
-    // TODO: valueもstore.stateに
+    // TODO: valueもshop.stateに
     const value: string = event.currentTarget.value;
 
-    filterStore(this.props.dispatch, value, this.props.ui.pos);
+    filterShop(this.props.dispatch, value, this.props.ui.pos);
     this.setState({ value });
   }
 }

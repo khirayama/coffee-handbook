@@ -4,26 +4,25 @@ import * as React from 'react';
 import { dictionary } from 'dictionary';
 import { CandidateListItem } from 'presentations/components/CandidateListItem';
 import { Sheet } from 'presentations/components/Sheet';
-import { StoreCard } from 'presentations/components/StoreCard';
-import { StoreCards } from 'presentations/components/StoreCards';
-import { StoreMapView } from 'presentations/components/StoreMapView';
+import { ShopCard } from 'presentations/components/ShopCard';
+import { ShopCards } from 'presentations/components/ShopCards';
+import { ShopMapView } from 'presentations/components/ShopMapView';
 import { connect } from 'presentations/containers/Container';
 import { CurrentPositionButtonContainer } from 'presentations/containers/CurrentPositionButton';
 import { SearchFormContainer } from 'presentations/containers/SearchForm';
-import { selectStore, selectTargetStore, unselectStore, updateView } from 'presentations/pages/Maps/actionCreators';
-import { IAction, IDispatch, IPosition, IRawStore, IState, IStore } from 'presentations/pages/Maps/interfaces';
+import { selectShop, selectTargetShop, unselectShop, updateView } from 'presentations/pages/Maps/actionCreators';
+import { IAction, IDispatch, IPosition, IRawShop, IShop, IState } from 'presentations/pages/Maps/interfaces';
 import { waitShortAnimationEnd } from 'presentations/utils/helpers';
 import { tracker } from 'presentations/utils/tracker';
 import { Dictionary } from 'utils/Dictionary';
 import { Resource } from 'utils/Resource';
-import { Store as AppStore } from 'utils/Store';
 
 interface IProps extends IState {
   dispatch: IDispatch;
 }
 
 export class MapsMobilePage extends React.Component<IProps, {}> {
-  private mapRef: React.RefObject<StoreMapView>;
+  private mapRef: React.RefObject<ShopMapView>;
 
   private modalRef: React.RefObject<HTMLDivElement>;
 
@@ -35,37 +34,37 @@ export class MapsMobilePage extends React.Component<IProps, {}> {
     this.onClickMap = this.onClickMap.bind(this);
     this.onMoveEnd = this.onMoveEnd.bind(this);
     this.onSnap = this.onSnap.bind(this);
-    this.onClickStore = this.onClickStore.bind(this);
+    this.onClickShop = this.onClickShop.bind(this);
     this.onClickCandidateItem = this.onClickCandidateItem.bind(this);
   }
 
   public componentDidMount(): void {
-    if (this.props.ui.selectedStoreKey) {
-      const storeResource: Resource<IRawStore, IStore> = new Resource(this.props.stores, this.props.lang);
-      const store: IStore = storeResource
+    if (this.props.ui.selectedShopKey) {
+      const shopResource: Resource<IRawShop, IShop> = new Resource(this.props.shops, this.props.lang);
+      const shop: IShop = shopResource
         .where({
-          key: this.props.ui.selectedStoreKey,
+          key: this.props.ui.selectedShopKey,
         })
         .findOne();
-      this.centerStoreWithModal(store);
+      this.centerShopWithModal(shop);
     }
 
     window.addEventListener('popstate', () => {
       // TODO: Support searchQuery
-      let storeKey: string = window.location.pathname.replace('/stores/', '');
-      if (storeKey === '/') {
-        storeKey = null;
+      let shopKey: string = window.location.pathname.replace('/shops/', '');
+      if (shopKey === '/') {
+        shopKey = null;
       }
 
-      selectStore(this.props.dispatch, storeKey);
-      if (storeKey) {
-        const storeResource: Resource<IRawStore, IStore> = new Resource(this.props.stores, this.props.lang);
-        const currentStore: IStore = storeResource
+      selectShop(this.props.dispatch, shopKey);
+      if (shopKey) {
+        const shopResource: Resource<IRawShop, IShop> = new Resource(this.props.shops, this.props.lang);
+        const currentShop: IShop = shopResource
           .where({
-            key: storeKey,
+            key: shopKey,
           })
           .findOne();
-        this.centerStoreWithModal(currentStore);
+        this.centerShopWithModal(currentShop);
       }
     });
   }
@@ -73,20 +72,20 @@ export class MapsMobilePage extends React.Component<IProps, {}> {
   public render(): JSX.Element {
     const dic: Dictionary = new Dictionary(this.props.lang, dictionary);
     const props: IState = this.props;
-    const targetStoreKeys: string[] = props.ui.targetStoreKeys;
-    const storeResource: Resource<IRawStore, IStore> = new Resource(props.stores, props.lang);
-    const store: IStore = storeResource
+    const targetShopKeys: string[] = props.ui.targetShopKeys;
+    const shopResource: Resource<IRawShop, IShop> = new Resource(props.shops, props.lang);
+    const shop: IShop = shopResource
       .where({
-        key: props.ui.selectedStoreKey,
+        key: props.ui.selectedShopKey,
       })
       .findOne();
-    const stores: IStore[] = storeResource.find();
-    // FIXME: Inefficiency. But I want to keep an order of targetStoreKeys.
-    const targetStores: IStore[] = targetStoreKeys.length
-      ? targetStoreKeys.map((targetStoreKey: string) => {
-          return stores.filter((candidateStore: IStore) => candidateStore.key === targetStoreKey)[0];
+    const shops: IShop[] = shopResource.find();
+    // FIXME: Inefficiency. But I want to keep an order of targetShopKeys.
+    const targetShops: IShop[] = targetShopKeys.length
+      ? targetShopKeys.map((targetShopKey: string) => {
+          return shops.filter((candidateShop: IShop) => candidateShop.key === targetShopKey)[0];
         })
-      : stores;
+      : shops;
 
     return (
       <div className="MapsMobilePage">
@@ -95,38 +94,34 @@ export class MapsMobilePage extends React.Component<IProps, {}> {
           <CurrentPositionButtonContainer />
           <Sheet isShown={props.ui.isShownSheet}>
             <ul className="CandidateList">
-              {targetStores.map((targetStore: IStore) => {
+              {targetShops.map((targetShop: IShop) => {
                 return (
-                  <CandidateListItem
-                    key={targetStore.key}
-                    store={targetStore}
-                    onClickItem={this.onClickCandidateItem}
-                  />
+                  <CandidateListItem key={targetShop.key} shop={targetShop} onClickItem={this.onClickCandidateItem} />
                 );
               })}
             </ul>
           </Sheet>
-          <StoreCards
-            isShown={props.ui.isShownStoreCards}
-            stores={targetStores}
-            onClickItem={this.onClickStore}
+          <ShopCards
+            isShown={props.ui.isShownShopCards}
+            shops={targetShops}
+            onClickItem={this.onClickShop}
             onSnap={this.onSnap}
           />
           <div ref={this.modalRef} className={classNames('Modal', { Modal__Hidden: !props.ui.isShownModal })}>
-            <StoreCard store={store} dic={dic} />
+            <ShopCard shop={shop} dic={dic} />
           </div>
-          <StoreMapView
+          <ShopMapView
             ref={this.mapRef}
             lang={props.lang}
             currentPos={props.ui.currentPos}
-            selectedStoreKey={props.ui.selectedStoreKey}
-            stores={targetStores}
+            selectedShopKey={props.ui.selectedShopKey}
+            shops={targetShops}
             center={props.ui.pos}
             zoom={props.ui.zoom}
             offset={props.ui.offset}
             onClickMap={this.onClickMap}
             onMoveEnd={this.onMoveEnd}
-            onClickStore={this.onClickStore}
+            onClickShop={this.onClickShop}
           />
         </div>
       </div>
@@ -137,19 +132,19 @@ export class MapsMobilePage extends React.Component<IProps, {}> {
     updateView(this.props.dispatch, map.getCenter(), map.getZoom(), [0, 0]);
   }
 
-  private onSnap(storeKey: string): void {
-    const storeResource: Resource<IRawStore, IStore> = new Resource(this.props.stores, this.props.lang);
-    const store: IStore = storeResource
+  private onSnap(shopKey: string): void {
+    const shopResource: Resource<IRawShop, IShop> = new Resource(this.props.shops, this.props.lang);
+    const shop: IShop = shopResource
       .where({
-        key: storeKey,
+        key: shopKey,
       })
       .findOne();
-    selectTargetStore(this.props.dispatch, storeKey);
+    selectTargetShop(this.props.dispatch, shopKey);
     updateView(
       this.props.dispatch,
       {
-        lng: store.lng,
-        lat: store.lat,
+        lng: shop.lng,
+        lat: shop.lat,
       },
       this.props.ui.zoom,
       [0, 0],
@@ -157,23 +152,23 @@ export class MapsMobilePage extends React.Component<IProps, {}> {
   }
 
   private onClickMap(event: MouseEvent): void {
-    const storeKey: string = window.location.pathname.replace('/stores/', '');
-    if (storeKey) {
+    const shopKey: string = window.location.pathname.replace('/shops/', '');
+    if (shopKey) {
       const dic: Dictionary = new Dictionary(this.props.lang, dictionary);
       const loc: string = '/';
       const title: string = `${dic.t('name')} | ${dic.t('siteDescription')}`;
       window.document.title = title;
       window.history.pushState(null, title, loc);
     }
-    unselectStore(this.props.dispatch);
+    unselectShop(this.props.dispatch);
   }
 
-  private onClickStore(event: React.MouseEvent<HTMLElement>, store: IStore): void {
-    const storeKey: string = window.location.pathname.replace('/stores/', '');
-    if (storeKey !== store.key) {
+  private onClickShop(event: React.MouseEvent<HTMLElement>, shop: IShop): void {
+    const shopKey: string = window.location.pathname.replace('/shops/', '');
+    if (shopKey !== shop.key) {
       const dic: Dictionary = new Dictionary(this.props.lang, dictionary);
-      const loc: string = `/stores/${store.key}`;
-      const title: string = `${store.name} | ${store.address} | ${dic.t('name')} | ${dic.t('siteDescription')}`;
+      const loc: string = `/shops/${shop.key}`;
+      const title: string = `${shop.name} | ${shop.address} | ${dic.t('name')} | ${dic.t('siteDescription')}`;
       window.document.title = title;
       window.history.pushState(null, title, loc);
 
@@ -183,18 +178,18 @@ export class MapsMobilePage extends React.Component<IProps, {}> {
       tracker.sendPageView();
     }
     waitShortAnimationEnd().then(() => {
-      selectStore(this.props.dispatch, store.key);
-      this.centerStoreWithModal(store);
+      selectShop(this.props.dispatch, shop.key);
+      this.centerShopWithModal(shop);
     });
   }
 
-  private onClickCandidateItem(event: React.MouseEvent<HTMLElement>, store: IStore): void {
-    selectStore(this.props.dispatch, store.key);
+  private onClickCandidateItem(event: React.MouseEvent<HTMLElement>, shop: IShop): void {
+    selectShop(this.props.dispatch, shop.key);
     updateView(
       this.props.dispatch,
       {
-        lat: store.lat,
-        lng: store.lng,
+        lat: shop.lat,
+        lng: shop.lng,
       },
       this.props.ui.zoom,
       [0, 0],
@@ -205,7 +200,7 @@ export class MapsMobilePage extends React.Component<IProps, {}> {
     });
   }
 
-  private centerStoreWithModal(store: IStore): void {
+  private centerShopWithModal(shop: IShop): void {
     setTimeout(() => {
       const modalElement: HTMLElement = this.modalRef.current;
       const mapElement: HTMLElement = this.mapRef.current.ref.current;
@@ -218,8 +213,8 @@ export class MapsMobilePage extends React.Component<IProps, {}> {
       updateView(
         this.props.dispatch,
         {
-          lng: store.lng,
-          lat: store.lat,
+          lng: shop.lng,
+          lat: shop.lat,
         },
         this.props.ui.zoom,
         offset,

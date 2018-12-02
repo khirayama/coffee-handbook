@@ -1,10 +1,10 @@
 import * as React from 'react';
 
-import { IStore } from 'presentations/pages/Maps/interfaces';
+import { IShop } from 'presentations/pages/Maps/interfaces';
 
 interface IProps {
-  store: IStore;
-  onClickItem(event: React.MouseEvent<HTMLElement>, store: IStore): void;
+  shop: IShop;
+  onClickItem(event: React.MouseEvent<HTMLElement>, shop: IShop): void;
 }
 
 export class CandidateListItem extends React.Component<IProps, {}> {
@@ -15,17 +15,17 @@ export class CandidateListItem extends React.Component<IProps, {}> {
   }
 
   public render(): JSX.Element {
-    const store: IStore = this.props.store;
+    const shop: IShop = this.props.shop;
 
     return (
-      <li key={store.key} className="CandidateList--Item" onClick={this.onClick} role="button">
-        <div className="CandidateList--Item--Name">{store.name}</div>
-        <div className="CandidateList--Item--Address">{store.address}</div>
+      <li key={shop.key} className="CandidateList--Item" onClick={this.onClick} role="button">
+        <div className="CandidateList--Item--Name">{shop.name}</div>
+        <div className="CandidateList--Item--Address">{shop.address}</div>
       </li>
     );
   }
 
   private onClick(event: React.MouseEvent<HTMLElement>): void {
-    this.props.onClickItem(event, this.props.store);
+    this.props.onClickItem(event, this.props.shop);
   }
 }
