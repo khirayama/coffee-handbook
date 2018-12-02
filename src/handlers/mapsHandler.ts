@@ -123,6 +123,7 @@ export function mapsHandler(req: express.Request, res: express.Response): void {
     }
   }
   if (shop) {
+    initialState.ui.selectedShopKey = shop.key;
     initialState.ui.isShownModal = true;
     initialState.ui.isShownShopCards = false;
     initialState.ui.isShownCurrentPositionButton = false;
