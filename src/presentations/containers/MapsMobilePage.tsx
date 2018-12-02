@@ -1,4 +1,5 @@
 import * as classNames from 'classnames';
+import * as queryString from 'query-string';
 import * as React from 'react';
 
 import { dictionary } from 'dictionary';
@@ -10,10 +11,17 @@ import { ShopMapView } from 'presentations/components/ShopMapView';
 import { connect } from 'presentations/containers/Container';
 import { CurrentPositionButtonContainer } from 'presentations/containers/CurrentPositionButton';
 import { SearchFormContainer } from 'presentations/containers/SearchForm';
-import { selectShop, selectTargetShop, unselectShop, updateView } from 'presentations/pages/Maps/actionCreators';
+import {
+  searchShop,
+  selectShop,
+  selectTargetShop,
+  unselectShop,
+  updateView,
+} from 'presentations/pages/Maps/actionCreators';
 import { IAction, IDispatch, IPosition, IRawShop, IShop, IState } from 'presentations/pages/Maps/interfaces';
 import { waitShortAnimationEnd } from 'presentations/utils/helpers';
 import { tracker } from 'presentations/utils/tracker';
+import { ISearchResult, shopSearchEngine } from 'ShopSearchEngine';
 import { Dictionary } from 'utils/Dictionary';
 import { Resource } from 'utils/Resource';
 
@@ -50,7 +58,7 @@ export class MapsMobilePage extends React.Component<IProps, {}> {
     }
 
     window.addEventListener('popstate', () => {
-      // TODO: Support searchQuery
+      // FYI: For shop
       let shopKey: string = window.location.pathname.replace('/shops/', '');
       if (shopKey === '/') {
         shopKey = null;
@@ -66,6 +74,14 @@ export class MapsMobilePage extends React.Component<IProps, {}> {
           .findOne();
         this.centerShopWithModal(currentShop);
       }
+      // FYI: For search
+      const query: { q?: string; pos?: string } = queryString.parse(window.location.search);
+      const searchKeyword: string = query.q ? shopSearchEngine.decode(query.q) : '';
+      const searchPos: IPosition = {
+        lat: query.pos ? Number(query.pos.split(',')[0]) : null,
+        lng: query.pos ? Number(query.pos.split(',')[1]) : null,
+      };
+      searchShop(this.props.dispatch, searchKeyword, searchPos);
     });
   }
 

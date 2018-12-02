@@ -75,8 +75,8 @@ export function mapsHandler(req: express.Request, res: express.Response): void {
   const shopKey: string = req.params.key;
   const searchKeyword: string = req.query.q ? shopSearchEngine.decode(req.query.q) : '';
   const searchPos: IPosition = {
-    lat: req.query.pos ? req.query.pos.split(',')[0] : null,
-    lng: req.query.pos ? req.query.pos.split(',')[1] : null,
+    lat: req.query.pos ? Number(req.query.pos.split(',')[0]) : null,
+    lng: req.query.pos ? Number(req.query.pos.split(',')[1]) : null,
   };
 
   // Build initial state
