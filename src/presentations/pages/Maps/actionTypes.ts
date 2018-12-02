@@ -6,6 +6,7 @@ export const actionTypes: {
   UPDATE_CURRENT_POSITION: Symbol;
   UPDATE_SHEET_MODE: Symbol;
   SEARCH_STORE: Symbol;
+  FILTER_STORE: Symbol;
 } = {
   UPDATE_VIEW: Symbol('UPDATE_VIEW'),
   SELECT_STORE: Symbol('SELECT_STORE'),
@@ -14,4 +15,5 @@ export const actionTypes: {
   UPDATE_CURRENT_POSITION: Symbol('UPDATE_CURRENT_POSITION'),
   UPDATE_SHEET_MODE: Symbol('UPDATE_SHEET_MODE'),
   SEARCH_STORE: Symbol('SEARCH_STORE'),
+  FILTER_STORE: Symbol('FILTER_STORE'),
 };

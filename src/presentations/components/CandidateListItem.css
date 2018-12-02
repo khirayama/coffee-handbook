@@ -1,0 +1,22 @@
+.CandidateList {
+  padding: 84px 12px 12px;
+
+  .CandidateList--Item {
+    padding: 12px 0;
+
+    .CandidateList--Item--Name {
+      font-weight: $font-bold;
+    }
+
+    .CandidateList--Item--Address {
+      color: $color-text-secondary;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+    & + .CandidateList--Item {
+      border-top: $border;
+    }
+  }
+}

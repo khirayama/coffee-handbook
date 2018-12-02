@@ -2,6 +2,7 @@ import * as classNames from 'classnames';
 import * as React from 'react';
 
 import { dictionary } from 'dictionary';
+import { CandidateListItem } from 'presentations/components/CandidateListItem';
 import { Sheet } from 'presentations/components/Sheet';
 import { StoreCard } from 'presentations/components/StoreCard';
 import { StoreCards } from 'presentations/components/StoreCards';
@@ -35,6 +36,7 @@ export class MapsMobilePage extends React.Component<IProps, {}> {
     this.onMoveEnd = this.onMoveEnd.bind(this);
     this.onSnap = this.onSnap.bind(this);
     this.onClickStore = this.onClickStore.bind(this);
+    this.onClickCandidateItem = this.onClickCandidateItem.bind(this);
   }
 
   public componentDidMount(): void {
@@ -91,7 +93,19 @@ export class MapsMobilePage extends React.Component<IProps, {}> {
         <div className="MapsMobilePage--Content">
           <SearchFormContainer />
           <CurrentPositionButtonContainer />
-          <Sheet isShown={props.ui.isShownSheet} />
+          <Sheet isShown={props.ui.isShownSheet}>
+            <ul className="CandidateList">
+              {targetStores.map((targetStore: IStore) => {
+                return (
+                  <CandidateListItem
+                    key={targetStore.key}
+                    store={targetStore}
+                    onClickItem={this.onClickCandidateItem}
+                  />
+                );
+              })}
+            </ul>
+          </Sheet>
           <StoreCards
             isShown={props.ui.isShownStoreCards}
             stores={targetStores}
@@ -171,6 +185,23 @@ export class MapsMobilePage extends React.Component<IProps, {}> {
     waitShortAnimationEnd().then(() => {
       selectStore(this.props.dispatch, store.key);
       this.centerStoreWithModal(store);
+    });
+  }
+
+  private onClickCandidateItem(event: React.MouseEvent<HTMLElement>, store: IStore): void {
+    selectStore(this.props.dispatch, store.key);
+    updateView(
+      this.props.dispatch,
+      {
+        lat: store.lat,
+        lng: store.lng,
+      },
+      this.props.ui.zoom,
+      [0, 0],
+    );
+    this.setState({
+      value: '',
+      candidates: [],
     });
   }
 

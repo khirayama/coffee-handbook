@@ -112,6 +112,14 @@ export function reducer(state: IState, action: IAction): IState {
       newState.ui.zoom = payload.zoom;
       break;
     }
+    case actionTypes.FILTER_STORE: {
+      newState.ui.isShownSheet = true;
+      newState.ui.isShownStoreCards = false;
+      newState.ui.isShownModal = false;
+      newState.ui.isShownCurrentPositionButton = false;
+      newState.ui.targetStoreKeys = payload.targetStoreKeys;
+      break;
+    }
     default:
   }
 

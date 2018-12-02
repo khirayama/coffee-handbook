@@ -3,7 +3,13 @@ import * as React from 'react';
 
 import { dictionary } from 'dictionary';
 import { connect } from 'presentations/containers/Container';
-import { changeSheetShown, searchStore, selectStore, updateView } from 'presentations/pages/Maps/actionCreators';
+import {
+  changeSheetShown,
+  filterStore,
+  searchStore,
+  selectStore,
+  updateView,
+} from 'presentations/pages/Maps/actionCreators';
 import { IAction, IDispatch, IPosition, IRawStore, IState, IStore } from 'presentations/pages/Maps/interfaces';
 import { ISearchResult, storeSearchEngine } from 'StoreSearchEngine';
 import { Dictionary } from 'utils/Dictionary';
@@ -15,35 +21,6 @@ interface IProps extends IState {
 
 interface ISearchFormState {
   value: string;
-  candidates: IStore[];
-}
-
-interface ICandidateListItemProps {
-  store: IStore;
-  onClickItem(event: React.MouseEvent<HTMLElement>, store: IStore): void;
-}
-
-class CandidateListItem extends React.Component<ICandidateListItemProps, {}> {
-  constructor(props: ICandidateListItemProps) {
-    super(props);
-
-    this.onClick = this.onClick.bind(this);
-  }
-
-  public render(): JSX.Element {
-    const store: IStore = this.props.store;
-
-    return (
-      <li key={store.key} className="SearchForm--CandidateList--Item" onClick={this.onClick} role="button">
-        <div className="SearchForm--CandidateList--Item--Name">{store.name}</div>
-        <div className="SearchForm--CandidateList--Item--Address">{store.address}</div>
-      </li>
-    );
-  }
-
-  private onClick(event: React.MouseEvent<HTMLElement>): void {
-    this.props.onClickItem(event, this.props.store);
-  }
 }
 
 export class SearchForm extends React.Component<IProps, ISearchFormState> {
@@ -54,14 +31,12 @@ export class SearchForm extends React.Component<IProps, ISearchFormState> {
 
     this.state = {
       value: '',
-      candidates: [],
     };
 
     this.inputRef = React.createRef();
     this.onSubmit = this.onSubmit.bind(this);
     this.onFocus = this.onFocus.bind(this);
     this.onChange = this.onChange.bind(this);
-    this.onClickCandidateItem = this.onClickCandidateItem.bind(this);
   }
 
   public render(): JSX.Element {
@@ -89,11 +64,6 @@ export class SearchForm extends React.Component<IProps, ISearchFormState> {
           onFocus={this.onFocus}
           value={this.state.value}
         />
-        <ul className="SearchForm--CandidateList">
-          {this.state.candidates.map((store: IStore) => {
-            return <CandidateListItem key={store.key} store={store} onClickItem={this.onClickCandidateItem} />;
-          })}
-        </ul>
       </form>
     );
   }
@@ -109,7 +79,6 @@ export class SearchForm extends React.Component<IProps, ISearchFormState> {
       (window.document.activeElement as HTMLInputElement).blur();
       this.setState({
         value: '',
-        candidates: [],
       });
       // TODO: send pageview or send event
     });
@@ -122,32 +91,8 @@ export class SearchForm extends React.Component<IProps, ISearchFormState> {
   private onChange(event: React.FormEvent<HTMLInputElement>): void {
     const value: string = event.currentTarget.value;
 
-    const result: ISearchResult = storeSearchEngine.search(value, this.props.ui.pos);
-    const candidates: IRawStore[] = result.results.length
-      ? result.results.map((res: { key: string; score: number; store: IRawStore }) => res.store)
-      : this.props.stores;
-    const storeResource: Resource<IRawStore, IStore> = new Resource<IRawStore, IStore>(candidates, this.props.lang);
-    this.setState({
-      value,
-      candidates: storeResource.find(),
-    });
-  }
-
-  private onClickCandidateItem(event: React.MouseEvent<HTMLElement>, store: IStore): void {
-    selectStore(this.props.dispatch, store.key);
-    updateView(
-      this.props.dispatch,
-      {
-        lat: store.lat,
-        lng: store.lng,
-      },
-      this.props.ui.zoom,
-      [0, 0],
-    );
-    this.setState({
-      value: '',
-      candidates: [],
-    });
+    filterStore(this.props.dispatch, value, this.props.ui.pos);
+    this.setState({ value });
   }
 }
 

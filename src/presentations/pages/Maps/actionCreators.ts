@@ -127,3 +127,24 @@ export function searchStore(dispatch: IDispatch, query: string, pos: IPosition):
     },
   );
 }
+
+export function filterStore(dispatch: IDispatch, query: string, pos: IPosition): Promise<IAction> {
+  return new Promise(
+    (resolve: any): void => {
+      const result: ISearchResult = storeSearchEngine.search(query, pos);
+      const candidateStoreKeys: string[] = result.results.map(
+        (res: { key: string; score: number; store: IRawStore }) => res.store.key,
+      );
+      const action: IAction = {
+        actionType: actionTypes.FILTER_STORE,
+        payload: {
+          searchQuery: result.searchQuery,
+          targetStoreKeys: candidateStoreKeys,
+        },
+      };
+
+      dispatch(action);
+      resolve(action);
+    },
+  );
+}
