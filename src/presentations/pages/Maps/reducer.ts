@@ -66,27 +66,15 @@ export function reducer(state: IState, action: IAction): IState {
     }
     case actionTypes.UNSELECT_STORE: {
       newState.ui.selectedStoreKey = null;
-      if (state.ui.isShownStoreCards) {
-        newState.ui.isShownSheet = false;
-        newState.ui.isShownModal = false;
-        newState.ui.isShownStoreCards = false;
-        newState.ui.isShownCurrentPositionButton = false;
-        newState.ui.targetStoreKeys = [];
-      } else if (newState.ui.targetStoreKeys.length) {
-        newState.ui.isShownSheet = false;
-        newState.ui.isShownModal = false;
+      newState.ui.isShownModal = false;
+      newState.ui.isShownSheet = false;
+      if (newState.ui.targetStoreKeys.length && !newState.ui.isShownStoreCards) {
         newState.ui.isShownStoreCards = true;
         newState.ui.isShownCurrentPositionButton = false;
-      } else if (!newState.ui.targetStoreKeys.length && !newState.ui.isShownSheet) {
-        newState.ui.isShownSheet = false;
-        newState.ui.isShownModal = false;
+      } else if (newState.ui.targetStoreKeys.length && newState.ui.isShownStoreCards) {
         newState.ui.isShownStoreCards = false;
         newState.ui.isShownCurrentPositionButton = true;
-      } else if (!newState.ui.targetStoreKeys.length) {
-        newState.ui.isShownSheet = false;
-        newState.ui.isShownModal = false;
-        newState.ui.isShownStoreCards = false;
-        newState.ui.isShownCurrentPositionButton = false;
+        newState.ui.targetStoreKeys = [];
       }
       break;
     }
