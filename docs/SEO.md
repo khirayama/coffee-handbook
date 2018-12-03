@@ -4,7 +4,7 @@
 
 ## TODO
 
-- [ ] title, description, keyword見直し
+- [ ] title, description, keyword, image見直し
 - [x] Fetch as google の実行
 - [x] 内部リンクの見直し
 - [x] 外部リンクの見直し
