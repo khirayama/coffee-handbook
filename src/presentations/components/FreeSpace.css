@@ -1,0 +1,41 @@
+.FreeSpace {
+  padding: 84px 12px 12px;
+
+  .FreeSpace--ConditionList {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+
+    .FreeSpace--ConditionList--Item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: red;
+      padding: 8px;
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+    }
+  }
+
+  .FreeSpace--Ad {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    padding-top: calc(100% / 320 * 100);
+
+    .FreeSpace--Ad--Content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      color: $color-white;
+      background: $color-divider;
+    }
+  }
+}
