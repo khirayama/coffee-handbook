@@ -1,17 +1,32 @@
 // tslint:disable:no-any
 
+interface IOptions {
+  defaultLang?: string;
+}
+
+export interface IText {
+  ja: string;
+  en: string;
+}
+
+export type ITextFunc = (...args: string[]) => IText;
+
+export interface IDictionary {
+  [key: string]: IText | ITextFunc | IDictionary;
+}
+
 export class Dictionary {
-  private lang: string | null;
+  private dic: IDictionary;
 
-  private dic: any;
+  private defaultLang: string | null;
 
-  constructor(lang: string | null, dic: any) {
-    this.lang = lang;
-    this.dic = dic;
+  constructor(dictionary: IDictionary, options?: IOptions) {
+    this.dic = dictionary;
+    this.defaultLang = options ? options.defaultLang || null : null;
   }
 
   // tslint:disable-next-line:function-name
-  public v(key: string): any {
+  public v(key: string): IText {
     const keys: string[] = key.split('.');
     let val: any = this.dic;
     for (const valueKey of keys) {
@@ -22,13 +37,12 @@ export class Dictionary {
   }
 
   // tslint:disable-next-line:function-name
-  public t(key: string, ...args: any[]): string {
+  public t(key: string, lang: string, ...args: any[]): string {
     let val: any = this.v(key);
     if (typeof val === 'function') {
       val = val(...args);
     }
 
-    // Consider fallback
-    return val[this.lang];
+    return val[lang] || val[this.defaultLang];
   }
 }

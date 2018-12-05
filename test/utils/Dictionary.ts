@@ -12,14 +12,16 @@ const sampleDictinaryData: any = {
   },
 };
 
-describe('Dictionary', () => {
-  let dic: null | Dictionary = null;
+let dic: null | Dictionary = null;
 
+before(() => {
+  dic = new Dictionary(sampleDictinaryData);
+});
+
+describe('Dictionary', () => {
   describe('v', () => {
     describe('run', () => {
       it('normal', () => {
-        dic = new Dictionary(null, sampleDictinaryData);
-
         const actual: any = dic.v('Test.test');
         const expected: any = {
           ja: '日本語',
@@ -34,18 +36,14 @@ describe('Dictionary', () => {
   describe('t', () => {
     describe('run', () => {
       it('with English', () => {
-        dic = new Dictionary('en', sampleDictinaryData);
-
-        const actual: any = dic.t('Test.test');
+        const actual: any = dic.t('Test.test', 'en');
         const expected: any = 'English';
 
         assert.deepEqual(actual, expected);
       });
 
       it('with Japanese', () => {
-        dic = new Dictionary('ja', sampleDictinaryData);
-
-        const actual: any = dic.t('Test.test');
+        const actual: any = dic.t('Test.test', 'ja');
         const expected: any = '日本語';
 
         assert.deepEqual(actual, expected);
