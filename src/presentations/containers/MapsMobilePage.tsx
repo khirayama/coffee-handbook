@@ -4,6 +4,7 @@ import * as React from 'react';
 
 import { dictionary } from 'dictionary';
 import { CandidateListItem } from 'presentations/components/CandidateListItem';
+import { FreeSpace } from 'presentations/components/FreeSpace';
 import { Sheet } from 'presentations/components/Sheet';
 import { ShopCard } from 'presentations/components/ShopCard';
 import { ShopCards } from 'presentations/components/ShopCards';
@@ -109,13 +110,17 @@ export class MapsMobilePage extends React.Component<IProps, {}> {
           <SearchFormContainer />
           <CurrentPositionButtonContainer />
           <Sheet isShown={props.ui.isShownSheet}>
-            <ul className="CandidateList">
-              {targetShops.map((targetShop: IShop) => {
-                return (
-                  <CandidateListItem key={targetShop.key} shop={targetShop} onClickItem={this.onClickCandidateItem} />
-                );
-              })}
-            </ul>
+            {targetShopKeys.length ? (
+              <ul className="CandidateList">
+                {targetShops.map((targetShop: IShop) => {
+                  return (
+                    <CandidateListItem key={targetShop.key} shop={targetShop} onClickItem={this.onClickCandidateItem} />
+                  );
+                })}
+              </ul>
+            ) : (
+              <FreeSpace />
+            )}
           </Sheet>
           <ShopCards
             isShown={props.ui.isShownShopCards}
