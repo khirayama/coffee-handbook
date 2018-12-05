@@ -1,8 +1,7 @@
 import { config } from 'config';
 import { shops } from 'data/shops';
-import { dictionary } from 'dictionary';
+import { dic } from 'dic';
 import { IRawShop } from 'presentations/pages/Maps/interfaces';
-import { Dictionary } from 'utils/Dictionary';
 
 interface ISitemapOptions {
   lastmod?: string;
@@ -29,8 +28,6 @@ interface IPage {
 }
 
 function createPages(): IPage[] {
-  const dic: Dictionary = new Dictionary(null, dictionary);
-
   return [
     {
       name: dic.v('name'),
