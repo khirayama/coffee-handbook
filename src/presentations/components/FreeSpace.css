@@ -1,24 +1,6 @@
 .FreeSpace {
   padding: 84px 12px 12px;
 
-  .FreeSpace--ConditionList {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-
-    .FreeSpace--ConditionList--Item {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      background: red;
-      padding: 8px;
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-    }
-  }
-
   .FreeSpace--Ad {
     position: relative;
     display: inline-block;
