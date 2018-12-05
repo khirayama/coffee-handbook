@@ -5,7 +5,8 @@ import * as ReactDOM from 'react-dom';
 import { Provider } from 'presentations/containers/Container';
 import { MapsMobilePageContainer } from 'presentations/containers/MapsMobilePage';
 import { IAction, IPosition, IState } from 'presentations/pages/Maps/interfaces';
-import { loadView, reducer } from 'presentations/pages/Maps/reducer';
+import { reducer } from 'presentations/pages/Maps/reducer';
+import { loadView } from 'presentations/utils/helpers';
 import { shopSearchEngine } from 'ShopSearchEngine';
 import { Store } from 'utils/Store';
 

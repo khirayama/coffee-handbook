@@ -1,6 +1,7 @@
 // tslint:disable:no-any
 import { actionTypes } from 'presentations/pages/Maps/actionTypes';
 import { IAction, IDispatch, IPosition, IRawShop } from 'presentations/pages/Maps/interfaces';
+import { saveView } from 'presentations/utils/helpers';
 import { ISearchResult, shopSearchEngine } from 'ShopSearchEngine';
 
 export function updateView(
@@ -11,6 +12,7 @@ export function updateView(
 ): Promise<IAction> {
   return new Promise(
     (resolve: any): void => {
+      saveView(pos, zoom);
       const action: IAction = {
         actionType: actionTypes.UPDATE_VIEW,
         payload: {
