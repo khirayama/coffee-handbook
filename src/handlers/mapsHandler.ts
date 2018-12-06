@@ -225,9 +225,9 @@ export function mapsHandler(req: express.Request, res: express.Response): void {
     lang,
     title,
     description,
-    author: req.dic.t('author'),
+    author: dic.t('author', lang),
     keywords,
-    name: req.dic.t('name'),
+    name: dic.t('name', lang),
     images: {
       // TODO: 3600 * 1890で画像作る
       rectangle: {

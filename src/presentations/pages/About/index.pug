@@ -11,6 +11,6 @@ block body
   .About
     +Header(props.header)
     .About--Content
-      .About--Content--Title= dic.t('Pages.About.ABOUT')
-      .About--Content--Text!= dic.t('Pages.About.text')
+      .About--Content--Title= dic.t('Pages.About.ABOUT', props.lang)
+      .About--Content--Text!= dic.t('Pages.About.text', props.lang)
     +Footer

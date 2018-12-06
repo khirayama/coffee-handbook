@@ -1,6 +1,7 @@
 import * as express from 'express';
 
 import { config } from 'config';
+import { dic } from 'dic';
 
 interface IManifest {
   name: string;
@@ -23,8 +24,8 @@ export function manifestHandler(req: express.Request, res: express.Response): vo
   const lang: string = req.lang;
 
   const manifest: IManifest = {
-    name: req.dic.t('name'),
-    short_name: req.dic.t('name'),
+    name: dic.t('name', lang),
+    short_name: dic.t('name', lang),
     icons: [
       {
         src: `/images/icon_${lang}_android.png`,

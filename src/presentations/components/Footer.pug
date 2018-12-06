@@ -7,4 +7,4 @@ mixin Footer
         a(href="/sitemap")= dic.t('Components.Footer.SITEMAP')
       li.Footer--List--Item
         a(href="/privacy")= dic.t('Components.Footer.PRIVACY')
-    p.Footer--Copyright!= '&copy; ' + dic.t('name') + dic.t('Components.Footer.copyright')
+    p.Footer--Copyright!= '&copy; ' + dic.t('name', props.lang) + dic.t('Components.Footer.copyright', props.lang)

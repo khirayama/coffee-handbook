@@ -5,8 +5,9 @@ import * as ReactDOM from 'react-dom';
 import { Provider } from 'presentations/containers/Container';
 import { MapsDesktopPageContainer } from 'presentations/containers/MapsDesktopPage';
 import { IAction, IPosition, IState } from 'presentations/pages/Maps/interfaces';
-import { loadView, reducer } from 'presentations/pages/Maps/reducer';
-import { Store as AppStore } from 'utils/Store';
+import { reducer } from 'presentations/pages/Maps/reducer';
+import { loadView } from 'presentations/utils/helpers';
+import { Store } from 'utils/Store';
 
 declare global {
   // tslint:disable-next-line:interface-name
@@ -30,12 +31,9 @@ initialState.ui.currentPos = view.currentPos || null;
 initialState.ui.pos = view.pos;
 initialState.ui.zoom = view.zoom;
 
-const appStore: AppStore<IState | null, IAction> = new AppStore(initialState, reducer);
+const store: Store<IState | null, IAction> = new Store(initialState, reducer);
 
 window.addEventListener('DOMContentLoaded', () => {
   const el: HTMLElement = window.document.querySelector('.application');
-  ReactDOM.render(
-    React.createElement(Provider, { store: appStore }, React.createElement(MapsDesktopPageContainer)),
-    el,
-  );
+  ReactDOM.render(React.createElement(Provider, { store }, React.createElement(MapsDesktopPageContainer)), el);
 });
