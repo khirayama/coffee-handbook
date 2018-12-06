@@ -7,6 +7,7 @@ import * as React from 'react';
 import { renderToString } from 'react-dom/server';
 
 import { config } from 'config';
+import { dic } from 'dic';
 import { shops } from 'data/shops';
 import { Provider } from 'presentations/containers/Container';
 import { MapsDesktopPageContainer } from 'presentations/containers/MapsDesktopPage';
@@ -15,7 +16,6 @@ import { IAction, IPosition, IRawShop, IShop, IState } from 'presentations/pages
 import { reducer } from 'presentations/pages/Maps/reducer';
 import { secret } from 'secret';
 import { ISearchResult, shopSearchEngine } from 'ShopSearchEngine';
-import { Dictionary } from 'utils/Dictionary';
 import { Resource } from 'utils/Resource';
 import { Store } from 'utils/Store';
 
@@ -71,7 +71,6 @@ setTimeout(() => {
 // tslint:disable-next-line:max-func-body-length cyclomatic-complexity
 export function mapsHandler(req: express.Request, res: express.Response): void {
   const lang: string = req.lang;
-  const dic: Dictionary = req.dic;
   const shopKey: string = req.params.key;
   const searchKeyword: string = req.query.q ? shopSearchEngine.decode(req.query.q) : '';
   const searchPos: IPosition = {
@@ -133,7 +132,7 @@ export function mapsHandler(req: express.Request, res: express.Response): void {
   const store: Store<IState, IAction> = new Store(initialState, reducer);
 
   // For SEO
-  const titleSafix: string = `${dic.t('name')} | ${dic.t('siteDescription')}`;
+  const titleSafix: string = `${dic.t('name', lang)} | ${dic.t('siteDescription', lang)}`;
   const title: string = shop ? `${shop.name} | ${titleSafix}` : titleSafix;
   const description: string = shop ? `${shop.name} | ${shop.address} | ${titleSafix}` : titleSafix;
   const keywords: string[] = ['coffee', 'コーヒー', '珈琲', 'handbook', '手帖'];
@@ -150,7 +149,7 @@ export function mapsHandler(req: express.Request, res: express.Response): void {
   const site: any = {
     '@context': 'http://schema.org',
     '@type': 'WebSite',
-    name: dic.t('name'),
+    name: dic.t('name', lang),
     url: config.url[lang],
   };
   jsonLD.push(site);
@@ -164,7 +163,7 @@ export function mapsHandler(req: express.Request, res: express.Response): void {
         position: 1,
         item: {
           '@id': config.url[lang],
-          name: dic.t('name'),
+          name: dic.t('name', lang),
         },
       },
     ],

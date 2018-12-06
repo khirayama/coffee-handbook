@@ -1,7 +1,6 @@
 // tslint:disable:no-any
-import { dictionary } from 'dictionary';
-import { IAction, IDispatch, IPosition, IRawShop } from 'presentations/pages/Maps/interfaces';
-import { Dictionary } from 'utils/Dictionary';
+import { dic } from 'dic';
+import { IPosition, IRawShop } from 'presentations/pages/Maps/interfaces';
 
 export interface ISearchResult {
   searchQuery: { [key: string]: string };
@@ -63,8 +62,6 @@ export class ShopSearchEngine {
   private placeIndex: any = {};
 
   private shopIndex: any = {};
-
-  private dic: Dictionary = new Dictionary(null, dictionary);
 
   public encode(keyword: string): string {
     return encodeURIComponent(keyword);
@@ -191,7 +188,7 @@ export class ShopSearchEngine {
 
       const serviceKeys: string[] = Object.keys(rawShop.services);
       for (const serviceKey of serviceKeys) {
-        const textObj: any = this.dic.v(`Pages.Maps.services.${serviceKey}`);
+        const textObj: any = dic.v(`Pages.Maps.services.${serviceKey}`);
         if (rawShop.services[serviceKey] === 1 || rawShop.services[serviceKey] === 2) {
           this.addTextObjToIndex(textObj, rawShop.key, this.shopIndex);
         }

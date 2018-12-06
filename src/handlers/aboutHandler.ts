@@ -1,8 +1,8 @@
 import * as express from 'express';
 
 import { config } from 'config';
+import { dic } from 'dic';
 import { secret } from 'secret';
-import { Dictionary } from 'utils/Dictionary';
 
 interface IAboutPage {
   env: string;
@@ -36,13 +36,12 @@ interface IAboutPage {
 
 export function aboutHandler(req: express.Request, res: express.Response): void {
   const lang: string = req.lang;
-  const dic: Dictionary = req.dic;
 
   const props: IAboutPage = {
     env: process.env.NODE_ENV || 'development',
     gaCode: secret.gaCode,
-    author: req.dic.t('author'),
-    name: req.dic.t('name'),
+    author: dic.t('author', lang),
+    name: dic.t('name', lang),
     baseUrl: config.url[lang],
     url: config.url,
     facebookPageUrl: config.facebookPageUrl,
@@ -50,8 +49,8 @@ export function aboutHandler(req: express.Request, res: express.Response): void 
     twitterAccount: config.twitterAccount,
     lang: req.lang,
     path: req.originalUrl,
-    title: `${dic.t('Pages.About.ABOUT')} | ${dic.t('name')} | ${dic.t('siteDescription')}`,
-    description: dic.t('Pages.About.description'),
+    title: `${dic.t('Pages.About.ABOUT', lang)} | ${dic.t('name', lang)} | ${dic.t('siteDescription', lang)}`,
+    description: dic.t('Pages.About.description', lang),
     keywords: ['coffee', 'コーヒー', '珈琲', 'handbook', '手帖'],
     image: 'TODO',
     pageType: 'cafe',

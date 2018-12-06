@@ -1,19 +1,10 @@
 import * as queryString from 'query-string';
 import * as React from 'react';
 
-import { dictionary } from 'dictionary';
+import { dic } from 'dic';
 import { connect } from 'presentations/containers/Container';
-import {
-  changeSheetShown,
-  filterShop,
-  searchShop,
-  selectShop,
-  updateView,
-} from 'presentations/pages/Maps/actionCreators';
-import { IAction, IDispatch, IPosition, IRawShop, IShop, IState } from 'presentations/pages/Maps/interfaces';
-import { ISearchResult, shopSearchEngine } from 'ShopSearchEngine';
-import { Dictionary } from 'utils/Dictionary';
-import { Resource } from 'utils/Resource';
+import { changeSheetShown, filterShop, searchShop } from 'presentations/pages/Maps/actionCreators';
+import { IAction, IDispatch, IState } from 'presentations/pages/Maps/interfaces';
 
 interface IProps extends IState {
   dispatch: IDispatch;
@@ -71,9 +62,9 @@ export class SearchForm extends React.Component<IProps, ISearchFormState> {
   private onSubmit(event: React.FormEvent<HTMLFormElement>): void {
     event.preventDefault();
     searchShop(this.props.dispatch, this.state.value, this.props.ui.pos).then((action: IAction) => {
-      const dic: Dictionary = new Dictionary(this.props.lang, dictionary);
+      const lang: string = this.props.lang;
       const loc: string = `/?${queryString.stringify(action.payload.searchQuery)}`;
-      const title: string = `${dic.t('name')} | ${dic.t('siteDescription')}`;
+      const title: string = `${dic.t('name', lang)} | ${dic.t('siteDescription', lang)}`;
       window.document.title = title;
       window.history.pushState(null, title, loc);
       (window.document.activeElement as HTMLInputElement).blur();

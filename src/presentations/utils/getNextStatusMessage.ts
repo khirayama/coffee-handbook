@@ -1,7 +1,7 @@
+import { dic } from 'dic';
 import { IOpenStatus } from 'presentations/utils/getOpenStatus';
-import { Dictionary } from 'utils/Dictionary';
 
-export function getNextStatusMessage(openStatus: IOpenStatus, dic: Dictionary): string {
+export function getNextStatusMessage(openStatus: IOpenStatus, lang: string): string {
   const now: Date = new Date();
   const currentDay: number = now.getDay();
   if (openStatus.openAt) {
@@ -10,6 +10,7 @@ export function getNextStatusMessage(openStatus: IOpenStatus, dic: Dictionary): 
     } else {
       return `${dic.t(`Pages.Maps.openAt`, openStatus.openAt.time)} ${dic.t(
         `Pages.Maps.day.${openStatus.openAt.day}`,
+        lang,
       )}`;
     }
   } else if (openStatus.closeAt) {

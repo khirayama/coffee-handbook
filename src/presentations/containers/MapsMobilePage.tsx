@@ -2,7 +2,7 @@ import * as classNames from 'classnames';
 import * as queryString from 'query-string';
 import * as React from 'react';
 
-import { dictionary } from 'dictionary';
+import { dic } from 'dic';
 import { CandidateListItem } from 'presentations/components/CandidateListItem';
 import { FreeSpace } from 'presentations/components/FreeSpace';
 import { Sheet } from 'presentations/components/Sheet';
@@ -19,11 +19,10 @@ import {
   unselectShop,
   updateView,
 } from 'presentations/pages/Maps/actionCreators';
-import { IAction, IDispatch, IPosition, IRawShop, IShop, IState } from 'presentations/pages/Maps/interfaces';
+import { IDispatch, IPosition, IRawShop, IShop, IState } from 'presentations/pages/Maps/interfaces';
 import { waitShortAnimationEnd } from 'presentations/utils/helpers';
 import { tracker } from 'presentations/utils/tracker';
-import { ISearchResult, shopSearchEngine } from 'ShopSearchEngine';
-import { Dictionary } from 'utils/Dictionary';
+import { shopSearchEngine } from 'ShopSearchEngine';
 import { Resource } from 'utils/Resource';
 
 interface IProps extends IState {
@@ -87,7 +86,6 @@ export class MapsMobilePage extends React.Component<IProps, {}> {
   }
 
   public render(): JSX.Element {
-    const dic: Dictionary = new Dictionary(this.props.lang, dictionary);
     const props: IState = this.props;
     const targetShopKeys: string[] = props.ui.targetShopKeys;
     const shopResource: Resource<IRawShop, IShop> = new Resource(props.shops, props.lang);
@@ -129,7 +127,7 @@ export class MapsMobilePage extends React.Component<IProps, {}> {
             onSnap={this.onSnap}
           />
           <div ref={this.modalRef} className={classNames('Modal', { Modal__Hidden: !props.ui.isShownModal })}>
-            <ShopCard shop={shop} dic={dic} />
+            <ShopCard shop={shop} lang={this.props.lang} />
           </div>
           <ShopMapView
             ref={this.mapRef}
@@ -175,9 +173,8 @@ export class MapsMobilePage extends React.Component<IProps, {}> {
   private onClickMap(event: MouseEvent): void {
     const shopKey: string = window.location.pathname.replace('/shops/', '');
     if (shopKey) {
-      const dic: Dictionary = new Dictionary(this.props.lang, dictionary);
       const loc: string = '/';
-      const title: string = `${dic.t('name')} | ${dic.t('siteDescription')}`;
+      const title: string = `${dic.t('name', this.props.lang)} | ${dic.t('siteDescription', this.props.lang)}`;
       window.document.title = title;
       window.history.pushState(null, title, loc);
     }
@@ -187,9 +184,11 @@ export class MapsMobilePage extends React.Component<IProps, {}> {
   private onClickShop(event: React.MouseEvent<HTMLElement>, shop: IShop): void {
     const shopKey: string = window.location.pathname.replace('/shops/', '');
     if (shopKey !== shop.key) {
-      const dic: Dictionary = new Dictionary(this.props.lang, dictionary);
       const loc: string = `/shops/${shop.key}`;
-      const title: string = `${shop.name} | ${shop.address} | ${dic.t('name')} | ${dic.t('siteDescription')}`;
+      const title: string = `${shop.name} | ${shop.address} | ${dic.t('name', this.props.lang)} | ${dic.t(
+        'siteDescription',
+        this.props.lang,
+      )}`;
       window.document.title = title;
       window.history.pushState(null, title, loc);
 

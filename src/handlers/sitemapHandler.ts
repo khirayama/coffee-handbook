@@ -1,8 +1,8 @@
 import * as express from 'express';
 
 import { config } from 'config';
+import { dic } from 'dic';
 import { secret } from 'secret';
-import { Dictionary } from 'utils/Dictionary';
 import { buildHtmlSitemap, buildXmlSitemap } from 'utils/sitemap';
 
 interface ISitemapPage {
@@ -38,22 +38,21 @@ interface ISitemapPage {
 
 export function sitemapHandler(req: express.Request, res: express.Response): void {
   const lang: string = req.lang;
-  const dic: Dictionary = req.dic;
 
   const props: ISitemapPage = {
     env: process.env.NODE_ENV || 'development',
     gaCode: secret.gaCode,
-    author: req.dic.t('author'),
-    name: req.dic.t('name'),
+    author: dic.t('author', lang),
+    name: dic.t('name', lang),
     baseUrl: config.url[lang],
     url: config.url,
     facebookPageUrl: config.facebookPageUrl,
     twitterCardType: config.twitterCardType,
     twitterAccount: config.twitterAccount,
-    lang: req.lang,
+    lang,
     path: req.originalUrl,
-    title: `${dic.t('Pages.Sitemap.SITEMAP')} | ${dic.t('name')} | ${dic.t('siteDescription')}`,
-    description: dic.t('Pages.Sitemap.description'),
+    title: `${dic.t('Pages.Sitemap.SITEMAP', lang)} | ${dic.t('name', lang)} | ${dic.t('siteDescription', lang)}`,
+    description: dic.t('Pages.Sitemap.description', lang),
     keywords: ['coffee', 'コーヒー', '珈琲', 'handbook', '手帖'],
     image: 'TODO',
     pageType: 'cafe',

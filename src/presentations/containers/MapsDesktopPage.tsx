@@ -1,15 +1,14 @@
 import * as classNames from 'classnames';
 import * as React from 'react';
 
-import { dictionary } from 'dictionary';
+import { dic } from 'dic';
 import { ShopCard } from 'presentations/components/ShopCard';
 import { ShopMapView } from 'presentations/components/ShopMapView';
 import { connect } from 'presentations/containers/Container';
 import { CurrentPositionButtonContainer } from 'presentations/containers/CurrentPositionButton';
-import { selectShop, unselectShop, updateCurrentPosition, updateView } from 'presentations/pages/Maps/actionCreators';
-import { IAction, IDispatch, IPosition, IRawShop, IState, IShop } from 'presentations/pages/Maps/interfaces';
+import { selectShop, unselectShop, updateView } from 'presentations/pages/Maps/actionCreators';
+import { IDispatch, IRawShop, IShop, IState } from 'presentations/pages/Maps/interfaces';
 import { tracker } from 'presentations/utils/tracker';
-import { Dictionary } from 'utils/Dictionary';
 import { Resource } from 'utils/Resource';
 
 interface IProps extends IState {
@@ -59,7 +58,6 @@ export class MapsDesktopPage extends React.Component<IProps, {}> {
   }
 
   public render(): JSX.Element {
-    const dic: Dictionary = new Dictionary(this.props.lang, dictionary);
     const props: IState = this.props;
     const shopResource: Resource<IRawShop, IShop> = new Resource(this.props.shops, this.props.lang);
     const shop: IShop = shopResource
@@ -87,7 +85,7 @@ export class MapsDesktopPage extends React.Component<IProps, {}> {
           />
           <div ref={this.modalRef} className={classNames('Modal', { Modal__Hidden: !shop })}>
             <main>
-              <ShopCard shop={shop} dic={dic} />
+              <ShopCard shop={shop} lang={this.props.lang} />
             </main>
           </div>
         </div>
@@ -98,9 +96,8 @@ export class MapsDesktopPage extends React.Component<IProps, {}> {
   private onClickMap(event: MouseEvent): void {
     const shopKey: string = window.location.pathname.replace('/shops/', '');
     if (shopKey) {
-      const dic: Dictionary = new Dictionary(this.props.lang, dictionary);
       const loc: string = '/';
-      const title: string = `${dic.t('name')} | ${dic.t('siteDescription')}`;
+      const title: string = `${dic.t('name', this.props.lang)} | ${dic.t('siteDescription', this.props.lang)}`;
       window.document.title = title;
       window.history.pushState(null, title, loc);
     }
@@ -114,9 +111,11 @@ export class MapsDesktopPage extends React.Component<IProps, {}> {
   private onClickShop(event: React.MouseEvent<HTMLElement>, shop: IShop): void {
     const shopKey: string = window.location.pathname.replace('/shops/', '');
     if (shopKey !== shop.key) {
-      const dic: Dictionary = new Dictionary(this.props.lang, dictionary);
       const loc: string = `/shops/${shop.key}`;
-      const title: string = `${shop.name} | ${shop.address} | ${dic.t('name')} | ${dic.t('siteDescription')}`;
+      const title: string = `${shop.name} | ${shop.address} | ${dic.t('name', this.props.lang)} | ${dic.t(
+        'siteDescription',
+        this.props.lang,
+      )}`;
       window.document.title = title;
       window.history.pushState(null, title, loc);
 

@@ -2,14 +2,14 @@
 import * as classNames from 'classnames';
 import * as React from 'react';
 
+import { dic } from 'dic';
 import { IShop } from 'presentations/pages/Maps/interfaces';
 import { getNextStatusMessage } from 'presentations/utils/getNextStatusMessage';
 import { getOpenStatus, IOpenStatus } from 'presentations/utils/getOpenStatus';
-import { Dictionary } from 'utils/Dictionary';
 
 interface IProps {
   shop: IShop;
-  dic: Dictionary;
+  lang: string;
 }
 
 export class ShopCard extends React.Component<IProps, { isShownHours: boolean }> {
@@ -35,7 +35,7 @@ export class ShopCard extends React.Component<IProps, { isShownHours: boolean }>
   // tslint:disable:max-func-body-length
   public render(): JSX.Element {
     const shop: IShop = this.props.shop;
-    const dic: Dictionary = this.props.dic;
+    const lang: string = this.props.lang;
 
     if (!shop) {
       return null;
@@ -47,7 +47,7 @@ export class ShopCard extends React.Component<IProps, { isShownHours: boolean }>
     let nextStatusMessage: string | null = null;
     if (shop) {
       openStatus = getOpenStatus(now, shop.hours);
-      nextStatusMessage = getNextStatusMessage(openStatus, dic);
+      nextStatusMessage = getNextStatusMessage(openStatus, lang);
     }
 
     return (
@@ -57,12 +57,12 @@ export class ShopCard extends React.Component<IProps, { isShownHours: boolean }>
           <div className="ShopCard--Content--Address">{shop.address}</div>
           <div className="ShopCard--Content--OpenStatus" onClick={this.onClickOpenStatus} role="button">
             <div className="ShopCard--Content--OpenStatus--Status">
-              {dic.t(`Pages.Maps.openStatus.${openStatus.status}`)}
+              {dic.t(`Pages.Maps.openStatus.${openStatus.status}`, lang)}
             </div>
             <div className="ShopCard--Content--OpenStatus--NextStatus">{nextStatusMessage}</div>
             <i className="Icon">{this.state.isShownHours ? 'expand_less' : 'expand_more'}</i>
             <div className="ShopCard--Content--OpenStatus--Description">
-              {dic.t(`Pages.Maps.openStatusDescription`)}
+              {dic.t(`Pages.Maps.openStatusDescription`, lang)}
             </div>
           </div>
           <div
@@ -80,7 +80,9 @@ export class ShopCard extends React.Component<IProps, { isShownHours: boolean }>
                         'ShopCard--Content--Hours--List--Item__Active': currentDay === i,
                       })}
                     >
-                      <span className="ShopCard--Content--Hours--List--Item--Day">{dic.t(`Pages.Maps.day.${i}`)}</span>
+                      <span className="ShopCard--Content--Hours--List--Item--Day">
+                        {dic.t(`Pages.Maps.day.${i}`, lang)}
+                      </span>
                       {hours.map((hour: string[], j: number) => {
                         return (
                           <span key={j} className="ShopCard--Content--Hours--List--Item--Time">
@@ -99,8 +101,12 @@ export class ShopCard extends React.Component<IProps, { isShownHours: boolean }>
                       'ShopCard--Content--Hours--List--Item__Active': currentDay === i,
                     })}
                   >
-                    <span className="ShopCard--Content--Hours--List--Item--Day">{dic.t(`Pages.Maps.day.${i}`)}</span>
-                    <span className="ShopCard--Content--Hours--List--Item--Time">{dic.t(`Pages.Maps.closed`)}</span>
+                    <span className="ShopCard--Content--Hours--List--Item--Day">
+                      {dic.t(`Pages.Maps.day.${i}`, lang)}
+                    </span>
+                    <span className="ShopCard--Content--Hours--List--Item--Time">
+                      {dic.t(`Pages.Maps.closed`, lang)}
+                    </span>
                   </li>
                 );
               })}
@@ -153,7 +159,7 @@ export class ShopCard extends React.Component<IProps, { isShownHours: boolean }>
                     <div className="ShopCard--Content--Services--Item--Content">
                       <div
                         className="ShopCard--Content--Services--Item--Content--Text"
-                        dangerouslySetInnerHTML={{ __html: dic.t(`Pages.Maps.services.${key}`) }}
+                        dangerouslySetInnerHTML={{ __html: dic.t(`Pages.Maps.services.${key}`, lang) }}
                       />
                     </div>
                   </li>
@@ -167,7 +173,7 @@ export class ShopCard extends React.Component<IProps, { isShownHours: boolean }>
                     <div className="ShopCard--Content--Services--Item--Content">
                       <div
                         className="ShopCard--Content--Services--Item--Content--Text"
-                        dangerouslySetInnerHTML={{ __html: dic.t(`Pages.Maps.services.${key}`) }}
+                        dangerouslySetInnerHTML={{ __html: dic.t(`Pages.Maps.services.${key}`, lang) }}
                       />
                     </div>
                   </li>
@@ -178,7 +184,7 @@ export class ShopCard extends React.Component<IProps, { isShownHours: boolean }>
                     <div className="ShopCard--Content--Services--Item--Content">
                       <div
                         className="ShopCard--Content--Services--Item--Content--Text"
-                        dangerouslySetInnerHTML={{ __html: dic.t(`Pages.Maps.services.${key}`) }}
+                        dangerouslySetInnerHTML={{ __html: dic.t(`Pages.Maps.services.${key}`, lang) }}
                       />
                     </div>
                   </li>
@@ -188,16 +194,16 @@ export class ShopCard extends React.Component<IProps, { isShownHours: boolean }>
           </ul>
           <div className="ShopCard--Content--ServicesDescription">
             <span className="ShopCard--Content--ServicesDescription--Label">
-              {dic.t('Pages.Maps.serviceDescription.notation')}
+              {dic.t('Pages.Maps.serviceDescription.notation', lang)}
             </span>
             <span className="ShopCard--Content--ServicesDescription--Text ShopCard--Content--ServicesDescription--Text__Support">
-              {dic.t('Pages.Maps.serviceDescription.support')}
+              {dic.t('Pages.Maps.serviceDescription.support', lang)}
             </span>
             <span className="ShopCard--Content--ServicesDescription--Text ShopCard--Content--ServicesDescription--Text__PartialSupport">
-              {dic.t('Pages.Maps.serviceDescription.partialSupport')}
+              {dic.t('Pages.Maps.serviceDescription.partialSupport', lang)}
             </span>
             <span className="ShopCard--Content--ServicesDescription--Text">
-              {dic.t('Pages.Maps.serviceDescription.noSupport')}
+              {dic.t('Pages.Maps.serviceDescription.noSupport', lang)}
             </span>
           </div>
         </div>

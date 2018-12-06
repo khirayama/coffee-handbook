@@ -18,13 +18,14 @@ import { mapsHandler } from 'handlers/mapsHandler';
 import { privacyHandler } from 'handlers/privacyHandler';
 import { robotsHandler } from 'handlers/robotsHandler';
 import { sitemapHandler, sitemapXmlHandler } from 'handlers/sitemapHandler';
-import { setLang } from 'middlewares/setLang';
 import { HypothesisTesting } from 'utils/HypothesisTesting';
 
 const hypothesisTesting: HypothesisTesting = new HypothesisTesting(experiments);
 // const topPageSegment: string = req.hypothesisTesting.segment('top-page1', req.segId);
 
 function preHandler(req: express.Request, res: express.Response, next: express.NextFunction): void {
+  req.lang = req.subdomains[0] || 'en';
+
   const linkHeader: string = Object.keys(config.url)
     .map(
       (key: string): string => {
@@ -58,8 +59,7 @@ app
   .use(compression({ level: 9 }))
   .use(express.static(path.join(__dirname, 'assets')))
   .use(express.static(path.join(__dirname, 'public')))
-  .use(cookieParser())
-  .use(setLang);
+  .use(cookieParser());
 
 app
   .get('/', preHandler, mapsHandler)
