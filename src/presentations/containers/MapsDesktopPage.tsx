@@ -4,23 +4,19 @@ import * as React from 'react';
 import { dic } from 'dic';
 import { ShopCard } from 'presentations/components/ShopCard';
 import { ShopMapView } from 'presentations/components/ShopMapView';
-import { connect } from 'presentations/containers/Container';
+import { connect, IContainerProps } from 'presentations/containers/Container';
 import { CurrentPositionButtonContainer } from 'presentations/containers/CurrentPositionButton';
 import { selectShop, unselectShop, updateView } from 'presentations/pages/Maps/actionCreators';
-import { IDispatch, IRawShop, IShop, IState } from 'presentations/pages/Maps/interfaces';
+import { IRawShop, IShop } from 'presentations/pages/Maps/interfaces';
 import { tracker } from 'presentations/utils/tracker';
 import { Resource } from 'utils/Resource';
 
-interface IProps extends IState {
-  dispatch: IDispatch;
-}
-
-export class MapsDesktopPage extends React.Component<IProps, {}> {
+export class MapsDesktopPage extends React.Component<IContainerProps, {}> {
   private mapRef: React.RefObject<ShopMapView>;
 
   private modalRef: React.RefObject<HTMLDivElement>;
 
-  constructor(props: IProps) {
+  constructor(props: IContainerProps) {
     super(props);
 
     this.mapRef = React.createRef();
@@ -58,7 +54,7 @@ export class MapsDesktopPage extends React.Component<IProps, {}> {
   }
 
   public render(): JSX.Element {
-    const props: IState = this.props;
+    const props: IContainerProps = this.props;
     const shopResource: Resource<IRawShop, IShop> = new Resource(this.props.shops, this.props.lang);
     const shop: IShop = shopResource
       .where({

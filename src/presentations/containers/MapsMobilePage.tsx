@@ -9,7 +9,7 @@ import { Sheet } from 'presentations/components/Sheet';
 import { ShopCard } from 'presentations/components/ShopCard';
 import { ShopCards } from 'presentations/components/ShopCards';
 import { ShopMapView } from 'presentations/components/ShopMapView';
-import { connect } from 'presentations/containers/Container';
+import { connect, IContainerProps } from 'presentations/containers/Container';
 import { CurrentPositionButtonContainer } from 'presentations/containers/CurrentPositionButton';
 import { SearchFormContainer } from 'presentations/containers/SearchForm';
 import {
@@ -19,22 +19,18 @@ import {
   unselectShop,
   updateView,
 } from 'presentations/pages/Maps/actionCreators';
-import { IDispatch, IPosition, IRawShop, IShop, IState } from 'presentations/pages/Maps/interfaces';
+import { IPosition, IRawShop, IShop } from 'presentations/pages/Maps/interfaces';
 import { waitShortAnimationEnd } from 'presentations/utils/helpers';
 import { tracker } from 'presentations/utils/tracker';
 import { shopSearchEngine } from 'ShopSearchEngine';
 import { Resource } from 'utils/Resource';
 
-interface IProps extends IState {
-  dispatch: IDispatch;
-}
-
-export class MapsMobilePage extends React.Component<IProps, {}> {
+export class MapsMobilePage extends React.Component<IContainerProps, {}> {
   private mapRef: React.RefObject<ShopMapView>;
 
   private modalRef: React.RefObject<HTMLDivElement>;
 
-  constructor(props: IProps) {
+  constructor(props: IContainerProps) {
     super(props);
 
     this.mapRef = React.createRef();
@@ -86,7 +82,7 @@ export class MapsMobilePage extends React.Component<IProps, {}> {
   }
 
   public render(): JSX.Element {
-    const props: IState = this.props;
+    const props: IContainerProps = this.props;
     const targetShopKeys: string[] = props.ui.targetShopKeys;
     const shopResource: Resource<IRawShop, IShop> = new Resource(props.shops, props.lang);
     const shop: IShop = shopResource

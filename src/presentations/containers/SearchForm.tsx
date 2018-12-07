@@ -2,22 +2,18 @@ import * as queryString from 'query-string';
 import * as React from 'react';
 
 import { dic } from 'dic';
-import { connect } from 'presentations/containers/Container';
+import { connect, IContainerProps } from 'presentations/containers/Container';
 import { changeSheetShown, filterShop, searchShop } from 'presentations/pages/Maps/actionCreators';
-import { IAction, IDispatch, IState } from 'presentations/pages/Maps/interfaces';
-
-interface IProps extends IState {
-  dispatch: IDispatch;
-}
+import { IAction } from 'presentations/pages/Maps/interfaces';
 
 interface ISearchFormState {
   value: string;
 }
 
-export class SearchForm extends React.Component<IProps, ISearchFormState> {
+export class SearchForm extends React.Component<IContainerProps, ISearchFormState> {
   private inputRef: React.RefObject<HTMLInputElement>;
 
-  constructor(props: IProps) {
+  constructor(props: IContainerProps) {
     super(props);
 
     this.state = {

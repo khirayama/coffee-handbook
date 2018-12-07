@@ -2,13 +2,9 @@
 import * as classNames from 'classnames';
 import * as React from 'react';
 
-import { connect } from 'presentations/containers/Container';
+import { connect, IContainerProps } from 'presentations/containers/Container';
 import { updateCurrentPosition, updateView } from 'presentations/pages/Maps/actionCreators';
-import { IDispatch, IPosition, IShop, IState } from 'presentations/pages/Maps/interfaces';
-
-interface IProps extends IState {
-  dispatch: IDispatch;
-}
+import { IPosition } from 'presentations/pages/Maps/interfaces';
 
 const geolocationUtils: {
   getCurrentPosition(): Promise<IPosition>;
@@ -35,8 +31,8 @@ const geolocationUtils: {
   },
 };
 
-export class CurrentPositionButton extends React.Component<IProps, {}> {
-  constructor(props: IProps) {
+export class CurrentPositionButton extends React.Component<IContainerProps, {}> {
+  constructor(props: IContainerProps) {
     super(props);
 
     this.onClick = this.onClick.bind(this);

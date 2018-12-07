@@ -11,6 +11,10 @@ interface IContext {
   store: Store<IState, IAction>;
 }
 
+export interface IContainerProps extends IState {
+  dispatch: IDispatch;
+}
+
 const context: React.Context<IContext | null> = React.createContext(null);
 
 export class Provider extends React.Component<IProps, {}> {
@@ -23,8 +27,7 @@ export class Provider extends React.Component<IProps, {}> {
   }
 }
 
-// tslint:disable-next-line:no-any
-export function connect(component: any): React.ComponentClass<{}, {}> {
+export function connect(component: React.ComponentClass<IContainerProps, {}>): React.ComponentClass<{}, {}> {
   class Container extends React.Component<{}, {}> {
     public static contextType: React.Context<IContext> = context;
 
