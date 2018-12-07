@@ -27,26 +27,13 @@ export class SearchForm extends React.Component<IContainerProps, ISearchFormStat
   }
 
   public render(): JSX.Element {
-    let placeholder: string = '';
-    switch (this.props.lang) {
-      case 'en': {
-        placeholder = 'Fukuoka Roaster';
-        break;
-      }
-      case 'ja': {
-        placeholder = '福岡 焙煎機';
-        break;
-      }
-      default:
-    }
-
     return (
       <form className="SearchForm" onSubmit={this.onSubmit}>
         <input
           className="SearchForm--Input"
           type="text"
           ref={this.inputRef}
-          placeholder={placeholder}
+          placeholder={dic.t('Containers.SearchForm.placeholder', this.props.lang)}
           onChange={this.onChange}
           onFocus={this.onFocus}
           value={this.state.value}

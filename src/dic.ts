@@ -6,6 +6,15 @@ const name: IText = {
   en: 'COFFEE HANDBOOK',
 };
 
+const containerDictionary: IDictionary = {
+  SearchForm: {
+    placeholder: {
+      ja: '検索: 福岡 焙煎機',
+      en: 'Search: Fukuoka Roaster',
+    },
+  },
+};
+
 const componentDictionary: IDictionary = {
   Footer: {
     ABOUT: {
@@ -227,6 +236,7 @@ const dictionary: IDictionary = {
     en: 'COFFEE AND CAFE MAP OF WORLD',
   },
   Components: componentDictionary,
+  Containers: containerDictionary,
   Pages: pageDictionary,
 };
 
