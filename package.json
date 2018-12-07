@@ -19,7 +19,7 @@
     "copy:files": "cpx 'src/**/*.{json,woff2,png,jpg,ico,wepb,js,svg,pug,html}' dist",
     "copy:files:watch": "cpx -w 'src/**/*.{json,woff2,png,jpg,ico,webp,js,svg,pug,html}' dist",
     "build:images": "ts-node bin/minimize-images.ts",
-    "generate:store": "ts-node bin/generate-store.ts",
+    "generate:shop": "ts-node bin/generate-shop.ts",
     "test": "NODE_PATH=src mocha --require espower-typescript/guess './test/**/*.ts' --timeout 5000",
     "test:watch": "NODE_PATH=src mocha --require espower-typescript/guess './test/**/*.ts' --watch-extensions ts --watch",
     "lint": "tslint --format verbose -c tslint.json 'src/**/*.{ts,tsx}' 'test/**/*.{ts,tsx}' 'bin/**/*.{ts,tsx}'",

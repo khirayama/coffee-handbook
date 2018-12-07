@@ -2,7 +2,7 @@
 import * as classNames from 'classnames';
 import * as React from 'react';
 
-import { IAction, IDispatch, IPosition, IRawShop, IState, IShop } from 'presentations/pages/Maps/interfaces';
+import { IShop } from 'presentations/pages/Maps/interfaces';
 import { waitShortAnimationEnd } from 'presentations/utils/helpers';
 import { shortAnimationTime } from 'vars';
 

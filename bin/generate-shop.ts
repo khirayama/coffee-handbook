@@ -101,9 +101,9 @@ async function transformEnglishAddress(jaAddress: string): Promise<string> {
 
 function template(options: any): string {
   return `// tslint:disable:no-http-string
-import { IRawStore } from 'presentations/pages/Maps/interfaces';
+import { IRawShop } from 'presentations/pages/Maps/interfaces';
 
-export const ${options.fileName}: IRawStore = {
+export const ${options.fileName}: IRawShop = {
   key: '${options.key}',
   lat: ${options.lat},
   lng: ${options.lng},
@@ -224,19 +224,19 @@ co(function*(): any {
 
   // services
   const answerOptions: string = '(0: No, 1: Yes, 2: Partial)';
-  let roaster: string | number | null = yield cp(`Does the store have a roaster? ${answerOptions}: `);
+  let roaster: string | number | null = yield cp(`Does the shop have a roaster? ${answerOptions}: `);
   if (!roaster) {
     roaster = null;
   } else {
     roaster = Number(roaster);
   }
-  let speciality: string | number | null = yield cp(`Does the store provide speciality coffee? ${answerOptions}: `);
+  let speciality: string | number | null = yield cp(`Does the shop provide speciality coffee? ${answerOptions}: `);
   if (!speciality) {
     speciality = null;
   } else {
     speciality = Number(speciality);
   }
-  let beans: string | number | null = yield cp(`Does the store sell coffee beans? ${answerOptions}: `);
+  let beans: string | number | null = yield cp(`Does the shop sell coffee beans? ${answerOptions}: `);
   if (!beans) {
     beans = null;
   } else {
@@ -248,25 +248,25 @@ co(function*(): any {
   } else {
     credit = Number(credit);
   }
-  let power: string | number | null = yield cp(`Does the store have powers? ${answerOptions}: `);
+  let power: string | number | null = yield cp(`Does the shop have powers? ${answerOptions}: `);
   if (!power) {
     power = null;
   } else {
     power = Number(power);
   }
-  let wifi: string | number | null = yield cp(`Does the store have Wi-Fi? ${answerOptions}: `);
+  let wifi: string | number | null = yield cp(`Does the shop have Wi-Fi? ${answerOptions}: `);
   if (!wifi) {
     wifi = null;
   } else {
     wifi = Number(wifi);
   }
-  let barrierFree: string | number | null = yield cp(`Are the store's facilities barrier free? ${answerOptions}: `);
+  let barrierFree: string | number | null = yield cp(`Are the shop's facilities barrier free? ${answerOptions}: `);
   if (!barrierFree) {
     barrierFree = null;
   } else {
     barrierFree = Number(barrierFree);
   }
-  let pet: string | number | null = yield cp(`Can customers go the store with customers' pet? ${answerOptions}: `);
+  let pet: string | number | null = yield cp(`Can customers go the shop with customers' pet? ${answerOptions}: `);
   if (!pet) {
     pet = null;
   } else {
@@ -311,6 +311,6 @@ co(function*(): any {
     smoking,
   };
 
-  fs.writeFileSync(path.join('src', 'data', 'stores', `${options.fileName}.ts`), template(options));
+  fs.writeFileSync(path.join('src', 'data', 'shops', `${options.fileName}.ts`), template(options));
   process.exit();
 });

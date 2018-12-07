@@ -7,8 +7,8 @@ import * as React from 'react';
 import { renderToString } from 'react-dom/server';
 
 import { config } from 'config';
-import { dic } from 'dic';
 import { shops } from 'data/shops';
+import { dic } from 'dic';
 import { Provider } from 'presentations/containers/Container';
 import { MapsDesktopPageContainer } from 'presentations/containers/MapsDesktopPage';
 import { MapsMobilePageContainer } from 'presentations/containers/MapsMobilePage';

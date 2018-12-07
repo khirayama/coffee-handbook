@@ -80,7 +80,7 @@ export class Store<T, P> {
       return this;
     }
     if (!removedListener) {
-      delete this.listeners[eventType];
+      this.listeners[eventType] = undefined;
 
       return this;
     }

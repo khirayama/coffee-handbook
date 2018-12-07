@@ -1,6 +1,5 @@
-// tslint:disable:export-name no-any
-import { shortAnimationTime } from 'vars';
 import { IPosition } from 'presentations/pages/Maps/interfaces';
+import { shortAnimationTime } from 'vars';
 
 const SAVE_VIEW_KEY: string = '__UI_MAP_VIEW';
 
@@ -39,7 +38,7 @@ export function loadView(): { pos: IPosition; zoom: number; currentPos: IPositio
 
 export function waitShortAnimationEnd(): Promise<void> {
   return new Promise(
-    (resolve: any): void => {
+    (resolve: () => void): void => {
       setTimeout(resolve, shortAnimationTime);
     },
   );

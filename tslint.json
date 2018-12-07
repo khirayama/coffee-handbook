@@ -19,6 +19,8 @@
       "no-inner-html": false,
       "no-unused-expression": false,
       "no-suspicious-comment": false,
+      "no-null-keyword": false,
+      "non-literal-fs-path": false,
       "react-anchor-blank-noopener": false
     }
 }
