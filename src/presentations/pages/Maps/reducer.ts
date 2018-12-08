@@ -38,12 +38,16 @@ export function reducer(state: IState, action: IAction): IState {
       } else if (newState.ui.targetShopKeys.length && newState.ui.isShownShopCards) {
         newState.ui.isShownShopCards = false;
         newState.ui.isShownCurrentPositionButton = true;
+        newState.ui.targetShopKey = null;
         newState.ui.targetShopKeys = [];
       }
       break;
     }
     case actionTypes.SELECT_TARGET_SHOP: {
       newState.ui.targetShopKey = payload.shopKey;
+      newState.ui.pos = payload.pos;
+      newState.ui.zoom = payload.zoom;
+      newState.ui.offset = payload.offset;
       break;
     }
     case actionTypes.UPDATE_CURRENT_POSITION: {

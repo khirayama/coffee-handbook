@@ -1,5 +1,4 @@
 import * as classNames from 'classnames';
-import * as queryString from 'query-string';
 import * as React from 'react';
 
 import { dic } from 'dic';
@@ -20,21 +19,15 @@ import {
   updateView,
 } from 'presentations/pages/Maps/actionCreators';
 import { IPosition, IRawShop, IShop } from 'presentations/pages/Maps/interfaces';
-import { waitShortAnimationEnd } from 'presentations/utils/helpers';
+import { getMapOffset, waitNextTick, waitShortAnimationEnd } from 'presentations/utils/helpers';
 import { tracker } from 'presentations/utils/tracker';
 import { shopSearchEngine } from 'ShopSearchEngine';
 import { Resource } from 'utils/Resource';
 
 export class MapsMobilePage extends React.Component<IContainerProps, {}> {
-  private mapRef: React.RefObject<ShopMapView>;
-
-  private modalRef: React.RefObject<HTMLDivElement>;
-
   constructor(props: IContainerProps) {
     super(props);
 
-    this.mapRef = React.createRef();
-    this.modalRef = React.createRef();
     this.onClickMap = this.onClickMap.bind(this);
     this.onMoveEnd = this.onMoveEnd.bind(this);
     this.onSnap = this.onSnap.bind(this);
@@ -44,41 +37,25 @@ export class MapsMobilePage extends React.Component<IContainerProps, {}> {
 
   public componentDidMount(): void {
     if (this.props.ui.selectedShopKey) {
-      const shopResource: Resource<IRawShop, IShop> = new Resource(this.props.shops, this.props.lang);
-      const shop: IShop = shopResource
-        .where({
-          key: this.props.ui.selectedShopKey,
-        })
-        .findOne();
-      this.centerShopWithModal(shop);
-    }
-
-    window.addEventListener('popstate', () => {
-      // FYI: For shop
-      let shopKey: string = window.location.pathname.replace('/shops/', '');
-      if (shopKey === '/') {
-        shopKey = null;
-      }
-
-      selectShop(this.props.dispatch, shopKey);
-      if (shopKey) {
+      waitNextTick().then(() => {
         const shopResource: Resource<IRawShop, IShop> = new Resource(this.props.shops, this.props.lang);
-        const currentShop: IShop = shopResource
+        const shop: IShop = shopResource
           .where({
-            key: shopKey,
+            key: this.props.ui.selectedShopKey,
           })
           .findOne();
-        this.centerShopWithModal(currentShop);
-      }
-      // FYI: For search
-      const query: { q?: string; pos?: string } = queryString.parse(window.location.search);
-      const searchKeyword: string = query.q ? shopSearchEngine.decode(query.q) : '';
-      const searchPos: IPosition = {
-        lat: query.pos ? Number(query.pos.split(',')[0]) : null,
-        lng: query.pos ? Number(query.pos.split(',')[1]) : null,
-      };
-      searchShop(this.props.dispatch, searchKeyword, searchPos);
-    });
+        const offset: [number, number] = getMapOffset();
+        updateView(
+          this.props.dispatch,
+          {
+            lng: shop.lng,
+            lat: shop.lat,
+          },
+          this.props.ui.zoom,
+          offset,
+        );
+      });
+    }
   }
 
   public render(): JSX.Element {
@@ -122,11 +99,10 @@ export class MapsMobilePage extends React.Component<IContainerProps, {}> {
             onClickItem={this.onClickShop}
             onSnap={this.onSnap}
           />
-          <div ref={this.modalRef} className={classNames('Modal', { Modal__Hidden: !props.ui.isShownModal })}>
+          <div className={classNames('Modal', { Modal__Hidden: !props.ui.isShownModal })}>
             <ShopCard shop={shop} lang={this.props.lang} />
           </div>
           <ShopMapView
-            ref={this.mapRef}
             lang={props.lang}
             currentPos={props.ui.currentPos}
             selectedShopKey={props.ui.selectedShopKey}
@@ -154,9 +130,9 @@ export class MapsMobilePage extends React.Component<IContainerProps, {}> {
         key: shopKey,
       })
       .findOne();
-    selectTargetShop(this.props.dispatch, shopKey);
-    updateView(
+    selectTargetShop(
       this.props.dispatch,
+      shopKey,
       {
         lng: shop.lng,
         lat: shop.lat,
@@ -195,7 +171,19 @@ export class MapsMobilePage extends React.Component<IContainerProps, {}> {
     }
     waitShortAnimationEnd().then(() => {
       selectShop(this.props.dispatch, shop.key);
-      this.centerShopWithModal(shop);
+
+      waitNextTick().then(() => {
+        const offset: [number, number] = getMapOffset();
+        updateView(
+          this.props.dispatch,
+          {
+            lng: shop.lng,
+            lat: shop.lat,
+          },
+          this.props.ui.zoom,
+          offset,
+        );
+      });
     });
   }
 
@@ -214,28 +202,6 @@ export class MapsMobilePage extends React.Component<IContainerProps, {}> {
       value: '',
       candidates: [],
     });
-  }
-
-  private centerShopWithModal(shop: IShop): void {
-    setTimeout(() => {
-      const modalElement: HTMLElement = this.modalRef.current;
-      const mapElement: HTMLElement = this.mapRef.current.ref.current;
-
-      const mapHeight: number = mapElement.clientHeight;
-      const modalHeight: number = modalElement.clientHeight;
-      const diff: number = (mapHeight - modalHeight) / 2 + modalHeight - mapHeight / 2;
-      const offset: [number, number] = [0, diff * -1];
-
-      updateView(
-        this.props.dispatch,
-        {
-          lng: shop.lng,
-          lat: shop.lat,
-        },
-        this.props.ui.zoom,
-        offset,
-      );
-    }, 0);
   }
 }
 

@@ -36,6 +36,25 @@ export function loadView(): { pos: IPosition; zoom: number; currentPos: IPositio
   return defaultView;
 }
 
+export function getMapOffset(): [number, number] {
+  const modalElement: HTMLElement = window.document.querySelector('.Modal');
+  const mapElement: HTMLElement = window.document.querySelector('.ShopMapView');
+
+  const mapHeight: number = mapElement.clientHeight;
+  const modalHeight: number = modalElement.clientHeight;
+  const diff: number = (mapHeight - modalHeight) / 2 + modalHeight - mapHeight / 2;
+
+  return [0, diff * -1];
+}
+
+export function waitNextTick(): Promise<void> {
+  return new Promise(
+    (resolve: () => void): void => {
+      setTimeout(resolve, 0);
+    },
+  );
+}
+
 export function waitShortAnimationEnd(): Promise<void> {
   return new Promise(
     (resolve: () => void): void => {

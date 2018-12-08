@@ -54,13 +54,22 @@ export function unselectShop(dispatch: IDispatch): Promise<IAction> {
   );
 }
 
-export function selectTargetShop(dispatch: IDispatch, shopKey: string | null): Promise<IAction> {
+export function selectTargetShop(
+  dispatch: IDispatch,
+  shopKey: string | null,
+  pos: IPosition,
+  zoom: number,
+  offset: [number, number],
+): Promise<IAction> {
   return new Promise(
     (resolve: any): void => {
       const action: IAction = {
         actionType: actionTypes.SELECT_TARGET_SHOP,
         payload: {
           shopKey,
+          pos,
+          zoom,
+          offset,
         },
       };
       dispatch(action);
@@ -138,6 +147,7 @@ export function filterShop(dispatch: IDispatch, query: string, pos: IPosition): 
       const action: IAction = {
         actionType: actionTypes.FILTER_SHOP,
         payload: {
+          query,
           searchQuery: result.searchQuery,
           targetShopKeys: candidateShopKeys,
         },

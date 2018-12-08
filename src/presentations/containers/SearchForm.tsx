@@ -11,8 +11,6 @@ interface ISearchFormState {
 }
 
 export class SearchForm extends React.Component<IContainerProps, ISearchFormState> {
-  private inputRef: React.RefObject<HTMLInputElement>;
-
   constructor(props: IContainerProps) {
     super(props);
 
@@ -20,7 +18,6 @@ export class SearchForm extends React.Component<IContainerProps, ISearchFormStat
       value: '',
     };
 
-    this.inputRef = React.createRef();
     this.onSubmit = this.onSubmit.bind(this);
     this.onFocus = this.onFocus.bind(this);
     this.onChange = this.onChange.bind(this);
@@ -32,7 +29,6 @@ export class SearchForm extends React.Component<IContainerProps, ISearchFormStat
         <input
           className="SearchForm--Input"
           type="text"
-          ref={this.inputRef}
           placeholder={dic.t('Containers.SearchForm.placeholder', this.props.lang)}
           onChange={this.onChange}
           onFocus={this.onFocus}
@@ -63,7 +59,6 @@ export class SearchForm extends React.Component<IContainerProps, ISearchFormStat
   }
 
   private onChange(event: React.FormEvent<HTMLInputElement>): void {
-    // TODO: valueもshop.stateに
     const value: string = event.currentTarget.value;
 
     filterShop(this.props.dispatch, value, this.props.ui.pos);
