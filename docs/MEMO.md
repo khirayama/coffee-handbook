@@ -7,12 +7,15 @@
 
 ### Container
 - 実装の時点で
-- コンテクストによって振る舞いが変わらない
-- プレゼンテーションは持たない
-- アクションを発行するコンポーネント
+- Contextによって振る舞いが変わらない
+- Presentationは持たない
+- Actionを発行するComponent
 
 ### Component
-Stylingに置いてコンテクストプロパティを持たない
+- StylingにおいてContext Propertiesを持たない
+
+### Styling
+- Context PropertiesはContainerもしくはendpointにより注入される
 
 #### Context Properties
 - margin
