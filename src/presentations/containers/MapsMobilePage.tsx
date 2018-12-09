@@ -8,7 +8,6 @@ import { Sheet } from 'presentations/components/Sheet';
 import { ShopCard } from 'presentations/components/ShopCard';
 import { ShopCards } from 'presentations/components/ShopCards';
 import { ShopMapView } from 'presentations/components/ShopMapView';
-import { connect, IContainerProps } from 'presentations/containers/Container';
 import { CurrentPositionButtonContainer } from 'presentations/containers/CurrentPositionButton';
 import { SearchFormContainer } from 'presentations/containers/SearchForm';
 import {
@@ -22,6 +21,7 @@ import { IPosition, IRawShop, IShop } from 'presentations/pages/Maps/interfaces'
 import { getMapOffset, waitNextTick, waitShortAnimationEnd } from 'presentations/utils/helpers';
 import { tracker } from 'presentations/utils/tracker';
 import { shopSearchEngine } from 'ShopSearchEngine';
+import { connect, IContainerProps } from 'utils/Container';
 import { Resource } from 'utils/Resource';
 
 export class MapsMobilePage extends React.Component<IContainerProps, {}> {

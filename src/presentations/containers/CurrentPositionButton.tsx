@@ -2,9 +2,9 @@
 import * as classNames from 'classnames';
 import * as React from 'react';
 
-import { connect, IContainerProps } from 'presentations/containers/Container';
 import { updateCurrentPosition, updateView } from 'presentations/pages/Maps/actionCreators';
 import { IPosition } from 'presentations/pages/Maps/interfaces';
+import { connect, IContainerProps } from 'utils/Container';
 
 const geolocationUtils: {
   getCurrentPosition(): Promise<IPosition>;

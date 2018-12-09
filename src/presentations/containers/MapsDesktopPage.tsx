@@ -4,11 +4,11 @@ import * as React from 'react';
 import { dic } from 'dic';
 import { ShopCard } from 'presentations/components/ShopCard';
 import { ShopMapView } from 'presentations/components/ShopMapView';
-import { connect, IContainerProps } from 'presentations/containers/Container';
 import { CurrentPositionButtonContainer } from 'presentations/containers/CurrentPositionButton';
 import { selectShop, unselectShop, updateView } from 'presentations/pages/Maps/actionCreators';
 import { IRawShop, IShop } from 'presentations/pages/Maps/interfaces';
 import { tracker } from 'presentations/utils/tracker';
+import { connect, IContainerProps } from 'utils/Container';
 import { Resource } from 'utils/Resource';
 
 export class MapsDesktopPage extends React.Component<IContainerProps, {}> {

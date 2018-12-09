@@ -9,13 +9,13 @@ import { renderToString } from 'react-dom/server';
 import { config } from 'config';
 import { shops } from 'data/shops';
 import { dic } from 'dic';
-import { Provider } from 'presentations/containers/Container';
 import { MapsDesktopPageContainer } from 'presentations/containers/MapsDesktopPage';
 import { MapsMobilePageContainer } from 'presentations/containers/MapsMobilePage';
 import { IAction, IPosition, IRawShop, IShop, IState } from 'presentations/pages/Maps/interfaces';
 import { reducer } from 'presentations/pages/Maps/reducer';
 import { secret } from 'secret';
 import { ISearchResult, shopSearchEngine } from 'ShopSearchEngine';
+import { Provider } from 'utils/Container';
 import { Resource } from 'utils/Resource';
 import { Store } from 'utils/Store';
 

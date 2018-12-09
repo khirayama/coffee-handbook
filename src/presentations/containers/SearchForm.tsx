@@ -2,9 +2,9 @@ import * as queryString from 'query-string';
 import * as React from 'react';
 
 import { dic } from 'dic';
-import { connect, IContainerProps } from 'presentations/containers/Container';
 import { changeSheetShown, filterShop, searchShop } from 'presentations/pages/Maps/actionCreators';
 import { IAction } from 'presentations/pages/Maps/interfaces';
+import { connect, IContainerProps } from 'utils/Container';
 
 interface ISearchFormState {
   value: string;
