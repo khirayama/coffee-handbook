@@ -3,13 +3,13 @@ import * as queryString from 'query-string';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
-import { Provider } from 'presentations/containers/Container';
 import { MapsMobilePageContainer } from 'presentations/containers/MapsMobilePage';
 import { searchShop, selectShop, unselectShop, updateView } from 'presentations/pages/Maps/actionCreators';
 import { IAction, IDispatch, IPosition, IRawShop, IShop, IState } from 'presentations/pages/Maps/interfaces';
 import { reducer } from 'presentations/pages/Maps/reducer';
 import { getMapOffset, loadView, waitNextTick } from 'presentations/utils/helpers';
 import { shopSearchEngine } from 'ShopSearchEngine';
+import { Provider } from 'utils/Container';
 import { Resource } from 'utils/Resource';
 import { Store } from 'utils/Store';
 
