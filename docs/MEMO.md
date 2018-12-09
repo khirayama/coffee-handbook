@@ -3,6 +3,22 @@
 - [ ] Search stores
 - [ ] Alive Monitoring for stores
 
+## Container and Component
+
+### Container
+- 実装の時点で
+- コンテクストによって振る舞いが変わらない
+- プレゼンテーションは持たない
+- アクションを発行するコンポーネント
+
+### Component
+Stylingに置いてコンテクストプロパティを持たない
+
+#### Context Properties
+- margin
+- padding(positionを変更するための場合)
+- top / left / bottom / right
+
 ## E2E
 
 - パターン1
