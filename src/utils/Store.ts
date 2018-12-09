@@ -3,9 +3,6 @@ const ACTION_DISPATCH: string = '__ACTION_DISPATCH';
 
 type TListener<Action> = (action: Action) => void;
 
-// tslint:disable:no-any
-export let dispatch: (action: any) => void;
-
 export class Store<T, P> {
   private listeners: {
     [key: string]: {
