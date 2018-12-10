@@ -1,0 +1,30 @@
+.MapsMobilePage {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+
+  .MapsMobilePage--Content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+
+    .MapsMobilePage--Content--SearchForm {
+      position: absolute;
+      z-index: 13000;
+      width: 100%;
+      padding: 24px 12px 12px;
+    }
+
+    .MapsMobilePage--Content--SheetContent {
+      padding: 84px 12px 12px;
+    }
+  }
+
+  .Modal {
+    z-index: 4000;
+  }
+
+  .Sheet {
+    z-index: 12000;
+  }
+}

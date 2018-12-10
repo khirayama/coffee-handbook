@@ -1,22 +1,18 @@
-.CandidateList {
-  padding: 84px 12px 12px;
+.CandidateListItem {
+  padding: 12px 0;
 
-  .CandidateList--Item {
-    padding: 12px 0;
+  .CandidateListItem--Name {
+    font-weight: $font-bold;
+  }
 
-    .CandidateList--Item--Name {
-      font-weight: $font-bold;
-    }
+  .CandidateListItem--Address {
+    color: $color-text-secondary;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
 
-    .CandidateList--Item--Address {
-      color: $color-text-secondary;
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-    }
-
-    & + .CandidateList--Item {
-      border-top: $border;
-    }
+  & + .CandidateListItem {
+    border-top: $border;
   }
 }

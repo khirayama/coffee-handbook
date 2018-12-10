@@ -1,0 +1,20 @@
+.Modal {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: unset;
+  width: 100%;
+  height: auto;
+  max-height: 100%;
+  overflow: scroll;
+  background: $color-white;
+  transform: translateY(-100%);
+  box-shadow: 0 0 2px 2px $color-shadow;
+  overscroll-behavior-y: contain;
+  transition: transform $short ease-in-out;
+  will-change: transform;
+
+  &.Modal__Hidden {
+    transform: translateY(0);
+  }
+}
