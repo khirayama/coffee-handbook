@@ -1,6 +1,5 @@
 ## Roadmap
 
-- [ ] Search stores
 - [ ] Alive Monitoring for stores
 
 ## Container and Component
@@ -21,6 +20,7 @@
 - margin
 - padding(positionを変更するための場合)
 - top / left / bottom / right
+- z-index
 
 ## E2E
 
