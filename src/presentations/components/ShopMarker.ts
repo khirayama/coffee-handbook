@@ -1,13 +1,5 @@
 import { IShop } from 'presentations/pages/Maps/interfaces';
 
-declare global {
-  // tslint:disable-next-line:interface-name
-  interface Window {
-    // tslint:disable-next-line:no-any
-    mapboxgl: any;
-  }
-}
-
 interface IHandlers {
   onClick(event: MouseEvent, shopMarker: ShopMarker): void;
 }
