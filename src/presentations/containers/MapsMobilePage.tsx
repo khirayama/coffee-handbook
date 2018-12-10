@@ -1,9 +1,10 @@
-import * as classNames from 'classnames';
 import * as React from 'react';
 
 import { dic } from 'dic';
+import { CandidateList } from 'presentations/components/CandidateList';
 import { CandidateListItem } from 'presentations/components/CandidateListItem';
 import { FreeSpace } from 'presentations/components/FreeSpace';
+import { Modal } from 'presentations/components/Modal';
 import { Sheet } from 'presentations/components/Sheet';
 import { ShopCard } from 'presentations/components/ShopCard';
 import { ShopCards } from 'presentations/components/ShopCards';
@@ -78,20 +79,28 @@ export class MapsMobilePage extends React.Component<IContainerProps, {}> {
     return (
       <div className="MapsMobilePage">
         <div className="MapsMobilePage--Content">
-          <SearchFormContainer />
+          <div className="MapsMobilePage--Content--SearchForm">
+            <SearchFormContainer />
+          </div>
           <CurrentPositionButtonContainer />
           <Sheet isShown={props.ui.isShownSheet}>
-            {targetShopKeys.length ? (
-              <ul className="CandidateList">
-                {targetShops.map((targetShop: IShop) => {
-                  return (
-                    <CandidateListItem key={targetShop.key} shop={targetShop} onClickItem={this.onClickCandidateItem} />
-                  );
-                })}
-              </ul>
-            ) : (
-              <FreeSpace />
-            )}
+            <div className="MapsMobilePage--Content--SheetContent">
+              {targetShopKeys.length ? (
+                <CandidateList>
+                  {targetShops.map((targetShop: IShop) => {
+                    return (
+                      <CandidateListItem
+                        key={targetShop.key}
+                        shop={targetShop}
+                        onClickItem={this.onClickCandidateItem}
+                      />
+                    );
+                  })}
+                </CandidateList>
+              ) : (
+                <FreeSpace />
+              )}
+            </div>
           </Sheet>
           <ShopCards
             isShown={props.ui.isShownShopCards}
@@ -99,9 +108,9 @@ export class MapsMobilePage extends React.Component<IContainerProps, {}> {
             onClickItem={this.onClickShop}
             onSnap={this.onSnap}
           />
-          <div className={classNames('Modal', { Modal__Hidden: !props.ui.isShownModal })}>
+          <Modal isShown={props.ui.isShownModal}>
             <ShopCard shop={shop} lang={this.props.lang} />
-          </div>
+          </Modal>
           <ShopMapView
             lang={props.lang}
             currentPos={props.ui.currentPos}

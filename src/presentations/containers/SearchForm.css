@@ -1,8 +1,5 @@
 .SearchForm {
-  position: absolute;
-  z-index: 13000;
   width: 100%;
-  padding: 24px 12px 12px;
 
   .SearchForm--Input {
     width: 100%;
