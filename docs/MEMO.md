@@ -19,7 +19,7 @@
 #### Context Properties
 - margin
 - padding(positionを変更するための場合)
-- top / left / bottom / right
+- top / left / bottom / right(modal/sheetのようなものは例外あり)
 - z-index
 
 ## E2E
