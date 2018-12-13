@@ -81,3 +81,7 @@ https://webhint.io/
 
 Dashboard: Nothing
 Run test: `npm run hint` with running local server at port 3030
+
+## Refs
+
+https://docs.google.com/spreadsheets/d/1qWS6Fyt382n3UsOyRX1ZKcfQWmbKrZuyARP2NH08H34/edit?usp=sharing
