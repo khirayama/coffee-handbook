@@ -51,9 +51,15 @@ setTimeout(() => {
 
   const shopAttributesRecords: string[] = [];
   shops.forEach((s: IRawShop) => {
-    shopAttributesRecords.push([s.key, 'ja_JP', s.name.ja, `"${s.address.ja}"`, s.hoursNote ? s.hoursNote.ja : ''].join(','));
-    shopAttributesRecords.push([s.key, 'en_US', s.name.en, `"${s.address.en}"`, s.hoursNote ? s.hoursNote.en : ''].join(','));
-    shopAttributesRecords.push([s.key, 'en_UK', s.name.en, `"${s.address.en}"`, s.hoursNote ? s.hoursNote.en : ''].join(','));
+    shopAttributesRecords.push(
+      [s.key, 'ja_JP', s.name.ja, `"${s.address.ja}"`, s.hoursNote ? s.hoursNote.ja : ''].join(','),
+    );
+    shopAttributesRecords.push(
+      [s.key, 'en_US', s.name.en, `"${s.address.en}"`, s.hoursNote ? s.hoursNote.en : ''].join(','),
+    );
+    shopAttributesRecords.push(
+      [s.key, 'en_UK', s.name.en, `"${s.address.en}"`, s.hoursNote ? s.hoursNote.en : ''].join(','),
+    );
   });
 
   const shopOpenHoursRecords: string[] = [];
