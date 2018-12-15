@@ -6,7 +6,7 @@ import * as csvParse from 'csv-parse/lib/sync';
 
 import { config } from 'config';
 import { IRawShop } from 'presentations/pages/Maps/interfaces';
-import { ILocale } from 'utils/Dictionary';
+import { IDic } from 'utils/Dictionary';
 
 interface ICSVRecord {
   [key: string]: string;
@@ -24,20 +24,20 @@ function findRecordsFromShopKey(shopKey: string, shopRelatedRecords: ICSVRecord[
   return records;
 }
 
-function buildLocale(shopAttributeRecords: ICSVRecord[], key: string): ILocale | null {
+function buildDic(shopAttributeRecords: ICSVRecord[], key: string): IDic | null {
   const result: object = {};
-  for (const locale of config.locales) {
+  for (const lang of config.langs) {
     for (const shopAttributeRecord of shopAttributeRecords) {
       const val: string = shopAttributeRecord[key];
-      if (shopAttributeRecord.locale === locale && val) {
-        result[locale] = val;
-      } else if (!result[locale] && shopAttributeRecord.locale === config.locales[0] && val) {
-        result[locale] = val;
+      if (shopAttributeRecord.lang === lang && val) {
+        result[lang] = val;
+      } else if (!result[lang] && shopAttributeRecord.locale === config.langs[0] && val) {
+        result[lang] = val;
       }
     }
   }
 
-  return Object.keys(result).length ? <ILocale>result : null;
+  return Object.keys(result).length ? <IDic>result : null;
 }
 
 function buildOpenHours(shopOpenHourRecords: ICSVRecord[]): string[][][] {
@@ -78,10 +78,10 @@ function buildShops(
         tel: sr.tel || null,
         permanentClosed: sr.permanent_closed === 'TRUE',
         transforTo: sr.transfer_to || null,
-        name: buildLocale(targetShopAttributeRecords, 'name'),
-        address: buildLocale(targetShopAttributeRecords, 'address'),
+        name: buildDic(targetShopAttributeRecords, 'name'),
+        address: buildDic(targetShopAttributeRecords, 'address'),
         hours: buildOpenHours(targetShopOpenHourRecords),
-        hoursNote: buildLocale(targetShopAttributeRecords, 'hours_note'),
+        hoursNote: buildDic(targetShopAttributeRecords, 'hours_note'),
         media: {
           web: sr.web,
           ec: sr.ec,
