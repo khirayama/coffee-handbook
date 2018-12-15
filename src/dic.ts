@@ -1,12 +1,12 @@
 import { config } from 'config';
-import { Dictionary, IDictionary, IText } from 'utils/Dictionary';
+import { Dictionary, IDic, IDicTree } from 'utils/Dictionary';
 
-const name: IText = {
+const name: IDic = {
   ja: '珈琲手帖',
   en: 'COFFEE HANDBOOK',
 };
 
-const containerDictionary: IDictionary = {
+const containerDictionary: IDicTree = {
   SearchForm: {
     placeholder: {
       ja: '検索: 福岡 焙煎機',
@@ -15,7 +15,7 @@ const containerDictionary: IDictionary = {
   },
 };
 
-const componentDictionary: IDictionary = {
+const componentDictionary: IDicTree = {
   Footer: {
     ABOUT: {
       ja: 'ABOUT',
@@ -36,7 +36,7 @@ const componentDictionary: IDictionary = {
   },
 };
 
-const pageDictionary: IDictionary = {
+const pageDictionary: IDicTree = {
   About: {
     ABOUT: {
       ja: `${name.ja}について`,
@@ -192,13 +192,13 @@ const pageDictionary: IDictionary = {
         en: 'No Support/Unknown',
       },
     },
-    openAt: (time: string): IText => {
+    openAt: (time: string): IDic => {
       return {
         ja: `${time} 開店`,
         en: `Opens at ${time}`,
       };
     },
-    closeAt: (time: string): IText => {
+    closeAt: (time: string): IDic => {
       return {
         ja: `${time} 閉店`,
         en: `Closes ${time}`,
@@ -225,7 +225,7 @@ const pageDictionary: IDictionary = {
   },
 };
 
-const dictionary: IDictionary = {
+const dictionary: IDicTree = {
   name,
   author: {
     ja: name.en,
