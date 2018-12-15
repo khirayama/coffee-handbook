@@ -4,33 +4,36 @@ interface IOptions {
   defaultLang?: string;
 }
 
-export interface IText {
-  ja: string;
-  en: string;
+export interface IDic {
+  en?: string;
+  ja?: string;
 }
 
-export type ITextFunc = (...args: string[]) => IText;
+export type IDicFunc = (...args: string[]) => IDic;
 
-export interface IDictionary {
-  [key: string]: IText | ITextFunc | IDictionary;
+export interface IDicTree {
+  [key: string]: IDic | IDicFunc | IDicTree;
 }
 
 export class Dictionary {
-  private dic: IDictionary;
+  private dic: IDicTree;
 
   private defaultLang: string | null;
 
-  constructor(dictionary: IDictionary, options?: IOptions) {
+  constructor(dictionary: IDicTree, options?: IOptions) {
     this.dic = dictionary;
     this.defaultLang = options ? options.defaultLang || null : null;
   }
 
   // tslint:disable-next-line:function-name
-  public v(key: string): IText {
+  public v(key: string, ...args: any[]): IDic {
     const keys: string[] = key.split('.');
-    let val: any = this.dic;
+    let val: IDic | IDicFunc = this.dic;
     for (const valueKey of keys) {
       val = val[valueKey];
+    }
+    if (typeof val === 'function') {
+      val = val(...args);
     }
 
     return val;
@@ -38,10 +41,7 @@ export class Dictionary {
 
   // tslint:disable-next-line:function-name
   public t(key: string, lang: string, ...args: any[]): string {
-    let val: any = this.v(key);
-    if (typeof val === 'function') {
-      val = val(...args);
-    }
+    const val: IDic = this.v(key);
 
     return val[lang] || val[this.defaultLang];
   }
