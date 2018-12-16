@@ -1,6 +1,7 @@
 // tslint:disable:no-any
 import { dic } from 'dic';
 import { IPosition, IRawShop } from 'presentations/pages/Maps/interfaces';
+import { IDic } from 'utils/Dictionary';
 
 export interface ISearchResult {
   searchQuery: { [key: string]: string };
@@ -9,11 +10,6 @@ export interface ISearchResult {
     score: number;
     shop: IRawShop;
   }[];
-}
-
-interface IText {
-  en: string;
-  ja: string;
 }
 
 function isSurrogatePear(upper: number, lower: number): boolean {
@@ -160,9 +156,9 @@ export class ShopSearchEngine {
     return result;
   }
 
-  private addTextObjToIndex(textObj: IText, shopKey: string, index: {}): void {
-    Object.keys(textObj).forEach((lang: string) => {
-      const value: any = textObj[lang];
+  private addTextObjToIndex(langObj: IDic, shopKey: string, index: {}): void {
+    Object.keys(langObj).forEach((lang: string) => {
+      const value: any = langObj[lang];
       for (let n: number = 2; n <= 4; n += 1) {
         const nGramTexts: string[] = this.splitNGram(value, n);
         for (const nGramText of nGramTexts) {
@@ -188,9 +184,9 @@ export class ShopSearchEngine {
 
       const serviceKeys: string[] = Object.keys(rawShop.services);
       for (const serviceKey of serviceKeys) {
-        const textObj: any = dic.v(`Pages.Maps.services.${serviceKey}`);
+        const langObj: any = dic.v(`Pages.Maps.services.${serviceKey}`);
         if (rawShop.services[serviceKey] === 1 || rawShop.services[serviceKey] === 2) {
-          this.addTextObjToIndex(textObj, rawShop.key, this.shopIndex);
+          this.addTextObjToIndex(langObj, rawShop.key, this.shopIndex);
         }
       }
     }
