@@ -68,7 +68,6 @@ export class MapsDesktopPage extends React.Component<IContainerProps, {}> {
           <CurrentPositionButtonContainer />
           <ShopMapView
             ref={this.mapRef}
-            lang={props.lang}
             currentPos={props.ui.currentPos}
             selectedShopKey={props.ui.selectedShopKey}
             shops={shopResource.find()}

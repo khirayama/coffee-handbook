@@ -3,6 +3,7 @@ import * as express from 'express';
 import { config } from 'config';
 import { dic } from 'dic';
 import { secret } from 'secret';
+import { IDic } from 'utils/Dictionary';
 import { buildHtmlSitemap, buildXmlSitemap } from 'utils/sitemap';
 
 interface ISitemapPage {
@@ -13,10 +14,7 @@ interface ISitemapPage {
   description: string;
   author: string;
   baseUrl: string;
-  url: {
-    en: string;
-    ja: string;
-  };
+  url: IDic;
   path: string;
   name: string;
   keywords: string[];
@@ -28,10 +26,7 @@ interface ISitemapPage {
   header: {
     lang: string;
     path: string;
-    url: {
-      en: string;
-      ja: string;
-    };
+    url: IDic;
   };
   content: string;
 }

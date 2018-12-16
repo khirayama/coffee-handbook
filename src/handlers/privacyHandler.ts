@@ -3,6 +3,7 @@ import * as express from 'express';
 import { config } from 'config';
 import { dic } from 'dic';
 import { secret } from 'secret';
+import { IDic } from 'utils/Dictionary';
 
 interface IPrivacyPage {
   env: string;
@@ -12,10 +13,7 @@ interface IPrivacyPage {
   description: string;
   author: string;
   baseUrl: string;
-  url: {
-    en: string;
-    ja: string;
-  };
+  url: IDic;
   path: string;
   name: string;
   keywords: string[];
@@ -27,10 +25,7 @@ interface IPrivacyPage {
   header: {
     lang: string;
     path: string;
-    url: {
-      en: string;
-      ja: string;
-    };
+    url: IDic;
   };
   twitterLink: string;
 }

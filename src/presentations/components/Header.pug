@@ -6,7 +6,4 @@ mixin Header(props)
       li.Header--LangList--Item(class= props.lang === 'ja' ? 'Header--LangList--Item__Active' : '')
         a(href=`${props.url.ja}${props.path}`) 日本語
     a.Header--Link(href="/")
-      if props.lang === 'en'
-        img.Header--Link--Image(srcset="/images/icon_en_square.png 1x, /images/icon_en_square@2x.png 2x, /images/icon_en_square@3x.png 3x")
-      if props.lang === 'ja'
-        img.Header--Link--Image(srcset="/images/icon_ja_square.png 1x, /images/icon_ja_square@2x.png 2x, /images/icon_ja_square@3x.png 3x")
+      img.Header--Link--Image(srcset=`/images/icon_${props.lang}_square.png 1x, /images/icon_${props.lang}_square@2x.png 2x, /images/icon_${props.lang}_square@3x.png 3x`)

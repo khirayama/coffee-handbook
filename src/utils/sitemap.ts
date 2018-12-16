@@ -1,7 +1,8 @@
 import { config } from 'config';
-import { shops } from 'data/shops';
+import { loadShops } from 'data/loadShops';
 import { dic } from 'dic';
 import { IRawShop } from 'presentations/pages/Maps/interfaces';
+import { IDic } from 'utils/Dictionary';
 
 interface ISitemapOptions {
   lastmod?: string;
@@ -13,19 +14,15 @@ interface ISitemapOptions {
 // Ref: https://www.adminweb.jp/wmt/sitemap/index1.html
 // freq: always, hourly, daily, weekly, monthly, yearly, never
 interface IPage {
-  name: {
-    en: string;
-    ja: string;
-  };
-  url: {
-    en: string;
-    ja: string;
-  };
+  name: IDic;
+  url: IDic;
   freq: string;
   priority: number;
   lastmod?: string;
   pages?: IPage[];
 }
+
+const shops: IRawShop[] = loadShops();
 
 function createPages(): IPage[] {
   return [

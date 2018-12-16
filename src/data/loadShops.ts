@@ -31,7 +31,7 @@ function buildDic(shopAttributeRecords: ICSVRecord[], key: string): IDic | null 
       const val: string = shopAttributeRecord[key];
       if (shopAttributeRecord.lang === lang && val) {
         result[lang] = val;
-      } else if (!result[lang] && shopAttributeRecord.locale === config.langs[0] && val) {
+      } else if (!result[lang] && shopAttributeRecord.lang === config.langs[0] && val) {
         result[lang] = val;
       }
     }

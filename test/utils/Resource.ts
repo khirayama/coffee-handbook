@@ -31,8 +31,8 @@ const samples: ISample[] = [
 ];
 
 // tslint:disable-next-line:variable-name
-const SampleResouce: TResource<ISample, ISample> = (locale: string): Resource<ISample, ISample> => {
-  return new Resource(samples, locale);
+const SampleResouce: TResource<ISample, ISample> = (lang: string): Resource<ISample, ISample> => {
+  return new Resource(samples, lang);
 };
 
 describe('Resource', () => {

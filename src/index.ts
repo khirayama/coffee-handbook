@@ -24,7 +24,8 @@ const hypothesisTesting: HypothesisTesting = new HypothesisTesting(experiments);
 // const topPageSegment: string = req.hypothesisTesting.segment('top-page1', req.segId);
 
 function preHandler(req: express.Request, res: express.Response, next: express.NextFunction): void {
-  req.lang = req.subdomains[0] || 'en';
+  const lang: string = req.subdomains[0] || config.langs[0];
+  req.lang = lang;
 
   const linkHeader: string = Object.keys(config.url)
     .map(

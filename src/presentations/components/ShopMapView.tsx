@@ -7,7 +7,6 @@ import { IPosition, IShop } from 'presentations/pages/Maps/interfaces';
 import { secret } from 'secret';
 
 interface IProps {
-  lang: string;
   selectedShopKey: string | null;
   shops: IShop[];
   currentPos: IPosition | null;

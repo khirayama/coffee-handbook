@@ -7,7 +7,7 @@ import * as React from 'react';
 import { renderToString } from 'react-dom/server';
 
 import { config } from 'config';
-import { shops } from 'data/shops';
+import { loadShops } from 'data/loadShops';
 import { dic } from 'dic';
 import { MapsDesktopPageContainer } from 'presentations/containers/MapsDesktopPage';
 import { MapsMobilePageContainer } from 'presentations/containers/MapsMobilePage';
@@ -16,6 +16,7 @@ import { reducer } from 'presentations/pages/Maps/reducer';
 import { secret } from 'secret';
 import { ISearchResult, shopSearchEngine } from 'ShopSearchEngine';
 import { Provider } from 'utils/Container';
+import { IDic } from 'utils/Dictionary';
 import { Resource } from 'utils/Resource';
 import { Store } from 'utils/Store';
 
@@ -27,21 +28,12 @@ interface IProps {
   keywords: string[];
   name: string;
   images: {
-    rectangle: {
-      en: string;
-      ja: string;
-    };
-    square: {
-      en: string;
-      ja: string;
-    };
+    rectangle: IDic;
+    square: IDic;
   };
   pageType: string;
   baseUrl: string;
-  url: {
-    en: string;
-    ja: string;
-  };
+  url: IDic;
   path: string;
   facebookPageUrl: string;
   twitterCardType: string;
@@ -63,10 +55,9 @@ const compiledFunction: (options: { props: IProps }) => void = pug.compileFile(
   },
 );
 
-// FIXME: data/shops loads data async.
-setTimeout(() => {
-  shopSearchEngine.buildIndex(shops);
-}, 10);
+const shops: IRawShop[] = loadShops();
+
+shopSearchEngine.buildIndex(shops);
 
 // tslint:disable-next-line:max-func-body-length cyclomatic-complexity
 export function mapsHandler(req: express.Request, res: express.Response): void {

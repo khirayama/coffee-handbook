@@ -1,4 +1,5 @@
-// tslint:disable:no-any
+import { IDic } from 'utils/Dictionary';
+
 export type IDispatch = (action: IAction) => void;
 
 export interface IState {
@@ -21,9 +22,9 @@ export interface IState {
 
 export interface IAction {
   actionType: Symbol;
-  payload?: any;
-  meta?: any;
-  error?: any;
+  payload?: any; // tslint:disable-line:no-any
+  meta?: any; // tslint:disable-line:no-any
+  error?: any; // tslint:disable-line:no-any
 }
 
 export interface IPosition {
@@ -71,19 +72,10 @@ export interface IRawShop {
   key: string;
   lat: number;
   lng: number;
-  name: {
-    ja: string;
-    en: string;
-  };
-  address: {
-    ja: string;
-    en: string;
-  };
+  name: IDic;
+  address: IDic;
   hours: string[][][];
-  hoursNote: {
-    ja: string;
-    en: string;
-  } | null;
+  hoursNote: IDic | null;
   email: string | null;
   tel: string | null;
   permanentClosed: boolean;

@@ -16,12 +16,6 @@ import { Store } from 'utils/Store';
 declare global {
   // tslint:disable-next-line:interface-name
   interface Window {
-    options: {
-      env: string;
-      lang: string;
-      gaCode: string;
-      route: string;
-    };
     state: IState;
   }
 }

@@ -112,7 +112,6 @@ export class MapsMobilePage extends React.Component<IContainerProps, {}> {
             <ShopCard shop={shop} lang={this.props.lang} />
           </Modal>
           <ShopMapView
-            lang={props.lang}
             currentPos={props.ui.currentPos}
             selectedShopKey={props.ui.selectedShopKey}
             shops={targetShops}

@@ -3,6 +3,7 @@ import * as express from 'express';
 import { config } from 'config';
 import { dic } from 'dic';
 import { secret } from 'secret';
+import { IDic } from 'utils/Dictionary';
 
 interface IAboutPage {
   env: string;
@@ -12,10 +13,7 @@ interface IAboutPage {
   description: string;
   author: string;
   baseUrl: string;
-  url: {
-    en: string;
-    ja: string;
-  };
+  url: IDic;
   path: string;
   name: string;
   keywords: string[];
@@ -27,10 +25,7 @@ interface IAboutPage {
   header: {
     lang: string;
     path: string;
-    url: {
-      en: string;
-      ja: string;
-    };
+    url: IDic;
   };
 }
 
@@ -47,7 +42,7 @@ export function aboutHandler(req: express.Request, res: express.Response): void 
     facebookPageUrl: config.facebookPageUrl,
     twitterCardType: config.twitterCardType,
     twitterAccount: config.twitterAccount,
-    lang: req.lang,
+    lang,
     path: req.originalUrl,
     title: `${dic.t('Pages.About.ABOUT', lang)} | ${dic.t('name', lang)} | ${dic.t('siteDescription', lang)}`,
     description: dic.t('Pages.About.description', lang),
