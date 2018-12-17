@@ -11,10 +11,10 @@
 - Actionを発行するComponent
 
 ### Component
-- StylingにおいてContext Propertiesを持たない
+- StylingにおいてContext Propertiesは持ってはならない
 
 ### Styling
-- Context PropertiesはContainerもしくはendpointにより注入される
+- Context Propertiesはendpointにより注入される
 
 #### Context Properties
 - margin
