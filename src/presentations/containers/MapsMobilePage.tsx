@@ -9,8 +9,8 @@ import { Sheet } from 'presentations/components/Sheet';
 import { ShopCard } from 'presentations/components/ShopCard';
 import { ShopCards } from 'presentations/components/ShopCards';
 import { ShopMapView } from 'presentations/components/ShopMapView';
-import { CurrentPositionButtonContainer } from 'presentations/containers/CurrentPositionButton';
-import { SearchFormContainer } from 'presentations/containers/SearchForm';
+import { CurrentPositionButtonContainer } from 'presentations/containers/CurrentPositionButtonContainer';
+import { SearchFormContainer } from 'presentations/containers/SearchFormContainer';
 import {
   searchShop,
   selectShop,
