@@ -1,11 +1,11 @@
 @import 'application/vars';
-@import 'containers/CurrentPositionButton';
 @import 'containers/MapsMobilePage';
-@import 'containers/SearchForm';
 @import 'components/CandidateList';
 @import 'components/CandidateListItem';
+@import 'components/CurrentPositionButton';
 @import 'components/FreeSpace';
 @import 'components/Modal';
+@import 'components/SearchForm';
 @import 'components/Sheet';
 @import 'components/ShopMapView';
 @import 'components/ShopCard';

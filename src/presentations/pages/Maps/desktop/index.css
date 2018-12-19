@@ -1,5 +1,5 @@
 @import 'application/vars';
-@import 'containers/CurrentPositionButton';
+@import 'components/CurrentPositionButton';
 @import 'components/ShopMapView';
 @import 'components/ShopCard';
 @import 'components/ShopMarker';
