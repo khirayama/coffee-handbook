@@ -51,7 +51,7 @@ function mbSubstr(str: string, begin: number, end: number): string {
 }
 
 export class ShopSearchEngine {
-  private rawShops: IRawShop[] = [];
+  public rawShops: IRawShop[] = [];
 
   private rawShopsObj: { [key: string]: IRawShop } = {};
 
