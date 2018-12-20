@@ -1,6 +1,9 @@
 ## Roadmap
 
 - [ ] Alive Monitoring for stores
+- [ ] use got
+- [ ] use pm2
+- [ ] Try to use https://www.clarity.ms/
 
 ## Container and Component
 
