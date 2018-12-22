@@ -41,7 +41,7 @@ export class Dictionary {
 
   // tslint:disable-next-line:function-name
   public t(key: string, lang: string, ...args: any[]): string {
-    const val: IDic = this.v(key);
+    const val: IDic = this.v(key, args);
 
     return val[lang] || val[this.defaultLang];
   }
