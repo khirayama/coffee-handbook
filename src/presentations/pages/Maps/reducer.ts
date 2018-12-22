@@ -35,7 +35,7 @@ export function reducer(state: IState, action: IAction): IState {
       if (newState.ui.targetShopKeys.length && !newState.ui.isShownShopCards) {
         newState.ui.isShownShopCards = true;
         newState.ui.isShownCurrentPositionButton = false;
-      } else if (newState.ui.targetShopKeys.length && newState.ui.isShownShopCards) {
+      } else {
         newState.ui.isShownShopCards = false;
         newState.ui.isShownCurrentPositionButton = true;
         newState.ui.targetShopKey = null;

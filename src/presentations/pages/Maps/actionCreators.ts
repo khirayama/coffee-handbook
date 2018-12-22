@@ -125,7 +125,9 @@ export function searchShop(dispatch: IDispatch, query: string, pos: IPosition): 
         actionType: actionTypes.SEARCH_SHOP,
         payload: {
           searchQuery: result.searchQuery,
-          targetShopKeys: result.results.map((tmp: { shop: IRawShop; score: number; key: string }): string => tmp.key),
+          targetShopKeys: result.results.length
+            ? result.results.map((tmp: { shop: IRawShop; score: number; key: string }): string => tmp.key)
+            : shopSearchEngine.rawShops.map((rawShop: IRawShop) => rawShop.key),
           zoom: 12,
           pos: newPos,
         },

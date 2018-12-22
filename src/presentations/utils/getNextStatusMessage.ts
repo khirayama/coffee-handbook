@@ -6,14 +6,14 @@ export function getNextStatusMessage(openStatus: IOpenStatus, lang: string): str
   const currentDay: number = now.getDay();
   if (openStatus.openAt) {
     if (currentDay === openStatus.openAt.day) {
-      return dic.t(`Pages.Maps.openAt`, openStatus.openAt.time);
+      return dic.t(`Pages.Maps.openAt`, lang, openStatus.openAt.time);
     } else {
-      return `${dic.t(`Pages.Maps.openAt`, openStatus.openAt.time)} ${dic.t(
+      return `${dic.t(`Pages.Maps.openAt`, lang, openStatus.openAt.time)} ${dic.t(
         `Pages.Maps.day.${openStatus.openAt.day}`,
         lang,
       )}`;
     }
   } else if (openStatus.closeAt) {
-    return dic.t(`Pages.Maps.closeAt`, openStatus.closeAt.time);
+    return dic.t(`Pages.Maps.closeAt`, lang, openStatus.closeAt.time);
   }
 }

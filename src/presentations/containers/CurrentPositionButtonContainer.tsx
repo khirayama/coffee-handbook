@@ -1,8 +1,8 @@
 // tslint:disable:no-any
 import * as React from 'react';
 
-import { updateCurrentPosition, updateView } from 'presentations/pages/Maps/actionCreators';
 import { CurrentPositionButton } from 'presentations/components/CurrentPositionButton';
+import { updateCurrentPosition, updateView } from 'presentations/pages/Maps/actionCreators';
 import { IPosition } from 'presentations/pages/Maps/interfaces';
 import { connect, IContainerProps } from 'utils/Container';
 
