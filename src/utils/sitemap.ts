@@ -1,5 +1,5 @@
 import { config } from 'config';
-import { loadShops } from 'data/loadShops';
+import { shopLoader } from 'data/shopLoader';
 import { dic } from 'dic';
 import { IRawShop } from 'presentations/pages/Maps/interfaces';
 import { IDic } from 'utils/Dictionary';
@@ -22,9 +22,9 @@ interface IPage {
   pages?: IPage[];
 }
 
-const shops: IRawShop[] = loadShops();
-
 function createPages(): IPage[] {
+  const shops: IRawShop[] = shopLoader.getShops();
+
   return [
     {
       name: dic.v('name'),

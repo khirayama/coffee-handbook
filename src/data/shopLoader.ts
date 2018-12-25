@@ -1,8 +1,6 @@
 // tslint:disable:no-any
-import * as fs from 'fs';
-import * as path from 'path';
-
 import * as csvParse from 'csv-parse/lib/sync';
+import * as got from 'got';
 
 import { config } from 'config';
 import { IRawShop } from 'presentations/pages/Maps/interfaces';
@@ -109,26 +107,58 @@ function buildShops(
   return shops;
 }
 
-export function loadShops(): IRawShop[] {
-  const rootPath: string = path.join(__dirname);
+export const shopLoader: {
+  cache: IRawShop[] | null;
+  getShops(): IRawShop[];
+  initialize(): Promise<IRawShop[]>;
+} = {
+  cache: null,
+  getShops: (): IRawShop[] => {
+    if (shopLoader.cache === null) {
+      // tslint:disable-next-line:no-console
+      console.trace('Please call shopLoader.initialize first.');
 
-  const shopsRawData: string = fs.readFileSync(path.resolve(rootPath, 'shops.csv'), 'utf8');
-  const shopRecords: ICSVRecord[] = csvParse(shopsRawData, {
-    columns: true,
-    skip_empty_lines: true,
-  });
+      return;
+    }
 
-  const shopAttributesRawData: string = fs.readFileSync(path.resolve(rootPath, 'shop_attributes.csv'), 'utf8');
-  const shopAttributeRecords: ICSVRecord[] = csvParse(shopAttributesRawData, {
-    columns: true,
-    skip_empty_lines: true,
-  });
+    return shopLoader.cache;
+  },
+  initialize: (): Promise<IRawShop[]> => {
+    // FYI: google spread sheetでcsvのexport urlを出力する
+    // https://qiita.com/reikubonaga/items/8a6322efd353e08d5243
+    const SHEET_ID: string = process.env.GOOGLE_SPREADSHEET_SHEET_ID;
+    const SHOPS_PAGE_ID: string = process.env.GOOGLE_SPREADSHEET_SHOPS_PAGE_ID;
+    const SHOP_ATTRIBUTES_PAGE_ID: string = process.env.GOOGLE_SPREADSHEET_SHOP_ATTRIBUTES_PAGE_ID;
+    const SHOP_OPEN_HOURS_PAGE_ID: string = process.env.GOOGLE_SPREADSHEET_SHOP_OPEN_HOURS_PAGE_ID;
 
-  const shopOpenHoursRawData: string = fs.readFileSync(path.resolve(rootPath, 'shop_open_hours.csv'), 'utf8');
-  const shopOpenHourRecords: ICSVRecord[] = csvParse(shopOpenHoursRawData, {
-    columns: true,
-    skip_empty_lines: true,
-  });
+    const req: any = got.extend({ baseUrl: `https://docs.google.com/spreadsheets/d/${SHEET_ID}` });
 
-  return buildShops(shopRecords, shopAttributeRecords, shopOpenHourRecords);
-}
+    return Promise.all([
+      req.get(`/export?format=csv&gid=${SHOPS_PAGE_ID}`),
+      req.get(`/export?format=csv&gid=${SHOP_ATTRIBUTES_PAGE_ID}`),
+      req.get(`/export?format=csv&gid=${SHOP_OPEN_HOURS_PAGE_ID}`),
+    ]).then((res: any) => {
+      const shopsRawData: string = res[0].body;
+      const shopRecords: ICSVRecord[] = csvParse(shopsRawData, {
+        columns: true,
+        skip_empty_lines: true,
+      });
+
+      const shopAttributesRawData: string = res[1].body;
+      const shopAttributeRecords: ICSVRecord[] = csvParse(shopAttributesRawData, {
+        columns: true,
+        skip_empty_lines: true,
+      });
+
+      const shopOpenHoursRawData: string = res[2].body;
+      const shopOpenHourRecords: ICSVRecord[] = csvParse(shopOpenHoursRawData, {
+        columns: true,
+        skip_empty_lines: true,
+      });
+
+      shopLoader.cache = buildShops(shopRecords, shopAttributeRecords, shopOpenHourRecords);
+
+      return shopLoader.cache;
+    });
+  },
+};

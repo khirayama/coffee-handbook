@@ -7,7 +7,7 @@ import * as React from 'react';
 import { renderToString } from 'react-dom/server';
 
 import { config } from 'config';
-import { loadShops } from 'data/loadShops';
+import { shopLoader } from 'data/shopLoader';
 import { dic } from 'dic';
 import { MapsDesktopPageContainer } from 'presentations/containers/MapsDesktopPage';
 import { MapsMobilePageContainer } from 'presentations/containers/MapsMobilePage';
@@ -55,12 +55,9 @@ const compiledFunction: (options: { props: IProps }) => void = pug.compileFile(
   },
 );
 
-const shops: IRawShop[] = loadShops();
-
-shopSearchEngine.buildIndex(shops);
-
 // tslint:disable-next-line:max-func-body-length cyclomatic-complexity
 export function mapsHandler(req: express.Request, res: express.Response): void {
+  const shops: IRawShop[] = shopLoader.getShops();
   const lang: string = req.lang;
   const shopKey: string = req.params.key;
   const searchKeyword: string = req.query.q ? shopSearchEngine.decode(req.query.q) : '';

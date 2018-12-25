@@ -11,6 +11,7 @@ import * as React from 'react';
 import { renderToString } from 'react-dom/server';
 
 import { config } from 'config';
+import { shopLoader } from 'data/shopLoader';
 import { experiments } from 'experiments';
 import { aboutHandler } from 'handlers/aboutHandler';
 import { manifestHandler } from 'handlers/manifestHandler';
@@ -19,6 +20,9 @@ import { privacyHandler } from 'handlers/privacyHandler';
 import { robotsHandler } from 'handlers/robotsHandler';
 import { sitemapHandler, sitemapXmlHandler } from 'handlers/sitemapHandler';
 import { HypothesisTesting } from 'utils/HypothesisTesting';
+
+import { IRawShop } from 'presentations/pages/Maps/interfaces';
+import { shopSearchEngine } from 'ShopSearchEngine';
 
 const hypothesisTesting: HypothesisTesting = new HypothesisTesting(experiments);
 // const topPageSegment: string = req.hypothesisTesting.segment('top-page1', req.segId);
@@ -73,11 +77,14 @@ app
   .get('/robots.txt', preHandler, robotsHandler)
   .get('/manifest.json', preHandler, manifestHandler);
 
-// Server
-const APP_SERVER_PORT: number = Number(process.env.PORT || '3030');
-app.listen(APP_SERVER_PORT, () => {
-  // tslint:disable-next-line:no-console
-  console.log(`Start app at ${new Date().toString()}.`);
-  // tslint:disable-next-line:no-console
-  console.log(`Open the site at http://localhost:${APP_SERVER_PORT}`);
+shopLoader.initialize().then((shops: IRawShop[]) => {
+  shopSearchEngine.buildIndex(shops);
+  // Server
+  const APP_SERVER_PORT: number = Number(process.env.PORT || '3030');
+  app.listen(APP_SERVER_PORT, () => {
+    // tslint:disable-next-line:no-console
+    console.log(`Start app at ${new Date().toString()}.`);
+    // tslint:disable-next-line:no-console
+    console.log(`Open the site at http://localhost:${APP_SERVER_PORT}`);
+  });
 });
