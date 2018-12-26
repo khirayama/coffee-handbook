@@ -10,27 +10,190 @@
 <body>
   <form>
     <!-- shops -->
-    <input type="text" name="key" placeholder="Shop Key" />
-    <input type="number" name="lat" placeholder="lat" />
-    <input type="number" name="lng" placeholder="lng" />
-    <input type="text" name="email" placeholder="email" />
-    <input type="text" name="tel" placeholder="tel" />
-    <input type="checkbox" name="permanent_closed" />
-    <input type="text" name="transfer_to" placeholder="transfer to" />
-    <input type="text" name="web" placeholder="web" />
-    <input type="text" name="ec" placeholder="ec" />
-    <input type="text" name="facebook" placeholder="facebook" />
-    <input type="text" name="twitter" placeholder="twitter" />
-    <input type="text" name="instagram" placeholder="instagram" />
-    <input type="text" name="instagram_tag" placeholder="instagram_tag" />
-    <input type="text" name="google_maps" placeholder="google_maps" />
+    <table>
+      <tbody>
+        <tr>
+          <th>key:</th>
+          <td>
+            <input type="text" name="key" placeholder="Shop Key" />
+          </td>
+        </tr>
+        <tr>
+          <th>lat:</th>
+          <td>
+            <input type="number" name="lat" placeholder="lat" />
+          </td>
+        </tr>
+        <tr>
+          <th>lng:</th>
+          <td>
+            <input type="number" name="lng" placeholder="lng" />
+          </td>
+        </tr>
+        <tr>
+          <th>email:</th>
+          <td>
+            <input type="text" name="email" placeholder="email" />
+          </td>
+        </tr>
+        <tr>
+          <th>tel:</th>
+          <td>
+            <input type="text" name="tel" placeholder="tel" />
+          </td>
+        </tr>
+        <tr>
+          <th>permanent closed:</th>
+          <td>
+            <input type="checkbox" name="permanent_closed" />
+          </td>
+        </tr>
+        <tr>
+          <th>transfer to:</th>
+          <td>
+            <!-- select? -->
+            <input type="text" name="transfer_to" placeholder="transfer to" />
+          </td>
+        </tr>
+        <tr>
+          <th>web:</th>
+          <td>
+            <input type="text" name="web" placeholder="web" />
+          </td>
+        </tr>
+        <tr>
+          <th>ec:</th>
+          <td>
+            <input type="text" name="ec" placeholder="ec" />
+          </td>
+        </tr>
+        <tr>
+          <th>facebook:</th>
+          <td>
+            <input type="text" name="facebook" placeholder="facebook" />
+          </td>
+        </tr>
+        <tr>
+          <th>twitter:</th>
+          <td>
+            <input type="text" name="twitter" placeholder="twitter" />
+          </td>
+        </tr>
+        <tr>
+          <th>instagram:</th>
+          <td>
+            <input type="text" name="instagram" placeholder="instagram" />
+          </td>
+        </tr>
+        <tr>
+          <th>instagram tag:</th>
+          <td>
+            <input type="text" name="instagram_tag" placeholder="instagram_tag" />
+          </td>
+        </tr>
+        <tr>
+          <th>google maps:</th>
+          <td>
+            <input type="text" name="google_maps" placeholder="google_maps" />
+          </td>
+        </tr>
+      </tbody>
+    </table>
     <!-- shop attributes -->
-    <input type="text" name="enName" placeholder="en: name" />
-    <input type="text" name="jaName" placeholder="ja: 名前" />
-    <input type="text" name="enName" placeholder="en: address" />
-    <input type="text" name="jaName" placeholder="ja: 住所" />
-    <input type="text" name="enName" placeholder="en: hours note" />
-    <input type="text" name="jaName" placeholder="ja: 営業時間についてのメモ" />
+    <table>
+      <tbody>
+        <tr>
+          <th>english name:</th>
+          <td>
+            <input type="text" name="enName" placeholder="en: name" />
+          </td>
+        </tr>
+        <tr>
+          <th>japanese name:</th>
+          <td>
+            <input type="text" name="jaName" placeholder="ja: 名前" />
+          </td>
+        </tr>
+        <tr>
+          <th>english address:</th>
+          <td>
+            <input type="text" name="enAddress" placeholder="en: address" />
+          </td>
+        </tr>
+        <tr>
+          <th>japanese address:</th>
+          <td>
+            <input type="text" name="jaAddress" placeholder="ja: 住所" />
+          </td>
+        </tr>
+        <tr>
+          <th>english hours note:</th>
+          <td>
+            <input type="text" name="enHours_note" placeholder="en: hours note" />
+          </td>
+        </tr>
+        <tr>
+          <th>japanese hours note:</th>
+          <td>
+            <input type="text" name="jaHours_note" placeholder="ja: hours note" />
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- shop open hours -->
+    <table>
+      <tbody>
+        <tr>
+          <th>Sun.</th>
+          <td>
+            <input type="time" name="openTime" value="" />
+            <input type="time" name="endTime" value="" />
+          </td>
+        </tr>
+        <tr>
+          <th>Mon.</th>
+          <td>
+            <input type="time" name="openTime" value="" />
+            <input type="time" name="endTime" value="" />
+          </td>
+        </tr>
+        <tr>
+          <th>Tue.</th>
+          <td>
+            <input type="time" name="openTime" value="" />
+            <input type="time" name="endTime" value="" />
+          </td>
+        </tr>
+        <tr>
+          <th>Wed.</th>
+          <td>
+            <input type="time" name="openTime" value="" />
+            <input type="time" name="endTime" value="" />
+          </td>
+        </tr>
+        <tr>
+          <th>Thu.</th>
+          <td>
+            <input type="time" name="openTime" value="" />
+            <input type="time" name="endTime" value="" />
+          </td>
+        </tr>
+        <tr>
+          <th>Fri.</th>
+          <td>
+            <input type="time" name="openTime" value="" />
+            <input type="time" name="endTime" value="" />
+          </td>
+        </tr>
+        <tr>
+          <th>Sat.</th>
+          <td>
+            <input type="time" name="openTime" value="" />
+            <input type="time" name="endTime" value="" />
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </form>
 </body>
 </html>
