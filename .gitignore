@@ -3,6 +3,5 @@
 /node_modules
 /src/public
 /dist
-/log/*.log
 /secret.yaml
 /.envrc
