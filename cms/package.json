@@ -1,0 +1,26 @@
+{
+  "name": "cms",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/google-apps-script": "0.0.33",
+    "@types/node": "10.12.18",
+    "@types/react": "16.7.18",
+    "@types/react-dom": "16.0.11",
+    "clasp": "0.1.0",
+    "gas-webpack-plugin": "1.0.1",
+    "prettier": "1.15.3",
+    "ts-loader": "5.3.2",
+    "tslint": "5.12.0",
+    "typescript": "3.2.2",
+    "webpack": "4.28.2",
+    "webpack-cli": "3.1.2"
+  }
+}
