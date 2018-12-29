@@ -57,15 +57,6 @@ $ sudo apachectl restart
 // You can get access to example.com and ja.example.com.
 ```
 
-## Add a shop
-
-```
-$ npm run generate:shop
-$ npm run precommit
-// If you need to update, please edit generated file directly.
-// After this, please make a PR.
-```
-
 ## Performance
 
 ### SpeedTracker
