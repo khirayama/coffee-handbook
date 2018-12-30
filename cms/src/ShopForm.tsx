@@ -384,22 +384,29 @@ export class ShopForm extends React.Component<{}, IState> {
                       >
                         DELETE
                       </button>
-                      <button
-                        onClick={(event: React.MouseEvent<HTMLElement>): void => {
-                          event.preventDefault();
-                          const newState: IState = JSON.parse(JSON.stringify(this.state));
-                          newState.openHours[i].push(JSON.parse(JSON.stringify(newState.openHours[i][j])));
-                          this.setState(newState);
-                        }}
-                      >
-                        ADD
-                      </button>
                     </td>
                   );
 
                   return (
                     <tr key={`${i}-${j}`}>
-                      {j === 0 ? <th rowSpan={dayOpenHours.length}>{i}</th> : null}
+                      {j === 0 ? (
+                        <th rowSpan={dayOpenHours.length}>
+                          {i}
+                          <button
+                            className="Icon"
+                            onClick={(event: React.MouseEvent<HTMLElement>): void => {
+                              event.preventDefault();
+                              const newState: IState = JSON.parse(JSON.stringify(this.state));
+                              newState.openHours[i].push(
+                                JSON.parse(JSON.stringify(newState.openHours[i][newState.openHours[i].length - 1])),
+                              );
+                              this.setState(newState);
+                            }}
+                          >
+                            add
+                          </button>
+                        </th>
+                      ) : null}
                       {contentElement}
                     </tr>
                   );
@@ -407,18 +414,7 @@ export class ShopForm extends React.Component<{}, IState> {
               ) : (
                 <tr key={`${i}-0`}>
                   <th>{i}</th>
-                  <td>
-                    <button
-                      onClick={(event: React.MouseEvent<HTMLElement>): void => {
-                        event.preventDefault();
-                        const newState: IState = JSON.parse(JSON.stringify(this.state));
-                        newState.openHours[i].push(['07:00', '20:00']);
-                        this.setState(newState);
-                      }}
-                    >
-                      ADD
-                    </button>
-                  </td>
+                  <td />
                 </tr>
               );
             })}
