@@ -1,4 +1,4 @@
-// tslint:disable:react-a11y-role-has-required-aria-props react-a11y-no-onchange
+// tslint:disable:react-a11y-role-has-required-aria-props react-a11y-no-onchange react-this-binding-issue
 import * as React from 'react';
 
 interface IShopAttribute {
@@ -99,90 +99,178 @@ export class ShopForm extends React.Component<{}, IState> {
         <table>
           <tbody>
             <tr>
-              <th>key</th>
+              <th colSpan={2}>Shop Key(ID)</th>
               <td>
-                <input type="text" name="key" value={this.state.key} onChange={this.onChange} />
+                <input
+                  type="text"
+                  name="key"
+                  value={this.state.key}
+                  onChange={this.onChange}
+                  placeholder="coffee-handbook"
+                />
               </td>
             </tr>
             <tr>
-              <th>English Name</th>
+              <th rowSpan={2}>Name</th>
+              <th>English</th>
               <td>
-                <input type="text" name="en.name" value={this.state.en.name} onChange={this.onChange} />
-              </td>
-              <th>日本語名</th>
-              <td>
-                <input type="text" name="ja.name" value={this.state.ja.name} onChange={this.onChange} />
-              </td>
-            </tr>
-            <tr>
-              <th>English Address</th>
-              <td>
-                <input type="text" name="en.address" value={this.state.en.address} onChange={this.onChange} />
-              </td>
-              <th>日本語住所</th>
-              <td>
-                <input type="text" name="ja.address" value={this.state.ja.address} onChange={this.onChange} />
+                <input
+                  type="text"
+                  name="en.name"
+                  value={this.state.en.name}
+                  onChange={this.onChange}
+                  placeholder="COFFEE HANDBOOK"
+                />
               </td>
             </tr>
             <tr>
-              <th>English Hours Note</th>
+              <th>日本語</th>
               <td>
-                <input type="text" name="en.hoursNote" value={this.state.en.hoursNote} onChange={this.onChange} />
-              </td>
-              <th>日本語開業時間メモ</th>
-              <td>
-                <input type="text" name="ja.hoursNote" value={this.state.ja.hoursNote} onChange={this.onChange} />
-              </td>
-            </tr>
-            <tr>
-              <th>email</th>
-              <td>
-                <input type="text" name="email" value={this.state.email} onChange={this.onChange} />
+                <input
+                  type="text"
+                  name="ja.name"
+                  value={this.state.ja.name}
+                  onChange={this.onChange}
+                  placeholder="珈琲手帖"
+                />
               </td>
             </tr>
             <tr>
-              <th>tel</th>
+              <th rowSpan={2}>Address</th>
+              <th>English</th>
               <td>
-                <input type="text" name="tel" value={this.state.tel} onChange={this.onChange} />
+                <input
+                  type="text"
+                  name="en.address"
+                  value={this.state.en.address}
+                  onChange={this.onChange}
+                  placeholder="111-1, COFFEE, HANDBOOK"
+                />
               </td>
             </tr>
             <tr>
-              <th>web</th>
+              <th>日本語</th>
               <td>
-                <input type="text" name="web" value={this.state.web} onChange={this.onChange} />
+                <input
+                  type="text"
+                  name="ja.address"
+                  value={this.state.ja.address}
+                  onChange={this.onChange}
+                  placeholder="手帖珈琲111-1"
+                />
               </td>
             </tr>
             <tr>
-              <th>ec</th>
+              <th rowSpan={2}>Contact</th>
+              <th>E-MAIL</th>
               <td>
-                <input type="text" name="ec" value={this.state.ec} onChange={this.onChange} />
+                <input
+                  type="text"
+                  name="email"
+                  value={this.state.email}
+                  onChange={this.onChange}
+                  placeholder="coffee-handbook@coffeehandbook.com"
+                />
               </td>
             </tr>
             <tr>
-              <th>facebook</th>
+              <th>TEL</th>
               <td>
-                <input type="text" name="facebook" value={this.state.facebook} onChange={this.onChange} />
+                <input
+                  type="text"
+                  name="tel"
+                  value={this.state.tel}
+                  onChange={this.onChange}
+                  placeholder="09012345678"
+                />
               </td>
             </tr>
             <tr>
-              <th>twitter</th>
+              <th colSpan={2}>WEB</th>
               <td>
-                <input type="text" name="twitter" value={this.state.twitter} onChange={this.onChange} />
+                <input
+                  type="text"
+                  name="web"
+                  value={this.state.web}
+                  onChange={this.onChange}
+                  placeholder="https://coffee-handbook.com"
+                />
               </td>
             </tr>
             <tr>
-              <th>instagram</th>
+              <th colSpan={2}>EC</th>
               <td>
-                <input type="text" name="instagram" value={this.state.instagram} onChange={this.onChange} />
+                <input
+                  type="text"
+                  name="ec"
+                  value={this.state.ec}
+                  onChange={this.onChange}
+                  placeholder="https://ec.coffee-handbook.com"
+                />
               </td>
             </tr>
             <tr>
-              <th>instagram tag</th>
+              <th colSpan={2}>Facebook</th>
               <td>
-                <input type="text" name="instagramTag" value={this.state.instagramTag} onChange={this.onChange} />
+                <input
+                  type="text"
+                  name="facebook"
+                  value={this.state.facebook}
+                  onChange={this.onChange}
+                  placeholder="https://www.facebook.com/coffeehandbook"
+                />
               </td>
             </tr>
             <tr>
+              <th colSpan={2}>Twitter</th>
+              <td>
+                <input
+                  type="text"
+                  name="twitter"
+                  value={this.state.twitter}
+                  onChange={this.onChange}
+                  placeholder="https://twitter.com/coffeehandbook_"
+                />
+              </td>
+            </tr>
+            <tr>
+              <th colSpan={2}>Instagram</th>
+              <td>
+                <input
+                  type="text"
+                  name="instagram"
+                  value={this.state.instagram}
+                  onChange={this.onChange}
+                  placeholder="https://www.instagram.com/coffee_handbook"
+                />
+              </td>
+            </tr>
+            <tr>
+              <th colSpan={2}>Instagram Tag</th>
+              <td>
+                <input
+                  type="text"
+                  name="instagramTag"
+                  value={this.state.instagramTag}
+                  onChange={this.onChange}
+                  placeholder="https://www.instagram.com/explore/tags/coffeehandbook/"
+                />
+              </td>
+            </tr>
+            <tr>
+              <th colSpan={2}>Google Maps</th>
+              <td>
+                <input
+                  type="text"
+                  name="googleMaps"
+                  value={this.state.googleMaps}
+                  onChange={this.onChange}
+                  placeholder="https://goo.gl/maps/coffee-handbook"
+                />
+              </td>
+            </tr>
+            <tr>
+              <th rowSpan={9}>Services</th>
               <th>Has roaster?</th>
               <td>
                 <select name="hasRoaster" onChange={this.onChange} value={this.state.hasRoaster}>
@@ -269,32 +357,78 @@ export class ShopForm extends React.Component<{}, IState> {
               </td>
             </tr>
             {this.state.openHours.map((dayOpenHours: string[][], i: number) => {
-              return (
-                <tr key={i}>
-                  <th>{i}</th>
-                  {dayOpenHours.map((openHours: string[], j: number) => {
-                    return (
-                      <td key={j}>
-                        <input
-                          type="time"
-                          value={this.state.openHours[i][j][0]}
-                          name={`openHours[${i}][${j}][0]`}
-                          onChange={this.onChange}
-                        />
-                        <input
-                          type="time"
-                          value={this.state.openHours[i][j][1]}
-                          name={`openHours[${i}][${j}][1]`}
-                          onChange={this.onChange}
-                        />
-                        <button>DELETE</button>
-                        <button>ADD</button>
-                      </td>
-                    );
-                  })}
-                </tr>
-              );
+              return dayOpenHours.map((openHours: string[], j: number) => {
+                const contentElement: JSX.Element = (
+                  <td key={j}>
+                    <input
+                      type="time"
+                      value={this.state.openHours[i][j][0]}
+                      name={`openHours.${i}.${j}.0`}
+                      onChange={this.onChange}
+                    />
+                    -
+                    <input
+                      type="time"
+                      value={this.state.openHours[i][j][1]}
+                      name={`openHours.${i}.${j}.1`}
+                      onChange={this.onChange}
+                    />
+                    <button
+                      onClick={(event: React.MouseEvent<HTMLElement>): void => {
+                        event.preventDefault();
+                        const newState: IState = JSON.parse(JSON.stringify(this.state));
+                        newState.openHours[i].splice(j, 1);
+                        this.setState(newState);
+                      }}
+                    >
+                      DELETE
+                    </button>
+                    <button
+                      onClick={(event: React.MouseEvent<HTMLElement>): void => {
+                        event.preventDefault();
+                        const newState: IState = JSON.parse(JSON.stringify(this.state));
+                        newState.openHours[i].push(JSON.parse(JSON.stringify(newState.openHours[i][j])));
+                        this.setState(newState);
+                      }}
+                    >
+                      ADD
+                    </button>
+                  </td>
+                );
+
+                return (
+                  <tr key={`${i}-${j}`}>
+                    {j === 0 ? <th rowSpan={dayOpenHours.length}>{i}</th> : null}
+                    {contentElement}
+                  </tr>
+                );
+              });
             })}
+            <tr>
+              <th rowSpan={2}>Hours Note</th>
+              <th>English</th>
+              <td>
+                <input
+                  type="text"
+                  name="en.hoursNote"
+                  value={this.state.en.hoursNote}
+                  onChange={this.onChange}
+                  placeholder="Holiday 10:00 - 18:00"
+                />
+              </td>
+            </tr>
+            <tr>
+              <th>日本語</th>
+              <td>
+                <input
+                  type="text"
+                  name="ja.hoursNote"
+                  value={this.state.ja.hoursNote}
+                  onChange={this.onChange}
+                  placeholder="祝日 10:00 - 18:00"
+                />
+              </td>
+            </tr>
           </tbody>
         </table>
         <button>Submit</button>
