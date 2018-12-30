@@ -13,7 +13,7 @@
     "build:scripts": "webpack --mode=production",
     "build:scripts:watch": "webpack --watch --mode=development",
     "build:styles": "postcss -c .postcssrc.js 'src/styles/index.css' --base src/styles --dir './tmp'",
-    "build:styles:watch": "postcss -c .postcssrc.js -w 'src/index.css' --base src/styles --dir './tmp'",
+    "build:styles:watch": "postcss -c .postcssrc.js -w 'src/styles/index.css' --base src/styles --dir './tmp'",
     "build:markups": "npx inline-source --compress false --root ./tmp src/index.html > dist/index.html",
     "build:markups:watch": "watch 'npm run build:markups' tmp -d -u",
     "copy:files": "cpx 'src/**/*.json' dist",
