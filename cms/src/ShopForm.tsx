@@ -357,52 +357,70 @@ export class ShopForm extends React.Component<{}, IState> {
               </td>
             </tr>
             {this.state.openHours.map((dayOpenHours: string[][], i: number) => {
-              return dayOpenHours.map((openHours: string[], j: number) => {
-                const contentElement: JSX.Element = (
-                  <td key={j}>
-                    <input
-                      type="time"
-                      value={this.state.openHours[i][j][0]}
-                      name={`openHours.${i}.${j}.0`}
-                      onChange={this.onChange}
-                    />
-                    -
-                    <input
-                      type="time"
-                      value={this.state.openHours[i][j][1]}
-                      name={`openHours.${i}.${j}.1`}
-                      onChange={this.onChange}
-                    />
+              return dayOpenHours.length ? (
+                dayOpenHours.map((openHours: string[], j: number) => {
+                  const contentElement: JSX.Element = (
+                    <td key={j}>
+                      <input
+                        type="time"
+                        value={this.state.openHours[i][j][0]}
+                        name={`openHours.${i}.${j}.0`}
+                        onChange={this.onChange}
+                      />
+                      -
+                      <input
+                        type="time"
+                        value={this.state.openHours[i][j][1]}
+                        name={`openHours.${i}.${j}.1`}
+                        onChange={this.onChange}
+                      />
+                      <button
+                        onClick={(event: React.MouseEvent<HTMLElement>): void => {
+                          event.preventDefault();
+                          const newState: IState = JSON.parse(JSON.stringify(this.state));
+                          newState.openHours[i].splice(j, 1);
+                          this.setState(newState);
+                        }}
+                      >
+                        DELETE
+                      </button>
+                      <button
+                        onClick={(event: React.MouseEvent<HTMLElement>): void => {
+                          event.preventDefault();
+                          const newState: IState = JSON.parse(JSON.stringify(this.state));
+                          newState.openHours[i].push(JSON.parse(JSON.stringify(newState.openHours[i][j])));
+                          this.setState(newState);
+                        }}
+                      >
+                        ADD
+                      </button>
+                    </td>
+                  );
+
+                  return (
+                    <tr key={`${i}-${j}`}>
+                      {j === 0 ? <th rowSpan={dayOpenHours.length}>{i}</th> : null}
+                      {contentElement}
+                    </tr>
+                  );
+                })
+              ) : (
+                <tr key={`${i}-0`}>
+                  <th>{i}</th>
+                  <td>
                     <button
                       onClick={(event: React.MouseEvent<HTMLElement>): void => {
                         event.preventDefault();
                         const newState: IState = JSON.parse(JSON.stringify(this.state));
-                        newState.openHours[i].splice(j, 1);
-                        this.setState(newState);
-                      }}
-                    >
-                      DELETE
-                    </button>
-                    <button
-                      onClick={(event: React.MouseEvent<HTMLElement>): void => {
-                        event.preventDefault();
-                        const newState: IState = JSON.parse(JSON.stringify(this.state));
-                        newState.openHours[i].push(JSON.parse(JSON.stringify(newState.openHours[i][j])));
+                        newState.openHours[i].push(['07:00', '20:00']);
                         this.setState(newState);
                       }}
                     >
                       ADD
                     </button>
                   </td>
-                );
-
-                return (
-                  <tr key={`${i}-${j}`}>
-                    {j === 0 ? <th rowSpan={dayOpenHours.length}>{i}</th> : null}
-                    {contentElement}
-                  </tr>
-                );
-              });
+                </tr>
+              );
             })}
             <tr>
               <th rowSpan={2}>Hours Note</th>
