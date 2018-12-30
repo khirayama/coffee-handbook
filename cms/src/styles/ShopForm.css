@@ -1,0 +1,8 @@
+.ShopForm {
+  table,
+  tr,
+  th,
+  td {
+    border: solid 1px #aaa;
+  }
+}
