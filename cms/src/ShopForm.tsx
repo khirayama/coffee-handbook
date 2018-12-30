@@ -375,6 +375,7 @@ export class ShopForm extends React.Component<{}, IState> {
                         onChange={this.onChange}
                       />
                       <button
+                        className="Icon"
                         onClick={(event: React.MouseEvent<HTMLElement>): void => {
                           event.preventDefault();
                           const newState: IState = JSON.parse(JSON.stringify(this.state));
@@ -382,7 +383,7 @@ export class ShopForm extends React.Component<{}, IState> {
                           this.setState(newState);
                         }}
                       >
-                        DELETE
+                        clear
                       </button>
                     </td>
                   );
@@ -413,7 +414,20 @@ export class ShopForm extends React.Component<{}, IState> {
                 })
               ) : (
                 <tr key={`${i}-0`}>
-                  <th>{i}</th>
+                  <th>
+                    {i}
+                    <button
+                      className="Icon"
+                      onClick={(event: React.MouseEvent<HTMLElement>): void => {
+                        event.preventDefault();
+                        const newState: IState = JSON.parse(JSON.stringify(this.state));
+                        newState.openHours[i].push(['07:00', '20:00']);
+                        this.setState(newState);
+                      }}
+                    >
+                      add
+                    </button>
+                  </th>
                   <td />
                 </tr>
               );
