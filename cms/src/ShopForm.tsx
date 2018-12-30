@@ -357,6 +357,35 @@ export class ShopForm extends React.Component<{}, IState> {
               </td>
             </tr>
             {this.state.openHours.map((dayOpenHours: string[][], i: number) => {
+              const headElement: JSX.Element = (
+                <th
+                  rowSpan={this.state.openHours
+                    .map((tmp: string[][]) => tmp.length || 1)
+                    .reduce((m: number, n: number = 0) => m + n)}
+                >
+                  Open Hours
+                </th>
+              );
+              const dayElement: JSX.Element = (
+                <th rowSpan={Math.max(this.state.openHours[i].length, 1)}>
+                  {i}
+                  <div
+                    className="Icon"
+                    role="button"
+                    onClick={(event: React.MouseEvent<HTMLElement>): void => {
+                      event.preventDefault();
+                      const newState: IState = JSON.parse(JSON.stringify(this.state));
+                      newState.openHours[i].push(
+                        newState.openHours[i][newState.openHours[i].length - 1] || ['07:00', '20:00'],
+                      );
+                      this.setState(newState);
+                    }}
+                  >
+                    add
+                  </div>
+                </th>
+              );
+
               return dayOpenHours.length ? (
                 dayOpenHours.map((openHours: string[], j: number) => {
                   const contentElement: JSX.Element = (
@@ -367,15 +396,15 @@ export class ShopForm extends React.Component<{}, IState> {
                         name={`openHours.${i}.${j}.0`}
                         onChange={this.onChange}
                       />
-                      -
                       <input
                         type="time"
                         value={this.state.openHours[i][j][1]}
                         name={`openHours.${i}.${j}.1`}
                         onChange={this.onChange}
                       />
-                      <button
+                      <div
                         className="Icon"
+                        role="button"
                         onClick={(event: React.MouseEvent<HTMLElement>): void => {
                           event.preventDefault();
                           const newState: IState = JSON.parse(JSON.stringify(this.state));
@@ -384,50 +413,22 @@ export class ShopForm extends React.Component<{}, IState> {
                         }}
                       >
                         clear
-                      </button>
+                      </div>
                     </td>
                   );
 
                   return (
                     <tr key={`${i}-${j}`}>
-                      {j === 0 ? (
-                        <th rowSpan={dayOpenHours.length}>
-                          {i}
-                          <button
-                            className="Icon"
-                            onClick={(event: React.MouseEvent<HTMLElement>): void => {
-                              event.preventDefault();
-                              const newState: IState = JSON.parse(JSON.stringify(this.state));
-                              newState.openHours[i].push(
-                                JSON.parse(JSON.stringify(newState.openHours[i][newState.openHours[i].length - 1])),
-                              );
-                              this.setState(newState);
-                            }}
-                          >
-                            add
-                          </button>
-                        </th>
-                      ) : null}
+                      {i === 0 && j === 0 ? headElement : null}
+                      {j === 0 ? dayElement : null}
                       {contentElement}
                     </tr>
                   );
                 })
               ) : (
                 <tr key={`${i}-0`}>
-                  <th>
-                    {i}
-                    <button
-                      className="Icon"
-                      onClick={(event: React.MouseEvent<HTMLElement>): void => {
-                        event.preventDefault();
-                        const newState: IState = JSON.parse(JSON.stringify(this.state));
-                        newState.openHours[i].push(['07:00', '20:00']);
-                        this.setState(newState);
-                      }}
-                    >
-                      add
-                    </button>
-                  </th>
+                  {i === 0 ? headElement : null}
+                  {dayElement}
                   <td />
                 </tr>
               );
