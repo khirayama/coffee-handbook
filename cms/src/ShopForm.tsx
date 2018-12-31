@@ -97,6 +97,10 @@ export class ShopForm extends React.Component<{}, IState> {
     return (
       <form className="ShopForm" onSubmit={this.onSubmit}>
         <table>
+          <thead>
+            <th colSpan={2}>column</th>
+            <th>value</th>
+          </thead>
           <tbody>
             <tr>
               <th colSpan={2}>Shop Key(ID)</th>
@@ -112,18 +116,6 @@ export class ShopForm extends React.Component<{}, IState> {
             </tr>
             <tr>
               <th rowSpan={2}>Name</th>
-              <th>English</th>
-              <td>
-                <input
-                  type="text"
-                  name="en.name"
-                  value={this.state.en.name}
-                  onChange={this.onChange}
-                  placeholder="COFFEE HANDBOOK"
-                />
-              </td>
-            </tr>
-            <tr>
               <th>日本語</th>
               <td>
                 <input
@@ -136,19 +128,19 @@ export class ShopForm extends React.Component<{}, IState> {
               </td>
             </tr>
             <tr>
-              <th rowSpan={2}>Address</th>
               <th>English</th>
               <td>
                 <input
                   type="text"
-                  name="en.address"
-                  value={this.state.en.address}
+                  name="en.name"
+                  value={this.state.en.name}
                   onChange={this.onChange}
-                  placeholder="111-1, COFFEE, HANDBOOK"
+                  placeholder="COFFEE HANDBOOK"
                 />
               </td>
             </tr>
             <tr>
+              <th rowSpan={2}>Address</th>
               <th>日本語</th>
               <td>
                 <input
@@ -157,6 +149,18 @@ export class ShopForm extends React.Component<{}, IState> {
                   value={this.state.ja.address}
                   onChange={this.onChange}
                   placeholder="手帖珈琲111-1"
+                />
+              </td>
+            </tr>
+            <tr>
+              <th>English</th>
+              <td>
+                <input
+                  type="text"
+                  name="en.address"
+                  value={this.state.en.address}
+                  onChange={this.onChange}
+                  placeholder="111-1, COFFEE, HANDBOOK"
                 />
               </td>
             </tr>
@@ -435,18 +439,6 @@ export class ShopForm extends React.Component<{}, IState> {
             })}
             <tr>
               <th rowSpan={2}>Hours Note</th>
-              <th>English</th>
-              <td>
-                <input
-                  type="text"
-                  name="en.hoursNote"
-                  value={this.state.en.hoursNote}
-                  onChange={this.onChange}
-                  placeholder="Holiday 10:00 - 18:00"
-                />
-              </td>
-            </tr>
-            <tr>
               <th>日本語</th>
               <td>
                 <input
@@ -455,6 +447,18 @@ export class ShopForm extends React.Component<{}, IState> {
                   value={this.state.ja.hoursNote}
                   onChange={this.onChange}
                   placeholder="祝日 10:00 - 18:00"
+                />
+              </td>
+            </tr>
+            <tr>
+              <th>English</th>
+              <td>
+                <input
+                  type="text"
+                  name="en.hoursNote"
+                  value={this.state.en.hoursNote}
+                  onChange={this.onChange}
+                  placeholder="Holiday 10:00 - 18:00"
                 />
               </td>
             </tr>
