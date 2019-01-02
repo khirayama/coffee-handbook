@@ -114,7 +114,7 @@ export class ShopForm extends React.Component<{}, IState> {
                   placeholder="coffee-handbook"
                 />
               </td>
-              <td></td>
+              <td />
             </tr>
             <tr>
               <th rowSpan={2}>Name</th>
