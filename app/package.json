@@ -38,7 +38,7 @@
     "classnames": "2.2.6",
     "compression": "1.7.3",
     "cookie-parser": "1.4.3",
-    "csv-parse": "4.2.0",
+    "csv-parse": "4.3.0",
     "deep-equal": "1.0.1",
     "express": "4.16.4",
     "express-useragent": "1.0.12",
@@ -52,7 +52,7 @@
     "react-dom": "16.7.0"
   },
   "devDependencies": {
-    "@hint/formatter-codeframe": "^2.0.0",
+    "@hint/formatter-codeframe": "2.0.1",
     "@types/mapbox-gl": "0.51.3",
     "@types/mocha": "5.2.5",
     "@types/node": "10.12.18",
@@ -67,10 +67,10 @@
     "cssnano": "4.1.8",
     "espower-typescript": "9.0.1",
     "glob": "7.1.3",
-    "hint": "4.1.1",
-    "imagemin": "6.0.0",
+    "hint": "4.1.2",
+    "imagemin": "6.1.0",
     "imagemin-jpegtran": "6.0.0",
-    "imagemin-pngquant": "6.0.0",
+    "imagemin-pngquant": "6.0.1",
     "imagemin-webp": "5.0.0",
     "minimist": "1.2.0",
     "mocha": "5.2.0",
@@ -89,7 +89,7 @@
     "tslint-microsoft-contrib": "6.0.0",
     "tslint-plugin-prettier": "2.0.1",
     "typescript": "3.2.2",
-    "webpack": "4.28.2",
+    "webpack": "4.28.3",
     "webpack-bundle-analyzer": "3.0.3",
     "webpack-cli": "3.1.2"
   }
