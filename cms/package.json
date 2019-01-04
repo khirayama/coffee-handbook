@@ -23,7 +23,8 @@
     "format": "prettier --ignore-path .gitignore --config .prettierrc --write 'src/**/!(*.json|*.jpg|*.pug|*.png|*.webp|*.svg|*.csv)' 'test/**/!(*.json|*.jpg|*.pug|*.png|*.webp|*.svg|*.csv)' 'bin/**/!(*.json|*.jpg|*.pug|*.png|*.webp|*.svg|*.csv)' webpack.config.js .eslintrc.js .postcssrc.js",
     "precommit": "npm run lint:fix && npm run format",
     "open": "clasp open --webapp",
-    "deploy": "NODE_ENV=productio npm run build && clasp push && clasp deploy"
+    "deploy": "NODE_ENV=productio npm run build && clasp push && clasp deploy",
+    "check": "npx npm-check-updates"
   },
   "keywords": [],
   "author": "",
