@@ -3,16 +3,15 @@ const path = require('path');
 
 const webpack = require('webpack');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
-const GasWebpackPlugin = require('gas-webpack-plugin');
 
 const NODE_ENV = process.env.NODE_ENV;
 
 module.exports = (env, argv) => {
   const config = {
-    entry: './src/index.ts',
+    entry: './src/presentations/index.ts',
     output: {
       filename: 'bundle.js',
-      path: path.join(__dirname, 'tmp'),
+      path: path.join(__dirname, 'dist', 'public'),
     },
     resolve: {
       extensions: ['.ts', '.tsx', '.js', '.json'],
@@ -23,7 +22,6 @@ module.exports = (env, argv) => {
       ],
     },
     plugins: [
-      new GasWebpackPlugin(),
       new webpack.DefinePlugin({
         'process.env': JSON.stringify({
           NODE_ENV: process.env.NODE_ENV,
