@@ -6,8 +6,8 @@ import * as pug from 'pug';
 import * as React from 'react';
 import { renderToString } from 'react-dom/server';
 
-import { MapsDesktopPageContainer } from 'presentations/containers/MapsDesktopPage';
-import { MapsMobilePageContainer } from 'presentations/containers/MapsMobilePage';
+import { ShopEditDesktopPageContainer } from 'presentations/containers/ShopEditDesktopPageContainer';
+import { ShopEditMobilePageContainer } from 'presentations/containers/ShopEditMobilePageContainer';
 import { IAction, IState } from 'presentations/pages/ShopEdit/interfaces';
 import { reducer } from 'presentations/pages/ShopEdit/reducer';
 import { secret } from 'secret';
@@ -57,14 +57,14 @@ export function shopEditHandler(req: express.Request, res: express.Response): vo
     props.entrypoint = '/pages/ShopEdit/mobile/bundle.js';
     props.stylesheet = '/pages/ShopEdit/mobile/index.css';
     props.content = renderToString(
-      React.createElement(Provider, { store }, React.createElement(MapsMobilePageContainer)),
+      React.createElement(Provider, { store }, React.createElement(ShopEditMobilePageContainer)),
     );
     res.send(compiledFunction({ props }));
   } else {
     props.entrypoint = '/pages/ShopEdit/desktop/bundle.js';
     props.stylesheet = '/pages/ShopEdit/desktop/index.css';
     props.content = renderToString(
-      React.createElement(Provider, { store }, React.createElement(MapsDesktopPageContainer)),
+      React.createElement(Provider, { store }, React.createElement(ShopEditDesktopPageContainer)),
     );
     res.send(compiledFunction({ props }));
   }

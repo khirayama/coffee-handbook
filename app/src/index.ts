@@ -70,8 +70,8 @@ app
 app
   .get('/', preHandler, shopsHandler)
   .get('/shops', preHandler, shopsHandler)
-  .get('/shops/:key', preHandler, shopsHandler)
   .get('/shops/new', preHandler, shopEditHandler)
+  .get('/shops/:key', preHandler, shopsHandler)
   .get('/shops/:key/edit', preHandler, shopEditHandler)
   .get('/about', preHandler, aboutHandler)
   .get('/privacy', preHandler, privacyHandler)
