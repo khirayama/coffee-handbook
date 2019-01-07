@@ -17,6 +17,7 @@ import { aboutHandler } from 'handlers/aboutHandler';
 import { manifestHandler } from 'handlers/manifestHandler';
 import { privacyHandler } from 'handlers/privacyHandler';
 import { robotsHandler } from 'handlers/robotsHandler';
+import { shopEditHandler } from 'handlers/shopEditHandler';
 import { shopsHandler } from 'handlers/shopsHandler';
 import { sitemapHandler, sitemapXmlHandler } from 'handlers/sitemapHandler';
 import { HypothesisTesting } from 'utils/HypothesisTesting';
@@ -70,6 +71,8 @@ app
   .get('/', preHandler, shopsHandler)
   .get('/shops', preHandler, shopsHandler)
   .get('/shops/:key', preHandler, shopsHandler)
+  .get('/shops/new', preHandler, shopEditHandler)
+  .get('/shops/:key/edit', preHandler, shopEditHandler)
   .get('/about', preHandler, aboutHandler)
   .get('/privacy', preHandler, privacyHandler)
   .get('/sitemap.xml', preHandler, sitemapXmlHandler)
