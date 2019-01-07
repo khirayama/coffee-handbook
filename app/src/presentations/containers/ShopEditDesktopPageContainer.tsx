@@ -1,10 +1,15 @@
 import * as React from 'react';
 
+import { ShopForm } from 'presentations/components/ShopForm';
 import { connect, IContainerProps } from 'utils/Container';
 
 export class ShopEditDesktopPage extends React.Component<IContainerProps, {}> {
   public render(): JSX.Element {
-    return <div className="ShopEditDesktopPage">Shop Edit Desktop Page</div>;
+    return (
+      <div className="ShopEditDesktopPage">
+        <ShopForm />
+      </div>
+    );
   }
 }
 

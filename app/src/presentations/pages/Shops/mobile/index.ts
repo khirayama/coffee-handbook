@@ -16,7 +16,8 @@ import { Store } from 'utils/Store';
 declare global {
   // tslint:disable-next-line:interface-name
   interface Window {
-    state: IState;
+    // tslint:disable-next-line:no-any
+    state: any;
   }
 }
 
