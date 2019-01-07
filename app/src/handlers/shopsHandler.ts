@@ -247,18 +247,27 @@ export function mapsHandler(req: express.Request, res: express.Response): void {
     content: '',
   };
 
+  interface IProviderProps {
+    store: Store<IState, IAction>;
+    children: React.ReactNode;
+  }
+
+  type StoreProvider = new () => Provider<IProviderProps>;
+  // tslint:disable-next-line:variable-name
+  const StoreProvider: StoreProvider = <StoreProvider>Provider;
+
   if (req.useragent.isMobile) {
     props.entrypoint = '/pages/Maps/mobile/bundle.js';
     props.stylesheet = '/pages/Maps/mobile/index.css';
     props.content = renderToString(
-      React.createElement(Provider, { store }, React.createElement(MapsMobilePageContainer)),
+      React.createElement(StoreProvider, { store }, React.createElement(MapsMobilePageContainer)),
     );
     res.send(compiledFunction({ props }));
   } else {
     props.entrypoint = '/pages/Maps/desktop/bundle.js';
     props.stylesheet = '/pages/Maps/desktop/index.css';
     props.content = renderToString(
-      React.createElement(Provider, { store }, React.createElement(MapsDesktopPageContainer)),
+      React.createElement(StoreProvider, { store }, React.createElement(MapsDesktopPageContainer)),
     );
     res.send(compiledFunction({ props }));
   }

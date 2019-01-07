@@ -15,7 +15,7 @@ import { shopLoader } from 'data/shopLoader';
 import { experiments } from 'experiments';
 import { aboutHandler } from 'handlers/aboutHandler';
 import { manifestHandler } from 'handlers/manifestHandler';
-import { mapsHandler } from 'handlers/mapsHandler';
+import { shopsHandler } from 'handlers/shopsHandler';
 import { privacyHandler } from 'handlers/privacyHandler';
 import { robotsHandler } from 'handlers/robotsHandler';
 import { sitemapHandler, sitemapXmlHandler } from 'handlers/sitemapHandler';
@@ -67,9 +67,9 @@ app
   .use(cookieParser());
 
 app
-  .get('/', preHandler, mapsHandler)
-  .get('/shops', preHandler, mapsHandler)
-  .get('/shops/:key', preHandler, mapsHandler)
+  .get('/', preHandler, shopsHandler)
+  .get('/shops', preHandler, shopsHandler)
+  .get('/shops/:key', preHandler, shopsHandler)
   .get('/about', preHandler, aboutHandler)
   .get('/privacy', preHandler, privacyHandler)
   .get('/sitemap.xml', preHandler, sitemapXmlHandler)
