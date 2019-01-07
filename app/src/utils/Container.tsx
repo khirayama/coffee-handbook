@@ -1,18 +1,19 @@
+// tslint:disable:no-any
 import * as React from 'react';
 
-import { IAction, IDispatch, IState } from 'presentations/pages/Maps/interfaces';
 import { Store } from 'utils/Store';
 
 interface IProps {
-  store: Store<IState, IAction>;
+  store: Store<any, any>;
 }
 
 interface IContext {
-  store: Store<IState, IAction>;
+  store: Store<any, any>;
 }
 
-export interface IContainerProps extends IState {
-  dispatch: IDispatch;
+export interface IContainerProps {
+  [key: string]: any;
+  dispatch: any;
 }
 
 const context: React.Context<IContext | null> = React.createContext(null);
@@ -32,7 +33,7 @@ export function connect(component: React.ComponentClass<IContainerProps, {}>): R
     public static contextType: React.Context<IContext> = context;
 
     public context: {
-      store: Store<IState, IAction>;
+      store: Store<any, any>;
     };
 
     protected handleStateUpdate: () => void;
@@ -54,7 +55,7 @@ export function connect(component: React.ComponentClass<IContainerProps, {}>): R
     }
 
     public render(): JSX.Element {
-      const state: IState = this.context.store.getState();
+      const state: any = this.context.store.getState();
 
       return React.createElement(component, {
         ...state,
@@ -62,7 +63,7 @@ export function connect(component: React.ComponentClass<IContainerProps, {}>): R
       });
     }
 
-    protected getState(): IState {
+    protected getState(): any {
       return this.context.store.getState();
     }
   }
