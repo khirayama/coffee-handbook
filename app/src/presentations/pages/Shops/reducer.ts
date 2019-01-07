@@ -1,5 +1,5 @@
-import { actionTypes } from 'presentations/pages/Maps/actionTypes';
-import { IAction, IPosition, IState } from 'presentations/pages/Maps/interfaces';
+import { actionTypes } from 'presentations/pages/Shops/actionTypes';
+import { IAction, IPosition, IState } from 'presentations/pages/Shops/interfaces';
 
 export function reducer(state: IState, action: IAction): IState {
   const newState: IState = JSON.parse(JSON.stringify(state));

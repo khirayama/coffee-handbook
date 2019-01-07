@@ -1,4 +1,4 @@
-import { IShop } from 'presentations/pages/Maps/interfaces';
+import { IShop } from 'presentations/pages/Shops/interfaces';
 
 interface IHandlers {
   onClick(event: MouseEvent, shopMarker: ShopMarker): void;

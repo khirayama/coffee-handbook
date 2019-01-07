@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { IShop } from 'presentations/pages/Maps/interfaces';
+import { IShop } from 'presentations/pages/Shops/interfaces';
 
 interface IProps {
   shop: IShop;

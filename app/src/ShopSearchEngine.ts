@@ -1,6 +1,6 @@
 // tslint:disable:no-any
 import { dic } from 'dic';
-import { IPosition, IRawShop } from 'presentations/pages/Maps/interfaces';
+import { IPosition, IRawShop } from 'presentations/pages/Shops/interfaces';
 import { IDic } from 'utils/Dictionary';
 
 export interface ISearchResult {

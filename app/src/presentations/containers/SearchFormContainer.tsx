@@ -3,8 +3,8 @@ import * as React from 'react';
 
 import { dic } from 'dic';
 import { SearchForm } from 'presentations/components/SearchForm';
-import { changeSheetShown, filterShop, searchShop } from 'presentations/pages/Maps/actionCreators';
-import { IAction } from 'presentations/pages/Maps/interfaces';
+import { changeSheetShown, filterShop, searchShop } from 'presentations/pages/Shops/actionCreators';
+import { IAction } from 'presentations/pages/Shops/interfaces';
 import { connect, IContainerProps } from 'utils/Container';
 
 interface IState {

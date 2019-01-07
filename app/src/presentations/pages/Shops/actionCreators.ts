@@ -1,6 +1,6 @@
 // tslint:disable:no-any
-import { actionTypes } from 'presentations/pages/Maps/actionTypes';
-import { IAction, IDispatch, IPosition, IRawShop } from 'presentations/pages/Maps/interfaces';
+import { actionTypes } from 'presentations/pages/Shops/actionTypes';
+import { IAction, IDispatch, IPosition, IRawShop } from 'presentations/pages/Shops/interfaces';
 import { saveView } from 'presentations/utils/helpers';
 import { ISearchResult, shopSearchEngine } from 'ShopSearchEngine';
 

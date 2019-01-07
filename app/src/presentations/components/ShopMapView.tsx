@@ -3,7 +3,7 @@ import * as deepEqual from 'deep-equal';
 import * as React from 'react';
 
 import { ShopMarker } from 'presentations/components/ShopMarker';
-import { IPosition, IShop } from 'presentations/pages/Maps/interfaces';
+import { IPosition, IShop } from 'presentations/pages/Shops/interfaces';
 import { secret } from 'secret';
 
 interface IProps {

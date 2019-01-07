@@ -1,7 +1,7 @@
 import { config } from 'config';
 import { shopLoader } from 'data/shopLoader';
 import { dic } from 'dic';
-import { IRawShop } from 'presentations/pages/Maps/interfaces';
+import { IRawShop } from 'presentations/pages/Shops/interfaces';
 import { IDic } from 'utils/Dictionary';
 
 interface ISitemapOptions {

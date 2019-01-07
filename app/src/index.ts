@@ -15,13 +15,13 @@ import { shopLoader } from 'data/shopLoader';
 import { experiments } from 'experiments';
 import { aboutHandler } from 'handlers/aboutHandler';
 import { manifestHandler } from 'handlers/manifestHandler';
-import { shopsHandler } from 'handlers/shopsHandler';
 import { privacyHandler } from 'handlers/privacyHandler';
 import { robotsHandler } from 'handlers/robotsHandler';
+import { shopsHandler } from 'handlers/shopsHandler';
 import { sitemapHandler, sitemapXmlHandler } from 'handlers/sitemapHandler';
 import { HypothesisTesting } from 'utils/HypothesisTesting';
 
-import { IRawShop } from 'presentations/pages/Maps/interfaces';
+import { IRawShop } from 'presentations/pages/Shops/interfaces';
 import { shopSearchEngine } from 'ShopSearchEngine';
 
 const hypothesisTesting: HypothesisTesting = new HypothesisTesting(experiments);

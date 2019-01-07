@@ -2,8 +2,8 @@
 import * as React from 'react';
 
 import { CurrentPositionButton } from 'presentations/components/CurrentPositionButton';
-import { updateCurrentPosition, updateView } from 'presentations/pages/Maps/actionCreators';
-import { IPosition } from 'presentations/pages/Maps/interfaces';
+import { updateCurrentPosition, updateView } from 'presentations/pages/Shops/actionCreators';
+import { IPosition } from 'presentations/pages/Shops/interfaces';
 import { connect, IContainerProps } from 'utils/Container';
 
 const geolocationUtils: {

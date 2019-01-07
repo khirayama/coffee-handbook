@@ -3,7 +3,7 @@ import * as csvParse from 'csv-parse/lib/sync';
 import * as got from 'got';
 
 import { config } from 'config';
-import { IRawShop } from 'presentations/pages/Maps/interfaces';
+import { IRawShop } from 'presentations/pages/Shops/interfaces';
 import { IDic } from 'utils/Dictionary';
 
 interface ICSVRecord {

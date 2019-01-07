@@ -11,8 +11,8 @@ import { shopLoader } from 'data/shopLoader';
 import { dic } from 'dic';
 import { MapsDesktopPageContainer } from 'presentations/containers/MapsDesktopPage';
 import { MapsMobilePageContainer } from 'presentations/containers/MapsMobilePage';
-import { IAction, IPosition, IRawShop, IShop, IState } from 'presentations/pages/Maps/interfaces';
-import { reducer } from 'presentations/pages/Maps/reducer';
+import { IAction, IPosition, IRawShop, IShop, IState } from 'presentations/pages/Shops/interfaces';
+import { reducer } from 'presentations/pages/Shops/reducer';
 import { secret } from 'secret';
 import { ISearchResult, shopSearchEngine } from 'ShopSearchEngine';
 import { Provider } from 'utils/Container';
@@ -49,14 +49,14 @@ interface IProps {
 }
 
 const compiledFunction: (options: { props: IProps }) => void = pug.compileFile(
-  path.resolve('dist', 'presentations', 'application', 'Layout.new.pug'),
+  path.resolve('dist', 'presentations', 'pages', 'Shops', 'Layout.pug'),
   {
     basedir: path.resolve('dist', 'presentations'),
   },
 );
 
 // tslint:disable-next-line:max-func-body-length cyclomatic-complexity
-export function mapsHandler(req: express.Request, res: express.Response): void {
+export function shopsHandler(req: express.Request, res: express.Response): void {
   const shops: IRawShop[] = shopLoader.getShops();
   const lang: string = req.lang;
   const shopKey: string = req.params.key;
@@ -247,27 +247,18 @@ export function mapsHandler(req: express.Request, res: express.Response): void {
     content: '',
   };
 
-  interface IProviderProps {
-    store: Store<IState, IAction>;
-    children: React.ReactNode;
-  }
-
-  type StoreProvider = new () => Provider<IProviderProps>;
-  // tslint:disable-next-line:variable-name
-  const StoreProvider: StoreProvider = <StoreProvider>Provider;
-
   if (req.useragent.isMobile) {
-    props.entrypoint = '/pages/Maps/mobile/bundle.js';
-    props.stylesheet = '/pages/Maps/mobile/index.css';
+    props.entrypoint = '/pages/Shops/mobile/bundle.js';
+    props.stylesheet = '/pages/Shops/mobile/index.css';
     props.content = renderToString(
-      React.createElement(StoreProvider, { store }, React.createElement(MapsMobilePageContainer)),
+      React.createElement(Provider, { store }, React.createElement(MapsMobilePageContainer)),
     );
     res.send(compiledFunction({ props }));
   } else {
-    props.entrypoint = '/pages/Maps/desktop/bundle.js';
-    props.stylesheet = '/pages/Maps/desktop/index.css';
+    props.entrypoint = '/pages/Shops/desktop/bundle.js';
+    props.stylesheet = '/pages/Shops/desktop/index.css';
     props.content = renderToString(
-      React.createElement(StoreProvider, { store }, React.createElement(MapsDesktopPageContainer)),
+      React.createElement(Provider, { store }, React.createElement(MapsDesktopPageContainer)),
     );
     res.send(compiledFunction({ props }));
   }

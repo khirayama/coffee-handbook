@@ -17,8 +17,8 @@ import {
   selectTargetShop,
   unselectShop,
   updateView,
-} from 'presentations/pages/Maps/actionCreators';
-import { IPosition, IRawShop, IShop } from 'presentations/pages/Maps/interfaces';
+} from 'presentations/pages/Shops/actionCreators';
+import { IPosition, IRawShop, IShop } from 'presentations/pages/Shops/interfaces';
 import { getMapOffset, waitNextTick, waitShortAnimationEnd } from 'presentations/utils/helpers';
 import { tracker } from 'presentations/utils/tracker';
 import { shopSearchEngine } from 'ShopSearchEngine';

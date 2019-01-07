@@ -3,7 +3,7 @@ import * as classNames from 'classnames';
 import * as React from 'react';
 
 import { dic } from 'dic';
-import { IShop } from 'presentations/pages/Maps/interfaces';
+import { IShop } from 'presentations/pages/Shops/interfaces';
 import { getNextStatusMessage } from 'presentations/utils/getNextStatusMessage';
 import { getOpenStatus, IOpenStatus } from 'presentations/utils/getOpenStatus';
 

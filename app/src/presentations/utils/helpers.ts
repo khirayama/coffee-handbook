@@ -1,4 +1,4 @@
-import { IPosition } from 'presentations/pages/Maps/interfaces';
+import { IPosition } from 'presentations/pages/Shops/interfaces';
 import { shortAnimationTime } from 'vars';
 
 const SAVE_VIEW_KEY: string = '__UI_MAP_VIEW';
