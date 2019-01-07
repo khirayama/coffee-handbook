@@ -3,8 +3,8 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
 import { MapsDesktopPageContainer } from 'presentations/containers/MapsDesktopPage';
-import { IAction, IPosition, IState } from 'presentations/pages/Maps/interfaces';
-import { reducer } from 'presentations/pages/Maps/reducer';
+import { IAction, IPosition, IState } from 'presentations/pages/Shops/interfaces';
+import { reducer } from 'presentations/pages/Shops/reducer';
 import { loadView } from 'presentations/utils/helpers';
 import { Provider } from 'utils/Container';
 import { Store } from 'utils/Store';

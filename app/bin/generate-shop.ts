@@ -101,7 +101,7 @@ async function transformEnglishAddress(jaAddress: string): Promise<string> {
 
 function template(options: any): string {
   return `// tslint:disable:no-http-string
-import { IRawShop } from 'presentations/pages/Maps/interfaces';
+import { IRawShop } from 'presentations/pages/Shops/interfaces';
 
 export const ${options.fileName}: IRawShop = {
   key: '${options.key}',

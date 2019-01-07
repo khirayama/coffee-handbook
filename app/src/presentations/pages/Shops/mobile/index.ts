@@ -4,9 +4,9 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
 import { MapsMobilePageContainer } from 'presentations/containers/MapsMobilePage';
-import { searchShop, selectShop, unselectShop, updateView } from 'presentations/pages/Maps/actionCreators';
-import { IAction, IDispatch, IPosition, IRawShop, IShop, IState } from 'presentations/pages/Maps/interfaces';
-import { reducer } from 'presentations/pages/Maps/reducer';
+import { searchShop, selectShop, unselectShop, updateView } from 'presentations/pages/Shops/actionCreators';
+import { IAction, IDispatch, IPosition, IRawShop, IShop, IState } from 'presentations/pages/Shops/interfaces';
+import { reducer } from 'presentations/pages/Shops/reducer';
 import { getMapOffset, loadView, waitNextTick } from 'presentations/utils/helpers';
 import { shopSearchEngine } from 'ShopSearchEngine';
 import { Provider } from 'utils/Container';
