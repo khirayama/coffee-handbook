@@ -34,6 +34,7 @@
   "license": "",
   "dependencies": {
     "axios": "0.18.0",
+    "basic-auth-connect": "1.0.0",
     "classnames": "2.2.6",
     "compression": "1.7.3",
     "cookie-parser": "1.4.3",

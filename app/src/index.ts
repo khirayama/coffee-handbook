@@ -1,6 +1,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 
+import * as basicAuth from 'basic-auth-connect';
 import * as compression from 'compression';
 import * as cookieParser from 'cookie-parser';
 import * as express from 'express';
@@ -53,6 +54,12 @@ function preHandler(req: express.Request, res: express.Response, next: express.N
   next();
 }
 
+const basicAuthHandler: (req: express.Request, res: express.Response, next: express.NextFunction) => void = basicAuth(
+  (user: string, pwd: string): boolean => {
+    return user === process.env.BASIC_AUTH_USER && pwd === process.env.BASIC_AUTH_PASSWORD;
+  },
+);
+
 const app: express = express();
 
 const basedir: string = path.join(__dirname, 'presentations');
@@ -70,8 +77,8 @@ app
 app
   .get('/', preHandler, shopsHandler)
   .get('/shops', preHandler, shopsHandler)
-  .get('/shops/new', preHandler, shopEditHandler)
-  .get('/shops/:key', preHandler, shopsHandler)
+  .get('/shops/new', preHandler, basicAuthHandler, shopEditHandler)
+  .get('/shops/:key', preHandler, basicAuthHandler, shopsHandler)
   .get('/shops/:key/edit', preHandler, shopEditHandler)
   .get('/about', preHandler, aboutHandler)
   .get('/privacy', preHandler, privacyHandler)
