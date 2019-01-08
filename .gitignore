@@ -1,1 +1,7 @@
 .DS_Store
+
+/node_modules
+/src/public
+/dist
+/secret.yaml
+/.envrc
