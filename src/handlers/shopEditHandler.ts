@@ -38,7 +38,48 @@ export function shopEditHandler(req: express.Request, res: express.Response): vo
   const shopKey: string = req.params.key;
   // Build initial state
   const initialState: IState = {
-    lang,
+    shopkey: '',
+    email: '',
+    tel: '',
+    permanentClosed: false,
+    transferTo: '',
+    web: '',
+    ec: '',
+    facebook: '',
+    twitter: '',
+    instagram: '',
+    instagramTag: '',
+    googleMaps: '',
+    hasRoaster: 0,
+    hasSpeciality: 0,
+    hasBeans: 0,
+    hasCredit: 0,
+    hasPower: 0,
+    hasWifi: 0,
+    hasBarrierFree: 0,
+    hasPet: 0,
+    hasSmoking: 0,
+    // shop attributes
+    en: {
+      name: '',
+      address: '',
+      hoursNote: '',
+    },
+    ja: {
+      name: '',
+      address: '',
+      hoursNote: '',
+    },
+    // shop open hours
+    openHours: [
+      [['07:00', '20:00']],
+      [['07:00', '20:00']],
+      [['07:00', '20:00']],
+      [['07:00', '20:00']],
+      [['07:00', '20:00']],
+      [['07:00', '20:00']],
+      [['07:00', '20:00']],
+    ],
   };
   const store: Store<IState, IAction> = new Store(initialState, reducer);
 

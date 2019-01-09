@@ -1,4 +1,4 @@
-// tslint:disable:react-a11y-role-has-required-aria-props react-a11y-no-onchange react-this-binding-issue
+// tslint:disable:react-a11y-role-has-required-aria-props react-a11y-no-onchange react-this-binding-issue no-any
 import * as React from 'react';
 
 interface IShopAttribute {
@@ -7,8 +7,8 @@ interface IShopAttribute {
   hoursNote: string;
 }
 
-interface IState {
-  key: string;
+export interface IProps {
+  shopkey: string;
   email: string;
   tel: string;
   permanentClosed: boolean;
@@ -36,57 +36,14 @@ interface IState {
   ja: IShopAttribute;
   // openHours
   openHours: string[][][];
+  // handlers
+  onChange(event: React.FormEvent<HTMLInputElement | HTMLSelectElement>): void;
+  onSubmit(event: React.FormEvent<HTMLFormElement>): void;
 }
 
-export class ShopForm extends React.Component<{}, IState> {
-  constructor(props: {}) {
+export class ShopForm extends React.Component<IProps, {}> {
+  constructor(props: IProps) {
     super(props);
-
-    this.state = {
-      // shops
-      key: '',
-      email: '',
-      tel: '',
-      permanentClosed: false,
-      transferTo: '',
-      web: '',
-      ec: '',
-      facebook: '',
-      twitter: '',
-      instagram: '',
-      instagramTag: '',
-      googleMaps: '',
-      hasRoaster: 0,
-      hasSpeciality: 0,
-      hasBeans: 0,
-      hasCredit: 0,
-      hasPower: 0,
-      hasWifi: 0,
-      hasBarrierFree: 0,
-      hasPet: 0,
-      hasSmoking: 0,
-      // shop attributes
-      en: {
-        name: '',
-        address: '',
-        hoursNote: '',
-      },
-      ja: {
-        name: '',
-        address: '',
-        hoursNote: '',
-      },
-      // shop open hours
-      openHours: [
-        [['07:00', '20:00']],
-        [['07:00', '20:00']],
-        [['07:00', '20:00']],
-        [['07:00', '20:00']],
-        [['07:00', '20:00']],
-        [['07:00', '20:00']],
-        [['07:00', '20:00']],
-      ],
-    };
 
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -110,8 +67,8 @@ export class ShopForm extends React.Component<{}, IState> {
               <td>
                 <input
                   type="text"
-                  name="key"
-                  value={this.state.key}
+                  name="shopkey"
+                  value={this.props.shopkey}
                   onChange={this.onChange}
                   placeholder="coffee-handbook"
                 />
@@ -125,7 +82,7 @@ export class ShopForm extends React.Component<{}, IState> {
                 <input
                   type="text"
                   name="ja.name"
-                  value={this.state.ja.name}
+                  value={this.props.ja.name}
                   onChange={this.onChange}
                   placeholder="珈琲手帖"
                 />
@@ -137,7 +94,7 @@ export class ShopForm extends React.Component<{}, IState> {
                 <input
                   type="text"
                   name="en.name"
-                  value={this.state.en.name}
+                  value={this.props.en.name}
                   onChange={this.onChange}
                   placeholder="COFFEE HANDBOOK"
                 />
@@ -150,7 +107,7 @@ export class ShopForm extends React.Component<{}, IState> {
                 <input
                   type="text"
                   name="ja.address"
-                  value={this.state.ja.address}
+                  value={this.props.ja.address}
                   onChange={this.onChange}
                   placeholder="手帖珈琲111-1"
                 />
@@ -162,7 +119,7 @@ export class ShopForm extends React.Component<{}, IState> {
                 <input
                   type="text"
                   name="en.address"
-                  value={this.state.en.address}
+                  value={this.props.en.address}
                   onChange={this.onChange}
                   placeholder="111-1, COFFEE, HANDBOOK"
                 />
@@ -175,7 +132,7 @@ export class ShopForm extends React.Component<{}, IState> {
                 <input
                   type="text"
                   name="email"
-                  value={this.state.email}
+                  value={this.props.email}
                   onChange={this.onChange}
                   placeholder="coffee-handbook@coffeehandbook.com"
                 />
@@ -187,7 +144,7 @@ export class ShopForm extends React.Component<{}, IState> {
                 <input
                   type="text"
                   name="tel"
-                  value={this.state.tel}
+                  value={this.props.tel}
                   onChange={this.onChange}
                   placeholder="09012345678"
                 />
@@ -199,7 +156,7 @@ export class ShopForm extends React.Component<{}, IState> {
                 <input
                   type="text"
                   name="web"
-                  value={this.state.web}
+                  value={this.props.web}
                   onChange={this.onChange}
                   placeholder="https://coffee-handbook.com"
                 />
@@ -211,7 +168,7 @@ export class ShopForm extends React.Component<{}, IState> {
                 <input
                   type="text"
                   name="ec"
-                  value={this.state.ec}
+                  value={this.props.ec}
                   onChange={this.onChange}
                   placeholder="https://ec.coffee-handbook.com"
                 />
@@ -223,7 +180,7 @@ export class ShopForm extends React.Component<{}, IState> {
                 <input
                   type="text"
                   name="facebook"
-                  value={this.state.facebook}
+                  value={this.props.facebook}
                   onChange={this.onChange}
                   placeholder="https://www.facebook.com/coffeehandbook"
                 />
@@ -235,7 +192,7 @@ export class ShopForm extends React.Component<{}, IState> {
                 <input
                   type="text"
                   name="twitter"
-                  value={this.state.twitter}
+                  value={this.props.twitter}
                   onChange={this.onChange}
                   placeholder="https://twitter.com/coffeehandbook_"
                 />
@@ -247,7 +204,7 @@ export class ShopForm extends React.Component<{}, IState> {
                 <input
                   type="text"
                   name="instagram"
-                  value={this.state.instagram}
+                  value={this.props.instagram}
                   onChange={this.onChange}
                   placeholder="https://www.instagram.com/coffee_handbook"
                 />
@@ -259,7 +216,7 @@ export class ShopForm extends React.Component<{}, IState> {
                 <input
                   type="text"
                   name="instagramTag"
-                  value={this.state.instagramTag}
+                  value={this.props.instagramTag}
                   onChange={this.onChange}
                   placeholder="https://www.instagram.com/explore/tags/coffeehandbook/"
                 />
@@ -271,7 +228,7 @@ export class ShopForm extends React.Component<{}, IState> {
                 <input
                   type="text"
                   name="googleMaps"
-                  value={this.state.googleMaps}
+                  value={this.props.googleMaps}
                   onChange={this.onChange}
                   placeholder="https://goo.gl/maps/coffee-handbook"
                 />
@@ -281,7 +238,7 @@ export class ShopForm extends React.Component<{}, IState> {
               <th rowSpan={9}>Services</th>
               <th>Has roaster?</th>
               <td>
-                <select name="hasRoaster" onChange={this.onChange} value={this.state.hasRoaster}>
+                <select name="hasRoaster" onChange={this.onChange} value={this.props.hasRoaster}>
                   <option value="0">No</option>
                   <option value="2">Yes</option>
                 </select>
@@ -290,7 +247,7 @@ export class ShopForm extends React.Component<{}, IState> {
             <tr>
               <th>Serve speciality coffee?</th>
               <td>
-                <select name="hasSpeciality" onChange={this.onChange} value={this.state.hasSpeciality}>
+                <select name="hasSpeciality" onChange={this.onChange} value={this.props.hasSpeciality}>
                   <option value="0">No</option>
                   <option value="2">Yes</option>
                 </select>
@@ -299,7 +256,7 @@ export class ShopForm extends React.Component<{}, IState> {
             <tr>
               <th>Sell coffee beans?</th>
               <td>
-                <select name="hasBeans" onChange={this.onChange} value={this.state.hasBeans}>
+                <select name="hasBeans" onChange={this.onChange} value={this.props.hasBeans}>
                   <option value="0">No</option>
                   <option value="2">Yes</option>
                 </select>
@@ -308,7 +265,7 @@ export class ShopForm extends React.Component<{}, IState> {
             <tr>
               <th>Use creadit card?</th>
               <td>
-                <select name="hasCredit" onChange={this.onChange} value={this.state.hasCredit}>
+                <select name="hasCredit" onChange={this.onChange} value={this.props.hasCredit}>
                   <option value="0">No</option>
                   <option value="1">Yes, but partially</option>
                   <option value="2">Yes</option>
@@ -318,7 +275,7 @@ export class ShopForm extends React.Component<{}, IState> {
             <tr>
               <th>Has power?</th>
               <td>
-                <select name="hasPower" onChange={this.onChange} value={this.state.hasPower}>
+                <select name="hasPower" onChange={this.onChange} value={this.props.hasPower}>
                   <option value="0">No</option>
                   <option value="1">Yes, but partially</option>
                   <option value="2">Yes</option>
@@ -328,7 +285,7 @@ export class ShopForm extends React.Component<{}, IState> {
             <tr>
               <th>Has wifi?</th>
               <td>
-                <select name="hasWifi" onChange={this.onChange} value={this.state.hasWifi}>
+                <select name="hasWifi" onChange={this.onChange} value={this.props.hasWifi}>
                   <option value="0">No</option>
                   <option value="2">Yes</option>
                 </select>
@@ -337,7 +294,7 @@ export class ShopForm extends React.Component<{}, IState> {
             <tr>
               <th>Barrier free shop?</th>
               <td>
-                <select name="hasBarrierFree" onChange={this.onChange} value={this.state.hasBarrierFree}>
+                <select name="hasBarrierFree" onChange={this.onChange} value={this.props.hasBarrierFree}>
                   <option value="0">No</option>
                   <option value="1">Yes, but partially</option>
                   <option value="2">Yes</option>
@@ -347,7 +304,7 @@ export class ShopForm extends React.Component<{}, IState> {
             <tr>
               <th>Can customers take pets?</th>
               <td>
-                <select name="hasPet" onChange={this.onChange} value={this.state.hasPet}>
+                <select name="hasPet" onChange={this.onChange} value={this.props.hasPet}>
                   <option value="0">No</option>
                   <option value="1">Yes, but partially</option>
                   <option value="2">Yes</option>
@@ -357,17 +314,17 @@ export class ShopForm extends React.Component<{}, IState> {
             <tr>
               <th>Can customers smoke?</th>
               <td>
-                <select name="hasSmoking" onChange={this.onChange} value={this.state.hasSmoking}>
+                <select name="hasSmoking" onChange={this.onChange} value={this.props.hasSmoking}>
                   <option value="0">No</option>
                   <option value="1">Yes, but partially</option>
                   <option value="2">Yes</option>
                 </select>
               </td>
             </tr>
-            {this.state.openHours.map((dayOpenHours: string[][], i: number) => {
+            {this.props.openHours.map((dayOpenHours: string[][], i: number) => {
               const headElement: JSX.Element = (
                 <th
-                  rowSpan={this.state.openHours
+                  rowSpan={this.props.openHours
                     .map((tmp: string[][]) => tmp.length || 1)
                     .reduce((m: number, n: number = 0) => m + n)}
                 >
@@ -375,14 +332,14 @@ export class ShopForm extends React.Component<{}, IState> {
                 </th>
               );
               const dayElement: JSX.Element = (
-                <th rowSpan={Math.max(this.state.openHours[i].length, 1)}>
+                <th rowSpan={Math.max(this.props.openHours[i].length, 1)}>
                   {i}
                   <div
                     className="Icon"
                     role="button"
                     onClick={(event: React.MouseEvent<HTMLElement>): void => {
                       event.preventDefault();
-                      const newState: IState = JSON.parse(JSON.stringify(this.state));
+                      const newState: any = JSON.parse(JSON.stringify(this.props));
                       newState.openHours[i].push(
                         newState.openHours[i][newState.openHours[i].length - 1] || ['07:00', '20:00'],
                       );
@@ -400,13 +357,13 @@ export class ShopForm extends React.Component<{}, IState> {
                     <td key={j}>
                       <input
                         type="time"
-                        value={this.state.openHours[i][j][0]}
+                        value={this.props.openHours[i][j][0]}
                         name={`openHours.${i}.${j}.0`}
                         onChange={this.onChange}
                       />
                       <input
                         type="time"
-                        value={this.state.openHours[i][j][1]}
+                        value={this.props.openHours[i][j][1]}
                         name={`openHours.${i}.${j}.1`}
                         onChange={this.onChange}
                       />
@@ -415,7 +372,7 @@ export class ShopForm extends React.Component<{}, IState> {
                         role="button"
                         onClick={(event: React.MouseEvent<HTMLElement>): void => {
                           event.preventDefault();
-                          const newState: IState = JSON.parse(JSON.stringify(this.state));
+                          const newState: any = JSON.parse(JSON.stringify(this.props));
                           newState.openHours[i].splice(j, 1);
                           this.setState(newState);
                         }}
@@ -448,7 +405,7 @@ export class ShopForm extends React.Component<{}, IState> {
                 <input
                   type="text"
                   name="ja.hoursNote"
-                  value={this.state.ja.hoursNote}
+                  value={this.props.ja.hoursNote}
                   onChange={this.onChange}
                   placeholder="祝日 10:00 - 18:00"
                 />
@@ -460,7 +417,7 @@ export class ShopForm extends React.Component<{}, IState> {
                 <input
                   type="text"
                   name="en.hoursNote"
-                  value={this.state.en.hoursNote}
+                  value={this.props.en.hoursNote}
                   onChange={this.onChange}
                   placeholder="Holiday 10:00 - 18:00"
                 />
@@ -474,23 +431,10 @@ export class ShopForm extends React.Component<{}, IState> {
   }
 
   private onChange(event: React.FormEvent<HTMLInputElement | HTMLSelectElement>): void {
-    const name: string = event.currentTarget.name;
-    const value: string = event.currentTarget.value;
-
-    const newState: IState = JSON.parse(JSON.stringify(this.state));
-    // tslint:disable-next-line:no-any
-    let tmp: any = newState;
-    const accessKeys: string[] = name.split('.');
-    for (let i: number = 0; i < accessKeys.length - 1; i += 1) {
-      const accessKey: string = accessKeys[i];
-      tmp = tmp[accessKey];
-    }
-    tmp[accessKeys[accessKeys.length - 1]] = value;
-    this.setState(newState);
+    this.props.onChange(event);
   }
 
   private onSubmit(event: React.FormEvent<HTMLFormElement>): void {
-    event.preventDefault();
-    console.log(this.state);
+    this.props.onSubmit(event);
   }
 }
